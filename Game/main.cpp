@@ -4,15 +4,20 @@
 #include "AssetManager.hpp"
 
 int main(){
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 
+	sf::Sprite sprite;
+	sprite.setTexture(assets.getTexture("bush"));
+	window.draw(sprite);
+
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
-
 	double previous, lag, current, elapsed;
 
-	while (true){
+	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
 		previous = current;
@@ -24,6 +29,17 @@ int main(){
 			lag -= msPerUpdate;
 		}
 
+		window.clear();
+		window.draw(sprite);
+		window.display();
+		sf::sleep( sf::milliseconds( 10 ));
+
+		sf::Event event;		
+	    while( window.pollEvent(event) ){
+			if( event.type == sf::Event::Closed ){
+				window.close();
+			}
+		}
 		// render();
 
 	}

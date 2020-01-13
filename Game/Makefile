@@ -1,9 +1,9 @@
 
-SOURCES := AssetManager.cpp game.hpp
+SOURCES := AssetManager.cpp
 
-HEADERS := entity.hpp AssetManager.hpp exceptions.hpp
+HEADERS := exceptions.hpp entity.hpp AssetManager.hpp
 
-SEARCH  := AI Assets Entities Physics World
+SEARCH  := AI Assets Entities Physics World ..
 
 RELATIVE := ..
 include $(RELATIVE)/Makefile.native
