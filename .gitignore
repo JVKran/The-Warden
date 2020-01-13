@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Videos
+*.mp*
+
+# Software Ideas Modeller
+*.bak
