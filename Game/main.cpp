@@ -1,8 +1,12 @@
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "AssetManager.hpp"
 
 int main(){
+	AssetManager assets;
+	assets.loadObjects("objects.txt");
+
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 
