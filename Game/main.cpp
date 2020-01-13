@@ -2,16 +2,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
+#include "World.hpp"
 
 int main(){
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
-
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 
-	sf::Sprite sprite;
-	sprite.setTexture(assets.getTexture("bush"));
-	window.draw(sprite);
+	World world(assets);
+	world.loadWorld("world.txt");
+	world.setBackground("background");
+
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
@@ -30,7 +31,7 @@ int main(){
 		}
 
 		window.clear();
-		window.draw(sprite);
+		world.draw(window);
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 

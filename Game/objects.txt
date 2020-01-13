@@ -1,1 +1,2 @@
-bush /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
+background /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
+crate /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
