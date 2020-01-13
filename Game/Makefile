@@ -1,7 +1,7 @@
 
 SOURCES := AssetManager.cpp World.cpp ScreenObject.cpp
 
-HEADERS := exceptions.hpp entity.hpp AssetManager.hpp World.hpp ScreenObject.hpp
+HEADERS := exceptions.hpp entity.hpp AssetManager.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp
 
 SEARCH  := AI Assets Entities Physics World ..
 

@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "FactoryFunction.hpp"
 
 World::World(AssetManager & assets):
 	assets(assets)
@@ -22,8 +23,9 @@ void World::loadWorld(const std::string & worldFileName){
 
 void World::loadTile(std::ifstream & input){
 	std::string assetName;
-	input >> assetName;
-	tiles.push_back(ScreenObject(assetName, assets));
+	sf::Vector2f position;
+	input >> position >> assetName;
+	tiles.push_back(ScreenObject(assetName, assets, position));
 }
 
 void World::draw(sf::RenderWindow & window){
