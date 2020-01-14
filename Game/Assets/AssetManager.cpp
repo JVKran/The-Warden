@@ -19,7 +19,6 @@ void AssetManager::loadObjects(const std::string & assetFileName){
 void AssetManager::loadTextures(std::ifstream & input){
 	std::string name, fileName;
 	input >> name >> fileName;
-	std::cout << "File " << fileName << " found!" << std::endl;
 	sf::Texture texture;
 	if (!texture.loadFromFile(fileName)){
     	throw noSuchPicture(fileName);
