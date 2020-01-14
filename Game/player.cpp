@@ -35,12 +35,11 @@ void Player::update(){
       move(sf::Vector2f(0,speed));
     }
 }
+
 void Player::move(sf::Vector2f newpos){
     sprite.move(newpos);
     View.move(sf::Vector2f(newpos.x, 0));
 }
-
-
 
 void Physics::update(Player& player, World& world){
     std::vector<ScreenObject> tiles= world.getTiles();
@@ -66,11 +65,10 @@ void Physics::update(Player& player, World& world){
             player.botcol=1;
           //std::cout<<"jawoooooooool"; 
            }              
-        
+        }
     }
-}
-if(bottomcol==0){
-    player.botcol=0;
-    player.setacc(9);   
-}
+    if(bottomcol==0){
+        player.botcol=0;
+        player.setacc(9);   
+    }
 }

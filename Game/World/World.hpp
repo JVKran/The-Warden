@@ -9,11 +9,9 @@
 class World {
 	private:
 		AssetManager & assets;
-		std::vector<ScreenObject> tiles;
 		Grid grid;
 		sf::Sprite background;
 
-		void loadTile(std::ifstream & input);
 		bool isEmpty(std::ifstream & file);
 	public:
 		World(AssetManager & assets);
@@ -22,8 +20,6 @@ class World {
 
 		void setBackground(const std::string & backgroundName);
 		void draw(sf::RenderWindow & window);
-		bool collision(sf::FloatRect subject);
-		std::vector<ScreenObject> getTiles();
 };
 
 #endif //__WORLD_HPP

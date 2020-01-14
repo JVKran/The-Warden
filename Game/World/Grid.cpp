@@ -22,7 +22,7 @@ void Grid::loadingDone(){
 
 void Grid::draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window){
 	for(ScreenObject & tile : tiles){
-		if(tile.getPosition().x > leftPosition && tile.getPosition().x < rightPosition){
+		if(tile.getPosition().x + 100 > leftPosition && tile.getPosition().x - 100 < rightPosition){
 			tile.draw(window);
 			std::cout << tile.getPosition().x << std::endl;
 		}

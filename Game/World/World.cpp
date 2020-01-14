@@ -31,27 +31,10 @@ void World::loadWorld(const std::string & worldFileName){
 	}
 }
 
-void World::loadTile(std::ifstream & input){
-	std::string assetName;
-	sf::Vector2f position;
-	float scale;
-	input >> position >> assetName >> scale;
-	tiles.push_back(ScreenObject(assetName, assets, position, scale));
-}
-
 void World::draw(sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
-	grid.draw(200, 1000, window);
-}
-
-bool World::collision(sf::FloatRect subject){
-	for(auto & tile : tiles){
-		if(subject.intersects(tile.getBounds())){
-			return(true);
-		}
-	}
-	return(false);
+	grid.draw(0, 1000, window);
 }
 
 void World::setBackground(const std::string & backgroundName){
@@ -60,8 +43,4 @@ void World::setBackground(const std::string & backgroundName){
 
 bool World::isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
-}
-
-std::vector<ScreenObject> World::getTiles(){
-	return(tiles);
 }
