@@ -29,6 +29,7 @@ void World::loadTile(std::ifstream & input){
 }
 
 void World::draw(sf::RenderWindow & window){
+	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
 	for(auto & tile : tiles){
 		tile.draw(window);
