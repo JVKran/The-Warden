@@ -74,7 +74,7 @@ class storageSizeReached : public std::exception {
 		std::string s;
 	public:
 		storageSizeReached( const int maxStorageSize ):
-			s{ "Max amount of objects in storage (" + std::to_string(maxStorageSize) + ") reached!\n" }
+			s{ "(!)-- Max amount of objects in storage (" + std::to_string(maxStorageSize) + ") reached!\n" }
 		{}
 
 		const char * what() const noexcept {

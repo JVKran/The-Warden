@@ -5,15 +5,23 @@ void Grid::loadTile(std::ifstream & input){
 	sf::Vector2f position;
 	float scale;
 	input >> position >> assetName >> scale;
-	if(position.x > largestIndex){
-		for(uint_fast32_t i = largestIndex; i <= position.x / 100; i++){
-			tiles.push_back();
-		}
-		largestIndex = position.x / 100;
+	if(position.x / 100 > largestIndex){
+		tiles.reserve(position.x / 100);
 	}
-	tiles[position.x]push_back(ScreenObject(assetName, assets, position, scale));
+	if(tiles[position.x / 100].size() == 20){
+		throw storageSizeReached(20);
+	}
+	tiles[position.x / 100][tiles[position.x / 100].size()] = ScreenObject(assetName, assets, position, scale);
 }
 
 void Grid::loadingDone(){
 	std::sort(tiles.begin(), tiles.end());
+}
+
+void Grid::draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window){
+	for(uint_fast32_t i = (leftPosition / 100) - 100; i < (rightPosition / 100) + 100; i++){
+		for(const auto & tile : tiles[i]){
+			tile.draw(window);
+		}
+	}
 }
