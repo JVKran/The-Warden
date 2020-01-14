@@ -17,10 +17,8 @@ int main(){
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
-	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 600.f));
-
-// activate it
-window.setView(view);
+	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+	window.setView(view);
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -32,20 +30,25 @@ window.setView(view);
 		while (lag >= msPerUpdate){
 			lag -= msPerUpdate;
 		}
+
+
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 {
     		view.move(-1.f, 0.f);
+					window.setView(view);
 }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 {
     		view.move(1.f, 0.f);
+					window.setView(view);
 }
 
 
 
 
 
-		window.setView(view);
+
 		window.clear();
 		//world.setBackground("background");
 		world.draw(window);
