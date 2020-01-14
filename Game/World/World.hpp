@@ -4,11 +4,13 @@
 #include <vector>
 #include "ScreenObject.hpp"
 #include <string>
+#include "Grid.hpp"
 
 class World {
 	private:
 		AssetManager & assets;
 		std::vector<ScreenObject> tiles;
+		Grid grid;
 		sf::Sprite background;
 
 		void loadTile(std::ifstream & input);

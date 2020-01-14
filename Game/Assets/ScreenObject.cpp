@@ -9,3 +9,7 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 void ScreenObject::draw(sf::RenderWindow & window){
 	window.draw(sprite);
 }
+
+sf::Vector2f ScreenObject::getPosition() const {
+	return sprite.getPosition();
+}

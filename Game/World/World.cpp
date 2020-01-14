@@ -2,7 +2,8 @@
 #include "FactoryFunction.hpp"
 
 World::World(AssetManager & assets):
-	assets(assets)
+	assets(assets),
+	grid(Grid(assets))
 {}
 
 void World::loadWorld(const std::string & worldFileName){
@@ -14,15 +15,14 @@ void World::loadWorld(const std::string & worldFileName){
 	worldFile >> worldName;
 	setBackground(worldName);
 	if ((worldName.find("(") != std::string::npos)){
-		//Not triggered
 		std::cout << "(!)-- No background specified! World configuration files should always start with a background name." << std::endl;
 		worldFile.seekg(0);
 	}
 	while (!isEmpty(worldFile)){
 		try {
-			loadTile(worldFile);
+			grid.loadTile(worldFile);
 		} catch (endOfFile &){
-			//Sort Vector
+			grid.loadingDone();
 			break;
 		} catch (std::exception & problem){
 			std::cerr << problem.what();
@@ -41,9 +41,7 @@ void World::loadTile(std::ifstream & input){
 
 void World::draw(sf::RenderWindow & window){
 	window.draw(background);
-	for(auto & tile : tiles){
-		tile.draw(window);
-	}
+	grid.draw(200, 1000, window);
 }
 
 void World::setBackground(const std::string & backgroundName){

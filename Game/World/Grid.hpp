@@ -2,20 +2,22 @@
 #define __GRID_HPP
 
 #include <vector>
-#include <array>
 #include "ScreenObject.hpp"
-#include "exceptions.hpp"
+#include "../exceptions.hpp"
+#include "AssetManager.hpp"
 
 class Grid {
 	private:
-		uint_fast32_t largestIndex = 0;
-		std::vector<std::array<ScreenObject, 20>> tiles;
+		AssetManager & assets;
+		uint_fast32_t largestX = 0;
+		std::vector<ScreenObject> tiles;
 	public:
+		Grid(AssetManager & assets);
+
 		void loadTile(std::ifstream & input);
 		void loadingDone();
 
 		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
-
 };
 
 #endif //__GRID_HPP
