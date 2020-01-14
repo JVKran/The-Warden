@@ -12,7 +12,7 @@ int main(){
 	world.loadWorld("world.txt");
 	world.setBackground("background");
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
