@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
+#include "player.hpp"
 
 int main(){
 	AssetManager assets;
@@ -19,6 +20,7 @@ int main(){
 	double previous, lag, current, elapsed;
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 	window.setView(view);
+	Player speler("crate", assets, view.getCenter(), view);
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -35,23 +37,33 @@ int main(){
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 {
-    		view.move(-1.f, 0.f);
+    		speler.move(sf::Vector2f(-1.f, 0.f));
 					window.setView(view);
 }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 {
-    		view.move(1.f, 0.f);
+    		speler.move(sf::Vector2f(1.f, 0.f));
 					window.setView(view);
 }
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+			speler.move(sf::Vector2f(0,-1));
+			window.setView(view);
+		}
 
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+			speler.move(sf::Vector2f(0,1));
+			window.setView(view);
+		}
 
 
 
 
 
 		window.clear();
+		
 		//world.setBackground("background");
 		world.draw(window);
+		speler.draw(window);
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 
