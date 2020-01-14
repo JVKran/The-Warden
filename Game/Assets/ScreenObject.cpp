@@ -8,3 +8,6 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 void ScreenObject::draw(sf::RenderWindow & window){
 	window.draw(sprite);
 }
+sf::FloatRect ScreenObject::getBounds(){
+	return(sprite.getGlobalBounds());
+}

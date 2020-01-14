@@ -10,6 +10,7 @@ class ScreenObject {
 	public:
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position);
 		virtual void draw(sf::RenderWindow & window);
+		sf::FloatRect getBounds();
 		
 };
 
