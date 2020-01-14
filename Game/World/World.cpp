@@ -11,6 +11,9 @@ void World::loadWorld(const std::string & worldFileName){
 		throw fileNotFound(worldFileName);
 	}
 	try {
+		std::string worldName;
+		worldFile >> worldName;
+		setBackground(worldName);
 		while (!isEmpty(worldFile)){
 			loadTile(worldFile);
 		}

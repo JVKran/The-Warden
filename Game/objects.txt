@@ -1,3 +1,3 @@
-background /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
-crate /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
-grass /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png
+background 1 /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
+crate 1 /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
+grass 1 /home/jochem/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png

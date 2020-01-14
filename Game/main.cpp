@@ -10,7 +10,6 @@ int main(){
 
 	World world(assets);
 	world.loadWorld("world.txt");
-	world.setBackground("background");
 
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
