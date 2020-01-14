@@ -13,3 +13,7 @@ void ScreenObject::draw(sf::RenderWindow & window){
 sf::Vector2f ScreenObject::getPosition() const {
 	return sprite.getPosition();
 }
+
+sf::FloatRect ScreenObject::getBounds(){
+	return(sprite.getGlobalBounds());
+}

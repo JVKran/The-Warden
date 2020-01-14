@@ -12,6 +12,7 @@ class ScreenObject {
 
 		sf::Vector2f getPosition() const;
 		virtual void draw(sf::RenderWindow & window);
+		sf::FloatRect getBounds();
 		
 };
 

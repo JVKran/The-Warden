@@ -22,6 +22,8 @@ class World {
 
 		void setBackground(const std::string & backgroundName);
 		void draw(sf::RenderWindow & window);
+		bool collision(sf::FloatRect subject);
+		std::vector<ScreenObject> getTiles();
 };
 
 #endif //__WORLD_HPP

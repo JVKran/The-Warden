@@ -40,8 +40,18 @@ void World::loadTile(std::ifstream & input){
 }
 
 void World::draw(sf::RenderWindow & window){
+	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
 	grid.draw(200, 1000, window);
+}
+
+bool World::collision(sf::FloatRect subject){
+	for(auto & tile : tiles){
+		if(subject.intersects(tile.getBounds())){
+			return(true);
+		}
+	}
+	return(false);
 }
 
 void World::setBackground(const std::string & backgroundName){
@@ -50,4 +60,8 @@ void World::setBackground(const std::string & backgroundName){
 
 bool World::isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
+}
+
+std::vector<ScreenObject> World::getTiles(){
+	return(tiles);
 }
