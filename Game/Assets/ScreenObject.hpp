@@ -8,7 +8,7 @@ class ScreenObject {
 	private:
 		sf::Sprite sprite;
 	public:
-		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position);
+		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
 		virtual void draw(sf::RenderWindow & window);
 		
 };

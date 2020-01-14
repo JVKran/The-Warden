@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "ScreenObject.hpp"
+#include <string>
 
 class World {
 	private:

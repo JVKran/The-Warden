@@ -5,21 +5,19 @@ void AssetManager::loadObjects(const std::string & assetFileName){
 	if(!assetFile){
 		throw fileNotFound(assetFileName);
 	}
-	try {
-		while (!isEmpty(assetFile)){
+	while (!isEmpty(assetFile)){
+		try {
 			loadTextures(assetFile);
+		} catch (endOfFile &){
+		} catch (std::exception & problem){
+			std::cerr << problem.what();
 		}
-	} catch (endOfFile &){
-		std::cout << "Loaded all objects!" << std::endl;
-	} catch (std::exception & problem){
-		std::cerr << problem.what();
 	}
 }
 
 void AssetManager::loadTextures(std::ifstream & input){
 	std::string name, fileName;
-	float scale;
-	input >> name >> scale >> fileName;
+	input >> name >> fileName;
 	sf::Texture texture;
 	if (!texture.loadFromFile(fileName)){
     	throw noSuchPicture(fileName);
@@ -28,7 +26,15 @@ void AssetManager::loadTextures(std::ifstream & input){
 }
 
 sf::Texture & AssetManager::getTexture(const std::string & assetName){
-	return textureMap.at(assetName);
+	try {
+		textureMap.at(assetName);
+	} catch (const std::exception & error){
+		std::cerr << "(!)-- " << "Texture " << assetName << " not loaded!" << std::endl;
+		sf::Texture texture;
+		texture.loadFromFile("/home/jochem/The-Warden/Game/Assets/Textures/notFound.png");
+		textureMap[assetName] = texture;
+	}
+	return textureMap[assetName];
 }
 
 bool AssetManager::isEmpty(std::ifstream & file){
