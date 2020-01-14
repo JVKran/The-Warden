@@ -1,10 +1,11 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
-SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, const sf::Vector2i spriteRowColumn, int missingRow ):
+SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, const sf::Vector2i spriteRowColumn, int missingRow, const sf::Vector2f scale):
 	texture(texture),
 	dimensions(dimensions),
 	spriteRowColumn(spriteRowColumn),
-	missingRow(missingRow)
+	missingRow(missingRow),
+	scale(scale)
 	//sprite.setTexture(assets.getTexture(assetName));
 	//sprite.setPosition(position);
 {
@@ -13,13 +14,14 @@ SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimen
 	pixelColumn = dimensions.y / spriteRowColumn.y;		// Height divided by column, these are the vertical steps a frame
 	rectSourceSprite = sf::IntRect( 0, 0, pixelRow, pixelColumn ); // First 2 numbers will iterate trough frames, second 2 are the width and height of a single frame
 	sprite = sf::Sprite(texture, rectSourceSprite);
+	sprite.setScale(scale);
 	//sprite.setPosition(100,100);
 }
 
 // Animate function that loops trough variying spritesheets
 void SpriteAnimation::animate(){
 	//Update if under 0.01 seconds;
-	if(spriteClock.getElapsedTime().asSeconds() > 0.01f){
+	if(spriteClock.getElapsedTime().asSeconds() > 0.05f){
 		if(rectSourceSprite.left == dimensions.x-pixelRow){ // If width is the same as width minus the horizontal steps, reset width and go 1 column down
 			rectSourceSprite.left = 0;
 			rectSourceSprite.top += pixelColumn;

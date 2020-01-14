@@ -20,7 +20,7 @@ int main(){
 	
 	sf::Texture texture1;
 	texture1.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/adventurer-v1.5-Sheet.png");
-	SpriteAnimation test2(texture1,sf::Vector2i{350,592},sf::Vector2i{7,16},3);
+	SpriteAnimation test2(texture1,sf::Vector2i{350,592},sf::Vector2i{7,16},3, sf::Vector2f{10,10});
 	
 	sf::Texture texture2;
 	texture2.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/PIPOYA_FREE_2D_Game_Character_Sprites/Sprite_Sheet/Witch/Character_color1/All/c00a_12skill.png");
@@ -48,11 +48,10 @@ int main(){
 
 		window.clear();
 		world.draw(window);
-		//window.draw(sprite);
-		//test2.draw(window);
+		test2.draw(window);
 		test3.draw(window);
 		test1.draw(window);
-		//test4.draw(window);
+		test4.draw(window);
 
 
 		window.display();

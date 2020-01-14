@@ -10,7 +10,8 @@ class SpriteAnimation {
 		const sf::Vector2i dimensions;		// Width,height
 		const sf::Vector2i spriteRowColumn;	// Row, column
 		int missingRow;						// If the spritesheet is missin some frames 
-		
+		const sf::Vector2f scale;
+	
 		sf::Sprite sprite;
 		sf::Clock spriteClock;
 		
@@ -19,7 +20,7 @@ class SpriteAnimation {
 		int pixelRow;
 		int pixelColumn;
 	public:
-		SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, const sf::Vector2i spriteRowColumn,  int missingRow );
+		SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, const sf::Vector2i spriteRowColumn,int missingRow,  const sf::Vector2f scale = sf::Vector2f{1,1} );
 		void animate();
 		void draw(sf::RenderWindow & window);
 		
