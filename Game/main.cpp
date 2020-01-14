@@ -35,7 +35,7 @@ int main(){
 
 		window.clear();
 		// world.draw(window);
-		editor.newWorld.draw( window );
+		editor.draw( window );
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 

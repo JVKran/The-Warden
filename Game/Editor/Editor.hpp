@@ -4,22 +4,24 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <iostream>
+#include <cstring>
 #include "World.hpp"
 #include "AssetManager.hpp"
 #include "ScreenObject.hpp"
 
 class Editor {
-public:
+private:
 	AssetManager & assets;
 	World newWorld;
-	std::vector< ScreenObject > availableTiles;
 	uint_fast8_t tileIndex = 0;
 	std::string worldName = "newWorld.txt";
 	sf::RectangleShape tileSelectionBar;
-	sf::Vector2f size = { 50, 100 };
+	sf::Vector2f size = { 300, 840 };
+	
 public:
 	Editor( AssetManager & assets );
-	void createNewWorld();
+	void createNewWorld( const std::string & filename );
+	std::vector< sf::Sprite > getObjectSprites();
 	void draw( sf::RenderWindow & window );
 };
 

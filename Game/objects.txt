@@ -1,3 +1,4 @@
-background 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
-crate 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
-grass 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png
+background /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
+crate /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
+grass /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png
+water /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/17.png

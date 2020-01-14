@@ -1,2 +1,3 @@
+
 background
-(300, 300) crate
+(800, 200) crate 1
