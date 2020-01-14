@@ -20,7 +20,6 @@ bool Editor::isEmpty( std::ifstream & file ){
 }
 
 void Editor::createNewWorld( const std::string & filename ){
-	
 	newWorld.loadWorld( filename );
 }
 
@@ -39,10 +38,12 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 		if( rowObjectCounter < 4 ){
 			object.setPosition( xPosition, yPosition );
 			yPosition += 140;
+			rowObjectCounter++;
 		} else if( rowObjectCounter == 5 ){
 			object.setPosition( xPosition, yPosition );
-			xPosition += 140;
+			xPosition = 240;
 			yPosition = 60;
+			rowObjectCounter = 0;
 		}
 		window.draw( object );
 	}
