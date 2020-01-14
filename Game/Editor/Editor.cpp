@@ -11,8 +11,12 @@ Editor::Editor( AssetManager & assets ):
 	// std::ofstream worldFile(worldName);
 	// worldFile << "\nbackground\n";
 	// worldFile << "(800, 200) crate 1";
-	getObjectSprites();
+	getObjectSprites( availableTiles );
 	createNewWorld( "newWorld.txt" );
+}
+
+bool Editor::isEmpty( std::ifstream & file ){
+	return file.peek() == std::ifstream::traits_type::eof();
 }
 
 void Editor::createNewWorld( const std::string & filename ){
@@ -23,35 +27,37 @@ void Editor::createNewWorld( const std::string & filename ){
 void Editor::draw( sf::RenderWindow & window ){
 	tileSelectionBar.setPosition(50, 100);
 	newWorld.draw( window );	
-	window.draw(tileSelectionBar);
-	// std::vector<std::string> names= { "crate", "grass", "water" };
-	// int len = names.size()-1;
-	// int n = 0;
-	// while( n!= len ){
-	// 	for( int i=75; i < 300; i+= 150){
-	// 		for( int j=125; j < 1000; j+= 150){
-	// 			sf::Sprite sprite;
-	// 			sprite.setPosition(i, j);
-	// 			sprite.setTexture( assets.getTexture(names[n]));
-	// 			window.draw(sprite);
-	// 		}
-	// 		n++;
-	// 	}
-	// }
+	drawTileBar( window );
 }
 
-std::vector< sf::Sprite > Editor::getObjectSprites(){
-	std::ifstream objectInput;
-	objectInput.open("objects.txt");
-	std::vector< sf::Sprite > objects;
-	std::string name, filename;
-	try{
-		while( !objectInput.eof()){
-			objectInput >> name >> filename;
-			std::cout << name;
+void Editor::drawTileBar( sf::RenderWindow & window ){
+	window.draw( tileSelectionBar );
+	uint_fast8_t rowObjectCounter = 0;
+	uint_fast16_t xPosition = 60;
+	uint_fast16_t yPosition = 110;
+	for( auto object : availableTiles ){
+		if( rowObjectCounter < 4 ){
+			object.setPosition( xPosition, yPosition );
+			yPosition += 140;
+		} else if( rowObjectCounter == 5 ){
+			object.setPosition( xPosition, yPosition );
+			xPosition += 140;
+			yPosition = 60;
 		}
-	}catch(...){
-		std::cout << "...";
+		window.draw( object );
+	}
+}
+
+std::vector< sf::Sprite > Editor::getObjectSprites( std::vector< sf::Sprite > & objects ){
+	std::ifstream objectInput("objects.txt");
+	std::string name, filename;
+	while( !isEmpty( objectInput ) ){
+		objectInput >> name >> filename;
+		if( name != "background"){
+			sf::Sprite sprite;
+			sprite.setTexture( assets.getTexture( name ) );
+			objects.push_back( sprite );
+		}
 	}
 	return objects;
 }	

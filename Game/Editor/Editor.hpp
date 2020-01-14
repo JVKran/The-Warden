@@ -17,12 +17,14 @@ private:
 	std::string worldName = "newWorld.txt";
 	sf::RectangleShape tileSelectionBar;
 	sf::Vector2f size = { 300, 840 };
-	
+	std::vector< sf::Sprite > availableTiles;
+	bool isEmpty(std::ifstream & file);
 public:
 	Editor( AssetManager & assets );
 	void createNewWorld( const std::string & filename );
-	std::vector< sf::Sprite > getObjectSprites();
+	std::vector< sf::Sprite > getObjectSprites( std::vector< sf::Sprite > & objects );
 	void draw( sf::RenderWindow & window );
+	void drawTileBar( sf::RenderWindow & window );
 };
 
 #endif // Editor.hpp
