@@ -21,9 +21,9 @@ class fileNotFound : public std::exception {
 	private:
 		std::string s;
 	public:
-		fileNotFound( const std::string & name ):
-			s{ std::string{ "File '" } + name + "'' not found!\n" }
-		{}
+		fileNotFound( const std::string & name ){
+			s = "(!)--File '" + name + "' not found.\n";
+		}
 
 		const char * what() const noexcept {
 			return s.c_str();

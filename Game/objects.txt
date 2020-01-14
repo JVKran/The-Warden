@@ -1,2 +1,3 @@
-background /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
-crate /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
+background 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
+crate 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
+grass 1 /home/stefan/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png

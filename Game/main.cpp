@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
+#include "Editor.hpp"
 
 int main(){
 	AssetManager assets;
@@ -10,7 +11,9 @@ int main(){
 
 	World world(assets);
 	world.loadWorld("world.txt");
-	world.setBackground("background");
+
+	Editor editor( assets );
+	
 
 	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden" };
 
@@ -31,7 +34,8 @@ int main(){
 		}
 
 		window.clear();
-		world.draw(window);
+		// world.draw(window);
+		editor.newWorld.draw( window );
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 
