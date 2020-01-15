@@ -35,12 +35,12 @@ class Character {
 		sf::Vector2f velocity;
 
 		sf::Sprite sprite;
+		float health;
 
 		PlayerInput input;
 		PlayerPhysics physics;
 
 		Attack & attack;
-		float health;
 	public:
 		void update(sf::RenderWindow & window, World & world);
 		void attack();
