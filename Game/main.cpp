@@ -43,7 +43,7 @@ int main(){
 		{
 			//speler.setacc(1);
 		}
-		speler.update();
+		//speler.update();
 
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -64,9 +64,11 @@ int main(){
 			}
 }
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-			speler.move(sf::Vector2f(0,-1));
-			speler.setacc(-10);
-			speler.update();
+			//speler.move(sf::Vector2f(0,-1));
+			//speler.setacc(-10);
+			//speler.update();
+			//window.setView(view);
+			speler.jump();
 			window.setView(view);
 		}
 

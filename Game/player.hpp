@@ -11,10 +11,11 @@ class Player{
 		sf::Sprite sprite;
         sf::View & View;
         float accel;
-        	double previous, lag, current, elapsed;
+        	double previous, jumptime, current, elapsed;
             sf::Clock clock;
 			float speed;
-			
+			bool jumped;
+
 	public:
 		Player(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, sf::View & View);
 		virtual void draw(sf::RenderWindow & window);
@@ -25,6 +26,8 @@ class Player{
 		bool leftcollision;
 		bool rightcollision;
 		bool botcol;
+		void jump();
+					bool landed;		
 
 
 

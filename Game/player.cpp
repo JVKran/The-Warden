@@ -16,23 +16,27 @@ sf::FloatRect Player::getBounds(){
 	return(sprite.getGlobalBounds());
 }
 void Player::setacc(float acc){
+    if((clock.getElapsedTime().asMilliseconds())-jumptime>500){
     accel= acc;
+    jumped =0;
+    }
 }
 
 void Player::update(){
     current = (clock.getElapsedTime().asMilliseconds());
 	elapsed = current - previous;
 	//previous = current;
-    if(botcol==1){
+    if(botcol==1&&jumped==0){
         accel =0;
         speed =0;
     }
-    if(elapsed>15){
+    if(elapsed>5){
         speed+=accel*0.015;
         //std::cout<<"jawoooooooel";
         previous = current;
         
       move(sf::Vector2f(0,speed));
+      
     }
 }
 void Player::move(sf::Vector2f newpos){
@@ -40,6 +44,13 @@ void Player::move(sf::Vector2f newpos){
     View.move(sf::Vector2f(newpos.x, 0));
 }
 
+void Player::jump(){
+    if(jumped==0&&landed==1){
+    jumptime = (clock.getElapsedTime().asMilliseconds());
+    jumped =1;
+    accel = -15;
+    }
+}
 
 
 void Physics::update(Player& player, World& world){
@@ -59,18 +70,24 @@ void Physics::update(Player& player, World& world){
         if((hitbox.left+hitbox.width<=(tile.getBounds().left+tile.getBounds().width))&&(tile.getBounds().top<(hitbox.top+hitbox.height-1))){
             player.rightcollision =1;
           //std::cout<<"jawoooooooool"; 
+            if((hitbox.left+hitbox.width<=(tile.getBounds().left+tile.getBounds().width))){
+                player.move(sf::Vector2f(0,-1));
+            }
            }
         if(sf::FloatRect(hitbox.left+1,hitbox.top,hitbox.width-2,hitbox.height).intersects(tar)){
             //player.setacc(0);
             bottomcol=1;
             player.botcol=1;
+                    player.landed=1;
           //std::cout<<"jawoooooooool"; 
            }              
         
     }
 }
 if(bottomcol==0){
+    player.landed=0;
     player.botcol=0;
     player.setacc(9);   
 }
+player.update();
 }
