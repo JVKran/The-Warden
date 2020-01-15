@@ -9,13 +9,11 @@ int main(){
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 
-	World world(assets);
-	world.loadWorld("world.txt");
+	World world(assets, "world.txt");		//Create world with world.txt as config
 
-	Editor editor( assets );
-	
+	Editor editor( assets,"world.txt" );	//Edit world world.txt
 
-	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden" };
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
@@ -34,11 +32,9 @@ int main(){
 		}
 
 		window.clear();
-		// world.draw(window);
 		editor.draw( window );
 		// world.draw(0, 1000, window);
 		window.display();
-		sf::sleep( sf::milliseconds( 10 ));
 
 		sf::Event event;		
 	    while( window.pollEvent(event) ){
@@ -46,6 +42,8 @@ int main(){
 				window.close();
 			}
 		}
+
+		editor.editingDone();
 
 	}
 	return 0;

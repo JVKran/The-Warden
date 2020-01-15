@@ -10,15 +10,21 @@ class World {
 		AssetManager & assets;
 		std::vector<ScreenObject> tiles;
 
+		const std::string worldFileName;
 		sf::Sprite background;
 
 		bool isEmpty(std::ifstream & file);
-	public:
-		World(AssetManager & assets);
 
-		void loadWorld(const std::string & worldFileName);
+		void loadWorld();
 		void loadTile(std::ifstream & input);
 		void loadingDone();
+	public:
+		World(AssetManager & assets, const std::string & worldFileName);
+		~World(){
+			saveWorld();
+		}
+
+		void saveWorld();
 
 		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
 

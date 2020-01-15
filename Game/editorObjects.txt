@@ -1,8 +1,8 @@
-tree1 1.0
-tree2 0.4
-grass 0.8
-dirt 0.8
-crate 1.3
-water 0.8
-bush1 0.8
-bush2 1.5
+tree1 0.5
+tree2 0.2
+grass 0.4
+dirt 0.4
+crate 0.6
+water 0.4
+bush1 0.4
+bush2 0.8

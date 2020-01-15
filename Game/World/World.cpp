@@ -1,11 +1,14 @@
 #include "World.hpp"
 #include "FactoryFunction.hpp"
 
-World::World(AssetManager & assets):
-	assets(assets)
-{}
+World::World(AssetManager & assets, const std::string & worldFileName):
+	assets(assets),
+	worldFileName(worldFileName)
+{
+	loadWorld();
+}
 
-void World::loadWorld(const std::string & worldFileName){
+void World::loadWorld(){
 	std::ifstream worldFile(worldFileName);
 	if(!worldFile){
 		throw fileNotFound(worldFileName);
@@ -20,14 +23,12 @@ void World::loadWorld(const std::string & worldFileName){
 	while (!isEmpty(worldFile)){
 		try {
 			loadTile(worldFile);
-		} catch (endOfFile &){
-			loadingDone();
-			break;
 		} catch (std::exception & problem){
 			std::cerr << problem.what();
 			continue;
 		}
 	}
+	loadingDone();
 }
 
 void World::loadTile(std::ifstream & input){
@@ -50,9 +51,18 @@ void World::draw(const float leftPosition, const float rightPosition, sf::Render
 	for(ScreenObject & tile : tiles){
 		if(tile.getPosition().x + 100 > leftPosition && tile.getPosition().x - 100 < rightPosition){
 			tile.draw(window);
-			std::cout << tile.getPosition().x << std::endl;
 		}
 	}
+}
+
+void World::saveWorld(){
+	std::ofstream worldFile (worldFileName, std::ofstream::trunc | std::ofstream::out | std::ofstream::app);
+
+	for(const ScreenObject & tile : tiles ){
+		worldFile << tile.getConfiguration() << std::endl;
+	}
+
+	worldFile.close();
 }
 
 void World::setBackground(const std::string & backgroundName){

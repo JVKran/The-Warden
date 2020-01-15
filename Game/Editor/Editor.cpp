@@ -2,30 +2,26 @@
 #include <SFML/Graphics.hpp>
 
 
-Editor::Editor( AssetManager & assets ):
+Editor::Editor( AssetManager & assets, const std::string & worldFileName ):
 	assets( assets ),
-	newWorld( assets )
+	world( assets, worldFileName )
 {
-	tileSelectionBar.setSize( size );
+	tileSelectionBar.setSize( sf::Vector2f{ 300, 840 } );
+	tileSelectionBar.setPosition(50, 100);
 	tileSelectionBar.setFillColor( sf::Color::Blue );
-	// std::ofstream worldFile(worldName);
-	// worldFile << "\nbackground\n";
-	// worldFile << "(800, 200) crate 1";
-	getObjectSprites( availableTiles );
-	createNewWorld( "newWorld.txt" );
+	loadObjects( objects );
 }
 
 bool Editor::isEmpty( std::ifstream & file ){
 	return file.peek() == std::ifstream::traits_type::eof();
 }
 
-void Editor::createNewWorld( const std::string & filename ){
-	newWorld.loadWorld( filename );
+void Editor::editingDone(){
+	world.saveWorld();
 }
 
 void Editor::draw( sf::RenderWindow & window ){
-	tileSelectionBar.setPosition(50, 100);
-	newWorld.draw( 0, 1000, window );	
+	world.draw( 0, 1000, window );	
 	drawTileBar( window );
 }
 
@@ -33,31 +29,30 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 	window.draw( tileSelectionBar );
 	uint_fast8_t rowObjectCounter = 0;
 	sf::Vector2f position { 60, 110 };
-	for( auto object : availableTiles ){
+	for( auto object : objects ){
 		if( rowObjectCounter < 2 ){
 			object.setPosition( position );
-			position.x += 140;
+			position.x += 80;
 			rowObjectCounter++;
 		} else {
 			rowObjectCounter = 0;
 			position.x = 60;
-			position.y += 140;
+			position.y += 80;
 			object.setPosition( position.x, position.y );
 		}
 		window.draw( object );
 	}
 }
 
-std::vector< sf::Sprite > Editor::getObjectSprites( std::vector< sf::Sprite > & objects ){
-	std::ifstream objectInput("editorObjects.txt");
+void Editor::loadObjects( std::vector< sf::Sprite > & objects, const std::string & editorConfigName ){
+	std::ifstream objectInput(editorConfigName);
 	std::string name;
 	float scale;
 	while( !isEmpty( objectInput ) ){
 		objectInput >> name >> scale;
-			sf::Sprite sprite;
-			sprite.setTexture( assets.getTexture( name ) );
-			sprite.setScale( scale, scale );
-			objects.push_back( sprite );
+		sf::Sprite sprite;
+		sprite.setTexture( assets.getTexture( name ) );
+		sprite.setScale( scale, scale );
+		objects.push_back( sprite );
 	}
-	return objects;
 }	
