@@ -35,7 +35,7 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 	uint_fast16_t xPosition = 60;
 	uint_fast16_t yPosition = 110;
 	for( auto object : availableTiles ){
-		if( rowObjectCounter < 4 ){
+		if( rowObjectCounter < 5 ){
 			object.setPosition( xPosition, yPosition );
 			yPosition += 140;
 			rowObjectCounter++;
@@ -50,15 +50,15 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 }
 
 std::vector< sf::Sprite > Editor::getObjectSprites( std::vector< sf::Sprite > & objects ){
-	std::ifstream objectInput("objects.txt");
-	std::string name, filename;
+	std::ifstream objectInput("editorObjects.txt");
+	std::string name;
+	float scale;
 	while( !isEmpty( objectInput ) ){
-		objectInput >> name >> filename;
-		if( name != "background"){
+		objectInput >> name >> scale;
 			sf::Sprite sprite;
 			sprite.setTexture( assets.getTexture( name ) );
+			sprite.setScale( scale, scale );
 			objects.push_back( sprite );
-		}
 	}
 	return objects;
 }	
