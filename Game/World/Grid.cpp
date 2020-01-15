@@ -28,3 +28,6 @@ void Grid::draw(const float leftPosition, const float rightPosition, sf::RenderW
 		}
 	}
 }
+std::vector<ScreenObject> Grid::getTiles(){
+	return(tiles);
+}

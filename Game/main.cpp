@@ -4,20 +4,21 @@
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include "Editor.hpp"
+#include "Character.hpp"
 
 int main(){
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 
-	// World world(assets, "world.txt");		//Create world with world.txt as config
-
-	Editor editor( assets, "world.txt" );	//Edit world world.txt
-
+	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+	//World world(assets, "world.txt", view);		//Create world with world.txt as config
+	Editor editor( assets, "world.txt", view );	//Edit world world.txt
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
+	Character speler(sf::Vector2f(500,100),"crate",assets,window);
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
@@ -34,8 +35,18 @@ int main(){
 		window.clear();
 		editor.handleInput(window);
 		editor.draw( window );
-		// world.draw(0, 1000, window);
+		window.setView(view);
 		window.display();
+
+		// window.clear();
+		// world.draw(window);
+		// speler.update(window, world);
+		// window.setView(view);
+		// window.display();
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+				window.close();
+		}
 
 		sf::Event event;		
 	    while( window.pollEvent(event) ){
@@ -45,6 +56,7 @@ int main(){
 		}
 
 	}
-	editor.editingDone();
+	
+	//editor.editingDone();
 	return 0;
 }

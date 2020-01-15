@@ -31,7 +31,7 @@ sf::Texture & AssetManager::getTexture(const std::string & assetName){
 	} catch (const std::exception & error){
 		std::cerr << "(!)-- " << "Texture " << assetName << " not loaded!" << std::endl;
 		sf::Texture texture;
-		texture.loadFromFile("/home/stefan/The-Warden/Game/Assets/Textures/notFound.png");
+		texture.loadFromFile("/home/jochem/The-Warden/Game/Assets/Textures/notFound.png");
 		textureMap[assetName] = texture;
 	}
 	return textureMap[assetName];

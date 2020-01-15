@@ -1,9 +1,10 @@
 #include "Editor.hpp"
 #include <SFML/Graphics.hpp>
 
-Editor::Editor( AssetManager & assets, const std::string & worldFileName ):
+Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view ):
 	assets( assets ),
-	world( assets, worldFileName )
+	world( assets, worldFileName, view ),
+	view(view)
 {
 	tileSelectionBar.setSize( sf::Vector2f{ 300, 840 } );
 	tileSelectionBar.setPosition(50, 100);
@@ -20,7 +21,7 @@ void Editor::editingDone(){
 }
 
 void Editor::draw( sf::RenderWindow & window ){
-	world.draw( 0, 1000, window );	
+	world.draw( window );	
 	drawTileBar( window );
 }
 
@@ -34,7 +35,7 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 void Editor::handleInput(sf::RenderWindow & window){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		for(auto & object : objects){
-			if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
+			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.hasBeenAdded){
 					SelectableObject objectToAdd = object;
 					objectToAdd.setNewScale(1);
@@ -48,7 +49,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 	}
     std::vector<SelectableObject> & tiles = world.getTiles();
     for(auto & tile : tiles){
-    	if(tile.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
+    	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
 				tile.setFollowMouse(true);
 			}
@@ -56,8 +57,21 @@ void Editor::handleInput(sf::RenderWindow & window){
 				tile.setFollowMouse(false);
 			}
 		}
-    	tile.move(sf::Mouse::getPosition(window));
+    	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
     }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+		view.move(-1, 0);
+		for(auto & object : objects){
+			object.setPosition(sf::Vector2f(object.getPosition().x - 1, object.getPosition().y));
+		}
+	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+		view.move(1, 0);
+		for(auto & object : objects){
+			object.setPosition(sf::Vector2f(object.getPosition().x + 1, object.getPosition().y));
+		}
+	}
 }
 
 void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName ){

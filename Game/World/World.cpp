@@ -2,9 +2,10 @@
 #include "FactoryFunction.hpp"
 #include "Editor.hpp"
 
-World::World(AssetManager & assets, const std::string & worldFileName):
+World::World(AssetManager & assets, const std::string & worldFileName, sf::View & view):
 	assets(assets),
-	worldFileName(worldFileName)
+	worldFileName(worldFileName),
+	view(view)
 {
 	loadWorld();
 }
@@ -55,12 +56,13 @@ void World::loadingDone(){
 	}
 }
 
-void World::draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window){
+void World::draw(sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
 	for(SelectableObject & tile : tiles){
-		if(tile.getPosition().x + 100 > leftPosition && tile.getPosition().x - 100 < rightPosition){
+		if(tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			tile.draw(window);
+			//std::cout << tile.getPosition().x << std::endl;
 		}
 	}
 }
@@ -101,4 +103,8 @@ void World::setBackground(const std::string & backgroundName){
 
 bool World::isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
+}
+
+sf::View &World::getView(){
+	return(view);
 }

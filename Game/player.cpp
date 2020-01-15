@@ -68,7 +68,9 @@ void Physics::update(Player& player, World& world){
         }
     }
     if(bottomcol==0){
+        player.landed=0;
         player.botcol=0;
         player.setacc(9);   
     }
+    player.update();
 }

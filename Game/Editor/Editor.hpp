@@ -13,6 +13,7 @@ class Editor {
 private:
 	AssetManager & assets;
 	World world;
+	sf::View & view;
 	sf::RectangleShape tileSelectionBar;
 
 	std::vector< SelectableObject > objects;
@@ -20,7 +21,7 @@ private:
 	bool isFirstOneSelected(std::vector<SelectableObject> & tiles);
 	bool isEmpty(std::ifstream & file);
 public:
-	Editor( AssetManager & assets, const std::string & worldFileName );
+	Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view );
 
 	void editingDone();
 	void handleInput(sf::RenderWindow & window);

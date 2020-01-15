@@ -40,6 +40,10 @@ sf::Vector2f ScreenObject::getPosition() const {
 	return sprite.getPosition();
 }
 
+void ScreenObject::setPosition(const sf::Vector2f & newPosition){
+	sprite.setPosition(newPosition);
+}
+
 sf::FloatRect ScreenObject::getBounds() const {
 	return(sprite.getGlobalBounds());
 }
@@ -64,7 +68,7 @@ void SelectableObject::setNewScale(const float newScale){
 	sprite.setScale(sf::Vector2f(newScale, newScale));
 }
 
-void SelectableObject::move(const sf::Vector2i & position){
+void SelectableObject::move(const sf::Vector2f & position){
 	if(followMouse){
 		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
 	}

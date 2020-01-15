@@ -17,21 +17,24 @@ class World {
 		std::string backgroundName;
 		sf::Sprite background;
 
+		sf::View & view;
+
 		bool isEmpty(std::ifstream & file);
 
 		void loadWorld();
 		void loadTile(std::ifstream & input);
 		void loadingDone();
 	public:
-		World(AssetManager & assets, const std::string & worldFileName);
+		World(AssetManager & assets, const std::string & worldFileName, sf::View & view);
 
 		void saveWorld();
-
-		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
-
-		std::vector<SelectableObject> & getTiles();
-		void setBackground(const std::string & backgroundName);
 		void addTile(SelectableObject object);
+		void setBackground(const std::string & backgroundName);
+
+		sf::View &getView();
+		std::vector<SelectableObject> & getTiles();
+
+		void draw(sf::RenderWindow & window);
 };
 
 #endif //__WORLD_HPP

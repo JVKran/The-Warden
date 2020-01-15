@@ -16,6 +16,8 @@ class ScreenObject {
 		std::string getConfiguration() const;
 
 		sf::Vector2f getPosition() const;
+		void setPosition(const sf::Vector2f & newPosition);
+
 		virtual void draw(sf::RenderWindow & window);
 		sf::FloatRect getBounds() const;
 		
@@ -31,7 +33,7 @@ class SelectableObject : public ScreenObject {
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
 
-		void move(const sf::Vector2i & position);
+		void move(const sf::Vector2f & position);
 		void setNewScale(const float newScale);
 
 		SelectableObject& operator=(SelectableObject lhs);

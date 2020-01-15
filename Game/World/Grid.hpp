@@ -15,6 +15,7 @@ class Grid {
 
 		void loadTile(std::ifstream & input);
 		void loadingDone();
+		std::vector<ScreenObject> getTiles();
 
 		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
 };
