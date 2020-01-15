@@ -1,6 +1,26 @@
 #include "Editor.hpp"
 #include <SFML/Graphics.hpp>
 
+SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale):
+	ScreenObject(assetName, assets, position, scale)
+{}
+
+void SelectableObject::setFollowMouse(const bool follow){
+	followMouse = follow;
+}
+
+void SelectableObject::move(const sf::Vector2i & position){
+	if(followMouse){
+		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
+	}
+}
+
+SelectableObject& SelectableObject::operator=(SelectableObject lhs){
+	if(&lhs != this){
+		followMouse = lhs.followMouse;
+	}
+	return *this;
+}
 
 Editor::Editor( AssetManager & assets, const std::string & worldFileName ):
 	assets( assets ),
@@ -27,32 +47,41 @@ void Editor::draw( sf::RenderWindow & window ){
 
 void Editor::drawTileBar( sf::RenderWindow & window ){
 	window.draw( tileSelectionBar );
-	uint_fast8_t rowObjectCounter = 0;
-	sf::Vector2f position { 60, 110 };
 	for( auto object : objects ){
+		object.draw(window);
+	}
+}
+
+void Editor::handleInput(sf::RenderWindow & window){
+	for(auto & object : objects){
+		if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+				object.setFollowMouse(true);
+			}
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+				object.setFollowMouse(false);
+			}
+		}
+    	object.move(sf::Mouse::getPosition(window));
+    }
+}
+
+void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName ){
+	std::ifstream objectInput(editorConfigName);
+	std::string name;
+	float scale;
+	uint_fast16_t rowObjectCounter = 0;
+	sf::Vector2f position { 60, 110 };
+	while( !isEmpty( objectInput ) ){
 		if( rowObjectCounter < 2 ){
-			object.setPosition( position );
 			position.x += 80;
 			rowObjectCounter++;
 		} else {
 			rowObjectCounter = 0;
 			position.x = 60;
 			position.y += 80;
-			object.setPosition( position.x, position.y );
 		}
-		window.draw( object );
-	}
-}
-
-void Editor::loadObjects( std::vector< sf::Sprite > & objects, const std::string & editorConfigName ){
-	std::ifstream objectInput(editorConfigName);
-	std::string name;
-	float scale;
-	while( !isEmpty( objectInput ) ){
 		objectInput >> name >> scale;
-		sf::Sprite sprite;
-		sprite.setTexture( assets.getTexture( name ) );
-		sprite.setScale( scale, scale );
-		objects.push_back( sprite );
+		objects.push_back(SelectableObject(name, assets, position, scale));
 	}
 }	

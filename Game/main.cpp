@@ -32,6 +32,7 @@ int main(){
 		}
 
 		window.clear();
+		editor.handleInput(window);
 		editor.draw( window );
 		// world.draw(0, 1000, window);
 		window.display();

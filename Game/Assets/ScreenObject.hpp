@@ -5,7 +5,7 @@
 #include "AssetManager.hpp"
 
 class ScreenObject {
-	private:
+	protected:
 		std::string assetName;
 		sf::Sprite sprite;
 	public:
@@ -17,7 +17,7 @@ class ScreenObject {
 
 		sf::Vector2f getPosition() const;
 		virtual void draw(sf::RenderWindow & window);
-		sf::FloatRect getBounds();
+		sf::FloatRect getBounds() const;
 		
 };
 

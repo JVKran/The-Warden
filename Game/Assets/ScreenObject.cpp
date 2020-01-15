@@ -36,6 +36,6 @@ sf::Vector2f ScreenObject::getPosition() const {
 	return sprite.getPosition();
 }
 
-sf::FloatRect ScreenObject::getBounds(){
+sf::FloatRect ScreenObject::getBounds() const {
 	return(sprite.getGlobalBounds());
 }
