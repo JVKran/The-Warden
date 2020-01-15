@@ -33,7 +33,7 @@ int main(){
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
-	
+	int count=0;
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -45,14 +45,20 @@ int main(){
 		while (lag >= msPerUpdate){
 			lag -= msPerUpdate;
 		}
-
+		
 		window.clear();
 		world.draw(window);
 		test2.draw(window);
-		test3.draw(window);
-		test1.draw(window);
-		test4.draw(window);
-
+		//test3.draw(window);
+		//test1.draw(window);
+		//test4.draw(window);
+		count++;
+		std::cout << count << "\n";
+		if(count == 100){
+			std::cout << count;
+			count = 0;
+			test2.changeStartFrame(3,3,7);
+		}
 
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));

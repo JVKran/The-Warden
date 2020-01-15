@@ -1,6 +1,6 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
-SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, const sf::Vector2i spriteRowColumn, int missingRow, const sf::Vector2f scale):
+SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions,sf::Vector2i spriteRowColumn, int missingRow, const sf::Vector2f scale):
 	texture(texture),
 	dimensions(dimensions),
 	spriteRowColumn(spriteRowColumn),
@@ -19,48 +19,28 @@ SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimen
 }
 
 // Animate function that loops trough variying spritesheets
-void SpriteAnimation::animate(){
-	//Update if under 0.01 seconds;
+void SpriteAnimation::changeStartFrame( int newRow, int newColumn, int newMissing){
+	
+	spriteRowColumn = sf::Vector2i{ newRow, newColumn};
+	missingRow = newMissing; // If there are still sprites after the desired frames, assign them as missing(+1 missing a frame)
+	rectSourceSprite = sf::IntRect( pixelRow*spriteRowColumn.x, pixelColumn*spriteRowColumn.y, pixelRow, pixelColumn );
+}
+//velocity = sprite, pos, att
+void SpriteAnimation::draw( sf::RenderWindow & window ){
 	if(spriteClock.getElapsedTime().asSeconds() > 0.05f){
 		if(rectSourceSprite.left == dimensions.x-pixelRow){ // If width is the same as width minus the horizontal steps, reset width and go 1 column down
-			rectSourceSprite.left = 0;
+			rectSourceSprite.left = dimensions.x-pixelRow*spriteRowColumn.x;
 			rectSourceSprite.top += pixelColumn;
 			// If width and column are at the end of the spritesheet, start over from the beginning
 		}else if(rectSourceSprite.left == dimensions.x-pixelRow*(spriteRowColumn.x-missingRow) && rectSourceSprite.top == pixelColumn*(spriteRowColumn.y-1)){ 
-			rectSourceSprite.left = 0;
-			rectSourceSprite.top = 0;
+			rectSourceSprite.left = dimensions.x-pixelRow*spriteRowColumn.x;
+			rectSourceSprite.top = dimensions.y-pixelColumn*spriteRowColumn.y;
 			// Go to the next frame
 		}else{ rectSourceSprite.left += pixelRow; }
 		sprite.setTextureRect(rectSourceSprite);
 		spriteClock.restart();
-
+		
 	}
-}
-
-void SpriteAnimation::draw( sf::RenderWindow & window ){
-	animate();
 	window.draw(sprite);
 }
-/*
-sf::Texture texture;
-	//texture.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/PIPOYA_FREE_2D_Game_Character_Sprites/Sprite_Sheet/Enemy/Enemy001a/All/e001a_02walk.png");
-	texture.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/adventurer-v1.5-Sheet.png");
-	int x = 350;//2400;//350 ipv 385 vanwege lege ruimte tussen frames
-	int y = 592;//2880;
-	int row = 7;//5;
-	int column = 16;
-	int missingRow = 3;
-	
-	sf::Vector2i dimensions{x,y};
-	sf::Vector2i spriteRowColumn{row, column};
-	
-	
-	
-	sf::IntRect rectSourceSprite(0,0,pixelRow, pixelColumn);
-	sf::Sprite sprite(texture, rectSourceSprite);
-	int posx = 200;
-	sprite.setScale(4,4);
-	
-	sprite.setPosition(posx,400);
-	sf::Clock spriteClock;*/
 
