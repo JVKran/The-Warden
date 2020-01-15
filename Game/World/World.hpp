@@ -4,12 +4,12 @@
 #include <vector>
 #include "ScreenObject.hpp"
 #include <string>
-#include "Grid.hpp"
 
 class World {
 	private:
 		AssetManager & assets;
-		Grid grid;
+		std::vector<ScreenObject> tiles;
+
 		sf::Sprite background;
 
 		bool isEmpty(std::ifstream & file);
@@ -17,9 +17,12 @@ class World {
 		World(AssetManager & assets);
 
 		void loadWorld(const std::string & worldFileName);
-		std::vector<ScreenObject> getTiles();
+		void loadTile(std::ifstream & input);
+		void loadingDone();
+
+		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
+
 		void setBackground(const std::string & backgroundName);
-		void draw(sf::RenderWindow & window);
 };
 
 #endif //__WORLD_HPP
