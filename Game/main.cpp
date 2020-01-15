@@ -20,20 +20,28 @@ int main(){
 	
 	sf::Texture texture1;
 	texture1.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/adventurer-v1.5-Sheet.png");
-	SpriteAnimation test2(texture1,sf::Vector2i{350,592},sf::Vector2i{7,16},3, sf::Vector2f{10,10});
+	SpriteAnimation test2(texture1,sf::Vector2i{350,592},sf::Vector2i{7,16},3, 0.05f, sf::Vector2f{10,10});
+	//test2.changeStartEndFrame(true,4,1,0,0);
+	
+	sf::Texture texture5;
+	texture5.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/adventurer-v1.5-Sheet.png");
+	SpriteAnimation test5(texture1,sf::Vector2i{350,592},sf::Vector2i{7,16},3, 0.05f, sf::Vector2f{10,10});
+	test5.changeStartEndFrame(true,3,3,6,1);
 	
 	sf::Texture texture2;
 	texture2.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/PIPOYA_FREE_2D_Game_Character_Sprites/Sprite_Sheet/Witch/Character_color1/All/c00a_12skill.png");
-	SpriteAnimation test3(texture2,sf::Vector2i{2400,1920},sf::Vector2i{5,4},2);
+	SpriteAnimation test3(texture2,sf::Vector2i{2400,1920},sf::Vector2i{5,4},2,0.01f);
 		
 	sf::Texture texture3;
 	texture3.loadFromFile("/home/hu/The-Warden/Game/Assets/Textures/PIPOYA_FREE_2D_Game_Character_Sprites/Sprite_Sheet/Enemy/Enemy001a/All/e001a_02walk.png");
 	SpriteAnimation test4(texture3,sf::Vector2i{2400,2880},sf::Vector2i{5,6},2);
-
+	test4.changeStartEndFrame(true,1,1,1,0);
+	
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
-	int count=0;
+//	int count=0;
+	//bool stop=true;
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -48,17 +56,11 @@ int main(){
 		
 		window.clear();
 		world.draw(window);
-		test2.draw(window);
+		//test2.draw(window);
+		//test5.draw(window);
 		//test3.draw(window);
 		//test1.draw(window);
-		//test4.draw(window);
-		count++;
-		std::cout << count << "\n";
-		if(count == 100){
-			std::cout << count;
-			count = 0;
-			test2.changeStartFrame(3,3,7);
-		}
+		test4.draw(window);
 
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
