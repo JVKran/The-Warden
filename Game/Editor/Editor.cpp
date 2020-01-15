@@ -32,18 +32,17 @@ void Editor::draw( sf::RenderWindow & window ){
 void Editor::drawTileBar( sf::RenderWindow & window ){
 	window.draw( tileSelectionBar );
 	uint_fast8_t rowObjectCounter = 0;
-	uint_fast16_t xPosition = 60;
-	uint_fast16_t yPosition = 110;
+	sf::Vector2f position { 60, 110 };
 	for( auto object : availableTiles ){
-		if( rowObjectCounter < 5 ){
-			object.setPosition( xPosition, yPosition );
-			yPosition += 140;
+		if( rowObjectCounter < 2 ){
+			object.setPosition( position );
+			position.x += 140;
 			rowObjectCounter++;
-		} else if( rowObjectCounter == 5 ){
-			object.setPosition( xPosition, yPosition );
-			xPosition = 240;
-			yPosition = 60;
+		} else {
 			rowObjectCounter = 0;
+			position.x = 60;
+			position.y += 140;
+			object.setPosition( position.x, position.y );
 		}
 		window.draw( object );
 	}
