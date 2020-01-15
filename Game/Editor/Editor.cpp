@@ -25,7 +25,7 @@ void Editor::createNewWorld( const std::string & filename ){
 
 void Editor::draw( sf::RenderWindow & window ){
 	tileSelectionBar.setPosition(50, 100);
-	newWorld.draw( window );	
+	newWorld.draw( 0, 1000, window );	
 	drawTileBar( window );
 }
 

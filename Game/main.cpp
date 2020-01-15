@@ -36,6 +36,7 @@ int main(){
 		window.clear();
 		// world.draw(window);
 		editor.draw( window );
+		// world.draw(0, 1000, window);
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 
@@ -45,7 +46,6 @@ int main(){
 				window.close();
 			}
 		}
-		// render();
 
 	}
 	return 0;
