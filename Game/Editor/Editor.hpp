@@ -9,19 +9,6 @@
 #include "AssetManager.hpp"
 #include "ScreenObject.hpp"
 
-class SelectableObject : public ScreenObject {
-	private:
-		bool followMouse = false;
-	public:
-		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
-
-		void setFollowMouse(const bool follow);
-
-		void move(const sf::Vector2i & position);
-
-		SelectableObject& operator=(SelectableObject lhs);
-};
-
 class Editor {
 private:
 	AssetManager & assets;

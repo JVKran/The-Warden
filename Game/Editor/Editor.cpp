@@ -1,27 +1,6 @@
 #include "Editor.hpp"
 #include <SFML/Graphics.hpp>
 
-SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale):
-	ScreenObject(assetName, assets, position, scale)
-{}
-
-void SelectableObject::setFollowMouse(const bool follow){
-	followMouse = follow;
-}
-
-void SelectableObject::move(const sf::Vector2i & position){
-	if(followMouse){
-		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
-	}
-}
-
-SelectableObject& SelectableObject::operator=(SelectableObject lhs){
-	if(&lhs != this){
-		followMouse = lhs.followMouse;
-	}
-	return *this;
-}
-
 Editor::Editor( AssetManager & assets, const std::string & worldFileName ):
 	assets( assets ),
 	world( assets, worldFileName )
@@ -56,13 +35,28 @@ void Editor::handleInput(sf::RenderWindow & window){
 	for(auto & object : objects){
 		if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-				object.setFollowMouse(true);
+				if(object.setFollowMouse(true)){
+					world.addTile(object);
+					objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
+				}
 			}
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 				object.setFollowMouse(false);
 			}
 		}
     	object.move(sf::Mouse::getPosition(window));
+    }
+    std::vector<SelectableObject> & tiles = world.getTiles();
+    for(auto & tile : tiles){
+    	if(tile.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+				tile.setFollowMouse(true);
+			}
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+				tile.setFollowMouse(false);
+			}
+		}
+    	tile.move(sf::Mouse::getPosition(window));
     }
 }
 

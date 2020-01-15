@@ -21,4 +21,20 @@ class ScreenObject {
 		
 };
 
+class SelectableObject : public ScreenObject {
+	private:
+		bool followMouse = false;
+	public:
+		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
+
+		bool setFollowMouse(const bool follow);
+
+		void move(const sf::Vector2i & position);
+
+		SelectableObject& operator=(SelectableObject lhs);
+		bool operator==(SelectableObject lhs);
+		bool operator<(SelectableObject lhs) const;
+
+};
+
 #endif //__SCREEN_OBJECT

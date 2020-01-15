@@ -44,8 +44,7 @@ int main(){
 			}
 		}
 
-		editor.editingDone();
-
 	}
+	editor.editingDone();
 	return 0;
 }

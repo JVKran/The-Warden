@@ -5,12 +5,15 @@
 #include "ScreenObject.hpp"
 #include <string>
 
+class SelectableObject;
+
 class World {
 	private:
 		AssetManager & assets;
-		std::vector<ScreenObject> tiles;
+		std::vector<SelectableObject> tiles;
 
 		const std::string worldFileName;
+		std::string backgroundName;
 		sf::Sprite background;
 
 		bool isEmpty(std::ifstream & file);
@@ -20,15 +23,14 @@ class World {
 		void loadingDone();
 	public:
 		World(AssetManager & assets, const std::string & worldFileName);
-		~World(){
-			saveWorld();
-		}
 
 		void saveWorld();
 
 		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
 
+		std::vector<SelectableObject> & getTiles();
 		void setBackground(const std::string & backgroundName);
+		void addTile(SelectableObject & object);
 };
 
 #endif //__WORLD_HPP

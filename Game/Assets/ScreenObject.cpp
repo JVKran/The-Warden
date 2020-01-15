@@ -1,5 +1,9 @@
 #include "ScreenObject.hpp"
 
+bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
+	return lhs.x < rhs.x;
+}
+
 std::string getPositionString(const sf::Vector2f & positionToPrint) {
 	return("(" + std::to_string(static_cast<int>(positionToPrint.x)) + "," + std::to_string(static_cast<int>(positionToPrint.y)) + ")");
 }
@@ -38,4 +42,37 @@ sf::Vector2f ScreenObject::getPosition() const {
 
 sf::FloatRect ScreenObject::getBounds() const {
 	return(sprite.getGlobalBounds());
+}
+
+SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale):
+	ScreenObject(assetName, assets, position, scale)
+{}
+
+bool SelectableObject::setFollowMouse(const bool follow){
+	if(followMouse != follow){
+		followMouse = follow;
+		return true;
+	}
+	return false;
+}
+
+void SelectableObject::move(const sf::Vector2i & position){
+	if(followMouse){
+		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
+	}
+}
+
+SelectableObject& SelectableObject::operator=(SelectableObject lhs){
+	if(&lhs != this){
+		followMouse = lhs.followMouse;
+	}
+	return *this;
+}
+
+bool SelectableObject::operator==(SelectableObject lhs){
+	return sprite.getPosition() == lhs.sprite.getPosition();
+}
+
+bool SelectableObject::operator<(SelectableObject lhs) const {
+	return sprite.getPosition() < lhs.sprite.getPosition();
 }
