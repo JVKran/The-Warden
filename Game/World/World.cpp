@@ -47,13 +47,13 @@ void World::loadTile(std::ifstream & input){
 void World::loadingDone(){
 	std::cout << "(i)-- Loading world done." << std::endl;
 
-	try {
-		std::sort(tiles.begin(), tiles.end(), [](const SelectableObject & a, const SelectableObject & b)->bool{
-			return a.getPosition().x > b.getPosition().x;
-		});
-	} catch (...){
-		throw sortingFailed(__FILE__, __LINE__);
-	}
+	// try {
+	// 	std::sort(tiles.begin(), tiles.end(), [](const SelectableObject & a, const SelectableObject & b)->bool{
+	// 		return a.getPosition().x > b.getPosition().x;
+	// 	});
+	// } catch (...){
+	// 	throw sortingFailed(__FILE__, __LINE__);
+	// }
 }
 
 void World::draw(sf::RenderWindow & window){
@@ -79,12 +79,11 @@ void World::saveWorld(){
 	try {
 		loadingDone();
 		std::ofstream worldFile (worldFileName, std::ofstream::out);
-		std::cout << "(!)-- Saving world to " << worldFileName << std::endl;
+		std::cout << "(i)-- Saving world to " << worldFileName << std::endl;
 
 		worldFile << backgroundName << std::endl;
 		for(const SelectableObject & tile : tiles ){
 			worldFile << tile.getConfiguration() << std::endl;
-			std::cout << tile.getConfiguration() << std::endl;
 		}
 
 		worldFile.close();
@@ -95,6 +94,7 @@ void World::saveWorld(){
 	} catch (...){
 		std::cerr << "(!)-- Something went wrong..." << std::endl;
 	}
+	std::cout << "(i)-- Saving world succesful!" << std::endl;
 }
 
 void World::setBackground(const std::string & backgroundName){
