@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "ScreenObject.hpp"
+#include "../exceptions.hpp"
 #include <string>
 
 class SelectableObject;
@@ -30,7 +31,7 @@ class World {
 
 		std::vector<SelectableObject> & getTiles();
 		void setBackground(const std::string & backgroundName);
-		void addTile(SelectableObject & object);
+		void addTile(SelectableObject object);
 };
 
 #endif //__WORLD_HPP

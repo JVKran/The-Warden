@@ -25,32 +25,31 @@ void Editor::draw( sf::RenderWindow & window ){
 }
 
 void Editor::drawTileBar( sf::RenderWindow & window ){
-	window.draw( tileSelectionBar );
+	//window.draw( tileSelectionBar );
 	for( auto object : objects ){
 		object.draw(window);
 	}
 }
 
 void Editor::handleInput(sf::RenderWindow & window){
-	for(auto & object : objects){
-		if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-				if(object.setFollowMouse(true)){
-					object.setNewScale(1.0);
-					world.addTile(object);
-					// objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+		for(auto & object : objects){
+			if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
+				if(!object.hasBeenAdded){
+					SelectableObject objectToAdd = object;
+					objectToAdd.setNewScale(1);
+					world.addTile(objectToAdd);
+					object.hasBeenAdded = true;
 				}
+			} else {
+				object.hasBeenAdded = false;
 			}
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-				object.setFollowMouse(false);
-			}
-		}
-    	object.move(sf::Mouse::getPosition(window));
-    }
+	    }
+	}
     std::vector<SelectableObject> & tiles = world.getTiles();
     for(auto & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
 				tile.setFollowMouse(true);
 			}
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
@@ -65,18 +64,19 @@ void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::
 	std::ifstream objectInput(editorConfigName);
 	std::string name;
 	float scale;
-	uint_fast16_t rowObjectCounter = 0;
-	sf::Vector2f position { 60, 110 };
+	sf::Vector2f position { 10, 10 };
 	while( !isEmpty( objectInput ) ){
-		if( rowObjectCounter < 2 ){
-			position.x += 80;
-			rowObjectCounter++;
-		} else {
-			rowObjectCounter = 0;
-			position.x = 60;
-			position.y += 80;
-		}
 		objectInput >> name >> scale;
 		objects.push_back(SelectableObject(name, assets, position, scale));
+		position.y += 70;
 	}
 }	
+
+bool Editor::isFirstOneSelected(std::vector<SelectableObject> & tiles){
+	for(const auto & tile : tiles){
+		if(tile.isFollowingMouse()){
+			return false;
+		}
+	}
+	return true;
+}

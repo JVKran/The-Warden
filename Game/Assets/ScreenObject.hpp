@@ -25,9 +25,11 @@ class SelectableObject : public ScreenObject {
 	private:
 		bool followMouse = false;
 	public:
+		bool hasBeenAdded = false;
 		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
 
 		bool setFollowMouse(const bool follow);
+		bool isFollowingMouse() const;
 
 		void move(const sf::Vector2i & position);
 		void setNewScale(const float newScale);

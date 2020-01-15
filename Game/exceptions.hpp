@@ -82,6 +82,19 @@ class storageSizeReached : public std::exception {
 		}
 };
 
+class sortingFailed : public std::exception {
+	private:
+		std::string error;
+	public:
+		sortingFailed(const std::string & file, const int line){
+			error = "(!)-- Failed to sort container in file " + file + " at line " + std::to_string(line) + ".\n";
+		}
+
+		const char* what() const noexcept {
+			return error.c_str();
+		}
+};
+
 class endOfFile : public std::exception {};
 
 #endif //__EXCEPTIONS_HPP

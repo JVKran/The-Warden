@@ -56,6 +56,10 @@ bool SelectableObject::setFollowMouse(const bool follow){
 	return false;
 }
 
+bool SelectableObject::isFollowingMouse() const {
+	return followMouse;
+}
+
 void SelectableObject::setNewScale(const float newScale){
 	sprite.setScale(sf::Vector2f(newScale, newScale));
 }

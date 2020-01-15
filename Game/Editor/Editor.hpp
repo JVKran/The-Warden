@@ -16,6 +16,8 @@ private:
 	sf::RectangleShape tileSelectionBar;
 
 	std::vector< SelectableObject > objects;
+
+	bool isFirstOneSelected(std::vector<SelectableObject> & tiles);
 	bool isEmpty(std::ifstream & file);
 public:
 	Editor( AssetManager & assets, const std::string & worldFileName );
