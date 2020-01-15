@@ -14,3 +14,7 @@ void Character::update(sf::RenderWindow & window, World & world){
 	input.processInput(velocity);
 	physics.processPhysics(world, position);
 };
+
+void attack(){
+	
+}

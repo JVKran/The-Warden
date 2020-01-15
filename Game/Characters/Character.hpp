@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
+#include "Attack.hpp"
+#include "Weapon.hpp"
 
 class PhysicsComponent {
 	public:
@@ -36,6 +38,9 @@ class Character {
 
 		PlayerInput input;
 		PlayerPhysics physics;
+
+		Attack & attack;
+		float health;
 	public:
 		void update(sf::RenderWindow & window, World & world);
 		void attack();
