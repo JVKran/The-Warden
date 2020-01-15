@@ -6,7 +6,7 @@
 
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position,sf::Sprite &player, sf::Vector2f velocity = sf::Vector2f(0.f,0.f) ) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position,sf::Sprite &player, sf::Vector2f &velocity) = 0;
 };
 
 class InputComponent {
@@ -16,10 +16,12 @@ class InputComponent {
 
 class PlayerPhysics : public PhysicsComponent {
 	private:
+	    double previous, jumptime, current, elapsed;
+		sf::Clock clock;
 		enum class states { JUMPING, STANDING, CROUCHING, FALLING};
-		states state = states::STANDING;
+		states state = states::FALLING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Sprite &player, sf::Vector2f velocity = sf::Vector2f(0.f,0.f));
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Sprite &player, sf::Vector2f &velocity);
 };
 
 class PlayerInput : public InputComponent {

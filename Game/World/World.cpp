@@ -45,13 +45,13 @@ void World::loadingDone(){
 	});
 }
 
-void World::draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window){
+void World::draw(sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
 	for(ScreenObject & tile : tiles){
-		if(tile.getPosition().x + 100 > leftPosition && tile.getPosition().x - 100 < rightPosition){
+		if(tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			tile.draw(window);
-			std::cout << tile.getPosition().x << std::endl;
+			//std::cout << tile.getPosition().x << std::endl;
 		}
 	}
 }

@@ -23,7 +23,7 @@ class World {
 		sf::View &getView();
 		std::vector<ScreenObject> getTiles();
 
-		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
+		void draw(sf::RenderWindow & window);
 
 		void setBackground(const std::string & backgroundName);
 };

@@ -1,4 +1,4 @@
-background /home/jos/The-Warden/Game/Assets/Textures/freetileset/png/BG/BG.png
-crate /home/jos/The-Warden/Game/Assets/Textures/freetileset/png/Object/Crate.png
-grass /home/jos/The-Warden/Game/Assets/Textures/freetileset/png/Tiles/2.png
-water /home/jos/The-Warden/Assets/Textures/freetileset/png/Tiles/17.png
+background Assets/Textures/freetileset/png/BG/BG.png
+crate Assets/Textures/freetileset/png/Object/Crate.png
+grass Assets/Textures/freetileset/png/Tiles/2.png
+water Assets/Textures/freetileset/png/Tiles/17.png

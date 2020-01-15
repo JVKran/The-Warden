@@ -1,10 +1,12 @@
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+
+
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include "Character.hpp"
-
 int main(){
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
@@ -12,12 +14,12 @@ int main(){
 	World world(assets,view);
 	world.loadWorld("world.txt");
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
-	Character speler(sf::Vector2f(100,100),"crate",assets,window);
+	Character speler(sf::Vector2f(500,100),"crate",assets,window);
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
@@ -34,10 +36,13 @@ int main(){
 		speler.update(window, world);
 		window.clear();
 
-		world.draw(0, 1000, window);
+		world.draw(window);
 		speler.draw();
 				window.setView(view);
 		window.display();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+				window.close();
+		}
 		sf::sleep( sf::milliseconds( 10 ));
 
 		sf::Event event;		
