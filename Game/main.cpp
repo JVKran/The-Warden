@@ -3,12 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
+#include "Character.hpp"
 
 int main(){
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
-
-	World world(assets);
+	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+	World world(assets,view);
 	world.loadWorld("world.txt");
 
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
@@ -16,6 +17,7 @@ int main(){
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
+	Character speler(sf::Vector2f(100,100),"crate",assets,window);
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
@@ -28,9 +30,13 @@ int main(){
 		while (lag >= msPerUpdate){
 			lag -= msPerUpdate;
 		}
-
+		//window.setView(view);
+		speler.update(window, world);
 		window.clear();
+
 		world.draw(0, 1000, window);
+		speler.draw();
+				window.setView(view);
 		window.display();
 		sf::sleep( sf::milliseconds( 10 ));
 

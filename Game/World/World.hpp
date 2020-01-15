@@ -13,12 +13,15 @@ class World {
 		sf::Sprite background;
 
 		bool isEmpty(std::ifstream & file);
+		sf::View & view;
 	public:
-		World(AssetManager & assets);
+		World(AssetManager & assets, sf::View & view);
 
 		void loadWorld(const std::string & worldFileName);
 		void loadTile(std::ifstream & input);
 		void loadingDone();
+		sf::View &getView();
+		std::vector<ScreenObject> getTiles();
 
 		void draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window);
 

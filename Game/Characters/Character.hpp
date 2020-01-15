@@ -6,7 +6,7 @@
 
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position,sf::Sprite &player, sf::Vector2f velocity = sf::Vector2f(0.f,0.f) ) = 0;
 };
 
 class InputComponent {
@@ -19,7 +19,7 @@ class PlayerPhysics : public PhysicsComponent {
 		enum class states { JUMPING, STANDING, CROUCHING, FALLING};
 		states state = states::STANDING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position);
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Sprite &player, sf::Vector2f velocity = sf::Vector2f(0.f,0.f));
 };
 
 class PlayerInput : public InputComponent {
@@ -31,12 +31,14 @@ class Character {
 	private:
 		sf::Vector2f position;
 		sf::Vector2f velocity;
+		sf::RenderWindow &window;
 
 		sf::Sprite sprite;
 
 		PlayerInput input;
 		PlayerPhysics physics;
 	public:
+		Character(sf::Vector2f pos,const std::string & assetName, AssetManager & assets, sf::RenderWindow &window);
 		void update(sf::RenderWindow & window, World & world);
 		void attack();
 		void draw();

@@ -1,8 +1,9 @@
 #include "World.hpp"
 #include "FactoryFunction.hpp"
 
-World::World(AssetManager & assets):
-	assets(assets)
+World::World(AssetManager & assets, sf::View & view):
+	assets(assets),
+	view(view)
 {}
 
 void World::loadWorld(const std::string & worldFileName){
@@ -61,4 +62,12 @@ void World::setBackground(const std::string & backgroundName){
 
 bool World::isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
+}
+sf::View &World::getView(){
+	return(view);
+}
+
+
+std::vector<ScreenObject> World::getTiles(){
+	return (tiles);
 }
