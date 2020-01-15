@@ -5,4 +5,4 @@ dirt 0.8
 crate 1.3
 water 0.8
 bush1 0.8
-bush2 0.8
+bush2 1.5
