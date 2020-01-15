@@ -36,8 +36,9 @@ void Editor::handleInput(sf::RenderWindow & window){
 		if(object.getBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				if(object.setFollowMouse(true)){
+					object.setNewScale(1.0);
 					world.addTile(object);
-					objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
+					// objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
 				}
 			}
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){

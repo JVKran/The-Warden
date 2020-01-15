@@ -13,7 +13,7 @@ int main(){
 
 	Editor editor( assets,"world.txt" );	//Edit world world.txt
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+	sf::RenderWindow window{ sf::VideoMode{ 1500, 580 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;

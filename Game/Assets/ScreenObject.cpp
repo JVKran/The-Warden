@@ -56,6 +56,10 @@ bool SelectableObject::setFollowMouse(const bool follow){
 	return false;
 }
 
+void SelectableObject::setNewScale(const float newScale){
+	sprite.setScale(sf::Vector2f(newScale, newScale));
+}
+
 void SelectableObject::move(const sf::Vector2i & position){
 	if(followMouse){
 		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));

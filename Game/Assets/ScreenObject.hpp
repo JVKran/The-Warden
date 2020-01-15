@@ -30,6 +30,7 @@ class SelectableObject : public ScreenObject {
 		bool setFollowMouse(const bool follow);
 
 		void move(const sf::Vector2i & position);
+		void setNewScale(const float newScale);
 
 		SelectableObject& operator=(SelectableObject lhs);
 		bool operator==(SelectableObject lhs);
