@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
-#include "player.hpp"
 
 int main(){
 	AssetManager assets;
