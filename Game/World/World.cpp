@@ -2,8 +2,7 @@
 #include "FactoryFunction.hpp"
 
 World::World(AssetManager & assets):
-	assets(assets),
-	grid(Grid(assets))
+	assets(assets)
 {}
 
 void World::loadWorld(const std::string & worldFileName){
@@ -20,9 +19,9 @@ void World::loadWorld(const std::string & worldFileName){
 	}
 	while (!isEmpty(worldFile)){
 		try {
-			grid.loadTile(worldFile);
+			loadTile(worldFile);
 		} catch (endOfFile &){
-			grid.loadingDone();
+			loadingDone();
 			break;
 		} catch (std::exception & problem){
 			std::cerr << problem.what();
@@ -31,10 +30,29 @@ void World::loadWorld(const std::string & worldFileName){
 	}
 }
 
-void World::draw(sf::RenderWindow & window){
+void World::loadTile(std::ifstream & input){
+	std::string assetName;
+	sf::Vector2f position;
+	float scale;
+	input >> position >> assetName >> scale;
+	tiles.push_back(ScreenObject(assetName, assets, position, scale));
+}
+
+void World::loadingDone(){
+	std::sort(tiles.begin(), tiles.end(), [](const ScreenObject & a, const ScreenObject & b)->bool{
+		return a.getPosition().x > b.getPosition().x;
+	});
+}
+
+void World::draw(const float leftPosition, const float rightPosition, sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
-	grid.draw(0, 1000, window);
+	for(ScreenObject & tile : tiles){
+		if(tile.getPosition().x + 100 > leftPosition && tile.getPosition().x - 100 < rightPosition){
+			tile.draw(window);
+			std::cout << tile.getPosition().x << std::endl;
+		}
+	}
 }
 
 void World::setBackground(const std::string & backgroundName){

@@ -9,7 +9,6 @@
 class Grid {
 	private:
 		AssetManager & assets;
-		uint_fast32_t largestX = 0;
 		std::vector<ScreenObject> tiles;
 	public:
 		Grid(AssetManager & assets);
