@@ -21,7 +21,7 @@ class World {
 		void loadTile(std::ifstream & input);
 		void loadingDone();
 		sf::View &getView();
-		std::vector<ScreenObject> getTiles();
+		std::vector<ScreenObject> & getTiles();
 
 		void draw(sf::RenderWindow & window);
 

@@ -1,18 +1,18 @@
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
-
-
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include "Character.hpp"
+
 int main(){
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 	World world(assets,view);
 	world.loadWorld("world.txt");
+
+		sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 
 

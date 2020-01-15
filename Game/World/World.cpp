@@ -68,6 +68,6 @@ sf::View &World::getView(){
 }
 
 
-std::vector<ScreenObject> World::getTiles(){
+std::vector<ScreenObject> & World::getTiles(){
 	return (tiles);
 }
