@@ -44,3 +44,7 @@ void World::setBackground(const std::string & backgroundName){
 bool World::isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
+
+std::vector<ScreenObject> World::getTiles(){
+	return(grid.getTiles());
+}

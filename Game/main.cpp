@@ -34,14 +34,6 @@ int main(){
 			lag -= msPerUpdate;
 		}
 		testp.update(speler, world);
-		if(world.collision(speler.getBounds())){
-			//speler.setacc(0);
-			
-		}
-		else
-		{
-			//speler.setacc(1);
-		}
 		speler.update();
 
 

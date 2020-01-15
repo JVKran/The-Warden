@@ -17,7 +17,7 @@ class World {
 		World(AssetManager & assets);
 
 		void loadWorld(const std::string & worldFileName);
-
+		std::vector<ScreenObject> getTiles();
 		void setBackground(const std::string & backgroundName);
 		void draw(sf::RenderWindow & window);
 };
