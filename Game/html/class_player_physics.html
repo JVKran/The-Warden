@@ -60,6 +60,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_player_physics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PlayerPhysics Class Reference</div>  </div>
@@ -80,6 +82,42 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7c19086e49ad96a473095325d8d480c"><td class="memItemLeft" align="right" valign="top"><a id="ad7c19086e49ad96a473095325d8d480c"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processPhysics</b> (<a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, sf::Vector2f &amp;velocity, const sf::Vector2f &amp;dimensions)</td></tr>
 <tr class="separator:ad7c19086e49ad96a473095325d8d480c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:afc5ea0ea28a812dd5200eece0cef9af5"><td class="memItemLeft" align="right" valign="top"><a id="afc5ea0ea28a812dd5200eece0cef9af5"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>states</b> { <b>JUMPING</b>, 
+<b>STANDING</b>, 
+<b>FALLING</b>, 
+<b>INSIDE</b>
+ }</td></tr>
+<tr class="separator:afc5ea0ea28a812dd5200eece0cef9af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1230f27577c84a732e20b934a4c7b923"><td class="memItemLeft" align="right" valign="top"><a id="a1230f27577c84a732e20b934a4c7b923"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>previous</b></td></tr>
+<tr class="separator:a1230f27577c84a732e20b934a4c7b923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7cf3c3997e14498ac83ccaca36a228"><td class="memItemLeft" align="right" valign="top"><a id="a5d7cf3c3997e14498ac83ccaca36a228"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>jumpTime</b></td></tr>
+<tr class="separator:a5d7cf3c3997e14498ac83ccaca36a228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615a711e8ee81e4fba8b27b5ffaa1cd2"><td class="memItemLeft" align="right" valign="top"><a id="a615a711e8ee81e4fba8b27b5ffaa1cd2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>current</b></td></tr>
+<tr class="separator:a615a711e8ee81e4fba8b27b5ffaa1cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86e81418e7d4b1187060430285a7f572"><td class="memItemLeft" align="right" valign="top"><a id="a86e81418e7d4b1187060430285a7f572"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>elapsed</b></td></tr>
+<tr class="separator:a86e81418e7d4b1187060430285a7f572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83d287bbc727cffa93e437b157e7ffea"><td class="memItemLeft" align="right" valign="top"><a id="a83d287bbc727cffa93e437b157e7ffea"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>lastup</b> =0</td></tr>
+<tr class="separator:a83d287bbc727cffa93e437b157e7ffea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd2e92506f7efee1f6c2e408fd18565"><td class="memItemLeft" align="right" valign="top"><a id="abdd2e92506f7efee1f6c2e408fd18565"></a>
+sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
+<tr class="separator:abdd2e92506f7efee1f6c2e408fd18565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57d702a46804c69746c6690e09472fd2"><td class="memItemLeft" align="right" valign="top"><a id="a57d702a46804c69746c6690e09472fd2"></a>
+sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>upc</b></td></tr>
+<tr class="separator:a57d702a46804c69746c6690e09472fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034135af2b453ceb0944ea96309cf063"><td class="memItemLeft" align="right" valign="top"><a id="a034135af2b453ceb0944ea96309cf063"></a>
+states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::FALLING</td></tr>
+<tr class="separator:a034135af2b453ceb0944ea96309cf063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_character_8hpp_source.html">Character.hpp</a></li>
@@ -88,7 +126,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processPhysic
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:04:40 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

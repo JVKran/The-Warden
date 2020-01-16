@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['draw',['draw',['../class_editor.html#a7dcc95f9e1acabe8ebaba9f7da758086',1,'Editor']]],
-  ['drawtilebar',['drawTileBar',['../class_editor.html#a64f3ee0ca45a88b74fea89e013970522',1,'Editor']]]
+  ['addtile',['addTile',['../class_world.html#ad7fbf59ea55be99af354629c9a0f035e',1,'World']]]
 ];

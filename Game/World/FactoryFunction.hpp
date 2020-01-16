@@ -1,32 +1,12 @@
 #ifndef __FACTORY_FUNCTION_HPP
 #define __FACTORY_FUNCTION_HPP
 
-std::ifstream & operator>>( std::ifstream & input, sf::Vector2f & rhs ){
-	char c;
-	if(!( input >> c )){ 
-		throw endOfFile(); 
-	}
-	if(c != '('){ 
-		throw invalidPosition( c ); 
-	}
-	if(!(input >> rhs.x)){
-		input.clear();
-		throw invalidPosition( c );
-	}
-	if(!(input >> c)) {
-        throw endOfFile();
-    }
-    if(!(input >> rhs.y)){
-    	input.clear();
-		throw invalidPosition( c );
-    }
-    if(!(input >> c)) {
-        throw endOfFile();
-    }
-	if(c != ')'){
-		throw invalidPosition( c ); 
-	}
-	return input;
-}
+#include <fstream>
+#include <SFML/Graphics.hpp>
+#include "../exceptions.hpp"
 
-#endif
+std::ifstream & operator>>( std::ifstream & input, sf::Vector2f & rhs );
+bool isEmpty(std::ifstream & file);
+std::string getPositionString(const sf::Vector2f & positionToPrint);
+
+#endif //__FACTORY_FUNCTION_HPP

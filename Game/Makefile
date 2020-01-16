@@ -1,6 +1,6 @@
-SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp Character.cpp
+SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp Character.cpp
 
-HEADERS := exceptions.hpp Editor.hpp AssetManager.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp
+HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp exceptions.hpp
 
 SEARCH  := AI Assets Editor Entities Physics World Characters ..
 

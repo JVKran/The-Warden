@@ -1,13 +1,24 @@
+/// @file
+
 #include "ScreenObject.hpp"
 
 bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 	return lhs.x < rhs.x;
 }
 
-std::string getPositionString(const sf::Vector2f & positionToPrint) {
-	return("(" + std::to_string(static_cast<int>(positionToPrint.x)) + "," + std::to_string(static_cast<int>(positionToPrint.y)) + ")");
-}
-
+/// \brief
+/// Load all objects.
+/// \details
+/// This loads all objects specified in the file with the name of the passed parameter. 
+/// This file should follow some syntax rules:
+/// ~~~~~{.txt}
+/// background Assets/Textures/freetileset/png/BG/BG.png
+/// crate Assets/Textures/freetileset/png/Object/Crate.png
+/// grass Assets/Textures/freetileset/png/Tiles/2.png
+/// ~~~~~
+/// The first word specifies the name that identifies the texture in the textureMap. The second word is equal
+/// to the filepath that leads to the desired texture.
+/// @param assetFileName The filename of the file containing all assets, their locations and their names.
 ScreenObject& ScreenObject::operator=(ScreenObject lhs){
 	if(&lhs != this){
 		sf::Sprite tempSprite = sprite;
@@ -41,6 +52,10 @@ void ScreenObject::draw(sf::RenderWindow & window){
 	window.draw(sprite);
 }
 
+void ScreenObject::setNewScale(const float newScale){
+	sprite.setScale(sf::Vector2f(newScale, newScale));
+}
+
 sf::Vector2f ScreenObject::getPosition() const {
 	return sprite.getPosition();
 }
@@ -67,10 +82,6 @@ bool SelectableObject::setFollowMouse(const bool follow){
 
 bool SelectableObject::isFollowingMouse() const {
 	return followMouse;
-}
-
-void SelectableObject::setNewScale(const float newScale){
-	sprite.setScale(sf::Vector2f(newScale, newScale));
 }
 
 void SelectableObject::move(const sf::Vector2f & position){

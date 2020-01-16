@@ -1,9 +1,17 @@
+/// @file
+
 #ifndef __SCREEN_OBJECT
 #define __SCREEN_OBJECT
 
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
+#include "FactoryFunction.hpp"
 
+/// \brief
+/// Screen Object
+/// \details
+/// This class implements a ScreenObject that can be drawn, scaled, moved and checked for collisions. 
+/// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
 class ScreenObject {
 	protected:
 		std::string assetName;
@@ -16,6 +24,7 @@ class ScreenObject {
 		bool isCollidable() const;
 
 		std::string getConfiguration() const;
+		void setNewScale(const float newScale);
 
 		sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f & newPosition);
@@ -36,7 +45,6 @@ class SelectableObject : public ScreenObject {
 		bool isFollowingMouse() const;
 
 		void move(const sf::Vector2f & position);
-		void setNewScale(const float newScale);
 
 		SelectableObject& operator=(SelectableObject lhs);
 		bool operator==(SelectableObject lhs);

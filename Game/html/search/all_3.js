@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['editingdone',['editingDone',['../class_editor.html#a18e62ec20066bf740e2ed4a22ac9b904',1,'Editor']]],
-  ['editor',['Editor',['../class_editor.html',1,'Editor'],['../class_editor.html#a7713dbd8a92bb8e05d06b5bb7d96567d',1,'Editor::Editor()']]],
-  ['editor_2ehpp',['Editor.hpp',['../_editor_8hpp.html',1,'']]]
+  ['draw',['draw',['../class_world.html#a0cb6c63048db0fdbaed92fe439dbfefb',1,'World::draw()'],['../class_editor.html#a7dcc95f9e1acabe8ebaba9f7da758086',1,'Editor::draw()']]],
+  ['drawtilebar',['drawTileBar',['../class_editor.html#a64f3ee0ca45a88b74fea89e013970522',1,'Editor']]]
 ];

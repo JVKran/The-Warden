@@ -60,6 +60,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_asset_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AssetManager Class Reference</div>  </div>
@@ -74,6 +76,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>loadObjects</b> (cons
 <tr class="memitem:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="memItemLeft" align="right" valign="top"><a id="a70b1e9eaa2031a1df873d2251bfef9ac"></a>
 sf::Texture &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTexture</b> (const std::string &amp;assetName)</td></tr>
 <tr class="separator:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="memItemLeft" align="right" valign="top"><a id="aca7724c1a48c6ff4905e74f0d0f2632e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loadTextures</b> (std::ifstream &amp;input)</td></tr>
+<tr class="separator:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64a743e861c66b9fce7abee122a5e951"><td class="memItemLeft" align="right" valign="top"><a id="a64a743e861c66b9fce7abee122a5e951"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> (std::ifstream &amp;file)</td></tr>
+<tr class="separator:a64a743e861c66b9fce7abee122a5e951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1c82f39e9dd5f2418813f16e2dcfbee2"><td class="memItemLeft" align="right" valign="top"><a id="a1c82f39e9dd5f2418813f16e2dcfbee2"></a>
+std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>textureMap</b></td></tr>
+<tr class="separator:a1c82f39e9dd5f2418813f16e2dcfbee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_asset_manager_8hpp_source.html">AssetManager.hpp</a></li>
@@ -82,7 +99,7 @@ sf::Texture &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTextu
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:04:40 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

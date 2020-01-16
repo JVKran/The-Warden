@@ -60,6 +60,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_editor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Editor Class Reference</div>  </div>
@@ -73,7 +75,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7713dbd8a92bb8e05d06b5bb7d96567d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a7713dbd8a92bb8e05d06b5bb7d96567d">Editor</a> (<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const std::string &amp;worldFileName, sf::View &amp;view)</td></tr>
+<tr class="memitem:a7713dbd8a92bb8e05d06b5bb7d96567d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a7713dbd8a92bb8e05d06b5bb7d96567d">Editor</a> (<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_editor.html#ac0cc175719a5e4069a6d48808a994848">assets</a>, const std::string &amp;worldFileName, sf::View &amp;<a class="el" href="class_editor.html#afda048d7d0fd7595168c88aa9d532d59">view</a>)</td></tr>
 <tr class="memdesc:a7713dbd8a92bb8e05d06b5bb7d96567d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a7713dbd8a92bb8e05d06b5bb7d96567d">More...</a><br /></td></tr>
 <tr class="separator:a7713dbd8a92bb8e05d06b5bb7d96567d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18e62ec20066bf740e2ed4a22ac9b904"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a18e62ec20066bf740e2ed4a22ac9b904">editingDone</a> ()</td></tr>
@@ -94,6 +96,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8ca2176cd83acc95a31193b1a95f12b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#aa8ca2176cd83acc95a31193b1a95f12b">scrollTileBar</a> (const uint_fast16_t &amp;mouseWheelDelta)</td></tr>
 <tr class="memdesc:aa8ca2176cd83acc95a31193b1a95f12b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll tile bar.  <a href="#aa8ca2176cd83acc95a31193b1a95f12b">More...</a><br /></td></tr>
 <tr class="separator:aa8ca2176cd83acc95a31193b1a95f12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad52eed0366c5e02e61868c0b07c1cab1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#ad52eed0366c5e02e61868c0b07c1cab1">isFirstOneSelected</a> (std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObject</a> &gt; &amp;tiles)</td></tr>
+<tr class="memdesc:ad52eed0366c5e02e61868c0b07c1cab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">First one selected?  <a href="#ad52eed0366c5e02e61868c0b07c1cab1">More...</a><br /></td></tr>
+<tr class="separator:ad52eed0366c5e02e61868c0b07c1cab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac0cc175719a5e4069a6d48808a994848"><td class="memItemLeft" align="right" valign="top"><a id="ac0cc175719a5e4069a6d48808a994848"></a>
+<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#ac0cc175719a5e4069a6d48808a994848">assets</a></td></tr>
+<tr class="memdesc:ac0cc175719a5e4069a6d48808a994848"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_asset_manager.html">AssetManager</a> to use for gathering the needed textures. <br /></td></tr>
+<tr class="separator:ac0cc175719a5e4069a6d48808a994848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30368d993935c2f8cd001ef885840770"><td class="memItemLeft" align="right" valign="top"><a id="a30368d993935c2f8cd001ef885840770"></a>
+<a class="el" href="class_world.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a30368d993935c2f8cd001ef885840770">world</a></td></tr>
+<tr class="memdesc:a30368d993935c2f8cd001ef885840770"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_world.html" title="World. ">World</a> to edit. <br /></td></tr>
+<tr class="separator:a30368d993935c2f8cd001ef885840770"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda048d7d0fd7595168c88aa9d532d59"><td class="memItemLeft" align="right" valign="top"><a id="afda048d7d0fd7595168c88aa9d532d59"></a>
+sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#afda048d7d0fd7595168c88aa9d532d59">view</a></td></tr>
+<tr class="memdesc:afda048d7d0fd7595168c88aa9d532d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">The view to use for scrolling through the world. <br /></td></tr>
+<tr class="separator:afda048d7d0fd7595168c88aa9d532d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad618a4ac2c7bbf45d986b047d8738882"><td class="memItemLeft" align="right" valign="top"><a id="ad618a4ac2c7bbf45d986b047d8738882"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>tileSelectionBar</b></td></tr>
+<tr class="separator:ad618a4ac2c7bbf45d986b047d8738882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81af81a7885a9035f8b40018ffc52603"><td class="memItemLeft" align="right" valign="top"><a id="a81af81a7885a9035f8b40018ffc52603"></a>
+std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a81af81a7885a9035f8b40018ffc52603">objects</a></td></tr>
+<tr class="memdesc:a81af81a7885a9035f8b40018ffc52603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector with all placeable objects. <br /></td></tr>
+<tr class="separator:a81af81a7885a9035f8b40018ffc52603"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_world.html" title="World. ">World</a> <a class="el" href="class_editor.html" title="World Editor. ">Editor</a>. </p>
@@ -242,6 +272,40 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ad52eed0366c5e02e61868c0b07c1cab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad52eed0366c5e02e61868c0b07c1cab1">&#9670;&nbsp;</a></span>isFirstOneSelected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Editor::isFirstOneSelected </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObject</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tiles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>First one selected? </p>
+<p>This function returns wether or not there are any objects that are selected. This is used to prevent selecting a tile over which the cursor is moved while moving a selected object. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tiles</td><td>The vector of tiles that has to be searched for selected objects. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a96fa3ceb205d9dc9ad40a4be8f7ae8a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96fa3ceb205d9dc9ad40a4be8f7ae8a4">&#9670;&nbsp;</a></span>loadObjects()</h2>
 
@@ -296,12 +360,12 @@ Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_editor_8hpp_source.html">Editor.hpp</a></li>
-<li>Editor.cpp</li>
+<li><a class="el" href="_editor_8cpp.html">Editor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:04:40 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

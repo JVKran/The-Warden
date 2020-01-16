@@ -1,4 +1,7 @@
+/// @file
+
 #include "Editor.hpp"
+#include "FactoryFunction.hpp"
 #include <SFML/Graphics.hpp>
 
 /// \brief
@@ -18,15 +21,6 @@ Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::Vi
 	tileSelectionBar.setPosition(50, 100);
 	tileSelectionBar.setFillColor( sf::Color::Blue );
 	loadObjects();
-}
-
-/// \brief
-/// Check for empty world file.
-/// \details
-/// This function returns a bool representing wether the file is empty or not.
-/// @param file The input to check for an eof character.
-bool Editor::isEmpty( std::ifstream & file ){
-	return file.peek() == std::ifstream::traits_type::eof();
 }
 
 /// \brief
@@ -138,6 +132,14 @@ void Editor::scrollTileBar( const uint_fast16_t & mouseWheelDelta ){
 /// Load all placeable objects.
 /// \details
 /// This function is used to load all selectable objects from the editorConfigName into a vector of type SelectableObject.
+/// This editor configuration file should follow a specific syntax like below:
+/// ~~~~~{.txt}
+///	tree1 0.5
+/// tree2 0.2
+/// grass 0.4
+/// ~~~~~
+/// In this configuration file, every line consists of an assetName and a scale to use in the editor; not the scale in the world.
+/// That one is given in the world configuration file.
 /// @param window The window to use for determining the absolute position of the mouseclicks.
 void Editor::loadObjects(const std::string & editorConfigName ){
 	std::ifstream objectInput(editorConfigName);

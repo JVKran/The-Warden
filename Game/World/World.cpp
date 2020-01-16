@@ -1,3 +1,5 @@
+/// @file
+
 #include "World.hpp"
 #include "FactoryFunction.hpp"
 #include "Editor.hpp"
@@ -20,6 +22,19 @@ World::World(AssetManager & assets, const std::string & worldFileName, sf::View 
 	loadWorld();
 }
 
+/// \brief
+/// Load world from configuration.
+/// \details
+/// This loads a world from a world configuration file. The configuration file should follow a specific syntax.
+/// ~~~~~{.txt}
+/// background
+/// (-1,498) grass 1 1.000000
+/// (50,454) tree1 0 1.000000
+/// (127,498) grass 1 1.000000
+/// ~~~~~
+/// This means the background name for this world is called "background". The name "background", can be used with the AssetManager
+/// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw
+/// it on screen. All tiles are read using loadTile().
 void World::loadWorld(){
 	std::ifstream worldFile(worldFileName);
 	if(!worldFile){
@@ -46,6 +61,23 @@ void World::loadWorld(){
 	loadingDone();
 }
 
+/// \brief
+/// Load tile.
+/// \details
+/// This reads the configuration for one tile from a world configuration file. The configuration file should follow a specific syntax.
+/// ~~~~~{.txt}
+/// background
+/// (-1,498) grass 1 1.000000
+/// (50,454) tree1 0 1.000000
+/// (127,498) grass 1 1.000000
+/// ~~~~~
+/// This means the background name for this world is called "background". The name "background", can be used with the AssetManager
+/// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw
+/// it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world.
+/// All these parameters are used to construct a SelectableObject that's stored in the tiles vector.
+/// \exception endOfFile() End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program
+/// first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier.
+/// \exception invalidPosition() The position given is invalid. This most likely is a syntax error.
 void World::loadTile(std::ifstream & input){
 	std::string assetName;
 	sf::Vector2f position;
@@ -55,6 +87,11 @@ void World::loadTile(std::ifstream & input){
 	tiles.push_back(SelectableObject(assetName, assets, position, scale, collidable));
 }
 
+/// \brief
+/// Loading done.
+/// \details
+/// This does everything that needs to be done to save a world. This currently only consists of sorting the tiles.
+/// \exception sortingFailed() The tiles could not be sorted. This is most likely because of a std::bad_alloc.
 void World::loadingDone(){
 	try {
 		if(std::is_sorted(tiles.begin(), tiles.end())){
@@ -69,6 +106,11 @@ void World::loadingDone(){
 	}
 }
 
+/// \brief
+/// Draw world.
+/// \details
+/// This draws the world to the screen. More specifically, it draws the objects that are currently in view to the screen.
+/// @param window The window to draw the world to.
 void World::draw(sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
@@ -80,14 +122,28 @@ void World::draw(sf::RenderWindow & window){
 	}
 }
 
+/// \brief
+/// Add tile to world.
+/// \details
+/// This adds an object to the world by pushing back to the vector containing all tiles.
+/// @param object The SelectableObject to add to the world.
 void World::addTile(SelectableObject object){
 	tiles.push_back(object);
 }
 
+/// \brief
+/// Get tiles.
+/// \details
+/// This returns a refrence to all tiles in the world.
 std::vector<SelectableObject> & World::getTiles(){
 	return tiles;
 }
 
+/// \brief
+/// Save world to configuration file.
+/// \details
+/// This function stores the configuration of every tile in the world configuration file of this world.
+/// That's done by calling getConfiguration() for all tiles in the tiles vector.
 void World::saveWorld(){
 	try {
 		loadingDone();
@@ -110,14 +166,19 @@ void World::saveWorld(){
 	std::cout << "(i)-- Saving world succesful!" << std::endl;
 }
 
+/// \brief
+/// Change background
+/// \details
+/// This function changes the background to the texture corresponding to the passed parameter.
+/// @param backgroundName The name to use for retrieving the texture from the AssetManager.
 void World::setBackground(const std::string & backgroundName){
 	background.setTexture(assets.getTexture(backgroundName));
 }
 
-bool World::isEmpty(std::ifstream & file){
-    return file.peek() == std::ifstream::traits_type::eof();
-}
-
+/// \brief
+/// Get the view.
+/// \details
+/// This function returns a refrence to the view used for scrolling through the world.
 sf::View &World::getView(){
 	return(view);
 }

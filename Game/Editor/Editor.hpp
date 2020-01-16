@@ -18,15 +18,14 @@
 /// enabling both players and developers to easily create playable worlds.
 class Editor {
 private:
-	AssetManager & assets;
-	World world;
-	sf::View & view;
+	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
+	World world;													//!< The World to edit.
+	sf::View & view;												//!< The view to use for scrolling through the world.
 	sf::RectangleShape tileSelectionBar;
 
-	std::vector< SelectableObject > objects;
+	std::vector< SelectableObject > objects;						//!< Vector with all placeable objects.
 
 	bool isFirstOneSelected(std::vector<SelectableObject> & tiles);
-	bool isEmpty(std::ifstream & file);
 public:
 	Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view );
 

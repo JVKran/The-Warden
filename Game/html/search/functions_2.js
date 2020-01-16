@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['handleinput',['handleInput',['../class_editor.html#aa6a302b6f234fb189bc7b530afd71009',1,'Editor']]]
+  ['editingdone',['editingDone',['../class_editor.html#a18e62ec20066bf740e2ed4a22ac9b904',1,'Editor']]],
+  ['editor',['Editor',['../class_editor.html#a7713dbd8a92bb8e05d06b5bb7d96567d',1,'Editor']]]
 ];
