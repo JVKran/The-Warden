@@ -2,6 +2,8 @@
 #include "FactoryFunction.hpp"
 #include "Editor.hpp"
 
+bool sortByPosition(SelectableObject &lhs, SelectableObject &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
+
 World::World(AssetManager & assets, const std::string & worldFileName, sf::View & view):
 	assets(assets),
 	worldFileName(worldFileName),
@@ -46,17 +48,17 @@ void World::loadTile(std::ifstream & input){
 }
 
 void World::loadingDone(){
-	std::cout << "(i)-- Loading world done." << std::endl;
-
-	// try {
-	// 	if(!std::is_sorted(tiles.begin(), tiles.end())){
-	// 		std::sort(tiles.begin(), tiles.end(), [](const SelectableObject & a, const SelectableObject & b)->bool{
-	// 			return a.getPosition().x > b.getPosition().x;
-	// 		});
-	// 	}
-	// } catch (...){
-	// 	throw sortingFailed(__FILE__, __LINE__);
-	// }
+	try {
+		if(std::is_sorted(tiles.begin(), tiles.end())){
+			std::cout << "(i)-- World already sorted!" << std::endl;
+		} else {
+			//Broken!!!:
+			//std::sort(tiles.begin(), tiles.end(), sortByPosition);
+			std::cout << "(i)-- Sorted world!" << std::endl;
+		}
+	} catch (...){
+		throw sortingFailed(__FILE__, __LINE__);
+	}
 }
 
 void World::draw(sf::RenderWindow & window){
