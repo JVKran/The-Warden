@@ -11,16 +11,29 @@ int main(){
 	assets.loadObjects("objects.txt");
 
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
-	//World world(assets, "world.txt", view);		//Create world with world.txt as config
-	Editor editor( assets, "world.txt", view );	//Edit world world.txt
+	World world(assets, "world.txt", view);		//Create world with world.txt as config
+	//Editor editor( assets, "world.txt", view );	//Edit world world.txt
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 4;
 	double previous, lag, current, elapsed;
-	std::vector<sf::Vector2i> spritePlayerData(sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0});
-	std::vector<sf::Vector2i> spritePlayerAction( sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3},sf::Vector2i{6,1}, sf::Vector2i{1,1},sf::Vector2i{0,0});
-	std::vector<std::string> spritePlayerNames("idle","slide", "walk");
+	std::vector<sf::Vector2i> spritePlayerData;
+	spritePlayerData.push_back(sf::Vector2i{350,592});
+	spritePlayerData.push_back(sf::Vector2i{7,16});
+	spritePlayerData.push_back(sf::Vector2i{5,5});
+	spritePlayerData.push_back(sf::Vector2i{3,0});
+	std::vector<sf::Vector2i> spritePlayerAction;
+	spritePlayerAction.push_back(sf::Vector2i{0,0});
+	spritePlayerAction.push_back(sf::Vector2i{3,0});
+	spritePlayerAction.push_back(sf::Vector2i{3,3});
+	spritePlayerAction.push_back(sf::Vector2i{6,1});
+	spritePlayerAction.push_back(sf::Vector2i{1,1});
+	spritePlayerAction.push_back(sf::Vector2i{0,0});
+	std::vector<std::string> spritePlayerNames;
+	spritePlayerNames.push_back("idle");
+	spritePlayerNames.push_back("slide");
+	spritePlayerNames.push_back("walk");
 	Character speler(sf::Vector2f(500,100),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
 
 	while (window.isOpen()){
@@ -31,14 +44,14 @@ int main(){
 
 		// processInput();
 
-		editor.handleInput(window);
+		//editor.handleInput(window);
 		while (lag >= msPerUpdate){
-			editor.handleInput(window);
+			//editor.handleInput(window);
 			lag -= msPerUpdate;
 		}
 
 		window.clear();
-		editor.draw( window );
+		//editor.draw( window );
 		window.setView(view);
 		window.display();
 
@@ -61,6 +74,6 @@ int main(){
 
 	}
 	
-	editor.editingDone();
+	//editor.editingDone();
 	return 0;
 }

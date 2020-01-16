@@ -60,7 +60,8 @@ class PlayerGraphics : public GraphicsComponent {
 			
 			// Fill map with actions
 			for( unsigned int i=0; i<spriteCharacterNames.size();i++){
-				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i>(spriteCharacterAction[i], spriteCharacterAction[i+1]);
+				std::vector<sf::Vector2i> & animationVector = animation[spriteCharacterNames[i]];
+				animationVector.push_back(sf::Vector2i(spriteCharacterAction[i].x, spriteCharacterAction[i].y));
 			}
 			// Change animation to idle
 			Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1] );
