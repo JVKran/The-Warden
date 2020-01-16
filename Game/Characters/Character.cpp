@@ -77,7 +77,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			state= states::FALLING; 
 			break;
 	}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::T)){
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::T)){
 		position = sf::Vector2f(100,100);
 	}
 	position += velocity;

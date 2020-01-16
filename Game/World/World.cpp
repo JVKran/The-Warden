@@ -4,6 +4,14 @@
 
 bool sortByPosition(SelectableObject &lhs, SelectableObject &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This creates aa world. After initialization, the world configuration file is automatically read. Hence
+/// the entire world is loaded after constructing.
+/// @param assets The AssetManager to use to retrieve assets (in this case only tiles).
+/// @param worldFileName The filename of the world to load. Can be both a new and existing file.
+/// @param view The view to use for scrolling through the world.
 World::World(AssetManager & assets, const std::string & worldFileName, sf::View & view):
 	assets(assets),
 	worldFileName(worldFileName),

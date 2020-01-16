@@ -1,6 +1,14 @@
 #include "Editor.hpp"
 #include <SFML/Graphics.hpp>
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This creates an Editor. In the background, World loads and initializes itself. Furhtermore the view
+/// and assets are assigned and the objects available in the editor are loaded.
+/// @param assets The AssetManager to use to retrieve assets.
+/// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
+/// @param view The view to use for scrolling through the world.
 Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view ):
 	assets( assets ),
 	world( assets, worldFileName, view ),
@@ -9,22 +17,41 @@ Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::Vi
 	tileSelectionBar.setSize( sf::Vector2f{ 300, 840 } );
 	tileSelectionBar.setPosition(50, 100);
 	tileSelectionBar.setFillColor( sf::Color::Blue );
-	loadObjects( objects );
+	loadObjects();
 }
 
+/// \brief
+/// Check for empty world file.
+/// \details
+/// This function returns a bool representing wether the file is empty or not.
+/// @param file The input to check for an eof character.
 bool Editor::isEmpty( std::ifstream & file ){
 	return file.peek() == std::ifstream::traits_type::eof();
 }
 
+/// \brief
+/// Save world to configuration file.
+/// \details
+/// This function currently saves the edited world.
 void Editor::editingDone(){
 	world.saveWorld();
 }
 
+/// \brief
+/// Draw the editor and world.
+/// \details
+/// This function draws both, the editor and world to the passed RenderWindow.
+/// @param window The window to write the editor and world to.
 void Editor::draw( sf::RenderWindow & window ){
 	world.draw( window );	
 	drawTileBar( window );
 }
 
+/// \brief
+/// Draw the tile bar.
+/// \details
+/// This function draws all available tiles to choose from to the passed RenderWindow.
+/// @param window The window to write the editor and world to.
 void Editor::drawTileBar( sf::RenderWindow & window ){
 	//window.draw( tileSelectionBar );
 	for( auto object : objects ){
@@ -32,6 +59,12 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 	}
 }
 
+/// \brief
+/// Handle user input.
+/// \details
+/// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
+/// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
+/// @param window The window to use for determining the absolute position of the mouseclicks.
 void Editor::handleInput(sf::RenderWindow & window){
 	sf::Event event;
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
@@ -59,7 +92,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 				tile.setFollowMouse(false);
 			}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
-				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
+				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) - 1, std::find(tiles.begin(), tiles.end(), tile));
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
@@ -88,7 +121,12 @@ void Editor::handleInput(sf::RenderWindow & window){
 
 }
 
-void Editor::scrollTileBar( int & mouseWheelDelta ){
+/// \brief
+/// Scroll tile bar
+/// \details
+/// This function is used to scroll through the tiles that can be placed in the world.
+/// @param mouseWHeelDelta The new position of the mousewheel relative to its previous position.
+void Editor::scrollTileBar( const uint_fast16_t & mouseWheelDelta ){
 	for( auto & object : objects ){
 		sf::Vector2f position = object.getPosition();
 		position.y += mouseWheelDelta * 30;
@@ -96,7 +134,12 @@ void Editor::scrollTileBar( int & mouseWheelDelta ){
 	}
 }
 
-void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName ){
+/// \brief
+/// Load all placeable objects.
+/// \details
+/// This function is used to load all selectable objects from the editorConfigName into a vector of type SelectableObject.
+/// @param window The window to use for determining the absolute position of the mouseclicks.
+void Editor::loadObjects(const std::string & editorConfigName ){
 	std::ifstream objectInput(editorConfigName);
 	std::string name;
 	float scale;
@@ -108,6 +151,12 @@ void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::
 	}
 }	
 
+/// \brief
+/// First one selected?
+/// \details
+/// This function returns wether or not there are any objects that are selected. This is used
+/// to prevent selecting a tile over which the cursor is moved while moving a selected object.
+/// @param tiles The vector of tiles that has to be searched for selected objects.
 bool Editor::isFirstOneSelected(std::vector<SelectableObject> & tiles){
 	for(const auto & tile : tiles){
 		if(tile.isFollowingMouse()){

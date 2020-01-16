@@ -1,3 +1,5 @@
+/// @file
+
 #ifndef __EDITOR_HPP
 #define __EDITOR_HPP
 
@@ -9,6 +11,11 @@
 #include "AssetManager.hpp"
 #include "ScreenObject.hpp"
 
+/// \brief
+/// World Editor
+/// \details
+/// This class features the ability to edit worlds. This is done using a Drag & Drop interface
+/// enabling both players and developers to easily create playable worlds.
 class Editor {
 private:
 	AssetManager & assets;
@@ -26,11 +33,11 @@ public:
 	void editingDone();
 	void handleInput(sf::RenderWindow & window);
 
-	void loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName = "Editor/editorObjects.txt");
+	void loadObjects(const std::string & editorConfigName = "Editor/editorObjects.txt");
 
 	void draw( sf::RenderWindow & window );
 	void drawTileBar( sf::RenderWindow & window );
-	void scrollTileBar( int & delta );
+	void scrollTileBar( const uint_fast16_t & mouseWheelDelta );
 };
 
 #endif // Editor.hpp

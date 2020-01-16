@@ -1,3 +1,5 @@
+/// @file
+
 #ifndef __WORLD_HPP
 #define __WORLD_HPP
 
@@ -6,8 +8,11 @@
 #include "../exceptions.hpp"
 #include <string>
 
-class SelectableObject;
-
+/// \brief
+/// World
+/// \details
+/// This class is the entire world. It consists of all the tiles specified in the world configuration file.
+/// It's responsible for loading, drawing and saving the world.
 class World {
 	private:
 		AssetManager & assets;
