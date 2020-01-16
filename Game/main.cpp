@@ -18,7 +18,7 @@ int main(){
 	#else
 	Editor editor( assets, "world.txt", view );	//Edit world world.txt
 	#endif
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
@@ -57,7 +57,7 @@ int main(){
 		#endif
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-				window.close();
+			window.close();
 		}
 
 		sf::Event event;		
@@ -68,6 +68,7 @@ int main(){
 		}
 
 	}
+
 	#ifndef playmode
 	editor.editingDone();
 	#endif
