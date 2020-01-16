@@ -22,8 +22,8 @@ SpriteAnimation::SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimen
 // startColumn = Which column to start
 // missRow =  If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame
 // Column = How tall the column has to be
-void SpriteAnimation::changeStartEndFrame( bool start, int startRow, int startColumn, int missRow, int Column){
-	Start = start;
+void SpriteAnimation::changeStartEndFrame( int startRow, int startColumn, int missRow, int Column){
+	Start = true;
 	spriteRowColumn = sf::Vector2i{ startRow, startColumn};
 	missingRow = missRow; // If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame)
 	amountColumn = Column; 

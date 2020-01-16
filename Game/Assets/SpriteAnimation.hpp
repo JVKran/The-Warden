@@ -24,7 +24,7 @@ class SpriteAnimation {
 		bool Start=false;
 	public:
 		SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );
-		void changeStartEndFrame( bool start, int startRow, int startColumn, int missingRow, int Column);	
+		void changeStartEndFrame( int startRow, int startColumn, int missingRow, int Column);	
 		void draw(sf::RenderWindow & window);
 		
 };
