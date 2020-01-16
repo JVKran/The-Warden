@@ -59,7 +59,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 				tile.setFollowMouse(false);
 			}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
-				// tiles.erase( tile );
+				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));

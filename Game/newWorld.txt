@@ -1,3 +1,0 @@
-
-background
-(800, 200) crate 1

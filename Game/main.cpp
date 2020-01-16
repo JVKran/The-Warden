@@ -7,16 +7,16 @@
 #include "Character.hpp"
 
 int main(){
-	#define playmode
+	//#define playmode
 	AssetManager assets;
-	assets.loadObjects("objects.txt");
+	assets.loadObjects("Assets/objects.txt");
 
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
 	#ifdef playmode
-	World world(assets, "world.txt", view);		//Create world with world.txt as config
+	World world(assets, "World/world.txt", view);		//Create world with world.txt as config
 	#else
-	Editor editor( assets, "world.txt", view );	//Edit world world.txt
+	Editor editor( assets, "World/world.txt", view );	//Edit world world.txt
 	#endif
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
@@ -33,10 +33,10 @@ int main(){
 
 		// processInput();
 
-		//editor.handleInput(window);
+		editor.handleInput(window);
 
 		while (lag >= msPerUpdate){
-			//editor.handleInput(window);
+			editor.handleInput(window);
 			lag -= msPerUpdate;
 		}
 		#ifdef playmode

@@ -26,7 +26,7 @@ public:
 	void editingDone();
 	void handleInput(sf::RenderWindow & window);
 
-	void loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName = "editorObjects.txt");
+	void loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName = "Editor/editorObjects.txt");
 
 	void draw( sf::RenderWindow & window );
 	void drawTileBar( sf::RenderWindow & window );
