@@ -7,12 +7,17 @@
 #include "Character.hpp"
 
 int main(){
+	#define playmode
 	AssetManager assets;
 	assets.loadObjects("objects.txt");
 
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
-	//World world(assets, "world.txt", view);		//Create world with world.txt as config
+
+	#ifdef playmode
+	World world(assets, "world.txt", view);		//Create world with world.txt as config
+	#else
 	Editor editor( assets, "world.txt", view );	//Edit world world.txt
+	#endif
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
@@ -31,18 +36,23 @@ int main(){
 		while (lag >= msPerUpdate){
 			lag -= msPerUpdate;
 		}
+		#ifdef playmode
 
+		
+		window.clear();
+		world.draw(window);
+		speler.update(window, world);
+		window.setView(view);
+		window.display();
+		
+		#else
 		window.clear();
 		editor.handleInput(window);
 		editor.draw( window );
 		window.setView(view);
 		window.display();
 
-		// window.clear();
-		// world.draw(window);
-		// speler.update(window, world);
-		// window.setView(view);
-		// window.display();
+		#endif
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 				window.close();
@@ -56,7 +66,8 @@ int main(){
 		}
 
 	}
-	
+	#ifndef playmode
 	editor.editingDone();
+	#endif
 	return 0;
 }

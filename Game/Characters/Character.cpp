@@ -6,21 +6,29 @@ Character::Character(sf::Vector2f position, const std::string & assetName, Asset
 	graphics(assetName, assets)
 {}
 
-void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f velocity, const sf::Vector2f & dimensions){
+void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions){
+
+	if(clock.getElapsedTime().asMilliseconds()-lastup>8){
+	
+	
 	std::vector<SelectableObject> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
-	bool leftCollision, rightCollision, bottomCollision;
+	bool leftCollision=0, rightCollision=0, bottomCollision=0;
 
 	sf::FloatRect hitboxf = sf::FloatRect(position, dimensions);
-	sf::FloatRect hitboxlarge(hitboxf.left-100,hitboxf.top-5,hitboxf.width+10,hitboxf.height+10);
-	sf::FloatRect hitbox(hitboxf.left,hitboxf.top,hitboxf.width,hitboxf.height-5);
+	sf::FloatRect hitboxlarge/*(hitboxf.left-100,hitboxf.top-5,hitboxf.width+50,hitboxf.height+10)*/ (hitboxf);
+	sf::FloatRect hitbox(hitboxf.left,hitboxf.top,hitboxf.width,hitboxf.height);
 
 	for(auto tile : tiles){
         tileBounds = tile.getBounds();
-        if(hitboxlarge.intersects(tile.getBounds())){
-        	leftCollision = ((tile.getBounds().left + tile.getBounds().width <= (hitbox.left+hitbox.width)) && (tile.getBounds().top < (hitbox.top+hitbox.height - 1)) && 0);
-        	rightCollision = (hitbox.left+hitbox.width<=(tile.getBounds().left+tile.getBounds().width))&&(tile.getBounds().top<(hitbox.top+hitbox.height-1));
-			bottomCollision = sf::FloatRect(hitboxf.left+1,hitboxf.top,hitboxf.width-2,hitboxf.height).intersects(tileBounds);             
+        if(hitboxf.intersects(tile.getBounds())){
+			//std::cout<<"coll"<<'\n';
+        	if(((tileBounds.left+tileBounds.width)>=hitboxf.left)&&(tileBounds.top>hitboxf.top+hitboxf.height	)){
+				std::cout<<"left"<<'\n';
+				leftCollision=1;
+			}
+        	//rightCollision += (hitbox.left+hitbox.width<=(tile.getBounds().left+tile.getBounds().width))&&(tile.getBounds().top<(hitbox.top+hitbox.height-1));
+			bottomCollision += sf::FloatRect(hitboxf.left+1,hitboxf.top,hitboxf.width-2,hitboxf.height).intersects(tileBounds);             
         }
     }
 
@@ -42,7 +50,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 				velocity.y = -5;
 				break;
 			}
-			if(!bottomCollision && 0){
+			if(!bottomCollision && 1){
 				state = states::FALLING;
 				break;
 			}
@@ -76,6 +84,8 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 
 	position += velocity;
 	world.getView().setCenter(sf::Vector2f(position.x, 300));
+	lastup = clock.getElapsedTime().asMilliseconds();
+	}
 }
 
 void PlayerInput::processInput(sf::Vector2f & velocity){
@@ -97,6 +107,9 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position){
 	sprite.setPosition(position);
 	window.draw(sprite);
+	sf::RectangleShape doos (sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+	doos.setPosition(position);
+	window.draw(doos);
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
