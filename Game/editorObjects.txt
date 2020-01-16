@@ -1,6 +1,9 @@
 tree1 0.5
 tree2 0.2
 grass 0.4
+flyingGrass1 0.4
+flyingGrass2 0.4
+flyingGrass3 0.4
 dirt 0.4
 crate 0.6
 water 0.4

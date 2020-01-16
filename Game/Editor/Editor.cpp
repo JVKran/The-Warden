@@ -43,7 +43,14 @@ void Editor::handleInput(sf::RenderWindow & window){
 					world.addTile(objectToAdd);
 					object.hasBeenAdded = true;
 				}
-			} else {
+			}
+			// else if( window.waitEvent( event )){
+			// 	if(event.type == sf::Event::MouseWheelMoved ){
+			// 		// scrollTileBar(event.mouseWheel.delta);
+			// 		std::cout<< "k";
+			// 	}
+			// }
+			else {
 				object.hasBeenAdded = false;
 			}
 	    }
@@ -80,11 +87,19 @@ void Editor::handleInput(sf::RenderWindow & window){
 		editingDone();
 	}
 	if( window.waitEvent( event )){
-		if(event.type == sf::Event::MouseWheelMoved ){
-			std::cout<< event.mouseWheel.delta<<"\n";
+		if(event.type == sf::Event::MouseWheelMoved ){	
+			scrollTileBar(event.mouseWheel.delta);
 		}
 	}
 
+}
+
+void Editor::scrollTileBar( int & mouseWheelDelta ){
+	for( auto & object : objects ){
+		sf::Vector2f position = object.getPosition();
+		position.y += mouseWheelDelta * 5;
+		object.setPosition(position);
+	}
 }
 
 void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName ){
