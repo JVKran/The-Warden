@@ -16,14 +16,14 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	bool leftCollision=0, rightCollision=0, bottomCollision=0;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y-2));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 2, position.y), sf::Vector2f(dimensions.x - 4, dimensions.y + 2));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y ), sf::Vector2f(dimensions.x - 8, dimensions.y + 2));
 
 	for(const auto & tile : tiles){
         tileBounds = tile.getBounds();
         if((hitbox.intersects(tile.getBounds()) || bottomHitbox.intersects(tile.getBounds())) && tile.isCollidable()){
         	bottomCollision += tileBounds.contains(bottomHitbox.left, bottomHitbox.top + bottomHitbox.height) || tileBounds.contains(bottomHitbox.left + bottomHitbox.width, bottomHitbox.top + bottomHitbox.height); 
-        	rightCollision += tileBounds.contains(position.x + hitbox.width, position.y) || tileBounds.contains(position.x + hitbox.width, position.y + hitbox.height);
-        	leftCollision += tileBounds.contains(position.x, position.y) || tileBounds.contains(position.x, position.y + hitbox.height);
+        	rightCollision += tileBounds.contains(hitbox.left + hitbox.width, hitbox.top) || tileBounds.contains(hitbox.left + hitbox.width, hitbox.top + hitbox.height);
+        	leftCollision += tileBounds.contains(hitbox.left, hitbox.top) || tileBounds.contains(hitbox.left, hitbox.top + hitbox.height);
        }
     }
 
@@ -89,10 +89,10 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 void PlayerInput::processInput(sf::Vector2f & velocity){
 	velocity.x = 0;	//Stand still
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-		velocity.x = -5;
+		velocity.x = -2;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-		velocity.x = 5;
+		velocity.x = 2;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 		velocity.y -=1;
