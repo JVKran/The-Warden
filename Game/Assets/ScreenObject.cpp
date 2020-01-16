@@ -20,8 +20,13 @@ ScreenObject& ScreenObject::operator=(ScreenObject lhs){
 	return *this;
 }
 
-ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale):
-	assetName(assetName)
+bool ScreenObject::isCollidable(){
+	return collidable;
+}
+
+ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable):
+	assetName(assetName),
+	collidable(collidable)
 {
 	sprite.setTexture(assets.getTexture(assetName));
 	sprite.setPosition(position);
@@ -29,7 +34,7 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 }
 
 std::string ScreenObject::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(sprite.getScale().x));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x));
 }
 
 void ScreenObject::draw(sf::RenderWindow & window){
@@ -48,8 +53,8 @@ sf::FloatRect ScreenObject::getBounds() const {
 	return(sprite.getGlobalBounds());
 }
 
-SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale):
-	ScreenObject(assetName, assets, position, scale)
+SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable):
+	ScreenObject(assetName, assets, position, scale, collidable)
 {}
 
 bool SelectableObject::setFollowMouse(const bool follow){

@@ -8,10 +8,12 @@ class ScreenObject {
 	protected:
 		std::string assetName;
 		sf::Sprite sprite;
+		const bool collidable;
 	public:
-		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
+		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
 		ScreenObject& operator=(ScreenObject lhs);
+		bool isCollidable();
 
 		std::string getConfiguration() const;
 
@@ -28,7 +30,7 @@ class SelectableObject : public ScreenObject {
 		bool followMouse = false;
 	public:
 		bool hasBeenAdded = false;
-		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale);
+		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;

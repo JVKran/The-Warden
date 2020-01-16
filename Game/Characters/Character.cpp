@@ -27,6 +27,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
     if(leftCollision && velocity.x < 0){
 		velocity.x = 0;
 	}
+	
 	if(rightCollision && velocity.x > 0){
 		velocity.x = 0;
 	}
