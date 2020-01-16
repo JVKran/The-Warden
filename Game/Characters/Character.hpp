@@ -16,23 +16,23 @@ class InputComponent {
 };
 
 class GraphicsComponent {
-		SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
-						int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );	
+	//	SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
+	//					int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );	
 	protected:
 		std::map<std::string, SpriteAnimation> animation;
 		sf::Sprite sprite;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets, std::vector){
-			
+		GraphicsComponent(const std::string & assetName, AssetManager & assets){
+			/*
 			SpriteAnimation Animation(sprite&, assets.getTexture(assetName), sf::Vector2i dimensions, 
 									  sf::Vector2i spriteRowColumn, int missingRow)
 			
 			animation[actionName] = Animation;
-			
+			*/
 			//sprite.setTexture(assets.getTexture(assetName));
 		}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name) = 0;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) = 0;
 };
 
 class PlayerPhysics : public PhysicsComponent {
@@ -56,7 +56,8 @@ class PlayerGraphics : public GraphicsComponent {
 			GraphicsComponent(assetName, assets)
 		{}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name) override;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
+		//virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name) override;
 		sf::Vector2f getDimensions();
 };
 

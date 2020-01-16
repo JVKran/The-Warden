@@ -17,6 +17,7 @@ SpriteAnimation::SpriteAnimation( sf::Sprite sprite, sf::Texture& texture, const
 	sprite.setScale(scale);
 }
 
+
 // Animate function that loops trough variying spritesheets
 // start = Enable if statement
 // startRow = Which frame in a row to start
