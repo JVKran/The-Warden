@@ -48,7 +48,7 @@ void Editor::draw( sf::RenderWindow & window ){
 /// @param window The window to write the editor and world to.
 void Editor::drawTileBar( sf::RenderWindow & window ){
 	//window.draw( tileSelectionBar );
-	for( auto object : objects ){
+	for( const auto & object : objects ){
 		object.draw(window);
 	}
 }
@@ -120,7 +120,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 /// \details
 /// This function is used to scroll through the tiles that can be placed in the world.
 /// @param mouseWHeelDelta The new position of the mousewheel relative to its previous position.
-void Editor::scrollTileBar( const uint_fast16_t & mouseWheelDelta ){
+void Editor::scrollTileBar( const int_fast16_t & mouseWheelDelta ){
 	for( auto & object : objects ){
 		sf::Vector2f position = object.getPosition();
 		position.y += mouseWheelDelta * 30;

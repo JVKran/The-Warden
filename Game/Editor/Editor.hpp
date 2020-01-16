@@ -36,7 +36,7 @@ public:
 
 	void draw( sf::RenderWindow & window );
 	void drawTileBar( sf::RenderWindow & window );
-	void scrollTileBar( const uint_fast16_t & mouseWheelDelta );
+	void scrollTileBar( const int_fast16_t & mouseWheelDelta );
 };
 
 #endif // Editor.hpp

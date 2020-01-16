@@ -48,7 +48,7 @@ std::string ScreenObject::getConfiguration() const {
 	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x));
 }
 
-void ScreenObject::draw(sf::RenderWindow & window){
+void ScreenObject::draw(sf::RenderWindow & window) const {
 	window.draw(sprite);
 }
 

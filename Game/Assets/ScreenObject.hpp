@@ -29,7 +29,7 @@ class ScreenObject {
 		sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f & newPosition);
 
-		virtual void draw(sf::RenderWindow & window);
+		virtual void draw(sf::RenderWindow & window) const;
 		sf::FloatRect getBounds() const;
 		
 };
