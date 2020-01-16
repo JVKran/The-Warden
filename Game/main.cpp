@@ -6,7 +6,7 @@
 #include "Editor.hpp"
 #include "Character.hpp"
 
-#define playmode
+//#define playmode
 
 int main(){
 	AssetManager assets;

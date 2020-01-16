@@ -70,6 +70,13 @@ void ScreenObject::setNewScale(const float newScale){
 }
 
 /// \brief
+/// Get sprite scale.
+/// \return The current scale of the sprite.
+sf::Vector2f ScreenObject::getScale() const {
+	return sprite.getScale();
+}
+
+/// \brief
 /// Get position.
 /// \return The current position of the sprite.
 sf::Vector2f ScreenObject::getPosition() const {

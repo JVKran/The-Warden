@@ -30,6 +30,8 @@ class ScreenObject {
 		void setPosition(const sf::Vector2f & newPosition);
 
 		void setNewScale(const float newScale);
+		sf::Vector2f getScale() const;
+
 		virtual void draw(sf::RenderWindow & window) const;
 };
 
