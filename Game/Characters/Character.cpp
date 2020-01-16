@@ -93,9 +93,10 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 	//Set animations
 }
 
-void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position){
+void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name){
 	sprite.setPosition(position);
-	window.draw(sprite);
+	animation[name].draw(window);
+	//window.draw(sprite);
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
