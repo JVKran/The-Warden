@@ -29,6 +29,7 @@ int main(){
 		// processInput();
 
 		while (lag >= msPerUpdate){
+			editor.handleInput(window);
 			lag -= msPerUpdate;
 		}
 
