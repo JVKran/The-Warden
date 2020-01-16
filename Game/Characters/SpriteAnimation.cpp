@@ -1,20 +1,22 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
-SpriteAnimation::SpriteAnimation( sf::Sprite sprite, sf::Texture& texture, const sf::Vector2i dimensions,sf::Vector2i spriteRowColumn, int missingRow, float animationSpeed, const sf::Vector2f scale):
+SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, const sf::Vector2i dimensions,sf::Vector2i spriteRowColumn, 
+								 const sf::Vector2i scale, int missingRow,  float animationSpeed, ):
 	sprite(sprite),	
 	texture(texture),
 	dimensions(dimensions),
 	spriteRowColumn(spriteRowColumn),
+	scale(scale),
 	missingRow(missingRow),
-	animationSpeed(animationSpeed),
-	scale(scale)
+	animationSpeed(animationSpeed)
+	
 
 {
 	pixelRow = dimensions.x / spriteRowColumn.x;		// Length divided by row, these are the horizontal steps a frame
 	pixelColumn = dimensions.y / spriteRowColumn.y;		// Height divided by column, these are the vertical steps a frame
 	rectSourceSprite = sf::IntRect( 0, 0, pixelRow, pixelColumn ); // First 2 numbers will iterate trough frames, second 2 are the width and height of a single frame
 	sprite = sf::Sprite(texture, rectSourceSprite);
-	sprite.setScale(scale);
+	sprite.setScale(static_cast<sf::Vector2f>(scale));
 }
 
 
@@ -24,11 +26,11 @@ SpriteAnimation::SpriteAnimation( sf::Sprite sprite, sf::Texture& texture, const
 // startColumn = Which column to start
 // missRow =  If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame
 // Column = How tall the column has to be
-void SpriteAnimation::changeStartEndFrame( int startRow, int startColumn, int missRow, int Column){
+void SpriteAnimation::changeStartEndFrame( sf::Vector2i RC, sf::Vector2i missingRC ){
 	Start = true;
-	spriteRowColumn = sf::Vector2i{ startRow, startColumn};
-	missingRow = missRow; // If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame)
-	amountColumn = Column; 
+	spriteRowColumn = RC;
+	missingRow = missingRC.x; // If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame)
+	amountColumn = missingRC.y; 
 	//Specify start frame
 	rectSourceSprite = sf::IntRect( pixelRow*spriteRowColumn.x, pixelColumn*spriteRowColumn.y, pixelRow, pixelColumn );
 }

@@ -61,13 +61,13 @@ void Editor::handleInput(sf::RenderWindow & window){
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-		view.move(-1, 0);
+		view.setCenter(sf::Vector2f(view.getCenter().x - 1, view.getCenter().y));
 		for(auto & object : objects){
 			object.setPosition(sf::Vector2f(object.getPosition().x - 1, object.getPosition().y));
 		}
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-		view.move(1, 0);
+		view.setCenter(sf::Vector2f(view.getCenter().x + 1, view.getCenter().y));
 		for(auto & object : objects){
 			object.setPosition(sf::Vector2f(object.getPosition().x + 1, object.getPosition().y));
 		}

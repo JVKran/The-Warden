@@ -7,3 +7,4 @@ bush1 Assets/Textures/freetileset/png/Object/Bush(1).png
 bush2 Assets/Textures/freetileset/png/Object/Bush(3).png
 tree1 Assets/Textures/freetileset/png/Object/Tree_1.png
 tree2 Assets/Textures/freetileset/png/Object/Tree_2.png
+player Assets/Textures/adventurer.png

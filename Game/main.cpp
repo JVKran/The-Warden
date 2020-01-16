@@ -16,9 +16,12 @@ int main(){
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
 	sf::Clock clock;
-	uint_fast8_t msPerUpdate = 16;
+	uint_fast8_t msPerUpdate = 4;
 	double previous, lag, current, elapsed;
-	Character speler(sf::Vector2f(500,100),"crate",assets,window);
+	std::vector<sf::Vector2i> spritePlayerData(sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0});
+	std::vector<sf::Vector2i> spritePlayerAction( sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3},sf::Vector2i{6,1}, sf::Vector2i{1,1},sf::Vector2i{0,0});
+	std::vector<std::string> spritePlayerNames("idle","slide", "walk");
+	Character speler(sf::Vector2f(500,100),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
@@ -27,6 +30,7 @@ int main(){
 		lag += elapsed;
 
 		// processInput();
+
 		editor.handleInput(window);
 		while (lag >= msPerUpdate){
 			editor.handleInput(window);
@@ -34,14 +38,13 @@ int main(){
 		}
 
 		window.clear();
-		editor.handleInput(window);
 		editor.draw( window );
 		window.setView(view);
 		window.display();
 
 		// window.clear();
 		// world.draw(window);
-		// speler.update(window, world);
+		speler.update(window, world);
 		// window.setView(view);
 		// window.display();
 

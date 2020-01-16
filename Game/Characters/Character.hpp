@@ -19,17 +19,13 @@ class GraphicsComponent {
 	//	SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
 	//					int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );	
 	protected:
-		std::map<std::string, SpriteAnimation> animation;
+		
 		sf::Sprite sprite;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets){
-			/*
-			SpriteAnimation Animation(sprite&, assets.getTexture(assetName), sf::Vector2i dimensions, 
-									  sf::Vector2i spriteRowColumn, int missingRow)
-			
-			animation[actionName] = Animation;
-			*/
-			//sprite.setTexture(assets.getTexture(assetName));
+		GraphicsComponent(const std::string & assetName, AssetManager & assets)
+					
+		{
+			sprite.setTexture(assets.getTexture(assetName));
 		}
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) = 0;
@@ -51,10 +47,25 @@ class PlayerInput : public InputComponent {
 };
 
 class PlayerGraphics : public GraphicsComponent {
+	private:
+		SpriteAnimation Animation;	
+		std::map<std::string, std::vector<sf::Vector2i>> animation;
 	public:
-		PlayerGraphics(const std::string & assetName, AssetManager & assets):
-			GraphicsComponent(assetName, assets)
-		{}
+		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> & spriteCharacterData, 
+					   std::vector<sf::Vector2i> & spriteCharacterAction, std::vector<std::string> & spriteCharacterNames):
+			GraphicsComponent(assetName, assets),
+			Animation(&sprite, assets.getTexture(assetName), spriteCharacterData[0], 		
+				spriteCharacterData[1], spriteCharacterData[2], spriteCharacterData[3].x)
+			{	
+			
+			// Fill map with actions
+			for( unsigned int i=0; i<spriteCharacterNames.size();i++){
+				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i>(spriteCharacterAction[i], spriteCharacterAction[i+1]);
+			}
+			// Change animation to idle
+			Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1]);
+			
+			}
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
 		//virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name) override;
@@ -66,7 +77,8 @@ class Character {
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		sf::RenderWindow &window;
-
+		std::string action="slide";
+		
 		PlayerInput input;
 		PlayerPhysics physics;
 		PlayerGraphics graphics;
