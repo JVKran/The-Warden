@@ -24,6 +24,7 @@ int main(){
 	uint_fast8_t msPerUpdate = 16;
 	double previous, lag, current, elapsed;
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
+	window.setVerticalSyncEnabled(1);
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());

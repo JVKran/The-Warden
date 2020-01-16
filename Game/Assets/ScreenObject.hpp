@@ -13,7 +13,7 @@ class ScreenObject {
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
 		ScreenObject& operator=(ScreenObject lhs);
-		bool isCollidable();
+		bool isCollidable() const;
 
 		std::string getConfiguration() const;
 
