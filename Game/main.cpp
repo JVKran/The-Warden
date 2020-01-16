@@ -6,19 +6,19 @@
 #include "Editor.hpp"
 #include "Character.hpp"
 
-//#define playmode
 
 int main(){
+	bool playMode;
+	std::cout << "Play (1) or edit (0)?" << std::endl;
+	std::cin >> playMode;
+
 	AssetManager assets;
 	assets.loadObjects("Assets/objects.txt");
 
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
-	#ifdef playmode
 	World world(assets, "World/world.txt", view);		//Create world with world.txt as config
-	#else
 	Editor editor( assets, "World/world.txt", view );	//Edit world world.txt
-	#endif
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
@@ -36,7 +36,7 @@ int main(){
 		lag += elapsed;
 
 
-		#ifdef playmode
+		if(playMode){
 
 			while (lag >= msPerUpdate){
 				lag -= msPerUpdate;
@@ -48,7 +48,7 @@ int main(){
 			window.setView(view);
 			window.display();
 		
-		#else
+		} else {
 
 			editor.handleInput(window);
 
@@ -62,7 +62,7 @@ int main(){
 			window.setView(view);
 			window.display();
 
-		#endif
+		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			window.close();
@@ -77,8 +77,5 @@ int main(){
 
 	}
 
-	#ifndef playmode
-	editor.editingDone();
-	#endif
 	return 0;
 }
