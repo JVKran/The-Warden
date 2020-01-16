@@ -30,6 +30,7 @@ public:
 
 	void draw( sf::RenderWindow & window );
 	void drawTileBar( sf::RenderWindow & window );
+	void scrollTileBar( int & delta );
 };
 
 #endif // Editor.hpp

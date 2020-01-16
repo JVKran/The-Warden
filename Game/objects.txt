@@ -1,7 +1,10 @@
 background Assets/Textures/freetileset/png/BG/BG.png
 crate Assets/Textures/freetileset/png/Object/Crate.png
 grass Assets/Textures/freetileset/png/Tiles/2.png
-dirt Assets/Textures/freetileset/png/Tiles/10.png
+flyingGrass1 Assets/Textures/freetileset/png/Tiles/13.png
+flyingGrass2 Assets/Textures/freetileset/png/Tiles/14.png
+flyingGrass3 Assets/Textures/freetileset/png/Tiles/15.png
+dirt Assets/Textures/freetileset/png/Tiles/5.png
 water Assets/Textures/freetileset/png/Tiles/17.png
 bush1 Assets/Textures/freetileset/png/Object/Bush(1).png
 bush2 Assets/Textures/freetileset/png/Object/Bush(3).png

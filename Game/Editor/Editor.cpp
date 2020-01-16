@@ -33,6 +33,7 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 }
 
 void Editor::handleInput(sf::RenderWindow & window){
+	sf::Event event;
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		for(auto & object : objects){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
@@ -42,7 +43,8 @@ void Editor::handleInput(sf::RenderWindow & window){
 					world.addTile(objectToAdd);
 					object.hasBeenAdded = true;
 				}
-			} else {
+			}
+			else {
 				object.hasBeenAdded = false;
 			}
 	    }
@@ -55,6 +57,9 @@ void Editor::handleInput(sf::RenderWindow & window){
 			}
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 				tile.setFollowMouse(false);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
+				// tiles.erase( tile );
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
@@ -71,6 +76,23 @@ void Editor::handleInput(sf::RenderWindow & window){
 		for(auto & object : objects){
 			object.setPosition(sf::Vector2f(object.getPosition().x + 1, object.getPosition().y));
 		}
+	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
+		editingDone();
+	}
+	if( window.pollEvent(event) ){
+		if(event.type == sf::Event::MouseWheelMoved ){	
+			scrollTileBar(event.mouseWheel.delta);
+		}
+	}
+
+}
+
+void Editor::scrollTileBar( int & mouseWheelDelta ){
+	for( auto & object : objects ){
+		sf::Vector2f position = object.getPosition();
+		position.y += mouseWheelDelta * 30;
+		object.setPosition(position);
 	}
 }
 
