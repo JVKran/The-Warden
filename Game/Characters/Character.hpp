@@ -28,7 +28,7 @@ class GraphicsComponent {
 			sprite.setTexture(assets.getTexture(assetName));
 		}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) = 0;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name ) = 0;
 };
 
 class PlayerPhysics : public PhysicsComponent {
@@ -51,10 +51,10 @@ class PlayerGraphics : public GraphicsComponent {
 		SpriteAnimation Animation;	
 		std::map<std::string, std::vector<sf::Vector2i>> animation;
 	public:
-		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> & spriteCharacterData, 
-					   std::vector<sf::Vector2i> & spriteCharacterAction, std::vector<std::string> & spriteCharacterNames):
+		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> spriteCharacterData, 
+					   std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
 			GraphicsComponent(assetName, assets),
-			Animation(&sprite, assets.getTexture(assetName), spriteCharacterData[0], 		
+			Animation(sprite, assets.getTexture(assetName), spriteCharacterData[0], 		
 				spriteCharacterData[1], spriteCharacterData[2], spriteCharacterData[3].x)
 			{	
 			
@@ -63,12 +63,12 @@ class PlayerGraphics : public GraphicsComponent {
 				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i>(spriteCharacterAction[i], spriteCharacterAction[i+1]);
 			}
 			// Change animation to idle
-			Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1]);
+			Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1] );
 			
 			}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
-		//virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, const std::string name) override;
+		//virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name) ;
 		sf::Vector2f getDimensions();
 };
 
@@ -83,7 +83,8 @@ class Character {
 		PlayerPhysics physics;
 		PlayerGraphics graphics;
 	public:
-		Character(sf::Vector2f position, const std::string & assetName, AssetManager & assets, sf::RenderWindow &window);
+		Character(sf::Vector2f position, const std::string & assetName, AssetManager & assets, sf::RenderWindow &window,
+				  std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
 		void update(sf::RenderWindow & window, World & world);
 		void attack();
 		void draw();

@@ -6,7 +6,7 @@
 
 class SpriteAnimation {
 	private:
-		sf::Sprite sprite;
+		sf::Sprite& sprite;
 		sf::Texture& texture;
 		const sf::Vector2i dimensions;		// Width,height
 		sf::Vector2i spriteRowColumn;	// Row, column

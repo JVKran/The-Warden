@@ -3,7 +3,8 @@
 Character::Character(sf::Vector2f position, const std::string & assetName, AssetManager & assets,sf::RenderWindow & window):
 	position(position),
 	window(window),
-	graphics(assetName, assets)
+	graphics(assetName, assets,std::vector<sf::Vector2i> spriteCharacterData, 
+			 std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames)
 {}
 
 void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f velocity, const sf::Vector2f & dimensions){
@@ -96,7 +97,7 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string & name){
 	sprite.setPosition(position);
-	Animation.changeStartEndFrame(animation[name][0],animation[name][1]);
+	Animation.changeStartEndFrame(animation[name][0], animation[name][1]);
 	Animation.draw(window);
 }
 

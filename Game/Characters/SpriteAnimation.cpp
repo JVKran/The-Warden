@@ -1,7 +1,7 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
-SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, const sf::Vector2i dimensions,sf::Vector2i spriteRowColumn, 
-								 const sf::Vector2i scale, int missingRow,  float animationSpeed, ):
+SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
+								 const sf::Vector2i scale, int missingRow,  float animationSpeed ):
 	sprite(sprite),	
 	texture(texture),
 	dimensions(dimensions),
