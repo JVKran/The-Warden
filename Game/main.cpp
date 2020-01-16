@@ -45,7 +45,7 @@ int main(){
 		// window.display();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-				window.close();
+			window.close();
 		}
 
 		sf::Event event;		
@@ -57,6 +57,6 @@ int main(){
 
 	}
 	
-	editor.editingDone();
+	// editor.editingDone();
 	return 0;
 }

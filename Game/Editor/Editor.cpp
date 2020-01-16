@@ -56,6 +56,9 @@ void Editor::handleInput(sf::RenderWindow & window){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 				tile.setFollowMouse(false);
 			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
+				tiles.erase( tile );
+			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
     }
@@ -72,6 +75,10 @@ void Editor::handleInput(sf::RenderWindow & window){
 			object.setPosition(sf::Vector2f(object.getPosition().x + 1, object.getPosition().y));
 		}
 	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
+		editingDone();
+	}
+
 }
 
 void Editor::loadObjects( std::vector< SelectableObject > & objects, const std::string & editorConfigName ){
