@@ -7,7 +7,7 @@
 #include "Character.hpp"
 
 int main(){
-	//#define playmode
+	#define playmode
 	AssetManager assets;
 	assets.loadObjects("Assets/objects.txt");
 
@@ -26,29 +26,28 @@ int main(){
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
 	window.setVerticalSyncEnabled(1);
 	window.setFramerateLimit(60);
+	lag=0;
+	elapsed=0;
 
 
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
-		elapsed = current - previous;
-		previous = current;
-		lag += elapsed;
+		//elapsed = current - previous;
+
+		//lag += elapsed;
 
 		// processInput();
 
-		editor.handleInput(window);
+				window.clear();
+		world.draw(window);
+		speler.update(window, world);		
+		window.setView(view);
 
-		while (lag >= msPerUpdate){
-			editor.handleInput(window);
-			lag -= msPerUpdate;
-		}
+		while (current-previous<msPerUpdate){
 		#ifdef playmode
 
 		
-		window.clear();
-		world.draw(window);
-		speler.update(window, world);
-		window.setView(view);
+
 		window.display();
 		
 		#else
@@ -56,7 +55,15 @@ int main(){
 		editor.draw( window );
 		window.setView(view);
 		window.display();
+				previous= current;
+		#endif
+			//lag -= msPerUpdate;
+		current = (clock.getElapsedTime().asMilliseconds());
+		}
+		previous=current;
 
+		#ifndef playmode
+		editor.handleInput(window);
 		#endif
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
@@ -69,7 +76,8 @@ int main(){
 				window.close();
 			}
 		}
-
+	current = (clock.getElapsedTime().asMilliseconds());
+	//previous = current;
 	}
 
 	#ifndef playmode
