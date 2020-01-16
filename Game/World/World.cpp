@@ -97,8 +97,7 @@ void World::loadingDone(){
 		if(std::is_sorted(tiles.begin(), tiles.end())){
 			std::cout << "(i)-- World already sorted!" << std::endl;
 		} else {
-			//Broken!!!:
-			//std::sort(tiles.begin(), tiles.end(), sortByPosition);
+			std::sort(tiles.begin(), tiles.end(), sortByPosition);
 			std::cout << "(i)-- Sorted world!" << std::endl;
 		}
 	} catch (...){

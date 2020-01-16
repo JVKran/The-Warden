@@ -6,31 +6,6 @@ bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 	return lhs.x < rhs.x;
 }
 
-/// \brief
-/// Load all objects.
-/// \details
-/// This loads all objects specified in the file with the name of the passed parameter. 
-/// This file should follow some syntax rules:
-/// ~~~~~{.txt}
-/// background Assets/Textures/freetileset/png/BG/BG.png
-/// crate Assets/Textures/freetileset/png/Object/Crate.png
-/// grass Assets/Textures/freetileset/png/Tiles/2.png
-/// ~~~~~
-/// The first word specifies the name that identifies the texture in the textureMap. The second word is equal
-/// to the filepath that leads to the desired texture.
-/// @param assetFileName The filename of the file containing all assets, their locations and their names.
-ScreenObject& ScreenObject::operator=(ScreenObject lhs){
-	if(&lhs != this){
-		sf::Sprite tempSprite = sprite;
-		sprite = lhs.sprite;
-		lhs.sprite = tempSprite;
-		std::string tempName = assetName;
-		assetName = lhs.assetName;
-		lhs.assetName = tempName;
-	}
-	return *this;
-}
-
 bool ScreenObject::isCollidable() const{
 	return collidable;
 }
@@ -93,11 +68,14 @@ void SelectableObject::move(const sf::Vector2f & position){
 SelectableObject& SelectableObject::operator=(SelectableObject lhs){
 	if(&lhs != this){
 		followMouse = lhs.followMouse;
+		assetName = lhs.assetName;
+		sprite = lhs.sprite;
+		collidable = lhs.collidable;
 	}
 	return *this;
 }
 
-bool SelectableObject::operator==(SelectableObject lhs){
+bool SelectableObject::operator==(SelectableObject lhs) const {
 	return sprite.getPosition() == lhs.sprite.getPosition();
 }
 

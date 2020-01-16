@@ -16,22 +16,19 @@ class ScreenObject {
 	protected:
 		std::string assetName;
 		sf::Sprite sprite;
-		const bool collidable;
+		bool collidable;
 	public:
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
-		ScreenObject& operator=(ScreenObject lhs);
 		bool isCollidable() const;
-
 		std::string getConfiguration() const;
-		void setNewScale(const float newScale);
 
+		sf::FloatRect getBounds() const;
 		sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f & newPosition);
 
+		void setNewScale(const float newScale);
 		virtual void draw(sf::RenderWindow & window) const;
-		sf::FloatRect getBounds() const;
-		
 };
 
 class SelectableObject : public ScreenObject {
@@ -47,7 +44,7 @@ class SelectableObject : public ScreenObject {
 		void move(const sf::Vector2f & position);
 
 		SelectableObject& operator=(SelectableObject lhs);
-		bool operator==(SelectableObject lhs);
+		bool operator==(SelectableObject lhs) const;
 		bool operator<(SelectableObject lhs) const;
 
 };
