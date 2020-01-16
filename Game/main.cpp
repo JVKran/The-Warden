@@ -33,10 +33,10 @@ int main(){
 
 		// processInput();
 
-		editor.handleInput(window);
+		//editor.handleInput(window);
 
 		while (lag >= msPerUpdate){
-			editor.handleInput(window);
+			//editor.handleInput(window);
 			lag -= msPerUpdate;
 		}
 		#ifdef playmode

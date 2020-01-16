@@ -15,22 +15,18 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	sf::FloatRect tileBounds;
 	bool leftCollision=0, rightCollision=0, bottomCollision=0;
 
-	sf::FloatRect hitboxf = sf::FloatRect(position, dimensions);
-	sf::FloatRect hitboxlarge/*(hitboxf.left-100,hitboxf.top-5,hitboxf.width+50,hitboxf.height+10)*/ (hitboxf);
-	sf::FloatRect hitbox(hitboxf.left,hitboxf.top,hitboxf.width,hitboxf.height);
+	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x - 2, position.y), sf::Vector2f(dimensions.x + 2, dimensions.y + 4));
 
 	for(auto tile : tiles){
         tileBounds = tile.getBounds();
-        if(hitboxf.intersects(tile.getBounds())){
-			//std::cout<<"coll"<<'\n';
-        	if(((tileBounds.left+tileBounds.width)>=hitboxf.left)&&(tileBounds.top>hitboxf.top+hitboxf.height	)){
-				std::cout<<"left"<<'\n';
-				leftCollision=1;
-			}
-        	//rightCollision += (hitbox.left+hitbox.width<=(tile.getBounds().left+tile.getBounds().width))&&(tile.getBounds().top<(hitbox.top+hitbox.height-1));
-			bottomCollision += sf::FloatRect(hitboxf.left+1,hitboxf.top,hitboxf.width-2,hitboxf.height).intersects(tileBounds);             
-        }
+        if((hitbox.intersects(tile.getBounds()) || bottomHitbox.intersects(tile.getBounds())) && tile.isCollidable()){
+        	bottomCollision += tileBounds.contains(position.x, position.y + bottomHitbox.height) || tileBounds.contains(position.x + bottomHitbox.width, position.y + bottomHitbox.height); 
+        	rightCollision = tileBounds.contains(position.x + hitbox.width, position.y) || tileBounds.contains(position.x + hitbox.width, position.y + hitbox.height);
+        	leftCollision = tileBounds.contains(position.x, position.y) || tileBounds.contains(position.x, position.y + hitbox.height);
+       }
     }
+
 
     if(leftCollision && velocity.x < 0){
 		velocity.x = 0;
@@ -41,30 +37,30 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	}
 
 	switch (state){
+		case (states::FALLING): {
+			if(bottomCollision){
+				state = states::STANDING;
+				velocity.y = 0;
+			} else {
+				velocity.y = 2;
+			}
+			
+			break;
+		}
 		case (states::STANDING):
-			//std::cout<<"STD"<<'\n';
 			if(velocity.y < 0){
 				state = states::JUMPING;
 				current = (clock.getElapsedTime().asMilliseconds());
 				previous = current;
 				velocity.y = -5;
-				break;
+				//break;
 			}
-			if(!bottomCollision && 1){
+			if(!bottomCollision){
 				state = states::FALLING;
 				break;
 			}
 			
 			velocity.y=0;
-			break;
-		case (states::FALLING):
-			if(bottomCollision){
-				state = states::STANDING;
-				velocity.y = 0;
-				break;
-			}
-			velocity.y = 5;
-			
 			break;
 		case(states::JUMPING):
 			current = (clock.getElapsedTime().asMilliseconds());
@@ -80,7 +76,6 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 		default: 
 			break;
 	}
-
 
 	position += velocity;
 	world.getView().setCenter(sf::Vector2f(position.x, 300));
