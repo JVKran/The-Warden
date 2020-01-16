@@ -31,3 +31,4 @@ background
 (1807,236) flyingGrass1 1 1.000000
 (1934,236) flyingGrass2 1 1.000000
 (2062,236) flyingGrass3 1 1.000000
+(1963,-64) tree2 1 1.000000

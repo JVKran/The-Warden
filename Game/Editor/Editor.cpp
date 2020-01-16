@@ -44,12 +44,6 @@ void Editor::handleInput(sf::RenderWindow & window){
 					object.hasBeenAdded = true;
 				}
 			}
-			// else if( window.waitEvent( event )){
-			// 	if(event.type == sf::Event::MouseWheelMoved ){
-			// 		// scrollTileBar(event.mouseWheel.delta);
-			// 		std::cout<< "k";
-			// 	}
-			// }
 			else {
 				object.hasBeenAdded = false;
 			}
@@ -86,7 +80,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
 		editingDone();
 	}
-	if( window.waitEvent( event )){
+	if( window.pollEvent(event) ){
 		if(event.type == sf::Event::MouseWheelMoved ){	
 			scrollTileBar(event.mouseWheel.delta);
 		}
@@ -97,7 +91,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 void Editor::scrollTileBar( int & mouseWheelDelta ){
 	for( auto & object : objects ){
 		sf::Vector2f position = object.getPosition();
-		position.y += mouseWheelDelta * 5;
+		position.y += mouseWheelDelta * 30;
 		object.setPosition(position);
 	}
 }

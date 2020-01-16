@@ -13,7 +13,7 @@ int main(){
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 	//World world(assets, "world.txt", view);		//Create world with world.txt as config
 	Editor editor( assets, "world.txt", view );	//Edit world world.txt
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16;
