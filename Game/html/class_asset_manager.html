@@ -67,39 +67,138 @@ $(function() {
 <div class="title">AssetManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Asset manager.  
+ <a href="class_asset_manager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_asset_manager_8hpp_source.html">AssetManager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff8dd68a1dc871fe68b131066cd051aa"><td class="memItemLeft" align="right" valign="top"><a id="aff8dd68a1dc871fe68b131066cd051aa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadObjects</b> (const std::string &amp;assetFileName)</td></tr>
+<tr class="memitem:aff8dd68a1dc871fe68b131066cd051aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#aff8dd68a1dc871fe68b131066cd051aa">loadObjects</a> (const std::string &amp;assetFileName)</td></tr>
+<tr class="memdesc:aff8dd68a1dc871fe68b131066cd051aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all objects.  <a href="#aff8dd68a1dc871fe68b131066cd051aa">More...</a><br /></td></tr>
 <tr class="separator:aff8dd68a1dc871fe68b131066cd051aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="memItemLeft" align="right" valign="top"><a id="a70b1e9eaa2031a1df873d2251bfef9ac"></a>
-sf::Texture &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTexture</b> (const std::string &amp;assetName)</td></tr>
+<tr class="memitem:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="memItemLeft" align="right" valign="top">sf::Texture &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#a70b1e9eaa2031a1df873d2251bfef9ac">getTexture</a> (const std::string &amp;assetName)</td></tr>
+<tr class="memdesc:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get texture.  <a href="#a70b1e9eaa2031a1df873d2251bfef9ac">More...</a><br /></td></tr>
 <tr class="separator:a70b1e9eaa2031a1df873d2251bfef9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="memItemLeft" align="right" valign="top"><a id="aca7724c1a48c6ff4905e74f0d0f2632e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadTextures</b> (std::ifstream &amp;input)</td></tr>
+<tr class="memitem:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#aca7724c1a48c6ff4905e74f0d0f2632e">loadTextures</a> (std::ifstream &amp;input)</td></tr>
+<tr class="memdesc:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load one texture.  <a href="#aca7724c1a48c6ff4905e74f0d0f2632e">More...</a><br /></td></tr>
 <tr class="separator:aca7724c1a48c6ff4905e74f0d0f2632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a743e861c66b9fce7abee122a5e951"><td class="memItemLeft" align="right" valign="top"><a id="a64a743e861c66b9fce7abee122a5e951"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> (std::ifstream &amp;file)</td></tr>
-<tr class="separator:a64a743e861c66b9fce7abee122a5e951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a1c82f39e9dd5f2418813f16e2dcfbee2"><td class="memItemLeft" align="right" valign="top"><a id="a1c82f39e9dd5f2418813f16e2dcfbee2"></a>
-std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>textureMap</b></td></tr>
+std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#a1c82f39e9dd5f2418813f16e2dcfbee2">textureMap</a></td></tr>
+<tr class="memdesc:a1c82f39e9dd5f2418813f16e2dcfbee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The map used to retrieve textures based on their name. <br /></td></tr>
 <tr class="separator:a1c82f39e9dd5f2418813f16e2dcfbee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Asset manager. </p>
+<p>This class features the storage of all textures of the game. This way, all textures only have to be loaded in memory once after which multiple refrences can be taken of the same texture. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a70b1e9eaa2031a1df873d2251bfef9ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b1e9eaa2031a1df873d2251bfef9ac">&#9670;&nbsp;</a></span>getTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Texture &amp; AssetManager::getTexture </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>assetName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get texture. </p>
+<p>This function returns a refrence to the texture identified by the passed texture name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetName</td><td>The name of the texture to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aff8dd68a1dc871fe68b131066cd051aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff8dd68a1dc871fe68b131066cd051aa">&#9670;&nbsp;</a></span>loadObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AssetManager::loadObjects </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>assetFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load all objects. </p>
+<p>This loads all objects specified in the file with the name of the passed parameter. This file should follow some syntax rules: </p><div class="fragment"><div class="line">background Assets/Textures/freetileset/png/BG/BG.png</div><div class="line">crate Assets/Textures/freetileset/png/Object/Crate.png</div><div class="line">grass Assets/Textures/freetileset/png/Tiles/2.png</div></div><!-- fragment --><p> The first word specifies the name that identifies the texture in the textureMap. The second word is equal to the filepath that leads to the desired texture. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetFileName</td><td>The filename of the file containing all assets, their locations and their names. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aca7724c1a48c6ff4905e74f0d0f2632e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7724c1a48c6ff4905e74f0d0f2632e">&#9670;&nbsp;</a></span>loadTextures()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AssetManager::loadTextures </td>
+          <td>(</td>
+          <td class="paramtype">std::ifstream &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load one texture. </p>
+<p>This loads one object from the passed ifstream. This file should follow some syntax rules: </p><div class="fragment"><div class="line">background Assets/Textures/freetileset/png/BG/BG.png</div><div class="line">crate Assets/Textures/freetileset/png/Object/Crate.png</div><div class="line">grass Assets/Textures/freetileset/png/Tiles/2.png</div></div><!-- fragment --><p> The first word specifies the name that identifies the texture in the textureMap. The second word is equal to the filepath that leads to the desired texture. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input to read the textureName and filepath from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">noSuchPicture()</td><td>The filepath provided does not lead to a valid or existing texture. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_asset_manager_8hpp_source.html">AssetManager.hpp</a></li>
-<li>AssetManager.cpp</li>
+<li><a class="el" href="_asset_manager_8cpp.html">AssetManager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 20:00:58 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

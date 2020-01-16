@@ -66,63 +66,329 @@ $(function() {
 <div class="title">ScreenObject Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Screen Object.  
+ <a href="class_screen_object.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_screen_object_8hpp_source.html">ScreenObject.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ScreenObject:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_screen_object.png" usemap="#ScreenObject_map" alt=""/>
   <map id="ScreenObject_map" name="ScreenObject_map">
-<area href="class_selectable_object.html" alt="SelectableObject" shape="rect" coords="0,56,108,80"/>
+<area href="class_selectable_object.html" title="Selectable Object. " alt="SelectableObject" shape="rect" coords="0,56,108,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a254d6be434b395b9c24889d0c452cbc5"><td class="memItemLeft" align="right" valign="top"><a id="a254d6be434b395b9c24889d0c452cbc5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenObject</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position, const float scale, const bool collidable=true)</td></tr>
+<tr class="memitem:a254d6be434b395b9c24889d0c452cbc5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a254d6be434b395b9c24889d0c452cbc5">ScreenObject</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position, const float scale, const bool <a class="el" href="class_screen_object.html#a67ef5d2882e7c7f7d86dd207f26c26eb">collidable</a>=true)</td></tr>
+<tr class="memdesc:a254d6be434b395b9c24889d0c452cbc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a254d6be434b395b9c24889d0c452cbc5">More...</a><br /></td></tr>
 <tr class="separator:a254d6be434b395b9c24889d0c452cbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b39469afa8f20bcd2131db577ac2aac"><td class="memItemLeft" align="right" valign="top"><a id="a3b39469afa8f20bcd2131db577ac2aac"></a>
-<a class="el" href="class_screen_object.html">ScreenObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_screen_object.html">ScreenObject</a> lhs)</td></tr>
-<tr class="separator:a3b39469afa8f20bcd2131db577ac2aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a143481ae891cd2037e33a1aeb558691b"><td class="memItemLeft" align="right" valign="top"><a id="a143481ae891cd2037e33a1aeb558691b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCollidable</b> () const</td></tr>
+<tr class="memitem:a143481ae891cd2037e33a1aeb558691b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a143481ae891cd2037e33a1aeb558691b">isCollidable</a> () const</td></tr>
+<tr class="memdesc:a143481ae891cd2037e33a1aeb558691b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collidability.  <a href="#a143481ae891cd2037e33a1aeb558691b">More...</a><br /></td></tr>
 <tr class="separator:a143481ae891cd2037e33a1aeb558691b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ecbb35a11b007ef363e823e4f32cb3"><td class="memItemLeft" align="right" valign="top"><a id="a00ecbb35a11b007ef363e823e4f32cb3"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getConfiguration</b> () const</td></tr>
+<tr class="memitem:a12d9d88ca0c1b5a6bd54a09d9372c056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a12d9d88ca0c1b5a6bd54a09d9372c056">setCollidable</a> (const bool newCollidable)</td></tr>
+<tr class="memdesc:a12d9d88ca0c1b5a6bd54a09d9372c056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set collidability.  <a href="#a12d9d88ca0c1b5a6bd54a09d9372c056">More...</a><br /></td></tr>
+<tr class="separator:a12d9d88ca0c1b5a6bd54a09d9372c056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ecbb35a11b007ef363e823e4f32cb3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a00ecbb35a11b007ef363e823e4f32cb3">getConfiguration</a> () const</td></tr>
+<tr class="memdesc:a00ecbb35a11b007ef363e823e4f32cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration.  <a href="#a00ecbb35a11b007ef363e823e4f32cb3">More...</a><br /></td></tr>
 <tr class="separator:a00ecbb35a11b007ef363e823e4f32cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d60153bcd4ca327d6b85d096f9403b4"><td class="memItemLeft" align="right" valign="top"><a id="a6d60153bcd4ca327d6b85d096f9403b4"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
-<tr class="separator:a6d60153bcd4ca327d6b85d096f9403b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d9f66daabc22c40dd9684ba627d04e8"><td class="memItemLeft" align="right" valign="top"><a id="a9d9f66daabc22c40dd9684ba627d04e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;newPosition)</td></tr>
-<tr class="separator:a9d9f66daabc22c40dd9684ba627d04e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a675d3561a4462e1ed8e52073b81e498f"><td class="memItemLeft" align="right" valign="top"><a id="a675d3561a4462e1ed8e52073b81e498f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow &amp;window)</td></tr>
-<tr class="separator:a675d3561a4462e1ed8e52073b81e498f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c09e64dc2eb4260ea69d411097bbbec"><td class="memItemLeft" align="right" valign="top"><a id="a2c09e64dc2eb4260ea69d411097bbbec"></a>
-sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getBounds</b> () const</td></tr>
+<tr class="memitem:a2c09e64dc2eb4260ea69d411097bbbec"><td class="memItemLeft" align="right" valign="top">sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a2c09e64dc2eb4260ea69d411097bbbec">getBounds</a> () const</td></tr>
+<tr class="memdesc:a2c09e64dc2eb4260ea69d411097bbbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get global bounds.  <a href="#a2c09e64dc2eb4260ea69d411097bbbec">More...</a><br /></td></tr>
 <tr class="separator:a2c09e64dc2eb4260ea69d411097bbbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d60153bcd4ca327d6b85d096f9403b4"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a6d60153bcd4ca327d6b85d096f9403b4">getPosition</a> () const</td></tr>
+<tr class="memdesc:a6d60153bcd4ca327d6b85d096f9403b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get position.  <a href="#a6d60153bcd4ca327d6b85d096f9403b4">More...</a><br /></td></tr>
+<tr class="separator:a6d60153bcd4ca327d6b85d096f9403b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9f66daabc22c40dd9684ba627d04e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a9d9f66daabc22c40dd9684ba627d04e8">setPosition</a> (const sf::Vector2f &amp;newPosition)</td></tr>
+<tr class="memdesc:a9d9f66daabc22c40dd9684ba627d04e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set position.  <a href="#a9d9f66daabc22c40dd9684ba627d04e8">More...</a><br /></td></tr>
+<tr class="separator:a9d9f66daabc22c40dd9684ba627d04e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53cbc45ebfb8c0a86fce830ce48380ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a53cbc45ebfb8c0a86fce830ce48380ca">setNewScale</a> (const float newScale)</td></tr>
+<tr class="memdesc:a53cbc45ebfb8c0a86fce830ce48380ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set new sprite scale.  <a href="#a53cbc45ebfb8c0a86fce830ce48380ca">More...</a><br /></td></tr>
+<tr class="separator:a53cbc45ebfb8c0a86fce830ce48380ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251d344290359fed5ad1970b5c30a5c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a251d344290359fed5ad1970b5c30a5c1">draw</a> (sf::RenderWindow &amp;window) const</td></tr>
+<tr class="memdesc:a251d344290359fed5ad1970b5c30a5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw object.  <a href="#a251d344290359fed5ad1970b5c30a5c1">More...</a><br /></td></tr>
+<tr class="separator:a251d344290359fed5ad1970b5c30a5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a07d5ebdb769ffa871c87864523b477e5"><td class="memItemLeft" align="right" valign="top"><a id="a07d5ebdb769ffa871c87864523b477e5"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>assetName</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a></td></tr>
+<tr class="memdesc:a07d5ebdb769ffa871c87864523b477e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The AssetName to get corresponding texture from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a>. <br /></td></tr>
 <tr class="separator:a07d5ebdb769ffa871c87864523b477e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69edb5b02a877681197fe7e694108442"><td class="memItemLeft" align="right" valign="top"><a id="a69edb5b02a877681197fe7e694108442"></a>
-sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td></tr>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a69edb5b02a877681197fe7e694108442">sprite</a></td></tr>
+<tr class="memdesc:a69edb5b02a877681197fe7e694108442"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sprite this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> has to draw and manage. <br /></td></tr>
 <tr class="separator:a69edb5b02a877681197fe7e694108442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12d2efd0e79b01c6cdab5288fb0370c"><td class="memItemLeft" align="right" valign="top"><a id="aa12d2efd0e79b01c6cdab5288fb0370c"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><b>collidable</b></td></tr>
-<tr class="separator:aa12d2efd0e79b01c6cdab5288fb0370c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ef5d2882e7c7f7d86dd207f26c26eb"><td class="memItemLeft" align="right" valign="top"><a id="a67ef5d2882e7c7f7d86dd207f26c26eb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a67ef5d2882e7c7f7d86dd207f26c26eb">collidable</a></td></tr>
+<tr class="memdesc:a67ef5d2882e7c7f7d86dd207f26c26eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not <a class="el" href="class_character.html">Character</a> types should collide with this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a>. <br /></td></tr>
+<tr class="separator:a67ef5d2882e7c7f7d86dd207f26c26eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Screen Object. </p>
+<p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved and checked for collisions. It has an assetName, sprite and boolean to determine wether or not this object can collide with <a class="el" href="class_character.html">Character</a> types. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a254d6be434b395b9c24889d0c452cbc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254d6be434b395b9c24889d0c452cbc5">&#9670;&nbsp;</a></span>ScreenObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ScreenObject::ScreenObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>assetName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>assets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>collidable</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create instance. </p>
+<p>This function creates a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetName</td><td>The name of the texture to get from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> that should be used to construct te sprite. </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
+    <tr><td class="paramname">position</td><td>The initial position to set and draw the sprite. </td></tr>
+    <tr><td class="paramname">scale</td><td>The initial scale of the sprite. </td></tr>
+    <tr><td class="paramname">collidable</td><td>The initial collidability with <a class="el" href="class_character.html">Character</a> types. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a251d344290359fed5ad1970b5c30a5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a251d344290359fed5ad1970b5c30a5c1">&#9670;&nbsp;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScreenObject::draw </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draw object. </p>
+<p>This function draws itself in the passed window. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow to draw the sprite in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c09e64dc2eb4260ea69d411097bbbec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c09e64dc2eb4260ea69d411097bbbec">&#9670;&nbsp;</a></span>getBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::FloatRect ScreenObject::getBounds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get global bounds. </p>
+<dl class="section return"><dt>Returns</dt><dd>The global bounds of the sprite. </dd></dl>
+
+</div>
+</div>
+<a id="a00ecbb35a11b007ef363e823e4f32cb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ecbb35a11b007ef363e823e4f32cb3">&#9670;&nbsp;</a></span>getConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ScreenObject::getConfiguration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get configuration. </p>
+<p>This function gathers all data from this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> and returns it in a readable and storeable format. </p><dl class="section return"><dt>Returns</dt><dd>A string with all configuration variables in format: "(x,y) assetName collidability scale". </dd></dl>
+
+</div>
+</div>
+<a id="a6d60153bcd4ca327d6b85d096f9403b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d60153bcd4ca327d6b85d096f9403b4">&#9670;&nbsp;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f ScreenObject::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get position. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current position of the sprite. </dd></dl>
+
+</div>
+</div>
+<a id="a143481ae891cd2037e33a1aeb558691b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a143481ae891cd2037e33a1aeb558691b">&#9670;&nbsp;</a></span>isCollidable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ScreenObject::isCollidable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get collidability. </p>
+<p>This function returns wether or not <a class="el" href="class_character.html">Character</a> types should collide with this object. </p><dl class="section return"><dt>Returns</dt><dd>Wether or not <a class="el" href="class_character.html">Character</a> types should collide with this object. </dd></dl>
+
+</div>
+</div>
+<a id="a12d9d88ca0c1b5a6bd54a09d9372c056"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d9d88ca0c1b5a6bd54a09d9372c056">&#9670;&nbsp;</a></span>setCollidable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScreenObject::setCollidable </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>newCollidable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set collidability. </p>
+<p>This function sets collidability to the desired functioning. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newCollidable</td><td>Wether or not <a class="el" href="class_character.html">Character</a> types should collide with this object from now on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53cbc45ebfb8c0a86fce830ce48380ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53cbc45ebfb8c0a86fce830ce48380ca">&#9670;&nbsp;</a></span>setNewScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScreenObject::setNewScale </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>newScale</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set new sprite scale. </p>
+<p>This function sets the new scale of the sprite. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newScale</td><td>The scale the sprite should have from now on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d9f66daabc22c40dd9684ba627d04e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d9f66daabc22c40dd9684ba627d04e8">&#9670;&nbsp;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScreenObject::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>newPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set position. </p>
+<p>Sets the position of the sprite to a new position. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPostion</td><td>The new position of the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_screen_object_8hpp_source.html">ScreenObject.hpp</a></li>
-<li>ScreenObject.cpp</li>
+<li><a class="el" href="_screen_object_8cpp.html">ScreenObject.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 20:00:58 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

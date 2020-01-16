@@ -93,9 +93,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a64f3ee0ca45a88b74fea89e013970522"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a64f3ee0ca45a88b74fea89e013970522">drawTileBar</a> (sf::RenderWindow &amp;window)</td></tr>
 <tr class="memdesc:a64f3ee0ca45a88b74fea89e013970522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the tile bar.  <a href="#a64f3ee0ca45a88b74fea89e013970522">More...</a><br /></td></tr>
 <tr class="separator:a64f3ee0ca45a88b74fea89e013970522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8ca2176cd83acc95a31193b1a95f12b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#aa8ca2176cd83acc95a31193b1a95f12b">scrollTileBar</a> (const uint_fast16_t &amp;mouseWheelDelta)</td></tr>
-<tr class="memdesc:aa8ca2176cd83acc95a31193b1a95f12b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll tile bar.  <a href="#aa8ca2176cd83acc95a31193b1a95f12b">More...</a><br /></td></tr>
-<tr class="separator:aa8ca2176cd83acc95a31193b1a95f12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366">scrollTileBar</a> (const int_fast16_t &amp;mouseWheelDelta)</td></tr>
+<tr class="memdesc:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll tile bar.  <a href="#aed2537c0bf6daf4b24ebcbcd631f5366">More...</a><br /></td></tr>
+<tr class="separator:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -107,7 +107,7 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac0cc175719a5e4069a6d48808a994848"><td class="memItemLeft" align="right" valign="top"><a id="ac0cc175719a5e4069a6d48808a994848"></a>
 <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#ac0cc175719a5e4069a6d48808a994848">assets</a></td></tr>
-<tr class="memdesc:ac0cc175719a5e4069a6d48808a994848"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_asset_manager.html">AssetManager</a> to use for gathering the needed textures. <br /></td></tr>
+<tr class="memdesc:ac0cc175719a5e4069a6d48808a994848"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use for gathering the needed textures. <br /></td></tr>
 <tr class="separator:ac0cc175719a5e4069a6d48808a994848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30368d993935c2f8cd001ef885840770"><td class="memItemLeft" align="right" valign="top"><a id="a30368d993935c2f8cd001ef885840770"></a>
 <a class="el" href="class_world.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a30368d993935c2f8cd001ef885840770">world</a></td></tr>
@@ -117,9 +117,6 @@ Private Attributes</h2></td></tr>
 sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#afda048d7d0fd7595168c88aa9d532d59">view</a></td></tr>
 <tr class="memdesc:afda048d7d0fd7595168c88aa9d532d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">The view to use for scrolling through the world. <br /></td></tr>
 <tr class="separator:afda048d7d0fd7595168c88aa9d532d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad618a4ac2c7bbf45d986b047d8738882"><td class="memItemLeft" align="right" valign="top"><a id="ad618a4ac2c7bbf45d986b047d8738882"></a>
-sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>tileSelectionBar</b></td></tr>
-<tr class="separator:ad618a4ac2c7bbf45d986b047d8738882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81af81a7885a9035f8b40018ffc52603"><td class="memItemLeft" align="right" valign="top"><a id="a81af81a7885a9035f8b40018ffc52603"></a>
 std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a81af81a7885a9035f8b40018ffc52603">objects</a></td></tr>
 <tr class="memdesc:a81af81a7885a9035f8b40018ffc52603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector with all placeable objects. <br /></td></tr>
@@ -164,7 +161,7 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
 <p>Create an instance. </p>
 <p>This creates an <a class="el" href="class_editor.html" title="World Editor. ">Editor</a>. In the background, <a class="el" href="class_world.html" title="World. ">World</a> loads and initializes itself. Furhtermore the view and assets are assigned and the objects available in the editor are loaded. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html">AssetManager</a> to use to retrieve assets. </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
     <tr><td class="paramname">worldFileName</td><td>The filename of the world to edit. Can be both a new and existing file. </td></tr>
     <tr><td class="paramname">view</td><td>The view to use for scrolling through the world. </td></tr>
   </table>
@@ -263,7 +260,7 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
 </div><div class="memdoc">
 
 <p>Handle user input. </p>
-<p>This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world. Furthermore, the scrolling of a mouse wheel is delegated to <a class="el" href="class_editor.html#aa8ca2176cd83acc95a31193b1a95f12b" title="Scroll tile bar. ">scrollTileBar()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world. Furthermore, the scrolling of a mouse wheel is delegated to <a class="el" href="class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366" title="Scroll tile bar. ">scrollTileBar()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">window</td><td>The window to use for determining the absolute position of the mouseclicks. </td></tr>
   </table>
@@ -323,7 +320,7 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
 </div><div class="memdoc">
 
 <p>Load all placeable objects. </p>
-<p>This function is used to load all selectable objects from the editorConfigName into a vector of type <a class="el" href="class_selectable_object.html">SelectableObject</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function is used to load all selectable objects from the editorConfigName into a vector of type <a class="el" href="class_selectable_object.html" title="Selectable Object. ">SelectableObject</a>. This editor configuration file should follow a specific syntax like below: </p><div class="fragment"><div class="line">tree1 0.5</div><div class="line">tree2 0.2</div><div class="line">grass 0.4</div></div><!-- fragment --><p> In this configuration file, every line consists of an assetName and a scale to use in the editor; not the scale in the world. That one is given in the world configuration file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">window</td><td>The window to use for determining the absolute position of the mouseclicks. </td></tr>
   </table>
@@ -332,8 +329,8 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
 
 </div>
 </div>
-<a id="aa8ca2176cd83acc95a31193b1a95f12b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8ca2176cd83acc95a31193b1a95f12b">&#9670;&nbsp;</a></span>scrollTileBar()</h2>
+<a id="aed2537c0bf6daf4b24ebcbcd631f5366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed2537c0bf6daf4b24ebcbcd631f5366">&#9670;&nbsp;</a></span>scrollTileBar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -341,7 +338,7 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
         <tr>
           <td class="memname">void Editor::scrollTileBar </td>
           <td>(</td>
-          <td class="paramtype">const uint_fast16_t &amp;&#160;</td>
+          <td class="paramtype">const int_fast16_t &amp;&#160;</td>
           <td class="paramname"><em>mouseWheelDelta</em></td><td>)</td>
           <td></td>
         </tr>
@@ -365,7 +362,7 @@ std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObje
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 20:00:58 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

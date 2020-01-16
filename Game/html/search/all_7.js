@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inputcomponent',['InputComponent',['../class_input_component.html',1,'']]],
-  ['isfirstoneselected',['isFirstOneSelected',['../class_editor.html#ad52eed0366c5e02e61868c0b07c1cab1',1,'Editor']]]
+  ['handleinput',['handleInput',['../class_editor.html#aa6a302b6f234fb189bc7b530afd71009',1,'Editor']]],
+  ['hasbeenadded',['hasBeenAdded',['../class_selectable_object.html#a172b308c4344fcac714775324aa29072',1,'SelectableObject']]]
 ];

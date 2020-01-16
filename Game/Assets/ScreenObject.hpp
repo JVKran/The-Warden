@@ -14,9 +14,9 @@
 /// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
 class ScreenObject {
 	protected:
-		std::string assetName;
-		sf::Sprite sprite;
-		bool collidable;
+		std::string assetName;				//!< The AssetName to get corresponding texture from the AssetManager.
+		sf::Sprite sprite;					//!< The Sprite this ScreenObject has to draw and manage.
+		bool collidable;					//!< Wether or not Character types should collide with this ScreenObject.
 	public:
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
@@ -33,11 +33,16 @@ class ScreenObject {
 		virtual void draw(sf::RenderWindow & window) const;
 };
 
+/// \brief
+/// Selectable Object
+/// \details
+/// This class implements a ScreenObject that can be drawn, scaled, moved, clicked and checked for collisions. 
+/// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
 class SelectableObject : public ScreenObject {
 	private:
-		bool followMouse = false;
+		bool followMouse = false;			//!< Wether or not to follow the mouse's position.
 	public:
-		bool hasBeenAdded = false;
+		bool hasBeenAdded = false;			//!< Wether or not this objec has been added to the tiles of the world; if it's part of the world.
 		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
 		bool setFollowMouse(const bool follow);

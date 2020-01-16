@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['saveworld',['saveWorld',['../class_world.html#a0a2e3046fcf82f9fc31bdbe1bce00399',1,'World']]],
-  ['screenobject',['ScreenObject',['../class_screen_object.html',1,'']]],
-  ['scrolltilebar',['scrollTileBar',['../class_editor.html#aa8ca2176cd83acc95a31193b1a95f12b',1,'Editor']]],
-  ['selectableobject',['SelectableObject',['../class_selectable_object.html',1,'']]],
-  ['setbackground',['setBackground',['../class_world.html#aef9444d45fd451b1df392ff11669868a',1,'World']]]
+  ['objects',['objects',['../class_editor.html#a81af81a7885a9035f8b40018ffc52603',1,'Editor']]],
+  ['operator_3c',['operator&lt;',['../class_selectable_object.html#a2de01eebe13d5474154b092573fdfdc2',1,'SelectableObject']]],
+  ['operator_3d',['operator=',['../class_selectable_object.html#a856d777cd37de08c1a0acb0f8bfab03e',1,'SelectableObject']]],
+  ['operator_3d_3d',['operator==',['../class_selectable_object.html#a57a21e7226ddf1c53f47f51eefe84802',1,'SelectableObject']]]
 ];

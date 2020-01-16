@@ -113,7 +113,7 @@ Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae4c5c391ec85c39928cb3f517b62ed10"><td class="memItemLeft" align="right" valign="top"><a id="ae4c5c391ec85c39928cb3f517b62ed10"></a>
 <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ae4c5c391ec85c39928cb3f517b62ed10">assets</a></td></tr>
-<tr class="memdesc:ae4c5c391ec85c39928cb3f517b62ed10"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_asset_manager.html">AssetManager</a> to use for gathering the needed textures. <br /></td></tr>
+<tr class="memdesc:ae4c5c391ec85c39928cb3f517b62ed10"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use for gathering the needed textures. <br /></td></tr>
 <tr class="separator:ae4c5c391ec85c39928cb3f517b62ed10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37910bc3db33f9ae58999125a857bc81"><td class="memItemLeft" align="right" valign="top"><a id="a37910bc3db33f9ae58999125a857bc81"></a>
 std::vector&lt; <a class="el" href="class_selectable_object.html">SelectableObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a37910bc3db33f9ae58999125a857bc81">tiles</a></td></tr>
@@ -125,7 +125,7 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr class="separator:afd1abe33ecb9973238520eb15dfd3989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a895b24d5cc3e1c9eb0609bd7ca588881"><td class="memItemLeft" align="right" valign="top"><a id="a895b24d5cc3e1c9eb0609bd7ca588881"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a895b24d5cc3e1c9eb0609bd7ca588881">backgroundName</a></td></tr>
-<tr class="memdesc:a895b24d5cc3e1c9eb0609bd7ca588881"><td class="mdescLeft">&#160;</td><td class="mdescRight">The backgroundname used for retrieving the texture from the <a class="el" href="class_asset_manager.html">AssetManager</a>. <br /></td></tr>
+<tr class="memdesc:a895b24d5cc3e1c9eb0609bd7ca588881"><td class="mdescLeft">&#160;</td><td class="mdescRight">The backgroundname used for retrieving the texture from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a>. <br /></td></tr>
 <tr class="separator:a895b24d5cc3e1c9eb0609bd7ca588881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad54b3fd201bc93baa91633711f960686"><td class="memItemLeft" align="right" valign="top"><a id="ad54b3fd201bc93baa91633711f960686"></a>
 sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></td></tr>
@@ -175,7 +175,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <p>Create an instance. </p>
 <p>This creates aa world. After initialization, the world configuration file is automatically read. Hence the entire world is loaded after constructing. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html">AssetManager</a> to use to retrieve assets (in this case only tiles). </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets (in this case only tiles). </td></tr>
     <tr><td class="paramname">worldFileName</td><td>The filename of the world to load. Can be both a new and existing file. </td></tr>
     <tr><td class="paramname">view</td><td>The view to use for scrolling through the world. </td></tr>
   </table>
@@ -204,7 +204,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <p>Add tile to world. </p>
 <p>This adds an object to the world by pushing back to the vector containing all tiles. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">object</td><td>The <a class="el" href="class_selectable_object.html">SelectableObject</a> to add to the world. </td></tr>
+    <tr><td class="paramname">object</td><td>The <a class="el" href="class_selectable_object.html" title="Selectable Object. ">SelectableObject</a> to add to the world. </td></tr>
   </table>
   </dd>
 </dl>
@@ -335,7 +335,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Load tile. </p>
-<p>This reads the configuration for one tile from a world configuration file. The configuration file should follow a specific syntax. </p><div class="fragment"><div class="line"><a class="code" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></div><div class="line">(-1,498) grass 1 1.000000</div><div class="line">(50,454) tree1 0 1.000000</div><div class="line">(127,498) grass 1 1.000000</div></div><!-- fragment --><p> This means the background name for this world is called "background". The name "background", can be used with the <a class="el" href="class_asset_manager.html">AssetManager</a> to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world. All these parameters are used to construct a <a class="el" href="class_selectable_object.html">SelectableObject</a> that's stored in the tiles vector. </p><dl class="exception"><dt>Exceptions</dt><dd>
+<p>This reads the configuration for one tile from a world configuration file. The configuration file should follow a specific syntax. </p><div class="fragment"><div class="line"><a class="code" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></div><div class="line">(-1,498) grass 1 1.000000</div><div class="line">(50,454) tree1 0 1.000000</div><div class="line">(127,498) grass 1 1.000000</div></div><!-- fragment --><p> This means the background name for this world is called "background". The name "background", can be used with the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world. All these parameters are used to construct a <a class="el" href="class_selectable_object.html" title="Selectable Object. ">SelectableObject</a> that's stored in the tiles vector. </p><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">endOfFile()</td><td>End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier. </td></tr>
     <tr><td class="paramname">invalidPosition()</td><td>The position given is invalid. This most likely is a syntax error. </td></tr>
@@ -369,7 +369,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Load world from configuration. </p>
-<p>This loads a world from a world configuration file. The configuration file should follow a specific syntax. </p><div class="fragment"><div class="line"><a class="code" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></div><div class="line">(-1,498) grass 1 1.000000</div><div class="line">(50,454) tree1 0 1.000000</div><div class="line">(127,498) grass 1 1.000000</div></div><!-- fragment --><p> This means the background name for this world is called "background". The name "background", can be used with the <a class="el" href="class_asset_manager.html">AssetManager</a> to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw it on screen. All tiles are read using <a class="el" href="class_world.html#a3832e9490f846f6d1a9b5806e9bca1bb" title="Load tile. ">loadTile()</a>. </p>
+<p>This loads a world from a world configuration file. The configuration file should follow a specific syntax. </p><div class="fragment"><div class="line"><a class="code" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></div><div class="line">(-1,498) grass 1 1.000000</div><div class="line">(50,454) tree1 0 1.000000</div><div class="line">(127,498) grass 1 1.000000</div></div><!-- fragment --><p> This means the background name for this world is called "background". The name "background", can be used with the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw it on screen. All tiles are read using <a class="el" href="class_world.html#a3832e9490f846f6d1a9b5806e9bca1bb" title="Load tile. ">loadTile()</a>. </p>
 
 </div>
 </div>
@@ -412,7 +412,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <p>Change background. </p>
 <p>This function changes the background to the texture corresponding to the passed parameter. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">backgroundName</td><td>The name to use for retrieving the texture from the <a class="el" href="class_asset_manager.html">AssetManager</a>. </td></tr>
+    <tr><td class="paramname">backgroundName</td><td>The name to use for retrieving the texture from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -426,7 +426,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 17:56:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 16 2020 20:00:58 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

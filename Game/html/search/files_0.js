@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['editor_2ecpp',['Editor.cpp',['../_editor_8cpp.html',1,'']]],
-  ['editor_2ehpp',['Editor.hpp',['../_editor_8hpp.html',1,'']]]
+  ['assetmanager_2ecpp',['AssetManager.cpp',['../_asset_manager_8cpp.html',1,'']]],
+  ['assetmanager_2ehpp',['AssetManager.hpp',['../_asset_manager_8hpp.html',1,'']]]
 ];
