@@ -20,7 +20,7 @@ ScreenObject& ScreenObject::operator=(ScreenObject lhs){
 	return *this;
 }
 
-bool ScreenObject::isCollidable(){
+bool ScreenObject::isCollidable() const{
 	return collidable;
 }
 

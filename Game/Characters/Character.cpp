@@ -15,15 +15,15 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	sf::FloatRect tileBounds;
 	bool leftCollision=0, rightCollision=0, bottomCollision=0;
 
-	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x - 2, position.y), sf::Vector2f(dimensions.x + 2, dimensions.y + 4));
+	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y-2));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y ), sf::Vector2f(dimensions.x - 8, dimensions.y + 2));
 
-	for(auto tile : tiles){
+	for(const auto & tile : tiles){
         tileBounds = tile.getBounds();
         if((hitbox.intersects(tile.getBounds()) || bottomHitbox.intersects(tile.getBounds())) && tile.isCollidable()){
-        	bottomCollision += tileBounds.contains(position.x, position.y + bottomHitbox.height) || tileBounds.contains(position.x + bottomHitbox.width, position.y + bottomHitbox.height); 
-        	rightCollision = tileBounds.contains(position.x + hitbox.width, position.y) || tileBounds.contains(position.x + hitbox.width, position.y + hitbox.height);
-        	leftCollision = tileBounds.contains(position.x, position.y) || tileBounds.contains(position.x, position.y + hitbox.height);
+        	bottomCollision += tileBounds.contains(bottomHitbox.left, bottomHitbox.top + bottomHitbox.height) || tileBounds.contains(bottomHitbox.left + bottomHitbox.width, bottomHitbox.top + bottomHitbox.height); 
+        	rightCollision += tileBounds.contains(hitbox.left + hitbox.width, hitbox.top) || tileBounds.contains(hitbox.left + hitbox.width, hitbox.top + hitbox.height);
+        	leftCollision += tileBounds.contains(hitbox.left, hitbox.top) || tileBounds.contains(hitbox.left, hitbox.top + hitbox.height);
        }
     }
 
@@ -73,10 +73,13 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			}
 			velocity.y = -5;
 			break;
-		default: 
+		default:
+			state= states::FALLING; 
 			break;
 	}
-
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::T)){
+		position = sf::Vector2f(100,100);
+	}
 	position += velocity;
 	world.getView().setCenter(sf::Vector2f(position.x, 300));
 	lastup = clock.getElapsedTime().asMilliseconds();
@@ -86,10 +89,10 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 void PlayerInput::processInput(sf::Vector2f & velocity){
 	velocity.x = 0;	//Stand still
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-		velocity.x = -1;
+		velocity.x = -2;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-		velocity.x = 1;
+		velocity.x = 2;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 		velocity.y -=1;
@@ -102,9 +105,9 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position){
 	sprite.setPosition(position);
 	window.draw(sprite);
-	sf::RectangleShape doos (sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
-	doos.setPosition(position);
-	window.draw(doos);
+	//sf::RectangleShape doos (sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height));
+	//doos.setPosition(position);
+	//window.draw(doos);
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){

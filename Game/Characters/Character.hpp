@@ -30,7 +30,7 @@ class PlayerPhysics : public PhysicsComponent {
 	    double previous, jumpTime, current, elapsed, lastup=0;
 		sf::Clock clock;
 		sf::Clock upc;
-		enum class states { JUMPING, STANDING, FALLING};
+		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:
 		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions);
