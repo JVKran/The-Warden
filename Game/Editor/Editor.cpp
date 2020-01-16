@@ -17,9 +17,6 @@ Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::Vi
 	world( assets, worldFileName, view ),
 	view(view)
 {
-	tileSelectionBar.setSize( sf::Vector2f{ 300, 840 } );
-	tileSelectionBar.setPosition(50, 100);
-	tileSelectionBar.setFillColor( sf::Color::Blue );
 	loadObjects();
 }
 
@@ -47,7 +44,6 @@ void Editor::draw( sf::RenderWindow & window ){
 /// This function draws all available tiles to choose from to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
 void Editor::drawTileBar( sf::RenderWindow & window ){
-	//window.draw( tileSelectionBar );
 	for( const auto & object : objects ){
 		object.draw(window);
 	}
@@ -85,8 +81,14 @@ void Editor::handleInput(sf::RenderWindow & window){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 				tile.setFollowMouse(false);
 			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
 				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Add)){
+				tile.setCollidable(true);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)){
+				tile.setCollidable(false);
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));

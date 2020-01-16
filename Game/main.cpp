@@ -6,8 +6,9 @@
 #include "Editor.hpp"
 #include "Character.hpp"
 
+#define playmode
+
 int main(){
-	//#define playmode
 	AssetManager assets;
 	assets.loadObjects("Assets/objects.txt");
 
@@ -34,28 +35,32 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		// processInput();
 
-		editor.handleInput(window);
-
-		while (lag >= msPerUpdate){
-			editor.handleInput(window);
-			lag -= msPerUpdate;
-		}
 		#ifdef playmode
 
-		
-		window.clear();
-		world.draw(window);
-		speler.update(window, world);
-		window.setView(view);
-		window.display();
+			while (lag >= msPerUpdate){
+				lag -= msPerUpdate;
+			}
+			
+			window.clear();
+			world.draw(window);
+			speler.update(window, world);
+			window.setView(view);
+			window.display();
 		
 		#else
-		window.clear();
-		editor.draw( window );
-		window.setView(view);
-		window.display();
+
+			editor.handleInput(window);
+
+			while (lag >= msPerUpdate){
+				editor.handleInput(window);
+				lag -= msPerUpdate;
+			}
+
+			window.clear();
+			editor.draw( window );
+			window.setView(view);
+			window.display();
 
 		#endif
 

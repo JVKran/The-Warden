@@ -21,6 +21,8 @@ class ScreenObject {
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
 
 		bool isCollidable() const;
+		void setCollidable(const bool newCollidable);
+
 		std::string getConfiguration() const;
 
 		sf::FloatRect getBounds() const;

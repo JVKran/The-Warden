@@ -10,6 +10,10 @@ bool ScreenObject::isCollidable() const{
 	return collidable;
 }
 
+void ScreenObject::setCollidable(const bool newCollidable){
+	collidable = newCollidable;
+}
+
 ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable):
 	assetName(assetName),
 	collidable(collidable)

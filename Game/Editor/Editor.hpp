@@ -21,7 +21,6 @@ private:
 	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
 	World world;													//!< The World to edit.
 	sf::View & view;												//!< The view to use for scrolling through the world.
-	sf::RectangleShape tileSelectionBar;
 
 	std::vector< SelectableObject > objects;						//!< Vector with all placeable objects.
 
