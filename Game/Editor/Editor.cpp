@@ -33,6 +33,7 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 }
 
 void Editor::handleInput(sf::RenderWindow & window){
+	sf::Event event;
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		for(auto & object : objects){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
@@ -57,7 +58,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 				tile.setFollowMouse(false);
 			}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse() == true){
-				tiles.erase( tile );
+				// tiles.erase( tile );
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
@@ -77,6 +78,11 @@ void Editor::handleInput(sf::RenderWindow & window){
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
 		editingDone();
+	}
+	if( window.waitEvent( event )){
+		if(event.type == sf::Event::MouseWheelMoved ){
+			std::cout<< event.mouseWheel.delta<<"\n";
+		}
 	}
 
 }
