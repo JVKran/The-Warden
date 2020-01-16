@@ -49,7 +49,7 @@ class PlayerInput : public InputComponent {
 class PlayerGraphics : public GraphicsComponent {
 	private:
 		SpriteAnimation Animation;	
-		std::map<std::string, std::vector<sf::Vector2i>> animation;
+		std::map<std::string, std::vector<sf::Vector2i> > animation;
 	public:
 		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> spriteCharacterData, 
 					   std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
