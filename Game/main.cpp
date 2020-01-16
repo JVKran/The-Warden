@@ -28,13 +28,14 @@ int main(){
 
 		// processInput();
 
+		editor.handleInput(window);
+
 		while (lag >= msPerUpdate){
 			editor.handleInput(window);
 			lag -= msPerUpdate;
 		}
 
 		window.clear();
-		editor.handleInput(window);
 		editor.draw( window );
 		window.setView(view);
 		window.display();
