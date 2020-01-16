@@ -18,24 +18,11 @@ int main(){
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 4;
 	double previous, lag, current, elapsed;
-	std::vector<sf::Vector2i> spritePlayerData;
-	spritePlayerData.push_back(sf::Vector2i{350,592});
-	spritePlayerData.push_back(sf::Vector2i{7,16});
-	spritePlayerData.push_back(sf::Vector2i{5,5});
-	spritePlayerData.push_back(sf::Vector2i{3,0});
-	std::vector<sf::Vector2i> spritePlayerAction;
-	spritePlayerAction.push_back(sf::Vector2i{0,0});
-	spritePlayerAction.push_back(sf::Vector2i{3,0});
-	spritePlayerAction.push_back(sf::Vector2i{3,3});
-	spritePlayerAction.push_back(sf::Vector2i{6,1});
-	spritePlayerAction.push_back(sf::Vector2i{1,1});
-	spritePlayerAction.push_back(sf::Vector2i{0,0});
-	std::vector<std::string> spritePlayerNames;
-	spritePlayerNames.push_back("idle");
-	spritePlayerNames.push_back("slide");
-	spritePlayerNames.push_back("walk");
-	Character speler(sf::Vector2f(500,100),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
-
+	std::vector<sf::Vector2i> spritePlayerData{sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
+	std::vector<sf::Vector2i> spritePlayerAction{ sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3},sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
+	std::vector<std::string> spritePlayerNames{"idle","slide", "walk", "jump"};
+	Character speler(sf::Vector2f(500,350),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
+	std::string name="idle";
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -50,16 +37,27 @@ int main(){
 			lag -= msPerUpdate;
 		}
 
-		window.clear();
+		//window.clear();
 		//editor.draw( window );
-		window.setView(view);
-		window.display();
-
-		// window.clear();
-		// world.draw(window);
-		speler.update(window, world);
-		// window.setView(view);
-		// window.display();
+		//window.setView(view);
+		//window.display();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+			name = "idle";
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+			name = "walk";
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+			name = "jump";
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+			name = "slide";
+		}
+		 window.clear();
+		 world.draw(window);
+		speler.update(window, world,name);
+		 window.setView(view);
+		 window.display();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 				window.close();

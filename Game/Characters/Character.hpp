@@ -19,13 +19,12 @@ class GraphicsComponent {
 	//	SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
 	//					int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );	
 	protected:
-		
 		sf::Sprite sprite;
 	public:
 		GraphicsComponent(const std::string & assetName, AssetManager & assets)
 					
 		{
-			sprite.setTexture(assets.getTexture(assetName));
+			//sprite.setTexture(assets.getTexture(assetName));
 		}
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name ) = 0;
@@ -50,6 +49,7 @@ class PlayerGraphics : public GraphicsComponent {
 	private:
 		SpriteAnimation Animation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
+		std::string lastAnimation;
 	public:
 		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> spriteCharacterData, 
 					   std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
@@ -59,9 +59,11 @@ class PlayerGraphics : public GraphicsComponent {
 			{	
 			
 			// Fill map with actions
+			int j=0;
 			for( unsigned int i=0; i<spriteCharacterNames.size();i++){
-				std::vector<sf::Vector2i> & animationVector = animation[spriteCharacterNames[i]];
-				animationVector.push_back(sf::Vector2i(spriteCharacterAction[i].x, spriteCharacterAction[i].y));
+				std::cout<<spriteCharacterAction[j].x<<" : " << spriteCharacterAction[j+1].x<<"\n";
+				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i> {spriteCharacterAction[j], spriteCharacterAction[j+1]};;
+				j+=2;
 			}
 			// Change animation to idle
 			Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1] );
@@ -78,7 +80,7 @@ class Character {
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		sf::RenderWindow &window;
-		std::string action="slide";
+		//std::string action="jump";
 		
 		PlayerInput input;
 		PlayerPhysics physics;
@@ -86,7 +88,7 @@ class Character {
 	public:
 		Character(sf::Vector2f position, const std::string & assetName, AssetManager & assets, sf::RenderWindow &window,
 				  std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
-		void update(sf::RenderWindow & window, World & world);
+		void update(sf::RenderWindow & window, World & world, std::string action);
 		void attack();
 		void draw();
 

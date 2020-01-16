@@ -27,6 +27,7 @@ SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, cons
 // missRow =  If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame
 // Column = How tall the column has to be
 void SpriteAnimation::changeStartEndFrame( sf::Vector2i RC, sf::Vector2i missingRC ){
+	//std::cout<<"init\n";
 	Start = true;
 	spriteRowColumn = RC;
 	missingRow = missingRC.x; // If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame)
@@ -49,12 +50,15 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 			rectSourceSprite.top = 0; 	 // terug naar startpositie
 			
 			// Go to the next frame
-		}else{ rectSourceSprite.left += pixelRow; }
+		}else{ rectSourceSprite.left += pixelRow;
+
+ }
 		
 		// This will loop trough the specified frames
 		if( Start && ( rectSourceSprite.left == dimensions.x-pixelRow*missingRow ||rectSourceSprite.left == dimensions.x-pixelRow ) 
 		   && rectSourceSprite.top == pixelColumn*(spriteRowColumn.y+amountColumn) ){
-			
+
+
 			rectSourceSprite.left = pixelRow*spriteRowColumn.x; 	//terug naar startpositie van loop
 			rectSourceSprite.top = pixelColumn * spriteRowColumn.y; // terug naar startpositie van loop
 			
