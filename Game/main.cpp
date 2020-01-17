@@ -21,7 +21,7 @@ int main(){
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
-	uint_fast8_t msPerUpdate = 16;
+	uint_fast8_t msPerUpdate = 14;
 	double previous,  current, elapsed;
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
 	window.setVerticalSyncEnabled(1);
@@ -60,23 +60,26 @@ text.move(sf::Vector2f(20,20));
 		// processInput();
 		#ifdef playmode
 			window.clear();
-			world.draw(window);
-			window.draw(text);
-			speler.update(window, world);		
+
+		
 			window.setView(view);
 		#else
 				window.clear();
 				editor.draw( window );
 				window.setView(view);
 		#endif
-				//sf::sleep( sf::milliseconds( 14 ));
+				//sf::sleep( sf::milliseconds( 10 ));
 		current = (clock.getElapsedTime().asMilliseconds());
 		
 		lag=0;
 
+
 		while(current-previous<msPerUpdate){
 			lag+=1;
 			#ifdef playmode
+					world.draw(window);
+					window.draw(text);
+						speler.update(window, world);
 				window.display();
 			#else
 				window.display();
