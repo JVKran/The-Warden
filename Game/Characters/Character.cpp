@@ -97,7 +97,7 @@ void GraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vec
 	sprite.setPosition(position);
 	if(name != lastAnimation ){
 		Animation.changeStartEndFrame(animation[name][0], animation[name][1],leftSprite);
-		lastAnimation=name;
+		lastAnimation = name;
 	}
 	Animation.draw(window);
 }
@@ -109,7 +109,7 @@ sf::Vector2f GraphicsComponent::getDimensions(){
 void Character::update(sf::RenderWindow & window, World & world, const std::string & action, bool leftSprite){
 	input.processInput(velocity);
 	physics.processPhysics(world, position, velocity, graphics.getDimensions());
-	graphics.processGraphics(window, position, action, true);
+	graphics.processGraphics(window, position, action, velocity.x < 0);
 }
 
 void Character::draw(){

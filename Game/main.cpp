@@ -50,14 +50,15 @@ int main(){
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 			name = "walk";
-			left =1;
+			left = true;
 		}else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
 			name = "walk";
-			left =0;
+			left = false;
 		}else{name = "idle";}
 		 window.clear();
 		 world.draw(window);
 		game.update(world);
+		//speler.update(window, world, name, left);
 		 window.setView(view);
 		 window.display();
 

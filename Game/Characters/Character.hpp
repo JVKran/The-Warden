@@ -79,6 +79,15 @@ class Character {
 		void attack();
 		void draw();
 
+		Character & operator=(Character lhs){
+			if(&lhs != this){
+				position = lhs.position;
+				velocity = lhs.velocity;
+			}
+			return *this;
+		}
+
+
 };
 
 #endif //__CHARACTER_HPP
