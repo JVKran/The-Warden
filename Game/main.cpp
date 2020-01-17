@@ -21,53 +21,87 @@ int main(){
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
-	uint_fast8_t msPerUpdate = 16.67;
-	double previous, lag, current, elapsed;
+	uint_fast8_t msPerUpdate = 16;
+	double previous,  current, elapsed;
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
-	window.setVerticalSyncEnabled(1);
+	window.setVerticalSyncEnabled(0);
 	window.setFramerateLimit(60);
-	lag=0;
-	elapsed=0;
+	int lag;
 
+	elapsed=0;
+// Load the font from a file
+sf::Font MyFont;
+if (!MyFont.loadFromFile("OpenSans-Bold.ttf"))
+{
+    // Error...
+}
+
+sf::Text text;
+
+// select the font
+text.setFont(MyFont); // font is a sf::Font
+
+// set the string to display
+text.setString("Hello world");
+
+// set the character size
+text.setCharacterSize(24); // in pixels, not points!
+
+
+text.setFillColor(sf::Color::Red);
+text.move(sf::Vector2f(20,20));
 
 	while (window.isOpen()){
-		current = (clock.getElapsedTime().asMilliseconds());
+		
 		//elapsed = current - previous;
 
 		//lag += elapsed;
 
 		// processInput();
 
-				window.clear();
+		window.clear();
 		world.draw(window);
+		window.draw(text);
 		speler.update(window, world);		
 		window.setView(view);
-
-		while (current-previous<msPerUpdate){
-		#ifdef playmode
-
-		
-
-		window.display();
-		
-		#else
-		window.clear();
-		editor.draw( window );
-		window.setView(view);
-		window.display();
-				previous= current;
-		#endif
-			//lag -= msPerUpdate;
+				//sf::sleep( sf::milliseconds( 14 ));
 		current = (clock.getElapsedTime().asMilliseconds());
+		//std::cout<<"thinktime   "<<float(current-previous)<<'\n';
+		lag=0;
+
+		while(current-previous<msPerUpdate){
+			lag+=1;
+			#ifdef playmode
+				window.display();
+			#else
+				window.clear();
+				editor.draw( window );
+				window.setView(view);
+				window.display();
+				std::cout<<"NEINNNNNNN"<<'\n';
+			#endif
+			//lag -= msPerUpdate;
+			current = (clock.getElapsedTime().asMilliseconds());
+			//std::cout<<"looptime   "<<float((current-previous))<<"       "<<lag<<'\n';
 		}
+		//std::cout<<"totalframe   "<<int(1000.f/(current-previous))<<"       "<<lag<<'\n';
+		text.setString(std::to_string(1000.f/(current-previous))+"   "+std::to_string(lag));
+		
 		previous=current;
 
 		#ifndef playmode
-		editor.handleInput(window);
+			editor.handleInput(window);
 		#endif
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			window.close();
+		}
+			
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)){
+			window.setVerticalSyncEnabled(0);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+			window.setVerticalSyncEnabled(1);
 		}
 
 		sf::Event event;		
@@ -76,7 +110,7 @@ int main(){
 				window.close();
 			}
 		}
-	current = (clock.getElapsedTime().asMilliseconds());
+	//current = (clock.getElapsedTime().asMilliseconds());
 	//previous = current;
 	}
 
