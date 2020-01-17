@@ -21,14 +21,12 @@ int main(){
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 4;
 	double previous, lag, current, elapsed;
-
 	// std::vector<sf::Vector2i> spritePlayerData{sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
 	// std::vector<sf::Vector2i> spritePlayerAction{ sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
 	// std::vector<std::string> spritePlayerNames{"idle","slide", "walk", "jump"};
-
-
 	// Character speler(sf::Vector2f(500,350),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
 	std::string name="idle";
+	bool left=false;
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
@@ -47,21 +45,19 @@ int main(){
 		//editor.draw( window );
 		//window.setView(view);
 		//window.display();
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-			name = "idle";
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-			name = "walk";
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 			name = "jump";
 		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-			name = "slide";
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+			name = "walk";
+			left =1;
+		}else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+			name = "walk";
+			left =0;
 		}else{name = "idle";}
 		 window.clear();
 		 world.draw(window);
-		 game.update(world);
+		game.update(world);
 		 window.setView(view);
 		 window.display();
 

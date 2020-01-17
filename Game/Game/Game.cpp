@@ -65,7 +65,7 @@ void Game::loadCharacters(){
 
 void Game::update(World & world){
 	for(auto & character : characters){
-		character.update(window, world, "idle");
+		character.update(window, world, "idle", true);
 	}
 }
 

@@ -1,7 +1,7 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
 SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
-								 const sf::Vector2i scale, int missingRow,  float animationSpeed ):
+								  sf::Vector2i scale, int missingRow,  float animationSpeed ):
 	sprite(sprite),	
 	texture(texture),
 	dimensions(dimensions),
@@ -17,6 +17,7 @@ SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, cons
 	rectSourceSprite = sf::IntRect( 0, 0, pixelRow, pixelColumn ); // First 2 numbers will iterate trough frames, second 2 are the width and height of a single frame
 	sprite = sf::Sprite(texture, rectSourceSprite);
 	sprite.setScale(static_cast<sf::Vector2f>(scale));
+	sprite.setOrigin(pixelRow/2,pixelColumn/2);
 }
 
 
@@ -26,12 +27,22 @@ SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, cons
 // startColumn = Which column to start
 // missRow =  If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame
 // Column = How tall the column has to be
-void SpriteAnimation::changeStartEndFrame( sf::Vector2i RC, sf::Vector2i missingRC ){
+void SpriteAnimation::changeStartEndFrame( sf::Vector2i RC, sf::Vector2i missingRC, bool left ){
 	//std::cout<<"init\n";
 	Start = true;
 	spriteRowColumn = RC;
 	missingRow = missingRC.x; // If there are still sprites after the desired frames, assign them as missing(+1 for a missing frame)
 	amountColumn = missingRC.y; 
+	
+	
+	if(left&&scale.x>0){
+		scale.x = scale.x*-1;
+		sprite.setScale(scale.x,scale.y);
+	}else if(!left&&scale.x<0){		
+		scale.x = scale.x*-1;
+		sprite.setScale(scale.x,scale.y);
+	}
+
 	//Specify start frame
 	rectSourceSprite = sf::IntRect( pixelRow*spriteRowColumn.x, pixelColumn*spriteRowColumn.y, pixelRow, pixelColumn );
 }

@@ -93,10 +93,10 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 	//Set animations
 }
 
-void GraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name){
+void GraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name, bool leftSprite){
 	sprite.setPosition(position);
 	if(name != lastAnimation ){
-		Animation.changeStartEndFrame(animation[name][0], animation[name][1]);
+		Animation.changeStartEndFrame(animation[name][0], animation[name][1],leftSprite);
 		lastAnimation=name;
 	}
 	Animation.draw(window);
@@ -106,10 +106,10 @@ sf::Vector2f GraphicsComponent::getDimensions(){
 	return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 }
 
-void Character::update(sf::RenderWindow & window, World & world, const std::string & action){
+void Character::update(sf::RenderWindow & window, World & world, const std::string & action, bool leftSprite){
 	input.processInput(velocity);
 	physics.processPhysics(world, position, velocity, graphics.getDimensions());
-	graphics.processGraphics(window, position, action);
+	graphics.processGraphics(window, position, action, true);
 }
 
 void Character::draw(){
