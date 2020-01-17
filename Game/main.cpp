@@ -8,6 +8,9 @@
 
 
 int main(){
+
+	sf::Event event;
+
 	bool playMode;
 	std::cout << "Play (1) or edit (0)?" << std::endl;
 	std::cin >> playMode;
@@ -18,7 +21,7 @@ int main(){
 	sf::View view(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
 	World world(assets, "World/world.txt", view);		//Create world with world.txt as config
-	Editor editor( assets, "World/world.txt", view );	//Edit world world.txt
+	Editor editor( assets, "World/world.txt", view, event );	//Edit world world.txt
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
 
 	sf::Clock clock;
@@ -28,12 +31,11 @@ int main(){
 	window.setVerticalSyncEnabled(1);
 
 
-	while (window.isOpen()){
+	while (window.isOpen()){	
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
 		previous = current;
 		lag += elapsed;
-
 
 		if(playMode){
 
@@ -65,6 +67,13 @@ int main(){
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			window.close();
+		}
+
+		while(window.pollEvent(event)){
+			if( event.type == sf::Event::Closed ){
+				window.close();
+			}
+			editor.handleInput(window);
 		}
 
 	}

@@ -12,10 +12,11 @@
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view ):
+Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view, sf::Event & event ):
 	assets( assets ),
-	world( assets, worldFileName, view ),
-	view(view)
+	world( assets, worldFileName, view),
+	view(view),
+	event(event)
 {
 	loadObjects();
 }
@@ -82,8 +83,6 @@ void Editor::handleInput(sf::RenderWindow & window){
 	    }
 	}
 
-	sf::Event event;
-	window.pollEvent(event);
     std::vector<SelectableObject> & tiles = world.getTiles();
     for(auto & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
