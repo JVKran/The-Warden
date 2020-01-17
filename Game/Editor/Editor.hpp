@@ -20,13 +20,15 @@ class Editor {
 private:
 	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
 	World world;													//!< The World to edit.
-	sf::View & view;												//!< The view to use for scrolling through the world.
+	sf::View & view;
+
+	sf::Event & event;												//!< The view to use for scrolling through the world.
 
 	std::vector< SelectableObject > objects;						//!< Vector with all placeable objects.
 
 	bool isFirstOneSelected(std::vector<SelectableObject> & tiles);
 public:
-	Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view );
+	Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view, sf::Event & event );
 
 	void editingDone();
 	void handleInput(sf::RenderWindow & window);
