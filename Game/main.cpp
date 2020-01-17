@@ -24,7 +24,7 @@ int main(){
 	uint_fast8_t msPerUpdate = 16;
 	double previous,  current, elapsed;
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
-	window.setVerticalSyncEnabled(0);
+	window.setVerticalSyncEnabled(1);
 	window.setFramerateLimit(60);
 	int lag;
 
@@ -59,11 +59,11 @@ text.move(sf::Vector2f(20,20));
 
 		// processInput();
 		#ifdef playmode
-		window.clear();
-		world.draw(window);
-		window.draw(text);
-		speler.update(window, world);		
-		window.setView(view);
+			window.clear();
+			world.draw(window);
+			window.draw(text);
+			speler.update(window, world);		
+			window.setView(view);
 		#else
 				window.clear();
 				editor.draw( window );
@@ -71,7 +71,7 @@ text.move(sf::Vector2f(20,20));
 		#endif
 				//sf::sleep( sf::milliseconds( 14 ));
 		current = (clock.getElapsedTime().asMilliseconds());
-		//std::cout<<"thinktime   "<<float(current-previous)<<'\n';
+		
 		lag=0;
 
 		while(current-previous<msPerUpdate){
@@ -80,13 +80,12 @@ text.move(sf::Vector2f(20,20));
 				window.display();
 			#else
 				window.display();
-
 			#endif
-			//lag -= msPerUpdate;
+			
 			current = (clock.getElapsedTime().asMilliseconds());
-			//std::cout<<"looptime   "<<float((current-previous))<<"       "<<lag<<'\n';
+			
 		}
-		//std::cout<<"totalframe   "<<int(1000.f/(current-previous))<<"       "<<lag<<'\n';
+		
 		text.setString(std::to_string(1000.f/(current-previous))+"   "+std::to_string(lag));
 		
 		previous=current;
@@ -112,8 +111,7 @@ text.move(sf::Vector2f(20,20));
 				window.close();
 			}
 		}
-	//current = (clock.getElapsedTime().asMilliseconds());
-	//previous = current;
+
 	}
 
 	#ifndef playmode
