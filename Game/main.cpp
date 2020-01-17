@@ -58,12 +58,17 @@ text.move(sf::Vector2f(20,20));
 		//lag += elapsed;
 
 		// processInput();
-
+		#ifdef playmode
 		window.clear();
 		world.draw(window);
 		window.draw(text);
 		speler.update(window, world);		
 		window.setView(view);
+		#else
+				window.clear();
+				editor.draw( window );
+				window.setView(view);
+		#endif
 				//sf::sleep( sf::milliseconds( 14 ));
 		current = (clock.getElapsedTime().asMilliseconds());
 		//std::cout<<"thinktime   "<<float(current-previous)<<'\n';
@@ -74,11 +79,8 @@ text.move(sf::Vector2f(20,20));
 			#ifdef playmode
 				window.display();
 			#else
-				window.clear();
-				editor.draw( window );
-				window.setView(view);
 				window.display();
-				std::cout<<"NEINNNNNNN"<<'\n';
+
 			#endif
 			//lag -= msPerUpdate;
 			current = (clock.getElapsedTime().asMilliseconds());
