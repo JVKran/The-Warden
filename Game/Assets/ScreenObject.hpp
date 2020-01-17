@@ -18,7 +18,7 @@ class ScreenObject {
 		sf::Sprite sprite;					//!< The Sprite this ScreenObject has to draw and manage.
 		bool collidable;					//!< Wether or not Character types should collide with this ScreenObject.
 	public:
-		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
+		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true, const float rotation = 0);
 
 		bool isCollidable() const;
 		void setCollidable(const bool newCollidable);
@@ -47,7 +47,7 @@ class SelectableObject : public ScreenObject {
 		bool followMouse = false;			//!< Wether or not to follow the mouse's position.
 	public:
 		bool hasBeenAdded = false;			//!< Wether or not this objec has been added to the tiles of the world; if it's part of the world.
-		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true);
+		SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable = true, const float rotation = 0);
 
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;

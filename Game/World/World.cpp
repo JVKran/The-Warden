@@ -81,10 +81,10 @@ void World::loadWorld(){
 void World::loadTile(std::ifstream & input){
 	std::string assetName;
 	sf::Vector2f position;
-	float scale;
+	float scale, rotation;
 	bool collidable;
-	input >> position >> assetName >> collidable >> scale;
-	tiles.push_back(SelectableObject(assetName, assets, position, scale, collidable));
+	input >> position >> assetName >> collidable >> scale >> rotation;
+	tiles.push_back(SelectableObject(assetName, assets, position, scale, collidable, rotation));
 }
 
 /// \brief

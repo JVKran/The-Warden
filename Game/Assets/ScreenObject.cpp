@@ -33,13 +33,14 @@ void ScreenObject::setCollidable(const bool newCollidable){
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable):
+ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
 	assetName(assetName),
 	collidable(collidable)
 {
 	sprite.setTexture(assets.getTexture(assetName));
 	sprite.setPosition(position);
 	sprite.setScale(scale, scale);
+	sprite.setRotation(rotation);
 }
 
 /// \brief
@@ -48,7 +49,7 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string ScreenObject::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
 }
 
 /// \brief
@@ -124,8 +125,8 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable):
-	ScreenObject(assetName, assets, position, scale, collidable)
+SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
+	ScreenObject(assetName, assets, position, scale, collidable, rotation)
 {}
 
 /// \brief
