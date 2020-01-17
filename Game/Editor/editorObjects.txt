@@ -22,6 +22,15 @@ sign2 0.4
 mushroom1 0.4
 mushroom2 0.4
 crate 0.6
-brick 0.4
 star 0.2
 darkCrystal 0.2
+dungGrassLeft 0.4
+dungGrassMiddle 0.4
+dungGrassRight 0.4
+dungDirtBotLeft 0.4
+dungDirtBotRight 0.4
+dungDirtMiddle 0.4
+dungDirtLeft 0.4
+dungDirtRight 0.4
+dungDirtMidLeft 0.4
+dungDirtMidRight 0.4

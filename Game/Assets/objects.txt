@@ -23,6 +23,5 @@ sign2 Assets/Textures/freetileset/png/Object/Sign_2.png
 mushroom1 Assets/Textures/freetileset/png/Object/Mushroom_1.png
 mushroom2 Assets/Textures/freetileset/png/Object/Mushroom_2.png
 crate Assets/Textures/freetileset/png/Object/Crate.png
-brick Assets/Textures/DIY_Tiles/Brick.png
 star Assets/Textures/Others/star.png
 darkCrystal Assets/Textures/Others/darkCrystal.png
