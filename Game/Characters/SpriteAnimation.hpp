@@ -14,8 +14,6 @@ class SpriteAnimation {
 		int missingRow;					// If the spritesheet is missing some frames 
 		float animationSpeed;
 		
-	
-		
 		sf::Clock spriteClock;
 		
 		sf::IntRect rectSourceSprite;
@@ -24,6 +22,7 @@ class SpriteAnimation {
 		int pixelRow;
 		int pixelColumn;
 		bool Start=false;
+	
 	public:
 		SpriteAnimation( sf::Sprite & sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, const sf::Vector2i scale = sf::Vector2i{1,1}, int missingRow=0, float animationSpeed = 0.1f );
 		void changeStartEndFrame(  sf::Vector2i RC, sf::Vector2i missingRC);	

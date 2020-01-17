@@ -52,7 +52,7 @@ int main(){
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
 			name = "slide";
-		}
+		}else{name = "idle";}
 		 window.clear();
 		 world.draw(window);
 		speler.update(window, world,name);

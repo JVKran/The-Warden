@@ -59,13 +59,11 @@ class PlayerGraphics : public GraphicsComponent {
 			{	
 			
 			// Fill map with actions
-			int j=0;
 			for( unsigned int i=0; i<spriteCharacterNames.size();i++){
-				std::cout<<spriteCharacterAction[j].x<<" : " << spriteCharacterAction[j+1].x<<"\n";
-				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i> {spriteCharacterAction[j], spriteCharacterAction[j+1]};;
-				j+=2;
+				std::cout<<spriteCharacterAction[i+i].x<<" : " << spriteCharacterAction[i+i+1].x<<"\n";
+				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i> {spriteCharacterAction[i+i], spriteCharacterAction[i+i+1]};;
 			}
-			// Change animation to idle
+			// Start animation to idle
 			Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1] );
 			
 			}
