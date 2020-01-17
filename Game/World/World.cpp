@@ -14,13 +14,10 @@ bool sortByPosition(SelectableObject &lhs, SelectableObject &rhs) { return lhs.g
 /// @param assets The AssetManager to use to retrieve assets (in this case only tiles).
 /// @param worldFileName The filename of the world to load. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-World::World(AssetManager & assets, const std::string & worldFileName, sf::View & view):
+World::World(AssetManager & assets, sf::View & view):
 	assets(assets),
-	worldFileName(worldFileName),
 	view(view)
-{
-	loadWorld();
-}
+{}
 
 /// \brief
 /// Load world from configuration.
@@ -35,7 +32,8 @@ World::World(AssetManager & assets, const std::string & worldFileName, sf::View 
 /// This means the background name for this world is called "background". The name "background", can be used with the AssetManager
 /// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw
 /// it on screen. All tiles are read using loadTile().
-void World::loadWorld(){
+void World::loadWorld(const std::string & fileName){
+	worldFileName = fileName;
 	std::ifstream worldFile(worldFileName);
 	if(!worldFile){
 		throw fileNotFound(worldFileName);

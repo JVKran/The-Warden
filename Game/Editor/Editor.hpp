@@ -28,7 +28,9 @@ private:
 
 	bool isFirstOneSelected(std::vector<SelectableObject> & tiles);
 public:
-	Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view, sf::Event & event );
+	Editor( AssetManager & assets, sf::View & view, sf::Event & event );
+
+	void selectWorld(const std::string & worldName);
 
 	void editingDone();
 	void handleInput(sf::RenderWindow & window);

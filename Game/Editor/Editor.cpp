@@ -12,9 +12,9 @@
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-Editor::Editor( AssetManager & assets, const std::string & worldFileName, sf::View & view, sf::Event & event ):
+Editor::Editor( AssetManager & assets, sf::View & view, sf::Event & event ):
 	assets( assets ),
-	world( assets, worldFileName, view),
+	world( assets, view ),
 	view(view),
 	event(event)
 {
@@ -46,7 +46,10 @@ void Editor::draw( sf::RenderWindow & window ){
 /// @param window The window to write the editor and world to.
 void Editor::drawTileBar( sf::RenderWindow & window ){
 	for( const auto & object : objects ){
-		object.draw(window);
+		if(object.getPosition().x + 100 > view.getCenter().x-view.getSize().x && object.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
+			object.draw(window);
+			//std::cout << tile.getPosition().x << std::endl;
+		}
 	}
 }
 
@@ -61,27 +64,6 @@ void Editor::handleInput(sf::RenderWindow & window){
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
-
-    for(auto & object : objects){
-		if(leftMousePressed || rightMousePressed){
-			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-				if(!object.hasBeenAdded){
-					SelectableObject objectToAdd = object;
-					objectToAdd.setNewScale(1);
-					world.addTile(objectToAdd);
-					object.hasBeenAdded = true;
-				}
-			} else {
-				object.hasBeenAdded = false;
-			}
-		}
-		if(rightPressed){
-    		object.setPosition(sf::Vector2f(object.getPosition().x + 3, object.getPosition().y));
-	    }
-	    if(leftPressed) {
-	    	object.setPosition(sf::Vector2f(object.getPosition().x - 3, object.getPosition().y));
-	    }
-	}
 
     std::vector<SelectableObject> & tiles = world.getTiles();
     for(auto & tile : tiles){
@@ -125,6 +107,27 @@ void Editor::handleInput(sf::RenderWindow & window){
 	if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
 		scrollTileBar(event.mouseWheel.delta);
 	}
+
+	for(auto & object : objects){
+		if(leftMousePressed || rightMousePressed){
+			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+				if(!object.hasBeenAdded){
+					SelectableObject objectToAdd = object;
+					objectToAdd.setNewScale(1);
+					world.addTile(objectToAdd);
+					object.hasBeenAdded = true;
+				}
+			} else {
+				object.hasBeenAdded = false;
+			}
+		}
+		if(rightPressed){
+    		object.setPosition(sf::Vector2f(object.getPosition().x + 3, object.getPosition().y));
+	    }
+	    if(leftPressed) {
+	    	object.setPosition(sf::Vector2f(object.getPosition().x - 3, object.getPosition().y));
+	    }
+	}
 }
 
 /// \brief
@@ -164,6 +167,10 @@ void Editor::loadObjects(const std::string & editorConfigName ){
 		position.y += 70;
 	}
 }	
+
+void Editor::selectWorld(const std::string & worldName){
+	world.loadWorld(worldName);
+}
 
 /// \brief
 /// First one selected?

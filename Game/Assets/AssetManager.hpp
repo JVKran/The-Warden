@@ -22,6 +22,10 @@ class AssetManager {
 
 		void loadTextures(std::ifstream & input);
 	public:
+		AssetManager(){
+			loadObjects("Assets/objects.txt");
+		}
+
 		void loadObjects(const std::string & assetFileName);
 		sf::Texture & getTexture(const std::string & assetName);
 };
