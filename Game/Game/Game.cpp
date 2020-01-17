@@ -53,19 +53,20 @@ void Game::loadCharacters(){
 			spritePlayerNames.push_back(readName);
 		} else if (textureName){
 			//readName contains the textureName.
+			spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
+			spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
+			spritePlayerNames = {"idle","slide", "walk", "jump"};
 			data = true;
 			textureName = false;
-			std::unique_ptr<Character> mainChar = std::make_unique<Character>(sf::Vector2f(500,350), readName, assets, window, spritePlayerData, spritePlayerAction, spritePlayerNames);
-			mainChar->draw();
-			//characters.push_back();
+			characters.push_back(Character(sf::Vector2f(500,350), readName, assets, window, spritePlayerData, spritePlayerAction, spritePlayerNames));
 		}
 	}
 }
 
 void Game::update(World & world){
-	// for(auto & character : characters){
-	// 	character.update(window, world, "idle");
-	// }
+	for(auto & character : characters){
+		character.update(window, world, "idle");
+	}
 }
 
 bool Game::isEmpty(std::ifstream & file){

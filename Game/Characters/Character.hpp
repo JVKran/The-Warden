@@ -15,21 +15,6 @@ class InputComponent {
 		virtual void processInput(sf::Vector2f & velocity) = 0;
 };
 
-class GraphicsComponent {
-	//	SpriteAnimation( sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
-	//					int missingRow, float animationSpeed = 0.1f, const sf::Vector2f scale = sf::Vector2f{1,1} );	
-	protected:
-		sf::Sprite sprite;
-	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets)
-					
-		{
-			//sprite.setTexture(assets.getTexture(assetName));
-		}
-
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name ) = 0;
-};
-
 class PlayerPhysics : public PhysicsComponent {
 	private:
 	    double previous, jumpTime, current, elapsed;
@@ -45,19 +30,20 @@ class PlayerInput : public InputComponent {
 		virtual void processInput(sf::Vector2f & velocity);
 };
 
-class PlayerGraphics : public GraphicsComponent {
+class GraphicsComponent {
 	private:
-		SpriteAnimation Animation;	
+		sf::Sprite sprite;
+		SpriteAnimation Animation;
+
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 	public:
-		PlayerGraphics(const std::string & assetName, 
+		GraphicsComponent(const std::string & assetName, 
 						AssetManager & assets, 
 						const std::vector<sf::Vector2i>  & spriteCharacterData, 
 					  	const std::vector<sf::Vector2i> & spriteCharacterAction, 
 					   	const std::vector<std::string> & spriteCharacterNames
 					):
-						GraphicsComponent(assetName, assets),
 						Animation(sprite, assets.getTexture(assetName), spriteCharacterData[0], spriteCharacterData[1], spriteCharacterData[2], spriteCharacterData[3].x)
 					{	
 			
@@ -72,12 +58,13 @@ class PlayerGraphics : public GraphicsComponent {
 					}
 
 		//virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name) ;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name);
 		sf::Vector2f getDimensions();
 };
 
 class Character {
 	private:
+
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		sf::RenderWindow &window;
@@ -85,11 +72,11 @@ class Character {
 		
 		PlayerInput input;
 		PlayerPhysics physics;
-		PlayerGraphics graphics;
+		GraphicsComponent graphics;
 	public:
 		Character(const sf::Vector2f & position, const std::string & assetName, AssetManager & assets, sf::RenderWindow &window,
 				  const std::vector<sf::Vector2i>  &spriteCharacterData, const std::vector<sf::Vector2i>  &spriteCharacterAction, const std::vector<std::string> & spriteCharacterNames);
-		void update(sf::RenderWindow & window, World & world, std::string action);
+		void update(sf::RenderWindow & window, World & world, const std::string & action);
 		void attack();
 		void draw();
 

@@ -5,12 +5,15 @@
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include <memory>
 
 class Game {
 	private:
 		AssetManager & assets;
 		sf::RenderWindow & window;
+
+		std::vector<Character> characters;
 
 		void loadCharacters();
 		bool isEmpty(std::ifstream & file);
