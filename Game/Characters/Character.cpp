@@ -108,8 +108,8 @@ sf::Vector2f GraphicsComponent::getDimensions(){
 
 void Character::update(sf::RenderWindow & window, World & world, const std::string & action, bool leftSprite){
 	input.processInput(velocity);
+	graphics.processGraphics(window, position, action, velocity.x == -1);
 	physics.processPhysics(world, position, velocity, graphics.getDimensions());
-	graphics.processGraphics(window, position, action, velocity.x < 0);
 }
 
 void Character::draw(){
