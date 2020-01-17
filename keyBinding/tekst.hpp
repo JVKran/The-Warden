@@ -12,6 +12,7 @@ private:
 	sf::Color color;
 	sf::Text text;
 	sf::Font font;
+	bool calculated = true;
 
 public:
 

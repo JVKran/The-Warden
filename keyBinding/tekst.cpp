@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "tekst.hpp"
+#include <iostream>
 
 Text::Text( std::string input, sf::Vector2f position, float size, sf::Color color ) :
 	input{ input },
@@ -11,7 +12,6 @@ Text::Text( std::string input, sf::Vector2f position, float size, sf::Color colo
 }
 
 void Text::draw( sf::RenderWindow & window ) {
-	bool calculated = true;
 	text.setFont(font);
 	text.setString(input);
 	text.setScale(size);
@@ -28,6 +28,7 @@ void Text::draw( sf::RenderWindow & window ) {
 
 void Text::setText( std::string newText ){
 	input = newText;
+	calculated = true;
 }
 
 std::string Text::getText(){
