@@ -1,12 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "action.hpp"
-#include "block.hpp"
 #include <array>
-#include "tekst.hpp"
-#include "keybinding.hpp"
 #include "cScreen.hpp"
-#include "menu.hpp"
+#include "menuScreen.hpp"
 #include "settingsScreen.hpp"
 #include "playScreen.hpp"
 
@@ -18,7 +14,7 @@ int main( int argc, char *argv[] ){
 
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
 
-	Menu menu;
+	MenuScreen menu;
 	SettingsScreen settings;
 	PlayScreen play;
 

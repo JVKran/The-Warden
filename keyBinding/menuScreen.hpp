@@ -1,5 +1,5 @@
-#ifndef _MENU_HPP
-#define _MENU_HPP
+#ifndef _MENUSCREEN_HPP
+#define _MENUSCREEN_HPP
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -9,21 +9,21 @@
 #include <array>
 #include "tekst.hpp"
 
-class Menu : public cScreen {
+class MenuScreen : public cScreen {
 private:
 	bool playing;
 
 public:
-	Menu(void);
+	MenuScreen(void);
 	virtual int Run( sf::RenderWindow & window );
 
 };
 
-Menu::Menu(void){
+MenuScreen::MenuScreen(void){
 	playing = false;
 }
 
-int Menu::Run( sf::RenderWindow & window ){
+int MenuScreen::Run( sf::RenderWindow & window ){
 	sf::Event event;
 	bool Running = true;
 
