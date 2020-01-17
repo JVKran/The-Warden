@@ -6,7 +6,7 @@
 
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions,sf::RenderWindow & window,std::vector<SelectableObject> &foreground) = 0;
 };
 
 class InputComponent {
@@ -22,7 +22,7 @@ class GraphicsComponent {
 			sprite.setTexture(assets.getTexture(assetName));
 		}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) = 0;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position,std::vector<SelectableObject> &foreground) = 0;
 };
 
 class PlayerPhysics : public PhysicsComponent {
@@ -33,7 +33,7 @@ class PlayerPhysics : public PhysicsComponent {
 		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions);
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions,sf::RenderWindow & window,std::vector<SelectableObject> &foreground);
 };
 
 class PlayerInput : public InputComponent {
@@ -47,7 +47,7 @@ class PlayerGraphics : public GraphicsComponent {
 			GraphicsComponent(assetName, assets)
 		{}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position) override;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position,std::vector<SelectableObject> &foreground) override;
 		sf::Vector2f getDimensions();
 };
 
@@ -56,6 +56,7 @@ class Character {
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		sf::RenderWindow &window;
+		std::vector<SelectableObject> foreground;
 
 		PlayerInput input;
 		PlayerPhysics physics;

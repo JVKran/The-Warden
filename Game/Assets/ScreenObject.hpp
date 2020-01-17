@@ -51,6 +51,7 @@ class SelectableObject : public ScreenObject {
 
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
+		std::string getName() const;
 
 		void move(const sf::Vector2f & position);
 

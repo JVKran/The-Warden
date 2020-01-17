@@ -195,3 +195,7 @@ bool SelectableObject::operator==(SelectableObject lhs) const {
 bool SelectableObject::operator<(SelectableObject lhs) const {
 	return sprite.getPosition() < lhs.sprite.getPosition();
 }
+
+std::string SelectableObject::getName() const{
+	return(assetName);
+}
