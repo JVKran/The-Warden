@@ -1,10 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "tekst.hpp"
 
-Text::Text( std::string input, sf::Vector2f position, sf::Vector2f size, sf::Color color ) :
+Text::Text( std::string input, sf::Vector2f position, float size, sf::Color color ) :
 	input{ input },
 	position{ position },
-	size{ size },
+	size{ sf::Vector2f{size, size} },
 	color{ color }
 {
 	if (!font.loadFromFile("OpenSans-Italic.ttf")){}
@@ -25,4 +25,8 @@ void Text::setText( std::string newText ){
 
 std::string Text::getText(){
 	return input;
+}
+
+bool Text::contains( const sf::Vector2f& object ) const {
+	return text.getGlobalBounds().contains( object );
 }

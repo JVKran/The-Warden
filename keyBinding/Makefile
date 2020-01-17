@@ -12,7 +12,7 @@
 SOURCES := block.cpp tekst.cpp keybinding.cpp
 
 # header files in this project
-HEADERS := block.hpp tekst.hpp keybinding.hpp action.hpp
+HEADERS := block.hpp tekst.hpp keybinding.hpp action.hpp menu.hpp cScreen.hpp settingsScreen.hpp playScreen.hpp
 
 # other places to look for files for this project
 SEARCH  := 

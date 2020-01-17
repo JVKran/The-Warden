@@ -15,13 +15,22 @@ private:
 
 public:
 
-	Text( std::string input, sf::Vector2f position, sf::Vector2f size = sf::Vector2f{1.0, 1.0}, sf::Color color = sf::Color::Black );
+	Text( std::string input, sf::Vector2f position, float size = 1.0, sf::Color color = sf::Color::Black );
 
 	void draw( sf::RenderWindow & window );
 
 	void setText( std::string newText );
 
 	std::string getText();
+
+	bool contains( const sf::Vector2f& object ) const;
+
+	sf::Vector2f castToF( sf::Vector2i target ){
+	return sf::Vector2f(
+			static_cast<float>( target.x ),
+			static_cast<float>( target.y )
+		);
+	}
 
 };
 
