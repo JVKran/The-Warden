@@ -37,9 +37,6 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
- 	
-		window.pollEvent(event);
-
 		if(playMode){
 
 			while (lag >= msPerUpdate){
@@ -72,8 +69,11 @@ int main(){
 			window.close();
 		}
 
-		if( event.type == sf::Event::Closed ){
-			window.close();
+		while(window.pollEvent(event)){
+			if( event.type == sf::Event::Closed ){
+				window.close();
+			}
+			editor.handleInput(window);
 		}
 
 	}
