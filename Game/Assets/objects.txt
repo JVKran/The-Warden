@@ -25,3 +25,13 @@ mushroom2 Assets/Textures/freetileset/png/Object/Mushroom_2.png
 crate Assets/Textures/freetileset/png/Object/Crate.png
 star Assets/Textures/Others/star.png
 darkCrystal Assets/Textures/Others/darkCrystal.png
+dungGrassLeft Assets/Textures/DIY_Tiles/dungGrassLeft.png
+dungGrassMiddle Assets/Textures/DIY_Tiles/dungGrassMiddle.png
+dungGrassRight Assets/Textures/DIY_Tiles/dungGrassRight.png
+dungDirtBotLeft Assets/Textures/DIY_Tiles/dungDirtBotLeft.png
+dungDirtBotRight Assets/Textures/DIY_Tiles/dungDirtBotRight.png
+dungDirtMiddle Assets/Textures/DIY_Tiles/dungDirtMiddle.png
+dungDirtLeft Assets/Textures/DIY_Tiles/dungDirtLeft.png
+dungDirtRight Assets/Textures/DIY_Tiles/dungDirtRight.png
+dungDirtMidLeft Assets/Textures/DIY_Tiles/dungDirtMidLeft.png
+dungDirtMidRight Assets/Textures/DIY_Tiles/dungDirtMidRight.png
