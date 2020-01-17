@@ -1,6 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include "Editor.hpp"
@@ -15,13 +16,18 @@ int main(){
 	//Editor editor( assets, "world.txt", view );	//Edit world world.txt
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
 
+	Game game(assets, window);
+
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 4;
 	double previous, lag, current, elapsed;
-	std::vector<sf::Vector2i> spritePlayerData{sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
-	std::vector<sf::Vector2i> spritePlayerAction{ sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3},sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
-	std::vector<std::string> spritePlayerNames{"idle","slide", "walk", "jump"};
-	Character speler(sf::Vector2f(500,350),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
+
+	// std::vector<sf::Vector2i> spritePlayerData{sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
+	// std::vector<sf::Vector2i> spritePlayerAction{ sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
+	// std::vector<std::string> spritePlayerNames{"idle","slide", "walk", "jump"};
+
+
+	// Character speler(sf::Vector2f(500,350),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames);
 	std::string name="idle";
 	while (window.isOpen()){
 		current = (clock.getElapsedTime().asMilliseconds());
@@ -55,7 +61,7 @@ int main(){
 		}else{name = "idle";}
 		 window.clear();
 		 world.draw(window);
-		speler.update(window, world,name);
+		 game.update(world);
 		 window.setView(view);
 		 window.display();
 
