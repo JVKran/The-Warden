@@ -1,6 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
 #include "AssetManager.hpp"
 #include "World.hpp"
 #include "Editor.hpp"
@@ -14,6 +15,8 @@ int main(){
 	World world(assets, "world.txt", view);		//Create world with world.txt as config
 	//Editor editor( assets, "world.txt", view );	//Edit world world.txt
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden" };
+
+	Game game(assets, window);
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 4;

@@ -51,12 +51,15 @@ class PlayerGraphics : public GraphicsComponent {
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 	public:
-		PlayerGraphics(const std::string & assetName, AssetManager & assets, std::vector<sf::Vector2i> spriteCharacterData, 
-					   std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
-			GraphicsComponent(assetName, assets),
-			Animation(sprite, assets.getTexture(assetName), spriteCharacterData[0], 		
-				spriteCharacterData[1], spriteCharacterData[2], spriteCharacterData[3].x)
-			{	
+		PlayerGraphics(const std::string & assetName, 
+						AssetManager & assets, 
+						const std::vector<sf::Vector2i>  & spriteCharacterData, 
+					  	const std::vector<sf::Vector2i> & spriteCharacterAction, 
+					   	const std::vector<std::string> & spriteCharacterNames
+					):
+						GraphicsComponent(assetName, assets),
+						Animation(sprite, assets.getTexture(assetName), spriteCharacterData[0], spriteCharacterData[1], spriteCharacterData[2], spriteCharacterData[3].x)
+					{	
 			
 			// Fill map with actions
 			for( unsigned int i=0; i<spriteCharacterNames.size();i++){
@@ -83,9 +86,11 @@ class Character {
 		PlayerPhysics physics;
 		PlayerGraphics graphics;
 	public:
+
 		Character(sf::Vector2f position, const std::string & assetName, AssetManager & assets, sf::RenderWindow &window,
 				  std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
 		void update(sf::RenderWindow & window, World & world, std::string action, bool leftSprite);
+
 		void attack();
 		void draw();
 
