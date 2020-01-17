@@ -14,28 +14,35 @@ void Game::loadCharacters(){
 	if(!charactersFile){
 		throw fileNotFound("Characters/characters.txt");
 	}
+	bool data,action, names, textureName,go;
+		
+	std::vector<sf::Vector2i> spritePlayerData;
+	std::vector<sf::Vector2i> spritePlayerAction;
+	std::vector<std::string> spritePlayerNames;
 	while (!isEmpty(charactersFile)){
-		bool data, action, names, textureName;
+		
 		sf::Vector2i position;
 		std::string readName = "";
-		std::vector<sf::Vector2i> spritePlayerData;
-		std::vector<sf::Vector2i> spritePlayerAction;
-		std::vector<std::string> spritePlayerNames;
 		try{
 			if(data | action){
 				charactersFile >> position;
+				//std::cout<<position.x<<"\n";
 			} else {
 				charactersFile >> readName;
+				//std::string s = readname;
+				//std::cout<<s<"\n";
 			}
 		} catch (...){
 			if(data){
 				action = true;
 				data = false;
 				std::cout << "Switched to action" << std::endl;
+				go=false;
 			} else if (action){
 				names = true;
 				action = false;
 				std::cout << "Switched to names" << std::endl;
+				go=false;
 			}
 		}
 		if(readName.find("|") != std::string::npos){
@@ -43,23 +50,32 @@ void Game::loadCharacters(){
 			names = false;
 			textureName = true;
 		}
+		std::string s =readName;
+		//std::cout << position.x << ", " << position.y << ", " << s << std::endl;
+		if(go){
+			if(data){
+				spritePlayerData.push_back(position);
+				std::cout << "inD: " <<position.x << ", " << position.y << ", " << s << std::endl;
+			} else if (action){
 
-		std::cout << position.x << ", " << position.y << ", " << readName << std::endl;
-		if(data){
-			spritePlayerData.push_back(position);
-		} else if (action){
-			spritePlayerAction.push_back(position);
-		} else if (names){
-			spritePlayerNames.push_back(readName);
-		} else if (textureName){
-			//readName contains the textureName.
-			spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
-			spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
-			spritePlayerNames = {"idle","slide", "walk", "jump"};
-			data = true;
-			textureName = false;
-			characters.push_back(Character(sf::Vector2f(500,350), readName, assets, window, spritePlayerData, spritePlayerAction, spritePlayerNames));
-		}
+				spritePlayerAction.push_back(position);
+				std::cout << "inA: "<<position.x << ", " << position.y << ", " << s << std::endl;
+			} else if (names){
+
+				spritePlayerNames.push_back(readName);
+				std::cout << "inR: "<<position.x << ", " << position.y << ", " << s << std::endl;
+			} else if (textureName){
+				data = true;
+				textureName = false;
+				for(auto&d:spritePlayerData){std::cout<<"Data: "<<d.x <<" : " << d.y <<"\n";}
+				for(auto&d:spritePlayerAction){std::cout<<"Action: "<<d.x <<" : " << d.y <<"\n";}
+				for(auto&d:spritePlayerNames){std::cout<<"Name: "<<d<<"\n";}
+				std::string tmp = readName;
+				std::cout << tmp << std::endl;
+				characters.push_back(Character(sf::Vector2f(500,350), readName, assets, window, spritePlayerData, spritePlayerAction, spritePlayerNames));
+			}
+		}else{go=true;}
+		
 	}
 }
 

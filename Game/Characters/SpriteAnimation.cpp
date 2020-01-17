@@ -61,9 +61,7 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 			rectSourceSprite.top = 0; 	 // terug naar startpositie
 			
 			// Go to the next frame
-		}else{ rectSourceSprite.left += pixelRow;
-
- }
+		}else{ rectSourceSprite.left += pixelRow; 		std::cout << rectSourceSprite.top;}
 		
 		// This will loop trough the specified frames
 		if( Start && ( rectSourceSprite.left == dimensions.x-pixelRow*missingRow ||rectSourceSprite.left == dimensions.x-pixelRow ) 
@@ -76,9 +74,10 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 		}
 		
 		//std::cout << rectSourceSprite.left << " : " << rectSourceSprite.top << "\n";
+		//Ligt aan sprite? 
 		sprite.setTextureRect(rectSourceSprite);
 		spriteClock.restart();
 	}
-	window.draw(sprite);
+	//window.draw(sprite);
 }
 

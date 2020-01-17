@@ -51,7 +51,7 @@ class GraphicsComponent {
 				animation[spriteCharacterNames[i]] = std::vector<sf::Vector2i> {spriteCharacterAction[i+i], spriteCharacterAction[i+i+1]};
 			}
 			// Start animation to idle
-			Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1], 0);
+			//Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1], 0);
 			
 			}
 

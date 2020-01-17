@@ -95,6 +95,7 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 
 void GraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::string name, bool leftSprite){
 	sprite.setPosition(position);
+	std::cout << animation[name][0].x << " : "<< animation[name][0].y << std::endl;
 	if(name != lastAnimation ){
 		Animation.changeStartEndFrame(animation[name][0], animation[name][1],leftSprite);
 		lastAnimation=name;
@@ -109,7 +110,7 @@ sf::Vector2f GraphicsComponent::getDimensions(){
 void Character::update(sf::RenderWindow & window, World & world, const std::string & action, bool leftSprite){
 	input.processInput(velocity);
 	physics.processPhysics(world, position, velocity, graphics.getDimensions());
-	graphics.processGraphics(window, position, action, true);
+	graphics.processGraphics(window, position, action, leftSprite);
 }
 
 void Character::draw(){

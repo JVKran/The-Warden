@@ -14,7 +14,7 @@ class Game {
 		sf::RenderWindow & window;
 
 		std::vector<Character> characters;
-
+		
 		void loadCharacters();
 		bool isEmpty(std::ifstream & file);
 	public:

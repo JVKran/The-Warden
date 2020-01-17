@@ -60,7 +60,7 @@ int main(){
 		game.update(world);
 		 window.setView(view);
 		 window.display();
-
+		
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 				window.close();
 		}

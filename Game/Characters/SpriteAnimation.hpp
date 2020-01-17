@@ -6,6 +6,7 @@
 
 class SpriteAnimation {
 	private:
+	//sprite
 		sf::Sprite& sprite;
 		sf::Texture& texture;
 		const sf::Vector2i dimensions;		// Width,height
