@@ -27,9 +27,10 @@ int MenuScreen::Run( sf::RenderWindow & window ){
 	sf::Event event;
 	bool Running = true;
 
-	std::array<Text, 2> objects = {
-		Text( "Play", 		sf::Vector2f{270.0, 50.0},  1.0, sf::Color::Red),
-		Text( "Settings", 	sf::Vector2f{270.0, 100.0},  1.0, sf::Color::Red)
+	std::array<Text, 3> objects = {
+		Text( "Play", 		sf::Vector2f{320.0, 50.0},   1.0, sf::Color::Red),
+		Text( "Settings", 	sf::Vector2f{320.0, 100.0},  1.0, sf::Color::Red),
+		Text( "Exit", 		sf::Vector2f{320.0, 150.0},  1.0, sf::Color::Red)
 	};
 
 	while ( Running ){
@@ -39,10 +40,12 @@ int MenuScreen::Run( sf::RenderWindow & window ){
 				return -1;
 			}else if( event.type == sf::Event::MouseButtonPressed){
 				if (event.mouseButton.button == sf::Mouse::Left){
-					if(objects[0].contains( objects[0].castToF( sf::Mouse::getPosition(window)))){ 
+					if(objects[0].contains( sf::Mouse::getPosition(window))){ 
 						return 1; 
-					}else if(objects[1].contains( objects[1].castToF( sf::Mouse::getPosition(window)))){ 
+					}else if(objects[1].contains(sf::Mouse::getPosition(window))){ 
 						return 2; 
+					}else if(objects[2].contains(sf::Mouse::getPosition(window))){
+						return -1;
 					}
 
 				}

@@ -6,6 +6,9 @@
 #include "cScreen.hpp"
 #include "block.hpp"
 #include "action.hpp"
+#include "keybinding.hpp"
+#include  "tekst.hpp"
+#include "bindings.hpp"
 
 class PlayScreen : public cScreen {
 private:
@@ -26,10 +29,10 @@ int PlayScreen::Run( sf::RenderWindow & window ){
 	bool Running = true;
 
 	std::array< Action, 4 > actions = {
-		Action( sf::Keyboard::A,  	[&](){ player.move( sf::Vector2f( -1.0,  0.0 )); }),
-		Action( sf::Keyboard::D, 	[&](){ player.move( sf::Vector2f( +1.0,  0.0 )); }),
-		Action( sf::Keyboard::W,   	[&](){ player.move( sf::Vector2f(  0.0, -1.0 )); }),
-		Action( sf::Keyboard::S,  	[&](){ player.move( sf::Vector2f(  0.0, +1.0 )); })
+		Action( Bindings[0].getKey(),  [&](){ player.move( sf::Vector2f( -1.0,  0.0 )); 	}),
+		Action( Bindings[1].getKey(),  [&](){ player.move( sf::Vector2f( +1.0,  0.0 )); 	}),
+		Action( Bindings[2].getKey(),  [&](){ player.move( sf::Vector2f(  0.0, -1.0 )); 	}),
+		Action( Bindings[3].getKey(),  [&](){ player.move( sf::Vector2f(  0.0, +1.0 )); 	})
 	};
 
 	while ( Running ){
@@ -54,7 +57,7 @@ int PlayScreen::Run( sf::RenderWindow & window ){
 
 		window.display();
 
-		sf::sleep( sf::milliseconds( 10 ));
+		sf::sleep( sf::milliseconds( 2 ));
 	}
 
 	return -1;

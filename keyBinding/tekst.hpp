@@ -25,8 +25,10 @@ public:
 
 	bool contains( const sf::Vector2f& object ) const;
 
+	bool contains( const sf::Vector2i& object );
+
 	sf::Vector2f castToF( sf::Vector2i target ){
-	return sf::Vector2f(
+		return sf::Vector2f(
 			static_cast<float>( target.x ),
 			static_cast<float>( target.y )
 		);

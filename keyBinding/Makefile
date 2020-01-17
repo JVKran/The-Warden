@@ -9,18 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := block.cpp tekst.cpp 
-SOURCES := keybinding.cpp
+SOURCES := block.cpp tekst.cpp keybinding.cpp
 
 # header files in this project
-HEADERS := block.hpp 
-HEADERS := tekst.hpp 
-HEADERS := keybinding.hpp 
-HEADERS := action.hpp 
-HEADERS := menuScreen.hpp 
-HEADERS := cScreen.hpp 
-HEADERS := settingsScreen.hpp 
-HEADERS := playScreen.hpp
+HEADERS := block.hpp tekst.hpp keybinding.hpp action.hpp menuScreen.hpp cScreen.hpp settingsScreen.hpp playScreen.hpp bindings.hpp
 
 # other places to look for files for this project
 SEARCH  := 

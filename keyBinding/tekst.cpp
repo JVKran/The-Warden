@@ -11,10 +11,17 @@ Text::Text( std::string input, sf::Vector2f position, float size, sf::Color colo
 }
 
 void Text::draw( sf::RenderWindow & window ) {
+	bool calculated = true;
 	text.setFont(font);
 	text.setString(input);
 	text.setScale(size);
-	text.setPosition(position);
+
+	if(calculated){
+		sf::FloatRect object = text.getLocalBounds();
+		text.setPosition(sf::Vector2f{position.x - ((object.width - object.left) / 2), position.y });
+		calculated = false;
+	}
+
 	text.setFillColor(color);
 	window.draw(text);
 }
@@ -29,4 +36,8 @@ std::string Text::getText(){
 
 bool Text::contains( const sf::Vector2f& object ) const {
 	return text.getGlobalBounds().contains( object );
+}
+
+bool Text::contains( const sf::Vector2i& object ){
+	return text.getGlobalBounds().contains( castToF(object) );
 }

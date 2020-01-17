@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <array>
+
 #include "cScreen.hpp"
 #include "menuScreen.hpp"
 #include "settingsScreen.hpp"

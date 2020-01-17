@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "tekst.hpp"
-#include "block.hpp"
 
 class KeyBinding{
 private:
@@ -17,12 +16,11 @@ private:
 
 	std::string keyName;
 	sf::Keyboard::Key key;
-	Block keyBlock;
 	Text text;
 
 public:
 
-	KeyBinding( std::string keyName, sf::Keyboard::Key key, Block keyBlock, Text text );
+	KeyBinding( std::string keyName, sf::Keyboard::Key key, Text text );
 
 	void setString( std::string newKeyName );
 
@@ -33,6 +31,8 @@ public:
 	sf::Keyboard::Key getKey();
 
 	bool contains( const sf::Vector2f& object ) const;
+
+	bool contains( const sf::Vector2i& object );
 
 	sf::Vector2f castToF( sf::Vector2i target );
 
