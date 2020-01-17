@@ -25,8 +25,6 @@ int main(){
 	uint_fast8_t msPerUpdate = 16.67;
 	double previous, lag, current, elapsed;
 	Character speler(sf::Vector2f(500,100),"crate",assets,window);
-	window.setVerticalSyncEnabled(1);
-	window.setFramerateLimit(60);
 
 
 	while (window.isOpen()){

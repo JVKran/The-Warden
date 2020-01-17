@@ -93,6 +93,22 @@ void ScreenObject::setPosition(const sf::Vector2f & newPosition){
 }
 
 /// \brief
+/// Set rotation.
+/// \details
+/// Sets the rotations of the sprite to a new angle.
+/// @param angle The new angle of the sprite.
+void ScreenObject::setRotation(const float angle){
+	sprite.setRotation(angle);
+}
+
+/// \brief
+/// Get rotation.
+/// \returns The current angle of the sprite.
+float ScreenObject::getRotation() const {
+	return sprite.getRotation();
+}
+
+/// \brief
 /// Get global bounds.
 /// \return The global bounds of the sprite.
 sf::FloatRect ScreenObject::getBounds() const {

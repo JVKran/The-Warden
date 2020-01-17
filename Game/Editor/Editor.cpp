@@ -110,13 +110,18 @@ void Editor::handleInput(sf::RenderWindow & window){
 		editingDone();
 	}
 	if( window.pollEvent(event) ){
+		// If cursor is hovering over tile selection bar
 		if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
 			scrollTileBar(event.mouseWheel.delta);
 		}
 		if(event.type == sf::Event::MouseWheelMoved){	
 			for(auto & tile : tiles ){
 				if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
+					if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+						tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
+					} else {
+						tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
+					}
 				}
 			}
 		}

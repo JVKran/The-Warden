@@ -5,6 +5,7 @@ background
 (-408,250) flyingGrass2 1 1.000000
 (-280,250) flyingGrass3 1 1.000000
 (-75,381) flyingGrass1 1 1.000000
+(-10,354) bush2 1 0.600000
 (52,381) flyingGrass3 1 1.000000
 (273,501) grass 1 1.000000
 (401,501) grass 1 1.000000

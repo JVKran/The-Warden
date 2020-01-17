@@ -1,8 +1,8 @@
 SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp Character.cpp
 
-HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp exceptions.hpp
+HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp Exceptions.hpp
 
-SEARCH  := AI Assets Editor Entities Physics World Characters ..
+SEARCH  := AI Assets Editor Entities Physics World Characters Game ..
 
 RELATIVE := ..
 include $(RELATIVE)/Makefile.native

@@ -3,7 +3,7 @@
 
 #include <fstream>
 #include <SFML/Graphics.hpp>
-#include "../exceptions.hpp"
+#include "Exceptions.hpp"
 
 std::ifstream & operator>>( std::ifstream & input, sf::Vector2f & rhs );
 bool isEmpty(std::ifstream & file);

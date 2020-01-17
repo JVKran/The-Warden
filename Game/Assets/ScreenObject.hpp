@@ -28,6 +28,8 @@ class ScreenObject {
 		sf::FloatRect getBounds() const;
 		sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f & newPosition);
+		void setRotation(const float angle);
+		float getRotation() const;
 
 		void setNewScale(const float newScale);
 		sf::Vector2f getScale() const;

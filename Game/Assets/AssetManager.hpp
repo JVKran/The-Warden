@@ -3,7 +3,7 @@
 #ifndef __ASSET_MANAGER
 #define __ASSET_MANAGER
 
-#include "../exceptions.hpp"
+#include "Exceptions.hpp"
 #include <iostream>
 #include "FactoryFunction.hpp"
 #include <map>
