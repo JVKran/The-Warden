@@ -56,9 +56,13 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
 /// @param window The window to use for determining the absolute position of the mouseclicks.
 void Editor::handleInput(sf::RenderWindow & window){
-	sf::Event event;
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-		for(auto & object : objects){
+	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+    bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+
+    for(auto & object : objects){
+		if(leftMousePressed || rightMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.hasBeenAdded){
 					SelectableObject objectToAdd = object;
@@ -66,12 +70,20 @@ void Editor::handleInput(sf::RenderWindow & window){
 					world.addTile(objectToAdd);
 					object.hasBeenAdded = true;
 				}
-			}
-			else {
+			} else {
 				object.hasBeenAdded = false;
 			}
+		}
+		if(rightPressed){
+    		object.setPosition(sf::Vector2f(object.getPosition().x + 3, object.getPosition().y));
+	    }
+	    if(leftPressed) {
+	    	object.setPosition(sf::Vector2f(object.getPosition().x - 3, object.getPosition().y));
 	    }
 	}
+
+	sf::Event event;
+	window.pollEvent(event);
     std::vector<SelectableObject> & tiles = world.getTiles();
     for(auto & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
@@ -84,47 +96,35 @@ void Editor::handleInput(sf::RenderWindow & window){
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
 				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Add)){
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket)){
 				tile.setCollidable(true);
 			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)){
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
 				tile.setCollidable(false);
+			}
+			if(event.type == sf::Event::MouseWheelMoved){
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+					tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
+				} else {
+					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
+				}
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
     }
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+
+    if(leftPressed){
 		view.setCenter(sf::Vector2f(view.getCenter().x - 3, view.getCenter().y));
-		for(auto & object : objects){
-			object.setPosition(sf::Vector2f(object.getPosition().x - 3, object.getPosition().y));
-		}
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+	if(rightPressed){
 		view.setCenter(sf::Vector2f(view.getCenter().x + 3, view.getCenter().y));
-		for(auto & object : objects){
-			object.setPosition(sf::Vector2f(object.getPosition().x + 3, object.getPosition().y));
-		}
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
 		editingDone();
 	}
-	if( window.pollEvent(event) ){
-		// If cursor is hovering over tile selection bar
-		if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
-			scrollTileBar(event.mouseWheel.delta);
-		}
-		if(event.type == sf::Event::MouseWheelMoved){	
-			for(auto & tile : tiles ){
-				if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-					if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
-						tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
-					} else {
-						tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
-					}
-				}
-			}
-		}
+	if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
+		scrollTileBar(event.mouseWheel.delta);
 	}
 }
 
