@@ -1,8 +1,8 @@
 #include "Game.hpp"
 
 Game::Game(const std::string & objectConfigurationFile):
-	world(assets, view),
-	editor(assets, view, event)
+	world(assets),
+	editor(assets)
 {
 	assets.loadObjects(objectConfigurationFile);				//"Assets/objects.txt"
 	loadCharacters();
@@ -26,7 +26,7 @@ void Game::editWorld(const std::string & worldName){
 void Game::handleInput(){
 	switch(state){
 		case states::EDITING: {
-			editor.handleInput(window);
+			editor.handleInput(window, event, view);
 			break;
 		}
 		case states::PLAYING: {
@@ -45,7 +45,7 @@ void Game::handleInput(){
 		}
 		switch(state){
 			case states::EDITING: {
-				editor.handleInput(window);
+				editor.handleInput(window, event, view);
 				break;
 			}
 			default: {
@@ -59,14 +59,14 @@ void Game::display(){
 	window.clear();
 	switch(state){
 		case states::PLAYING: {
-			world.draw(window);
+			world.draw(window, view);
 			for(auto & character : characters){
 				character.draw(window, view);
 			}
 			break;
 		}
 		case states::EDITING: {
-			editor.draw(window);
+			editor.draw(window, view);
 			break;
 		}
 		default: {

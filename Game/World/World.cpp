@@ -5,6 +5,7 @@
 #include "Editor.hpp"
 
 bool sortByPosition(Tile &lhs, Tile &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
+bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWindowLayer(); }
 
 /// \brief
 /// Create an instance.
@@ -14,9 +15,8 @@ bool sortByPosition(Tile &lhs, Tile &rhs) { return lhs.getPosition().x < rhs.get
 /// @param assets The AssetManager to use to retrieve assets (in this case only tiles).
 /// @param worldFileName The filename of the world to load. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-World::World(AssetManager & assets, sf::View & view):
-	assets(assets),
-	view(view)
+World::World(AssetManager & assets):
+	assets(assets)
 {}
 
 /// \brief
@@ -80,9 +80,10 @@ void World::loadTile(std::ifstream & input){
 	std::string assetName;
 	sf::Vector2f position;
 	float scale, rotation;
+	int windowLayer;
 	bool collidable;
-	input >> position >> assetName >> collidable >> scale >> rotation;
-	tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation));
+	input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer;
+	tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
 }
 
 /// \brief
@@ -95,7 +96,7 @@ void World::loadingDone(){
 		if(std::is_sorted(tiles.begin(), tiles.end())){
 			std::cout << "(i)-- World already sorted!" << std::endl;
 		} else {
-			// std::sort(tiles.begin(), tiles.end(), sortByPosition);
+			std::sort(tiles.begin(), tiles.end(), sortByLayer);
 			std::cout << "(i)-- Sorted world!" << std::endl;
 		}
 	} catch (...){
@@ -108,13 +109,28 @@ void World::loadingDone(){
 /// \details
 /// This draws the world to the screen. More specifically, it draws the objects that are currently in view to the screen.
 /// @param window The window to draw the world to.
-void World::draw(sf::RenderWindow & window){
+void World::draw(sf::RenderWindow & window, sf::View & view){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
-	for(Tile & tile : tiles){
-		if(tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
-			tile.draw(window);
-			//std::cout << tile.getPosition().x << std::endl;
+
+	// int_fast32_t leftSide = view.getCenter().x-view.getSize().x;
+	// int_fast32_t rightSide = view.getCenter().x+view.getSize().x;
+	// for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
+	// 	std::for_each(
+	// 		std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;}),
+	// 		std::find_if(tiles.begin(), tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x < rightSide;}),
+	// 		[&window, &windowLayer](Tile & tile){if(windowLayer == tile.getWindowLayer()){
+	// 			tile.draw(window);
+	// 		}}
+	// 	);
+	// }
+
+	for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
+		for(const Tile & tile : tiles){
+			if(windowLayer == tile.getWindowLayer() && tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
+				tile.draw(window);
+				//std::cout << tile.getPosition().x << std::endl;
+			}
 		}
 	}
 }
@@ -170,12 +186,4 @@ void World::saveWorld(){
 /// @param backgroundName The name to use for retrieving the texture from the AssetManager.
 void World::setBackground(const std::string & backgroundName){
 	background.setTexture(assets.getTexture(backgroundName));
-}
-
-/// \brief
-/// Get the view.
-/// \details
-/// This function returns a refrence to the view used for scrolling through the world.
-sf::View &World::getView(){
-	return(view);
 }

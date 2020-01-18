@@ -12,11 +12,9 @@
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-Editor::Editor( AssetManager & assets, sf::View & view, sf::Event & event ):
+Editor::Editor( AssetManager & assets ):
 	assets( assets ),
-	world( assets, view ),
-	view(view),
-	event(event)
+	world( assets )
 {
 	loadObjects();
 }
@@ -34,9 +32,9 @@ void Editor::editingDone(){
 /// \details
 /// This function draws both, the editor and world to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
-void Editor::draw(sf::RenderWindow & window){
-	world.draw( window );	
-	drawTileBar( window );
+void Editor::draw(sf::RenderWindow & window, sf::View & view){
+	world.draw( window, view );	
+	drawTileBar( window, view );
 }
 
 /// \brief
@@ -44,7 +42,7 @@ void Editor::draw(sf::RenderWindow & window){
 /// \details
 /// This function draws all available tiles to choose from to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
-void Editor::drawTileBar( sf::RenderWindow & window ){
+void Editor::drawTileBar( sf::RenderWindow & window, sf::View & view ){
 	for( const auto & object : objects ){
 		if(object.getPosition().x + 100 > view.getCenter().x-view.getSize().x && object.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			object.draw(window);
@@ -59,7 +57,7 @@ void Editor::drawTileBar( sf::RenderWindow & window ){
 /// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
 /// @param window The window to use for determining the absolute position of the mouseclicks.
-void Editor::handleInput(sf::RenderWindow & window){
+void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
@@ -82,6 +80,18 @@ void Editor::handleInput(sf::RenderWindow & window){
 			}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
 				tile.setCollidable(false);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
+				tile.setWindowLayer(0);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
+				tile.setWindowLayer(1);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
+				tile.setWindowLayer(2);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
+				tile.setWindowLayer(3);
 			}
 			if(event.type == sf::Event::MouseWheelMoved){
 				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){

@@ -15,8 +15,9 @@ bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const float rotation):
-	assetName(assetName)
+ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const float rotation, const int windowLayer):
+	assetName(assetName),
+	windowLayer(windowLayer)
 {
 	sprite.setTexture(assets.getTexture(assetName));
 	sprite.setPosition(position);
@@ -30,7 +31,7 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string ScreenObject::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
 }
 
 /// \brief
@@ -113,8 +114,8 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
-	ScreenObject(assetName, assets, position, scale, rotation),
+Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
+	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
 	collidable(collidable)
 {}
 
@@ -132,7 +133,7 @@ void Tile::makePartOfWorld(const bool & added){
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string Tile::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
 }
 
 /// \brief
@@ -207,7 +208,7 @@ Tile& Tile::operator=(Tile lhs){
 /// @param lhs Tile to compare.
 /// \return Wether or not the positions are equal.
 bool Tile::operator==(Tile lhs) const {
-	return sprite.getPosition() == lhs.sprite.getPosition();
+	return windowLayer == lhs.windowLayer;
 }
 
 /// \brief
@@ -217,5 +218,5 @@ bool Tile::operator==(Tile lhs) const {
 /// @param lhs Tile to compare.
 /// \return Wether or not the position is smaller than the position of the passed object.
 bool Tile::operator<(Tile lhs) const {
-	return sprite.getPosition() < lhs.sprite.getPosition();
+	return windowLayer < lhs.windowLayer;
 }

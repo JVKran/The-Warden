@@ -16,8 +16,9 @@ class ScreenObject {
 	protected:
 		std::string assetName;				//!< The AssetName to get corresponding texture from the AssetManager.
 		sf::Sprite sprite;					//!< The Sprite this ScreenObject has to draw and manage.
+		int_fast8_t windowLayer;
 	public:
-		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const float rotation = 0);
+		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const float rotation = 0, const int windowLayer = 0);
 
 		std::string getName() const;
 		virtual std::string getConfiguration() const;
@@ -31,6 +32,14 @@ class ScreenObject {
 
 		void setNewScale(const float newScale);
 		sf::Vector2f getScale() const;
+
+		void setWindowLayer(const int newLayer){
+			windowLayer = newLayer;
+		}
+
+		int getWindowLayer() const {
+			return windowLayer;
+		}
 
 		virtual void draw(sf::RenderWindow & window) const;
 };
@@ -46,7 +55,7 @@ class Tile : public ScreenObject {
 		bool collidable = true;					//!< Wether or not Character types should collide with this Tile.
 		bool hasBeenAdded = false;			//!< Wether or not this objec has been added to the tiles of the world; if it's part of the world.
 	public:
-		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0);
+		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0);
 
 		virtual std::string getConfiguration() const override;
 

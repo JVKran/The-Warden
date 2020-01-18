@@ -21,25 +21,22 @@ private:
 	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
 	World world;													//!< The World to edit.
 
-	sf::View & view;
-	sf::Event & event;												//!< The view to use for scrolling through the world.
-
 	std::vector< Tile > objects;						//!< Vector with all placeable objects.
 
 	bool isFirstOneSelected(std::vector<Tile> & tiles);
+	void drawTileBar( sf::RenderWindow & window, sf::View & view );
+	void scrollTileBar( const int_fast16_t & mouseWheelDelta );
 public:
-	Editor( AssetManager & assets, sf::View & view, sf::Event & event );
+	Editor( AssetManager & assets );
 
 	void selectWorld(const std::string & worldName);
 
 	void editingDone();
-	void handleInput(sf::RenderWindow & window);
+	void handleInput(sf::RenderWindow & window, sf::Event & event, sf::View & view);
 
 	void loadObjects(const std::string & editorConfigName = "Editor/editorObjects.txt");
 
-	void draw(sf::RenderWindow & window);
-	void drawTileBar( sf::RenderWindow & window );
-	void scrollTileBar( const int_fast16_t & mouseWheelDelta );
+	void draw(sf::RenderWindow & window, sf::View & view);
 };
 
 #endif // Editor.hpp

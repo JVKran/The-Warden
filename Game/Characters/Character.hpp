@@ -21,7 +21,7 @@ struct spriteCharacter {
 class PhysicsComponent {
 	public:
 		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions, 
-										sf::RenderWindow & window, std::vector<Tile> &foreground) = 0;
+										std::vector<Tile> &foreground) = 0;
 };
 
 class InputComponent {
