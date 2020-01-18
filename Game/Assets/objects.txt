@@ -35,3 +35,4 @@ dungDirtLeft Assets/Textures/DIY_Tiles/dungDirtLeft.png
 dungDirtRight Assets/Textures/DIY_Tiles/dungDirtRight.png
 dungDirtMidLeft Assets/Textures/DIY_Tiles/dungDirtMidLeft.png
 dungDirtMidRight Assets/Textures/DIY_Tiles/dungDirtMidRight.png
+player Assets/Textures/adventurer.png

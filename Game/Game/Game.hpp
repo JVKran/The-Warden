@@ -5,14 +5,18 @@
 #include "Editor.hpp"
 #include "World.hpp"
 #include <SFML/Graphics.hpp>
+#include "FactoryFunction.hpp"
 #include "Character.hpp"
+#include "Player.hpp"
+#include <memory>
 
 class Game {
 	private:
 		AssetManager assets;
 		World world;
 		Editor editor;
-		Character speler;
+		
+		std::vector<Character> characters;
 
 		sf::Event event;
 
@@ -21,6 +25,8 @@ class Game {
 
 		enum class states {PLAYING, EDITING, PAUSED};
 		states state = states::PLAYING;
+
+		void loadCharacters();
 	public:
 		Game(const std::string & objectConfigurationFile);
 		~Game(){
