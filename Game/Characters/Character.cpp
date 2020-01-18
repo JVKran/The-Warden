@@ -1,10 +1,9 @@
 #include "Character.hpp"
 
-Character::Character(const sf::Vector2f & position, const std::string & assetName, AssetManager & assets,sf::RenderWindow & window, const std::vector<sf::Vector2i> & spriteCharacterData, 
-			 const std::vector<sf::Vector2i> & spriteCharacterAction,const  std::vector<std::string> & spriteCharacterNames):
+Character::Character(const sf::Vector2f & position, const std::string & assetName, AssetManager & assets,sf::RenderWindow & window):
 	position(position),
 	window(window),
-	graphics(assetName, assets, spriteCharacterData, spriteCharacterAction,spriteCharacterNames)
+	graphics(assetName, assets)
 {}
 
 void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f velocity, const sf::Vector2f & dimensions){

@@ -5,7 +5,7 @@
 Game::Game(AssetManager & assets, sf::RenderWindow & window):
 	assets(assets),
 	window(window),
-	character(sf::Vector2f(500,350),"player",assets,window, spritePlayerData, spritePlayerAction, spritePlayerNames)
+	character(sf::Vector2f(500,350), "player", assets, window)
 {
 	//loadCharacters();
 }
@@ -66,7 +66,7 @@ Game::Game(AssetManager & assets, sf::RenderWindow & window):
 
 void Game::update(World & world){
 	// for(auto & character : characters){
-	character.update(window, world, "idle", true);
+		character.update(window, world, "idle", true);
 	// }
 }
 
