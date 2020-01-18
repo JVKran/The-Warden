@@ -15,7 +15,7 @@ class PlayerPhysics : public PhysicsComponent {
 		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions,sf::RenderWindow & window,std::vector<SelectableObject> &foreground) override;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions, std::vector<Tile> &foreground) override;
 };
 
 class PlayerInput : public InputComponent {
@@ -31,7 +31,7 @@ class PlayerGraphics : public GraphicsComponent {
 	public:
 		PlayerGraphics(const std::string & assetName, AssetManager & assets, spriteCharacter & characterData);
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, std::vector<SelectableObject> &foreground) override;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view, std::vector<Tile> &foreground) override;
 		virtual sf::Vector2f getDimensions() override;
 };
 

@@ -16,7 +16,7 @@
 class World {
 	private:
 		AssetManager & assets;						//!< The AssetManager to use for gathering the needed textures.
-		std::vector<SelectableObject> tiles;		//!< The tiles the world consists of.
+		std::vector<Tile> tiles;		//!< The tiles the world consists of.
 
 		std::string worldFileName;			//!< The filename of the world configuration file.
 		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
@@ -33,11 +33,11 @@ class World {
 		void saveWorld();
 		void loadWorld(const std::string & fileName);
 
-		void addTile(SelectableObject object);
+		void addTile(Tile object);
 		void setBackground(const std::string & backgroundName);
 
 		sf::View &getView();
-		std::vector<SelectableObject> & getTiles();
+		std::vector<Tile> & getTiles();
 
 		void draw(sf::RenderWindow & window);
 };

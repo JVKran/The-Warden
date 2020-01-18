@@ -22,7 +22,7 @@ void AssetManager::loadObjects(const std::string & assetFileName){
 	}
 	while (!isEmpty(assetFile)){
 		try {
-			loadTextures(assetFile);
+			loadTexture(assetFile);
 		} catch (endOfFile &){
 		} catch (std::exception & problem){
 			std::cerr << problem.what();
@@ -44,7 +44,7 @@ void AssetManager::loadObjects(const std::string & assetFileName){
 /// to the filepath that leads to the desired texture.
 /// @param input The input to read the textureName and filepath from.
 /// \exception noSuchPicture() The filepath provided does not lead to a valid or existing texture.
-void AssetManager::loadTextures(std::ifstream & input){
+void AssetManager::loadTexture(std::ifstream & input){
 	std::string name, fileName;
 	input >> name >> fileName;
 	sf::Texture texture;

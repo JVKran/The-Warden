@@ -15,12 +15,13 @@
 /// Asset manager
 /// \details
 /// This class features the storage of all textures of the game. This way, all textures only have to be loaded
-/// in memory once after which multiple refrences can be taken of the same texture.
+/// in memory once after which multiple refrences can be taken of the same texture. After constructing, all objects
+/// are loaded. Furthermore, another file can be read by calling the function again.
 class AssetManager {
 	private:
 		std::map<std::string, sf::Texture> textureMap;				//!< The map used to retrieve textures based on their name.
 
-		void loadTextures(std::ifstream & input);
+		void loadTexture(std::ifstream & input);
 	public:
 		AssetManager(){
 			loadObjects("Assets/objects.txt");

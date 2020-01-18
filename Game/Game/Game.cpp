@@ -61,7 +61,7 @@ void Game::display(){
 		case states::PLAYING: {
 			world.draw(window);
 			for(auto & character : characters){
-				character.update(window, world);
+				character.draw(window, view);
 			}
 			break;
 		}
@@ -124,23 +124,23 @@ void Game::loadCharacters(){
 			// spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
 			spritePlayerAction.erase(spritePlayerAction.begin());
 			spritePlayerNames.erase(spritePlayerNames.begin());
-			for(const auto & vector : spritePlayerData){
-				std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			}
-			for(const auto & vector : spritePlayerAction){
-				std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			}
-			for(const auto & vector : spritePlayerNames){
-				std::cout << vector << std::endl;
-			}
-			std::cout << readName << std::endl;
+			// for(const auto & vector : spritePlayerData){
+			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+			// }
+			// for(const auto & vector : spritePlayerAction){
+			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+			// }
+			// for(const auto & vector : spritePlayerNames){
+			// 	std::cout << vector << std::endl;
+			// }
+			// std::cout << readName << std::endl;
 			// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
 			// spritePlayerNames = {"idle","slide", "walk", "jump"};
 			characterData = spriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
 			data = true;
 			textureName = false;
 			if(readName == "player"){
-				characters.push_back(Character(sf::Vector2f(500,350), window, std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
+				characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
 			} 
 			//if(readName != "player"){
 			//	type = ArtificalInput() oid.

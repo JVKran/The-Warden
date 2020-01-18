@@ -34,7 +34,7 @@ void Editor::editingDone(){
 /// \details
 /// This function draws both, the editor and world to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
-void Editor::draw( sf::RenderWindow & window ){
+void Editor::draw(sf::RenderWindow & window){
 	world.draw( window );	
 	drawTileBar( window );
 }
@@ -65,7 +65,7 @@ void Editor::handleInput(sf::RenderWindow & window){
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
-    std::vector<SelectableObject> & tiles = world.getTiles();
+    std::vector<Tile> & tiles = world.getTiles();
     for(auto & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
@@ -111,14 +111,14 @@ void Editor::handleInput(sf::RenderWindow & window){
 	for(auto & object : objects){
 		if(leftMousePressed || rightMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-				if(!object.hasBeenAdded){
-					SelectableObject objectToAdd = object;
+				if(!object.isPartOfWorld()){
+					Tile objectToAdd = object;
 					objectToAdd.setNewScale(1);
 					world.addTile(objectToAdd);
-					object.hasBeenAdded = true;
+					object.makePartOfWorld(true);
 				}
 			} else {
-				object.hasBeenAdded = false;
+				object.makePartOfWorld(false);
 			}
 		}
 		if(rightPressed){
@@ -146,7 +146,7 @@ void Editor::scrollTileBar( const int_fast16_t & mouseWheelDelta ){
 /// \brief
 /// Load all placeable objects.
 /// \details
-/// This function is used to load all selectable objects from the editorConfigName into a vector of type SelectableObject.
+/// This function is used to load all selectable objects from the editorConfigName into a vector of type Tile.
 /// This editor configuration file should follow a specific syntax like below:
 /// ~~~~~{.txt}
 ///	tree1 0.5
@@ -163,7 +163,7 @@ void Editor::loadObjects(const std::string & editorConfigName ){
 	sf::Vector2f position { 10, 10 };
 	while( !isEmpty( objectInput ) ){
 		objectInput >> name >> scale;
-		objects.push_back(SelectableObject(name, assets, position, scale));
+		objects.push_back(Tile(name, assets, position, scale));
 		position.y += 70;
 	}
 }	
@@ -178,7 +178,7 @@ void Editor::selectWorld(const std::string & worldName){
 /// This function returns wether or not there are any objects that are selected. This is used
 /// to prevent selecting a tile over which the cursor is moved while moving a selected object.
 /// @param tiles The vector of tiles that has to be searched for selected objects.
-bool Editor::isFirstOneSelected(std::vector<SelectableObject> & tiles){
+bool Editor::isFirstOneSelected(std::vector<Tile> & tiles){
 	for(const auto & tile : tiles){
 		if(tile.isFollowingMouse()){
 			return false;

@@ -4,7 +4,7 @@
 #include "FactoryFunction.hpp"
 #include "Editor.hpp"
 
-bool sortByPosition(SelectableObject &lhs, SelectableObject &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
+bool sortByPosition(Tile &lhs, Tile &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
 
 /// \brief
 /// Create an instance.
@@ -72,7 +72,7 @@ void World::loadWorld(const std::string & fileName){
 /// This means the background name for this world is called "background". The name "background", can be used with the AssetManager
 /// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw
 /// it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world.
-/// All these parameters are used to construct a SelectableObject that's stored in the tiles vector.
+/// All these parameters are used to construct a Tile that's stored in the tiles vector.
 /// \exception endOfFile() End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program
 /// first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier.
 /// \exception invalidPosition() The position given is invalid. This most likely is a syntax error.
@@ -82,7 +82,7 @@ void World::loadTile(std::ifstream & input){
 	float scale, rotation;
 	bool collidable;
 	input >> position >> assetName >> collidable >> scale >> rotation;
-	tiles.push_back(SelectableObject(assetName, assets, position, scale, collidable, rotation));
+	tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation));
 }
 
 /// \brief
@@ -111,7 +111,7 @@ void World::loadingDone(){
 void World::draw(sf::RenderWindow & window){
 	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
 	window.draw(background);
-	for(SelectableObject & tile : tiles){
+	for(Tile & tile : tiles){
 		if(tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			tile.draw(window);
 			//std::cout << tile.getPosition().x << std::endl;
@@ -123,8 +123,8 @@ void World::draw(sf::RenderWindow & window){
 /// Add tile to world.
 /// \details
 /// This adds an object to the world by pushing back to the vector containing all tiles.
-/// @param object The SelectableObject to add to the world.
-void World::addTile(SelectableObject object){
+/// @param object The Tile to add to the world.
+void World::addTile(Tile object){
 	tiles.push_back(object);
 }
 
@@ -132,7 +132,7 @@ void World::addTile(SelectableObject object){
 /// Get tiles.
 /// \details
 /// This returns a refrence to all tiles in the world.
-std::vector<SelectableObject> & World::getTiles(){
+std::vector<Tile> & World::getTiles(){
 	return tiles;
 }
 
@@ -148,7 +148,7 @@ void World::saveWorld(){
 		std::cout << "(i)-- Saving world to " << worldFileName << std::endl;
 
 		worldFile << backgroundName << std::endl;
-		for(const SelectableObject & tile : tiles ){
+		for(const Tile & tile : tiles ){
 			worldFile << tile.getConfiguration() << std::endl;
 		}
 

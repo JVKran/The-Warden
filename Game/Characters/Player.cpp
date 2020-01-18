@@ -15,12 +15,12 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 }
 
 
-void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions,sf::RenderWindow & window,std::vector<SelectableObject> &foreground){
+void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions ,std::vector<Tile> &foreground){
 
 	if(clock.getElapsedTime().asMilliseconds()-lastup>2){
 	
 	
-	std::vector<SelectableObject> & tiles= world.getTiles();
+	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	bool leftCollision=0, rightCollision=0, bottomCollision=0,topCollision=0;
 	int jumplen=700;
@@ -115,7 +115,6 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 		position = sf::Vector2f(100,100);
 	}
 	position += velocity;
-	world.getView().setCenter(sf::Vector2f(position.x, 300));
 	lastup = clock.getElapsedTime().asMilliseconds();
 	}
 }
@@ -133,7 +132,7 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 	}
 }
 
-void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position,std::vector<SelectableObject> &foreground){
+void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view, std::vector<Tile> &foreground){
 	sprite.setPosition(position);
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
 		if(position != previousPosition){
@@ -193,6 +192,7 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
 	}
+	view.setCenter(sf::Vector2f(position.x, 300));
 	Animation.draw(window);
 	for(auto & tile : foreground){
 		tile.draw(window);

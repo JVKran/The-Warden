@@ -7,24 +7,6 @@ bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 }
 
 /// \brief
-/// Get collidability.
-/// \details
-/// This function returns wether or not Character types should collide with this object.
-/// \return Wether or not Character types should collide with this object.
-bool ScreenObject::isCollidable() const{
-	return collidable;
-}
-
-/// \brief
-/// Set collidability.
-/// \details
-/// This function sets collidability to the desired functioning.
-/// @param newCollidable Wether or not Character types should collide with this object from now on.
-void ScreenObject::setCollidable(const bool newCollidable){
-	collidable = newCollidable;
-}
-
-/// \brief
 /// Create instance.
 /// \details
 /// This function creates a ScreenObject.
@@ -33,9 +15,8 @@ void ScreenObject::setCollidable(const bool newCollidable){
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
-	assetName(assetName),
-	collidable(collidable)
+ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const float rotation):
+	assetName(assetName)
 {
 	sprite.setTexture(assets.getTexture(assetName));
 	sprite.setPosition(position);
@@ -49,7 +30,14 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string ScreenObject::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
+}
+
+/// \brief
+/// Get object name.
+/// \return The name of the tile; equal to the texture and assetname.
+std::string ScreenObject::getName() const{
+	return assetName;
 }
 
 /// \brief
@@ -119,22 +107,58 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// \brief
 /// Create instance.
 /// \details
-/// This function creates a SelectableObject which is a subclass of ScreenObject that's also selectable.
+/// This function creates a Tile which is a subclass of ScreenObject that's also selectable.
 /// @param assetName The name of the texture to get from the AssetManager that should be used to construct te sprite.
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-SelectableObject::SelectableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
-	ScreenObject(assetName, assets, position, scale, collidable, rotation)
+Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation):
+	ScreenObject(assetName, assets, position, scale, rotation),
+	collidable(collidable)
 {}
+
+bool Tile::isPartOfWorld() const{
+	return hasBeenAdded;
+}
+
+void Tile::makePartOfWorld(const bool & added){
+	hasBeenAdded = added;
+}
+
+/// \brief
+/// Get configuration.
+/// \details
+/// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
+/// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
+std::string Tile::getConfiguration() const {
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()));
+}
+
+/// \brief
+/// Get collidability.
+/// \details
+/// This function returns wether or not Character types should collide with this object.
+/// \return Wether or not Character types should collide with this object.
+bool Tile::isCollidable() const{
+	return collidable;
+}
+
+/// \brief
+/// Set collidability.
+/// \details
+/// This function sets collidability to the desired functioning.
+/// @param newCollidable Wether or not Character types should collide with this object from now on.
+void Tile::setCollidable(const bool newCollidable){
+	collidable = newCollidable;
+}
 
 /// \brief
 /// Set mouse following.
 /// \details
 /// Enables the Sprite to follow the position of the mouse.
 /// @param follow Wether or not the sprite should follow the cursor.
-bool SelectableObject::setFollowMouse(const bool follow){
+bool Tile::setFollowMouse(const bool follow){
 	if(followMouse != follow){
 		followMouse = follow;
 		return true;
@@ -145,7 +169,7 @@ bool SelectableObject::setFollowMouse(const bool follow){
 /// \brief
 /// Is following mouse?
 /// \return Wether or not the sprite is following the position of the mouse.
-bool SelectableObject::isFollowingMouse() const {
+bool Tile::isFollowingMouse() const {
 	return followMouse;
 }
 
@@ -154,7 +178,7 @@ bool SelectableObject::isFollowingMouse() const {
 /// \details
 /// This functions sets the position of the sprite to the passed position.
 /// @param position The position to move the sprite to.
-void SelectableObject::move(const sf::Vector2f & position){
+void Tile::move(const sf::Vector2f & position){
 	if(followMouse){
 		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
 	}
@@ -164,9 +188,9 @@ void SelectableObject::move(const sf::Vector2f & position){
 /// Assignment operator.
 /// \details
 /// This functions assigns the passed object to itself.
-/// @param lhs SelectableObject to copy.
+/// @param lhs Tile to copy.
 /// \return Refrence to itself.
-SelectableObject& SelectableObject::operator=(SelectableObject lhs){
+Tile& Tile::operator=(Tile lhs){
 	if(&lhs != this){
 		followMouse = lhs.followMouse;
 		assetName = lhs.assetName;
@@ -179,10 +203,10 @@ SelectableObject& SelectableObject::operator=(SelectableObject lhs){
 /// \brief
 /// Equality operator.
 /// \details
-/// This function checks for equality of the positions of both SelectableObject objects.
-/// @param lhs SelectableObject to compare.
+/// This function checks for equality of the positions of both Tile objects.
+/// @param lhs Tile to compare.
 /// \return Wether or not the positions are equal.
-bool SelectableObject::operator==(SelectableObject lhs) const {
+bool Tile::operator==(Tile lhs) const {
 	return sprite.getPosition() == lhs.sprite.getPosition();
 }
 
@@ -190,12 +214,8 @@ bool SelectableObject::operator==(SelectableObject lhs) const {
 /// Smaller than operator.
 /// \details
 /// This function checks wether or not its position is smaller than that of the passed object.
-/// @param lhs SelectableObject to compare.
+/// @param lhs Tile to compare.
 /// \return Wether or not the position is smaller than the position of the passed object.
-bool SelectableObject::operator<(SelectableObject lhs) const {
+bool Tile::operator<(Tile lhs) const {
 	return sprite.getPosition() < lhs.sprite.getPosition();
-}
-
-std::string SelectableObject::getName() const{
-	return(assetName);
 }
