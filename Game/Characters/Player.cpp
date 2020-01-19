@@ -190,7 +190,11 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
 	}
-	view.setCenter(sf::Vector2f(position.x, 300));
+	if(position.y < 300){
+		view.setCenter(sf::Vector2f(position.x, position.y));
+	} else {
+		view.setCenter(sf::Vector2f(position.x, 300));
+	}
 	Animation.draw(window);
 }
 

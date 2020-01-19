@@ -110,7 +110,7 @@ void World::sortWorld(){
 /// @param window The window to draw the world to.
 void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer){
 	if(windowLayer == 0){
-		background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
+		background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),(window.getView().getCenter().y-(window.getView().getSize().y*0.5)));
 		window.draw(background);
 	}
 
@@ -120,18 +120,15 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
 	auto rightIterator = std::find_if(tiles.begin(), tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
 
-	//std::cout << leftSide << ',' << rightSide << std::endl;
-	int8_t counter = 0;
 	std::for_each(
 		leftIterator,
 		rightIterator,
-		[&counter, &window, &windowLayer](Tile & tile){if(windowLayer == tile.getWindowLayer()){
-			tile.draw(window);
-			counter++;
-		}}
+		[&window, &windowLayer](Tile & tile){
+			if(windowLayer == tile.getWindowLayer()){
+				tile.draw(window);
+			}
+		}
 	);
-	//window.display();
-	std::cout << "Layer " << int(windowLayer) << " consists of " << int(counter) << " tiles." << std::endl;
 }
 
 /// \brief
