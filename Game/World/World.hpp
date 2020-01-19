@@ -24,7 +24,7 @@ class World {
 
 		void loadWorld();
 		void loadTile(std::ifstream & input);
-		void loadingDone();
+		void sortWorld();
 	public:
 		World(AssetManager & assets);
 
@@ -36,7 +36,7 @@ class World {
 
 		std::vector<Tile> & getTiles();
 
-		void draw(sf::RenderWindow & window, sf::View & view);
+		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
 };
 
 #endif //__WORLD_HPP

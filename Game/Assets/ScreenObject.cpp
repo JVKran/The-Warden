@@ -208,7 +208,7 @@ Tile& Tile::operator=(Tile lhs){
 /// @param lhs Tile to compare.
 /// \return Wether or not the positions are equal.
 bool Tile::operator==(Tile lhs) const {
-	return windowLayer == lhs.windowLayer;
+	return sprite.getPosition().x == lhs.sprite.getPosition().x;
 }
 
 /// \brief
@@ -218,5 +218,5 @@ bool Tile::operator==(Tile lhs) const {
 /// @param lhs Tile to compare.
 /// \return Wether or not the position is smaller than the position of the passed object.
 bool Tile::operator<(Tile lhs) const {
-	return windowLayer < lhs.windowLayer;
+	return sprite.getPosition().x < lhs.sprite.getPosition().x;
 }

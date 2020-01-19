@@ -59,10 +59,12 @@ void Game::display(){
 	window.clear();
 	switch(state){
 		case states::PLAYING: {
-			world.draw(window, view);
+			world.draw(window, view, 0);
+			world.draw(window, view, 1);
 			for(auto & character : characters){
 				character.draw(window, view);
 			}
+			world.draw(window, view, 2);
 			break;
 		}
 		case states::EDITING: {

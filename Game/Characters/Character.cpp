@@ -9,11 +9,11 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 
 void Character::update(sf::RenderWindow & window, World & world){
 	input->processInput(velocity);
-	physics->processPhysics(world, position, velocity, graphics->getDimensions(), foreground);
+	physics->processPhysics(world, position, velocity, graphics->getDimensions());
 }
 
 void Character::draw(sf::RenderWindow & window, sf::View & view){
-	graphics->processGraphics(window, position, view, foreground);
+	graphics->processGraphics(window, position, view);
 }
 
 GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, spriteCharacter & characterData):

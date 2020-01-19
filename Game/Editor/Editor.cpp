@@ -33,7 +33,9 @@ void Editor::editingDone(){
 /// This function draws both, the editor and world to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
 void Editor::draw(sf::RenderWindow & window, sf::View & view){
-	world.draw( window, view );	
+	for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
+		world.draw( window, view, windowLayer );
+	}
 	drawTileBar( window, view );
 }
 

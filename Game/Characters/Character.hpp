@@ -20,8 +20,7 @@ struct spriteCharacter {
 
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions, 
-										std::vector<Tile> &foreground) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions) = 0;
 };
 
 class InputComponent {
@@ -46,7 +45,7 @@ class GraphicsComponent {
 	public:
 		GraphicsComponent(const std::string & assetName, AssetManager & assets, spriteCharacter & characterData);
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view, std::vector<Tile> &foreground) = 0;
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
 		virtual sf::Vector2f getDimensions() = 0;
 };
 
@@ -54,7 +53,6 @@ class Character {
 	private:
 		sf::Vector2f position;
 		sf::Vector2f velocity;
-		std::vector<Tile> foreground;
 
 		std::shared_ptr<InputComponent> input;
 		std::shared_ptr<PhysicsComponent> physics;

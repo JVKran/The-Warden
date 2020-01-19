@@ -56,7 +56,6 @@ void World::loadWorld(const std::string & fileName){
 			std::cerr << "(!)-- Something went wrong in " << __FILE__ << " at line " << std::to_string(__LINE__) << std::endl;
 		}
 	}
-	loadingDone();
 }
 
 /// \brief
@@ -91,12 +90,12 @@ void World::loadTile(std::ifstream & input){
 /// \details
 /// This does everything that needs to be done to save a world. This currently only consists of sorting the tiles.
 /// \exception sortingFailed() The tiles could not be sorted. This is most likely because of a std::bad_alloc.
-void World::loadingDone(){
+void World::sortWorld(){
 	try {
 		if(std::is_sorted(tiles.begin(), tiles.end())){
 			std::cout << "(i)-- World already sorted!" << std::endl;
 		} else {
-			std::sort(tiles.begin(), tiles.end(), sortByLayer);
+			std::sort(tiles.begin(), tiles.end(), sortByPosition);
 			std::cout << "(i)-- Sorted world!" << std::endl;
 		}
 	} catch (...){
@@ -109,30 +108,30 @@ void World::loadingDone(){
 /// \details
 /// This draws the world to the screen. More specifically, it draws the objects that are currently in view to the screen.
 /// @param window The window to draw the world to.
-void World::draw(sf::RenderWindow & window, sf::View & view){
-	background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
-	window.draw(background);
-
-	// int_fast32_t leftSide = view.getCenter().x-view.getSize().x;
-	// int_fast32_t rightSide = view.getCenter().x+view.getSize().x;
-	// for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
-	// 	std::for_each(
-	// 		std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;}),
-	// 		std::find_if(tiles.begin(), tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x < rightSide;}),
-	// 		[&window, &windowLayer](Tile & tile){if(windowLayer == tile.getWindowLayer()){
-	// 			tile.draw(window);
-	// 		}}
-	// 	);
-	// }
-
-	for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
-		for(const Tile & tile : tiles){
-			if(windowLayer == tile.getWindowLayer() && tile.getPosition().x + 100 > view.getCenter().x-view.getSize().x && tile.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
-				tile.draw(window);
-				//std::cout << tile.getPosition().x << std::endl;
-			}
-		}
+void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer){
+	if(windowLayer == 0){
+		background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),0);
+		window.draw(background);
 	}
+
+	int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
+	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
+
+	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
+	auto rightIterator = std::find_if(tiles.begin(), tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+
+	//std::cout << leftSide << ',' << rightSide << std::endl;
+	int8_t counter = 0;
+	std::for_each(
+		leftIterator,
+		rightIterator,
+		[&counter, &window, &windowLayer](Tile & tile){if(windowLayer == tile.getWindowLayer()){
+			tile.draw(window);
+			counter++;
+		}}
+	);
+	//window.display();
+	std::cout << "Layer " << int(windowLayer) << " consists of " << int(counter) << " tiles." << std::endl;
 }
 
 /// \brief
@@ -159,7 +158,7 @@ std::vector<Tile> & World::getTiles(){
 /// That's done by calling getConfiguration() for all tiles in the tiles vector.
 void World::saveWorld(){
 	try {
-		loadingDone();
+		sortWorld();
 		std::ofstream worldFile (worldFileName, std::ofstream::out);
 		std::cout << "(i)-- Saving world to " << worldFileName << std::endl;
 

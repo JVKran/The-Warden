@@ -15,7 +15,7 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 }
 
 
-void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions ,std::vector<Tile> &foreground){
+void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions){
 
 	if(clock.getElapsedTime().asMilliseconds()-lastup>2){
 	
@@ -36,8 +36,6 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
         tileBounds = tile.getBounds();
 		if(tile.getName()=="water1"||tile.getName()=="tree2"){
 			
-			//window.display();
-			foreground.push_back(tile);
 			tileBounds.top+=50;
 			
 			if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
@@ -132,7 +130,7 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 	}
 }
 
-void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view, std::vector<Tile> &foreground){
+void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
 		if(position != previousPosition){
@@ -194,10 +192,6 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 	}
 	view.setCenter(sf::Vector2f(position.x, 300));
 	Animation.draw(window);
-	for(auto & tile : foreground){
-		tile.draw(window);
-	}
-	foreground.clear();
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
