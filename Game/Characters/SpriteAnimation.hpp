@@ -30,9 +30,7 @@ class SpriteAnimation {
 		void draw(sf::RenderWindow & window);
 
 		sf::Vector2f getDimensions() const {
-			std::cout << rectSourceSprite.width * 4 << ", " << rectSourceSprite.height * 4 << std::endl;
-			return sf::Vector2f(rectSourceSprite.width * 4, rectSourceSprite.height * 4);
-			//return sf::Vector2f(pixelRow * 2, pixelColumn * 2);
+			return sf::Vector2f(pixelRow * 3, pixelColumn * 3);
 		}
 		
 };
