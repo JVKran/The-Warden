@@ -56,6 +56,7 @@ void World::loadWorld(const std::string & fileName){
 			std::cerr << "(!)-- Something went wrong in " << __FILE__ << " at line " << std::to_string(__LINE__) << std::endl;
 		}
 	}
+	std::cout << "(i)-- Loaded world into memory." << std::endl;
 }
 
 /// \brief
@@ -81,8 +82,13 @@ void World::loadTile(std::ifstream & input){
 	float scale, rotation;
 	int windowLayer;
 	bool collidable;
-	input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer;
-	tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
+	try {
+		input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer;
+		tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
+	} catch (...){
+		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << std::endl;
+		std::cerr << "      Note that world configuration files shouldn't end with a newline character." << std::endl;
+	}
 }
 
 /// \brief
@@ -118,7 +124,7 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
 
 	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
-	auto rightIterator = std::find_if(tiles.begin(), tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
 
 	std::for_each(
 		leftIterator,

@@ -68,12 +68,12 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
     std::vector<Tile> & tiles = world.getTiles();
     for(auto & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
-				tile.setFollowMouse(true);
-			}
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-				tile.setFollowMouse(false);
-			}
+			// if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
+			// 	tile.setFollowMouse(true);
+			// }
+			// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+			// 	tile.setFollowMouse(false);
+			// }
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
 				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 			}
@@ -101,6 +101,12 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 				} else {
 					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
 				}
+			}
+			if(event.type == sf::Event::MouseButtonPressed){
+				tile.setFollowMouse(true);
+			}
+			if(event.type == sf::Event::MouseButtonReleased){
+				tile.setFollowMouse(false);
 			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
