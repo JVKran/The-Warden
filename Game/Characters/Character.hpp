@@ -20,12 +20,12 @@ struct spriteCharacter {
 
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions) = 0;
 };
 
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity) = 0;
+		virtual void processInput(sf::Vector2f & direction) = 0;
 };
 
 class GraphicsComponent {
@@ -53,6 +53,7 @@ class Character {
 	private:
 		sf::Vector2f position;
 		sf::Vector2f velocity;
+		sf::Vector2f direction;
 
 		std::shared_ptr<InputComponent> input;
 		std::shared_ptr<PhysicsComponent> physics;

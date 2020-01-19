@@ -9,18 +9,21 @@
 
 class PlayerPhysics : public PhysicsComponent {
 	private:
-	    double previous, jumpTime, current, elapsed, lastup=0;
 		sf::Clock clock;
-		sf::Clock upc;
+		sf::Time lastPhysicsUpdate;
+
+		bool bottomCollision, topCollision, leftCollision, rightCollision;
+		bool hasResistance = false;
+
 		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions) override;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions) override;
 };
 
 class PlayerInput : public InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity) override;
+		virtual void processInput(sf::Vector2f & direction) override;
 };
 
 class PlayerGraphics : public GraphicsComponent {

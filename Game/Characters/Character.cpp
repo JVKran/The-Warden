@@ -8,8 +8,8 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 {}
 
 void Character::update(sf::RenderWindow & window, World & world){
-	input->processInput(velocity);
-	physics->processPhysics(world, position, velocity, graphics->getDimensions());
+	input->processInput(direction);
+	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
 }
 
 void Character::draw(sf::RenderWindow & window, sf::View & view){

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 //#include "AssetManager.hpp"
+#include <iostream>
 
 class SpriteAnimation {
 	private:
@@ -27,8 +28,11 @@ class SpriteAnimation {
 		SpriteAnimation( sf::Sprite & sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, sf::Vector2i scale = sf::Vector2i{1,1}, int missingRow=0, float animationSpeed = 0.1f );
 		void changeStartEndFrame(  sf::Vector2i RC, sf::Vector2i missingRC, bool left);	
 		void draw(sf::RenderWindow & window);
+
 		sf::Vector2f getDimensions() const {
-			return sf::Vector2f(pixelRow * 2, pixelColumn * 2);
+			std::cout << rectSourceSprite.width * 4 << ", " << rectSourceSprite.height * 4 << std::endl;
+			return sf::Vector2f(rectSourceSprite.width * 4, rectSourceSprite.height * 4);
+			//return sf::Vector2f(pixelRow * 2, pixelColumn * 2);
 		}
 		
 };
