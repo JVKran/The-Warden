@@ -10,6 +10,7 @@
 #include "FactoryFunction.hpp"
 #include "Character.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include <memory>
 
 /// \brief

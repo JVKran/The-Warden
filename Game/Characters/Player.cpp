@@ -2,18 +2,9 @@
 
 #include "Player.hpp"
 
-PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData):
-	GraphicsComponent(assetName, assets, characterData),
-	Animation(sprite, assets.getTexture(assetName), sf::Vector2i{350,592}, sf::Vector2i{7,16}, sf::Vector2i{5,5}, 3)
-{
-	// Fill map with actions
-	for( unsigned int i=0; i<characterData.spriteCharacterNames.size();i++){
-		animation[characterData.spriteCharacterNames[i]] = std::vector<sf::Vector2i> {characterData.spriteCharacterAction[i+i], characterData.spriteCharacterAction[i+i+1]};
-	}
-
-	// Start animation with idle
-	Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1], 0);
-}
+PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets):
+	GraphicsComponent(assetName, assets)
+{}
 
 
 void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions){
@@ -138,75 +129,14 @@ void PlayerInput::processInput(sf::Vector2f & velocity, const sf::Vector2f & pos
 /// of the Character to keep the player centered.
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
-	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
-		if(position != previousPosition){
-			switch(state){
-				case states::IDLE: {
-					if(position.y < previousPosition.y){
-						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
-					} else if(position.y > previousPosition.y){
-						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
-					}
-					if (position.x < previousPosition.x){
-						state = states::WALK;
-						isWalkingLeft = true;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-					} else if (position.x > previousPosition.x){
-						state = states::WALK;
-						isWalkingLeft = false;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-					}
-					break;
-				}
-				case states::WALK: {
-					if(position.y < previousPosition.y){
-						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
-					} else if (position.y > previousPosition.y){
-						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
-					}
-					if (position.x < previousPosition.x && !isWalkingLeft){
-						state = states::WALK;
-						isWalkingLeft = true;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-					} else if (position.x > previousPosition.x && isWalkingLeft){
-						state = states::WALK;
-						isWalkingLeft = false;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-					}
-					break;
-				}
-				case states::JUMP: {
-					if(position.y == previousPosition.y){
-						state = states::IDLE;
-						break;
-					}
-				}
-				default: {
-					break;
-				}
-			}
-		} else if(state != states::IDLE){
-			state = states::IDLE;
-			Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1], isWalkingLeft);
-		}
-		previousPosition = position;
-		previousTime = clock.getElapsedTime();
+	if(position.y < 300){
+		view.setCenter(sf::Vector2f(position.x, position.y));
+	} else {
+		view.setCenter(sf::Vector2f(position.x, 300));
 	}
-	if(isPlayer()){
-		if(position.y < 300){
-			view.setCenter(sf::Vector2f(position.x, position.y));
-		} else {
-			view.setCenter(sf::Vector2f(position.x, 300));
-		}
-	}
-	Animation.draw(window);
+	window.draw(sprite);
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
-	//return sf::Vector2f(sprite.getGlobalBounds().width sprite.getGlobalBounds().height);
-	return Animation.getDimensions();
+	return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 }

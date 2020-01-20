@@ -26,12 +26,8 @@ class PlayerInput : public InputComponent {
 };
 
 class PlayerGraphics : public GraphicsComponent {
-	private:
-		SpriteAnimation Animation;	
-		std::map<std::string, std::vector<sf::Vector2i> > animation;
-		std::string lastAnimation;
 	public:
-		PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData);
+		PlayerGraphics(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
 		virtual sf::Vector2f getDimensions() override;

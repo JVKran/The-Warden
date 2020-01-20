@@ -5,19 +5,6 @@
 /// \brief
 /// Create an instance.
 /// \details
-/// This creates a SpriteCharacter based on its parameters.
-/// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
-/// @param spriteCharacterAction No idea.
-/// @param spriteCharacterNames All available actions to perform.
-SpriteCharacter::SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
-	spriteCharacterData(spriteCharacterData),
-	spriteCharacterAction(spriteCharacterAction),
-	spriteCharacterNames(spriteCharacterNames)
-{}
-
-/// \brief
-/// Create an instance.
-/// \details
 /// This creates a Character based on its parameters.
 /// @param position The initial position of the Character.
 /// @param input A shard pointer to an InputComponent.
@@ -60,10 +47,12 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// @param assetName The name of the Texture to retrieve from the AssetManager
 /// @param assets The AssetManager to retrieve textures from.
 /// @param characterData The SpriteCharacter to use for getting the necessary data.
-GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData):
-	characterData(characterData)
-{
+GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets){
 	sprite.setTexture(assets.getTexture(assetName));
+}
+
+sf::Vector2f GraphicsComponent::getDimensions(){
+	return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 }
 
 /// \brief

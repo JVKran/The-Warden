@@ -11,3 +11,12 @@ void EnemyInput::processInput(sf::Vector2f & velocity, const sf::Vector2f & posi
 		}
 	}
 }
+
+EnemyGraphics::EnemyGraphics(const std::string & assetName, AssetManager & assets):
+	GraphicsComponent(assetName, assets)
+{}
+
+void EnemyGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
+	sprite.setPosition(position);
+	window.draw(sprite);
+}

@@ -16,5 +16,12 @@ class EnemyInput : public InputComponent {
 		virtual void processInput(sf::Vector2f & velocity, const sf::Vector2f & position, const std::vector<Character> & characters) override;
 };
 
+class EnemyGraphics : public GraphicsComponent{
+	public:
+		EnemyGraphics(const std::string & assetName, AssetManager & assets);
+
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
+};
+
 
 #endif //__ENEMY_HPP

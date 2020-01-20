@@ -11,19 +11,6 @@
 class Character;
 
 /// \brief
-/// Data needed for SpriteAnimation.
-/// \details
-/// This class contains all data needed for a functioning SpriteAnimation. This just enables the developers
-/// to pass all these vectors in one object instead of all vectors single.
-struct SpriteCharacter {
-	std::vector<sf::Vector2i> spriteCharacterData;
-	std::vector<sf::Vector2i> spriteCharacterAction;
-	std::vector<std::string> spriteCharacterNames;
-
-	SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
-};
-
-/// \brief
 /// Physicscomponent for Characters.
 /// \details
 /// This class is responsible for updating and managing physics for a Character.
@@ -48,22 +35,11 @@ class InputComponent {
 class GraphicsComponent {
 	protected:
 		sf::Sprite sprite;
-		SpriteCharacter characterData;
-
-		sf::Clock clock;
-		sf::Time previousTime;
-
-		sf::Vector2f previousPosition;
-
-		enum class states {IDLE, WALK, JUMP};
-		states state = states::JUMP;
-		bool isIdle = true;
-		bool isWalkingLeft = false;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData);
+		GraphicsComponent(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
-		virtual sf::Vector2f getDimensions() = 0;
+		virtual sf::Vector2f getDimensions();
 };
 
 /// \brief
