@@ -25,7 +25,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) = 0;
+		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) = 0;
 };
 
 /// \brief

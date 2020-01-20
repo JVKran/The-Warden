@@ -115,7 +115,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	}
 }
 
-void PlayerInput::processInput(sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters){
+void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
