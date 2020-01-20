@@ -66,51 +66,188 @@ $(function() {
 <div class="title">Character Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_character.html" title="Character. ">Character</a>.  
+ <a href="class_character.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_character_8hpp_source.html">Character.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a78f2526930528be9054a9d287da7636b"><td class="memItemLeft" align="right" valign="top"><a id="a78f2526930528be9054a9d287da7636b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (sf::Vector2f position, const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, sf::RenderWindow &amp;window)</td></tr>
-<tr class="separator:a78f2526930528be9054a9d287da7636b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fd32781c66fca2d35fa8619c94ac62b"><td class="memItemLeft" align="right" valign="top"><a id="a0fd32781c66fca2d35fa8619c94ac62b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::RenderWindow &amp;window, <a class="el" href="class_world.html">World</a> &amp;world)</td></tr>
+<tr class="memitem:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a3c985f2d7ea4d6f718e8026bcfcdd8bb">Character</a> (sf::Vector2f <a class="el" href="class_character.html#ae052b694df2c91c125174ef6ee64ddc9">position</a>, std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt; <a class="el" href="class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d">input</a>, std::shared_ptr&lt; <a class="el" href="class_physics_component.html">PhysicsComponent</a> &gt; <a class="el" href="class_character.html#adefc0615066a7b4544383e0e214e23be">physics</a>, std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt; <a class="el" href="class_character.html#a9a6b32676483db2aa8a96c2d35dc2957">graphics</a>)</td></tr>
+<tr class="memdesc:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a3c985f2d7ea4d6f718e8026bcfcdd8bb">More...</a><br /></td></tr>
+<tr class="separator:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd32781c66fca2d35fa8619c94ac62b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a0fd32781c66fca2d35fa8619c94ac62b">update</a> (sf::RenderWindow &amp;window, <a class="el" href="class_world.html">World</a> &amp;world)</td></tr>
+<tr class="memdesc:a0fd32781c66fca2d35fa8619c94ac62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a0fd32781c66fca2d35fa8619c94ac62b">More...</a><br /></td></tr>
 <tr class="separator:a0fd32781c66fca2d35fa8619c94ac62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a891042a5f9ba38a4ab98d79e32a590b9"><td class="memItemLeft" align="right" valign="top"><a id="a891042a5f9ba38a4ab98d79e32a590b9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>attack</b> ()</td></tr>
 <tr class="separator:a891042a5f9ba38a4ab98d79e32a590b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a63f9c964bc8286f691fa3eec7ad77"><td class="memItemLeft" align="right" valign="top"><a id="a45a63f9c964bc8286f691fa3eec7ad77"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
-<tr class="separator:a45a63f9c964bc8286f691fa3eec7ad77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a5c7a465e30c60e5ef88622fa8a122e4c">draw</a> (sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
+<tr class="memdesc:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a5c7a465e30c60e5ef88622fa8a122e4c">More...</a><br /></td></tr>
+<tr class="separator:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae052b694df2c91c125174ef6ee64ddc9"><td class="memItemLeft" align="right" valign="top"><a id="ae052b694df2c91c125174ef6ee64ddc9"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae052b694df2c91c125174ef6ee64ddc9">position</a></td></tr>
+<tr class="memdesc:ae052b694df2c91c125174ef6ee64ddc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Position of the <a class="el" href="class_character.html" title="Character. ">Character</a> in the world. <br /></td></tr>
 <tr class="separator:ae052b694df2c91c125174ef6ee64ddc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1be10a2441d9fd85c0ad4829569cef6"><td class="memItemLeft" align="right" valign="top"><a id="ab1be10a2441d9fd85c0ad4829569cef6"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab1be10a2441d9fd85c0ad4829569cef6">velocity</a></td></tr>
+<tr class="memdesc:ab1be10a2441d9fd85c0ad4829569cef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Velocity of the <a class="el" href="class_character.html" title="Character. ">Character</a> in the world. <br /></td></tr>
 <tr class="separator:ab1be10a2441d9fd85c0ad4829569cef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21db77d807d0997e26a6692bf46cc251"><td class="memItemLeft" align="right" valign="top"><a id="a21db77d807d0997e26a6692bf46cc251"></a>
-sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
-<tr class="separator:a21db77d807d0997e26a6692bf46cc251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b5ff72469564423d6a8cba33fb0aac"><td class="memItemLeft" align="right" valign="top"><a id="a27b5ff72469564423d6a8cba33fb0aac"></a>
-<a class="el" href="class_player_input.html">PlayerInput</a>&#160;</td><td class="memItemRight" valign="bottom"><b>input</b></td></tr>
-<tr class="separator:a27b5ff72469564423d6a8cba33fb0aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd223521bbe0835346841dddb0b4dc01"><td class="memItemLeft" align="right" valign="top"><a id="acd223521bbe0835346841dddb0b4dc01"></a>
-<a class="el" href="class_player_physics.html">PlayerPhysics</a>&#160;</td><td class="memItemRight" valign="bottom"><b>physics</b></td></tr>
-<tr class="separator:acd223521bbe0835346841dddb0b4dc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb19e46c4fd50479133bc88ce8b80e96"><td class="memItemLeft" align="right" valign="top"><a id="abb19e46c4fd50479133bc88ce8b80e96"></a>
-<a class="el" href="class_player_graphics.html">PlayerGraphics</a>&#160;</td><td class="memItemRight" valign="bottom"><b>graphics</b></td></tr>
-<tr class="separator:abb19e46c4fd50479133bc88ce8b80e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb1a27ac8aba4f7b7f88d4fd30aa263d"><td class="memItemLeft" align="right" valign="top"><a id="afb1a27ac8aba4f7b7f88d4fd30aa263d"></a>
+std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d">input</a></td></tr>
+<tr class="memdesc:afb1a27ac8aba4f7b7f88d4fd30aa263d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A smart pointer to an on the heap allocated <a class="el" href="class_input_component.html" title="Inputcomponent for Characters. ">InputComponent</a>. <br /></td></tr>
+<tr class="separator:afb1a27ac8aba4f7b7f88d4fd30aa263d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefc0615066a7b4544383e0e214e23be"><td class="memItemLeft" align="right" valign="top"><a id="adefc0615066a7b4544383e0e214e23be"></a>
+std::shared_ptr&lt; <a class="el" href="class_physics_component.html">PhysicsComponent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#adefc0615066a7b4544383e0e214e23be">physics</a></td></tr>
+<tr class="memdesc:adefc0615066a7b4544383e0e214e23be"><td class="mdescLeft">&#160;</td><td class="mdescRight">A smart pointer to an on the heap allocated <a class="el" href="class_physics_component.html" title="Physicscomponent for Characters. ">PhysicsComponent</a>. <br /></td></tr>
+<tr class="separator:adefc0615066a7b4544383e0e214e23be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6b32676483db2aa8a96c2d35dc2957"><td class="memItemLeft" align="right" valign="top"><a id="a9a6b32676483db2aa8a96c2d35dc2957"></a>
+std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a9a6b32676483db2aa8a96c2d35dc2957">graphics</a></td></tr>
+<tr class="memdesc:a9a6b32676483db2aa8a96c2d35dc2957"><td class="mdescLeft">&#160;</td><td class="mdescRight">A smart pointer to an on the heap allocated <a class="el" href="class_graphics_component.html" title="Graphicscomponent for Characters. ">GraphicsComponent</a>. <br /></td></tr>
+<tr class="separator:a9a6b32676483db2aa8a96c2d35dc2957"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
+<p>This class features a <a class="el" href="class_character.html" title="Character. ">Character</a>. Every character is the same, except for the (possibly) different components. The functioning of a <a class="el" href="class_character.html" title="Character. ">Character</a> is defined completely in its components; The component pattern has been used here. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3c985f2d7ea4d6f718e8026bcfcdd8bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c985f2d7ea4d6f718e8026bcfcdd8bb">&#9670;&nbsp;</a></span>Character()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Character::Character </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt;&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_physics_component.html">PhysicsComponent</a> &gt;&#160;</td>
+          <td class="paramname"><em>physics</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt;&#160;</td>
+          <td class="paramname"><em>graphics</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an instance. </p>
+<p>This creates a <a class="el" href="class_character.html" title="Character. ">Character</a> based on its parameters. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The initial position of the <a class="el" href="class_character.html" title="Character. ">Character</a>. </td></tr>
+    <tr><td class="paramname">input</td><td>A shard pointer to an <a class="el" href="class_input_component.html" title="Inputcomponent for Characters. ">InputComponent</a>. </td></tr>
+    <tr><td class="paramname">physics</td><td>A shaared pointer to a <a class="el" href="class_physics_component.html" title="Physicscomponent for Characters. ">PhysicsComponent</a>. </td></tr>
+    <tr><td class="paramname">graphics</td><td>A shared pointer to a <a class="el" href="class_graphics_component.html" title="Graphicscomponent for Characters. ">GraphicsComponent</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5c7a465e30c60e5ef88622fa8a122e4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c7a465e30c60e5ef88622fa8a122e4c">&#9670;&nbsp;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Character::draw </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::View &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
+<p>This function draws the Characte in the RenderWindow. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow to render the <a class="el" href="class_character.html" title="Character. ">Character</a> to. </td></tr>
+    <tr><td class="paramname">world</td><td>The <a class="el" href="class_world.html" title="World. ">World</a> to perform physics calculations on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0fd32781c66fca2d35fa8619c94ac62b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd32781c66fca2d35fa8619c94ac62b">&#9670;&nbsp;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Character::update </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
+<p>This function processes the input and physics of the <a class="el" href="class_character.html" title="Character. ">Character</a> by calling functions of their underlying components (<a class="el" href="class_input_component.html" title="Inputcomponent for Characters. ">InputComponent</a> and <a class="el" href="class_physics_component.html" title="Physicscomponent for Characters. ">PhysicsComponent</a>). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow to render the <a class="el" href="class_character.html" title="Character. ">Character</a> to. </td></tr>
+    <tr><td class="paramname">world</td><td>The <a class="el" href="class_world.html" title="World. ">World</a> to perform physics calculations on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_character_8hpp_source.html">Character.hpp</a></li>
-<li>Character.cpp</li>
+<li><a class="el" href="_character_8cpp.html">Character.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 20:29:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 20 2020 09:17:48 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

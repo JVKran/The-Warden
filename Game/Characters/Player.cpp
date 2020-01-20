@@ -1,7 +1,8 @@
+/// @file
+
 #include "Player.hpp"
 
-
-PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, spriteCharacter & characterData):
+PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 	GraphicsComponent(assetName, assets, characterData),
 	Animation(sprite, assets.getTexture(assetName), sf::Vector2i{350,592}, sf::Vector2i{7,16}, sf::Vector2i{5,5}, 3)
 {
@@ -130,6 +131,11 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 	}
 }
 
+/// \brief
+/// Draw the Character.
+/// \details
+/// This function draws the Characte in the RenderWindow and sets the View to the position
+/// of the Character to keep the player centered.
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){

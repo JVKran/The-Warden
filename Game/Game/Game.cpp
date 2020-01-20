@@ -1,5 +1,13 @@
+/// @file
+
 #include "Game.hpp"
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
+/// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
+/// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
 Game::Game(const std::string & objectConfigurationFile):
 	world(assets),
 	editor(assets)
@@ -13,16 +21,28 @@ Game::Game(const std::string & objectConfigurationFile):
 	window.setVerticalSyncEnabled(1);
 }
 
+/// \brief
+/// Start playing.
+/// \details
+/// This starts a game by loading the world and changing the state to PLAYING.
 void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 	state = states::PLAYING;
 }
 
+/// \brief
+/// Start editing.
+/// \details
+/// This starts editing a world by selecing a world to edit and chaning the state to EDITING.
 void Game::editWorld(const std::string & worldName){
 	editor.selectWorld(worldName);
 	state = states::EDITING;
 }
 
+/// \brief
+/// Hanlde input.
+/// \details
+/// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(){
 	switch(state){
 		case states::EDITING: {
@@ -55,16 +75,20 @@ void Game::handleInput(){
 	}
 }
 
+/// \brief
+/// Display the game.
+/// \details
+/// This displays the current state of the game on screen.
 void Game::display(){
 	window.clear();
 	switch(state){
 		case states::PLAYING: {
-			world.draw(window, view, 0);
-			world.draw(window, view, 1);
+			world.draw(window, view, 0);				// First draw layer 0 of the world.
+			world.draw(window, view, 1);				// Then the first layer.
 			for(auto & character : characters){
-				character.draw(window, view);
+				character.draw(window, view);			// Then all characters.
 			}
-			world.draw(window, view, 2);
+			world.draw(window, view, 2);				// Finaly, draw one more layer that's also able to draw over Characters.
 			break;
 		}
 		case states::EDITING: {
@@ -80,6 +104,10 @@ void Game::display(){
 }
 
 
+/// \brief
+/// Load characters
+/// \details
+/// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::ifstream charactersFile("Characters/characters.txt");
 	if(!charactersFile){
@@ -88,7 +116,7 @@ void Game::loadCharacters(){
 	std::vector<sf::Vector2i> spritePlayerData;
 	std::vector<sf::Vector2i> spritePlayerAction;
 	std::vector<std::string> spritePlayerNames;
-	spriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
 	while (!isEmpty(charactersFile)){
 		bool data, action, names, textureName;
 		sf::Vector2i position;
@@ -138,7 +166,7 @@ void Game::loadCharacters(){
 			// std::cout << readName << std::endl;
 			// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
 			// spritePlayerNames = {"idle","slide", "walk", "jump"};
-			characterData = spriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
+			characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
 			data = true;
 			textureName = false;
 			if(readName == "player"){

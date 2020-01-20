@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['collidable',['collidable',['../class_screen_object.html#a67ef5d2882e7c7f7d86dd207f26c26eb',1,'ScreenObject']]]
+  ['collidable',['collidable',['../class_tile.html#ae399354876c1b90b2bf4157334e4238d',1,'Tile']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['view',['view',['../class_world.html#ab3bf78fa3d091bdec0d60d6b74cc33a3',1,'World::view()'],['../class_editor.html#afda048d7d0fd7595168c88aa9d532d59',1,'Editor::view()']]]
+  ['physics',['physics',['../class_character.html#adefc0615066a7b4544383e0e214e23be',1,'Character']]],
+  ['position',['position',['../class_character.html#ae052b694df2c91c125174ef6ee64ddc9',1,'Character']]]
 ];

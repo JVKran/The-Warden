@@ -60,6 +60,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_player_graphics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PlayerGraphics Class Reference</div>  </div>
@@ -71,41 +72,128 @@ Inheritance diagram for PlayerGraphics:</div>
  <div class="center">
   <img src="class_player_graphics.png" usemap="#PlayerGraphics_map" alt=""/>
   <map id="PlayerGraphics_map" name="PlayerGraphics_map">
-<area href="class_graphics_component.html" alt="GraphicsComponent" shape="rect" coords="0,0,126,24"/>
+<area href="class_graphics_component.html" title="Graphicscomponent for Characters. " alt="GraphicsComponent" shape="rect" coords="0,0,126,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="memItemLeft" align="right" valign="top"><a id="a306c8503eb5a4f860f0e6b3fc9040f8b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerGraphics</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
-<tr class="separator:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fd47b49e518bdbfc35b925fcb445012"><td class="memItemLeft" align="right" valign="top"><a id="a5fd47b49e518bdbfc35b925fcb445012"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processGraphics</b> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;position) override</td></tr>
-<tr class="separator:a5fd47b49e518bdbfc35b925fcb445012"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa94b6db8e458d4f4fbedc31c8c16687"><td class="memItemLeft" align="right" valign="top"><a id="afa94b6db8e458d4f4fbedc31c8c16687"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> ()</td></tr>
-<tr class="separator:afa94b6db8e458d4f4fbedc31c8c16687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e6839d1a40c7225341aaf20dba330d"><td class="memItemLeft" align="right" valign="top"><a id="a58e6839d1a40c7225341aaf20dba330d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerGraphics</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, <a class="el" href="struct_sprite_character.html">SpriteCharacter</a> &amp;characterData)</td></tr>
+<tr class="separator:a58e6839d1a40c7225341aaf20dba330d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8cdbf23d1a6b643972be2a5065f5571"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571">processGraphics</a> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;position, sf::View &amp;view) override</td></tr>
+<tr class="memdesc:ae8cdbf23d1a6b643972be2a5065f5571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#ae8cdbf23d1a6b643972be2a5065f5571">More...</a><br /></td></tr>
+<tr class="separator:ae8cdbf23d1a6b643972be2a5065f5571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1cd670043741ae82e892422b4c72967"><td class="memItemLeft" align="right" valign="top"><a id="af1cd670043741ae82e892422b4c72967"></a>
+virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> () override</td></tr>
+<tr class="separator:af1cd670043741ae82e892422b4c72967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_graphics_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_graphics_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_graphics_component.html">GraphicsComponent</a></td></tr>
-<tr class="memitem:ac67ce02617b691a71f320264c9127c35 inherit pub_methods_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="ac67ce02617b691a71f320264c9127c35"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GraphicsComponent</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
-<tr class="separator:ac67ce02617b691a71f320264c9127c35 inherit pub_methods_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e6c89591d333134b50b434bb26dac7 inherit pub_methods_class_graphics_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_component.html#aa3e6c89591d333134b50b434bb26dac7">GraphicsComponent</a> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, <a class="el" href="struct_sprite_character.html">SpriteCharacter</a> &amp;characterData)</td></tr>
+<tr class="memdesc:aa3e6c89591d333134b50b434bb26dac7 inherit pub_methods_class_graphics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="class_graphics_component.html#aa3e6c89591d333134b50b434bb26dac7">More...</a><br /></td></tr>
+<tr class="separator:aa3e6c89591d333134b50b434bb26dac7 inherit pub_methods_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a683c845667c517b473721bf67e5c797c"><td class="memItemLeft" align="right" valign="top"><a id="a683c845667c517b473721bf67e5c797c"></a>
+<a class="el" href="class_sprite_animation.html">SpriteAnimation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Animation</b></td></tr>
+<tr class="separator:a683c845667c517b473721bf67e5c797c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c54b72b2b3b42e4db9bc0c260cf2795"><td class="memItemLeft" align="right" valign="top"><a id="a3c54b72b2b3b42e4db9bc0c260cf2795"></a>
+std::map&lt; std::string, std::vector&lt; sf::Vector2i &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>animation</b></td></tr>
+<tr class="separator:a3c54b72b2b3b42e4db9bc0c260cf2795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cfa225af2a113aa520d2a3dcc754299"><td class="memItemLeft" align="right" valign="top"><a id="a3cfa225af2a113aa520d2a3dcc754299"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lastAnimation</b></td></tr>
+<tr class="separator:a3cfa225af2a113aa520d2a3dcc754299"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_types_class_graphics_component"><td colspan="2" onclick="javascript:toggleInherit('pro_types_class_graphics_component')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="class_graphics_component.html">GraphicsComponent</a></td></tr>
+<tr class="memitem:a3cbaa2443dd2e40b8dad5a58abdad355 inherit pro_types_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a3cbaa2443dd2e40b8dad5a58abdad355"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>states</b> { <b>IDLE</b>, 
+<b>WALK</b>, 
+<b>JUMP</b>
+ }</td></tr>
+<tr class="separator:a3cbaa2443dd2e40b8dad5a58abdad355 inherit pro_types_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_graphics_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_graphics_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_graphics_component.html">GraphicsComponent</a></td></tr>
 <tr class="memitem:a2e37c3d34d8b09db5b22fc439390e525 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a2e37c3d34d8b09db5b22fc439390e525"></a>
 sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td></tr>
 <tr class="separator:a2e37c3d34d8b09db5b22fc439390e525 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00acf8c48a1561f3637beece8a622772 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a00acf8c48a1561f3637beece8a622772"></a>
+<a class="el" href="struct_sprite_character.html">SpriteCharacter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>characterData</b></td></tr>
+<tr class="separator:a00acf8c48a1561f3637beece8a622772 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5118540e07d8f24f3f776b0f871c412 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="aa5118540e07d8f24f3f776b0f871c412"></a>
+sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
+<tr class="separator:aa5118540e07d8f24f3f776b0f871c412 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2e8c83de03d3c87cedc30a3ab96d33d inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="ab2e8c83de03d3c87cedc30a3ab96d33d"></a>
+sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>previousTime</b></td></tr>
+<tr class="separator:ab2e8c83de03d3c87cedc30a3ab96d33d inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bcd99315c0543c8bc3e08a233f5ba50 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a0bcd99315c0543c8bc3e08a233f5ba50"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>previousPosition</b></td></tr>
+<tr class="separator:a0bcd99315c0543c8bc3e08a233f5ba50 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7020ce29474d4ffa5b6159228cb0d853 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a7020ce29474d4ffa5b6159228cb0d853"></a>
+states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::JUMP</td></tr>
+<tr class="separator:a7020ce29474d4ffa5b6159228cb0d853 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f477bf0db2061c02be97c99cdf162a inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="af7f477bf0db2061c02be97c99cdf162a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIdle</b> = true</td></tr>
+<tr class="separator:af7f477bf0db2061c02be97c99cdf162a inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c526f08ed34a5b3104edde25cf733e6 inherit pro_attribs_class_graphics_component"><td class="memItemLeft" align="right" valign="top"><a id="a2c526f08ed34a5b3104edde25cf733e6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = false</td></tr>
+<tr class="separator:a2c526f08ed34a5b3104edde25cf733e6 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae8cdbf23d1a6b643972be2a5065f5571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8cdbf23d1a6b643972be2a5065f5571">&#9670;&nbsp;</a></span>processGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerGraphics::processGraphics </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::View &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
+<p>This function draws the Characte in the RenderWindow and sets the View to the position of the <a class="el" href="class_character.html" title="Character. ">Character</a> to keep the player centered. </p>
+
+<p>Implements <a class="el" href="class_graphics_component.html">GraphicsComponent</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_character_8hpp_source.html">Character.hpp</a></li>
-<li>Character.cpp</li>
+<li><a class="el" href="_player_8hpp_source.html">Player.hpp</a></li>
+<li><a class="el" href="_player_8cpp.html">Player.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 16 2020 20:29:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 20 2020 09:17:48 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
