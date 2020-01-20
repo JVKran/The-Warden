@@ -12,9 +12,10 @@
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-Editor::Editor( AssetManager & assets ):
+Editor::Editor( sf::RenderWindow & window, AssetManager & assets ):
 	assets( assets ),
-	world( assets )
+	world( assets ),
+	window( window )
 {
 	loadObjects();
 }
@@ -32,11 +33,11 @@ void Editor::editingDone(){
 /// \details
 /// This function draws both, the editor and world to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
-void Editor::draw(sf::RenderWindow & window, sf::View & view){
+void Editor::draw(sf::View & view){
 	for(int_fast8_t windowLayer = 0; windowLayer <= 4; windowLayer++){
 		world.draw( window, view, windowLayer );
 	}
-	drawTileBar( window, view );
+	drawTileBar( view );
 }
 
 /// \brief
@@ -44,7 +45,7 @@ void Editor::draw(sf::RenderWindow & window, sf::View & view){
 /// \details
 /// This function draws all available tiles to choose from to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
-void Editor::drawTileBar( sf::RenderWindow & window, sf::View & view ){
+void Editor::drawTileBar( sf::View & view ){
 	for( const auto & object : objects ){
 		if(object.getPosition().x + 100 > view.getCenter().x-view.getSize().x && object.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			object.draw(window);
@@ -59,7 +60,7 @@ void Editor::drawTileBar( sf::RenderWindow & window, sf::View & view ){
 /// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
 /// @param window The window to use for determining the absolute position of the mouseclicks.
-void Editor::handleInput(sf::RenderWindow & window, const sf::Event & event, sf::View & view){
+void Editor::handleInput(const sf::Event & event, sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);

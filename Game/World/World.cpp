@@ -17,7 +17,9 @@ bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWi
 /// @param view The view to use for scrolling through the world.
 World::World(AssetManager & assets):
 	assets(assets)
-{}
+{
+	std::cout << "World constructed" << std::endl;
+}
 
 /// \brief
 /// Load world from configuration.

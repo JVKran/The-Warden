@@ -10,11 +10,11 @@
 /// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
 Game::Game(sf::RenderWindow & window, AssetManager & assets):
 	world(assets),
-	editor(assets),
 	window(window)
 {			//"Assets/objects.txt"
 	loadCharacters();
-	window.setVerticalSyncEnabled(1);
+	window.setFramerateLimit(60);
+	//window.setVerticalSyncEnabled(1);
 }
 
 /// \brief
@@ -23,16 +23,6 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets):
 /// This starts a game by loading the world and changing the state to PLAYING.
 void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
-	state = states::PLAYING;
-}
-
-/// \brief
-/// Start editing.
-/// \details
-/// This starts editing a world by selecing a world to edit and chaning the state to EDITING.
-void Game::editWorld(const std::string & worldName){
-	editor.selectWorld(worldName);
-	state = states::EDITING;
 }
 
 /// \brief
@@ -40,23 +30,8 @@ void Game::editWorld(const std::string & worldName){
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(const sf::Event & event){
-	switch(state){
-		case states::EDITING: {
-			editor.handleInput(window, event, view);
-			break;
-		}
-		case states::PLAYING: {
-			for(auto & character : characters){
-				character.update(window, world, characters);
-				// if(!character.isAlive()){
-				// 	characters.erase(std::find(characters.begin(), characters.end(), character));
-				// }
-			}
-			break;
-		}
-		default: {
-			break;
-		}
+	for(auto & character : characters){
+		character.update(window, world, characters);
 	}
 }
 
@@ -64,26 +39,14 @@ void Game::handleInput(const sf::Event & event){
 /// Display the game.
 /// \details
 /// This displays the current state of the game on screen.
-void Game::display(){
-	switch(state){
-		case states::PLAYING: {
-			world.draw(window, view, 0);				// First draw layer 0 of the world.
-			world.draw(window, view, 1);				// Then the first layer.
-			for(auto & character : characters){
-				character.draw(window, view);			// Then all characters.
-			}
-			for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
-				world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
-			}
-			break;
-		}
-		case states::EDITING: {
-			editor.draw(window, view);
-			break;
-		}
-		default: {
-			break;
-		}
+void Game::display(sf::View & view){
+	world.draw(window, view, 0);				// First draw layer 0 of the world.
+	world.draw(window, view, 1);				// Then the first layer.
+	for(auto & character : characters){
+		character.draw(window, view);			// Then all characters.
+	}
+	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
+		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
 	window.setView(view);
 }

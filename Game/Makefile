@@ -1,8 +1,8 @@
-SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp Character.cpp Game.cpp Player.cpp SpriteAnimation.cpp Enemy.cpp Interface.cpp
+SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp Character.cpp Game.cpp Player.cpp SpriteAnimation.cpp Enemy.cpp Interface.cpp StateMachine.cpp
 
-HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp Game.hpp Player.hpp SpriteAnimation.hpp Enemy.hpp Interface.hpp Exceptions.hpp
+HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp Game.hpp Player.hpp SpriteAnimation.hpp Enemy.hpp Interface.hpp StateMachine.hpp Exceptions.hpp
 
-SEARCH  := AI Assets Editor Entities Physics World Characters Game Interface ..
+SEARCH  := AI Assets Editor Entities Physics World Characters Game Interface State ..
 
 RELATIVE := ..
 include $(RELATIVE)/Makefile.native

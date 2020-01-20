@@ -23,14 +23,9 @@ class Game {
 	private:
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
-		Editor editor;							//!< The Editor to edit World 's with.'
 		
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 		sf::RenderWindow & window;
-		sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
-
-		enum class states {PLAYING, EDITING, PAUSED};
-		states state = states::PAUSED;
 
 		void loadCharacters();
 	public:
@@ -40,10 +35,9 @@ class Game {
 		}
 
 		void startWorld(const std::string & worldName);
-		void editWorld(const std::string & worldName);
 
 		void handleInput(const sf::Event & event);
-		void display();
+		void display(sf::View & view);
 };
 
 
