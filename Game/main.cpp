@@ -49,3 +49,5 @@ int main(){
 
 	return 0;
 }
+
+//(1920,1080) (5,3) (1,1) (1,0) | (0,0) (1,2) | idle | waterBubble
