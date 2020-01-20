@@ -26,7 +26,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -8));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -2));
 	for(const auto & tile : tiles){
 
         tileBounds = tile.getBounds();
@@ -60,7 +60,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 		case (states::STANDING):
 			if(direction.y < 0){
 				state = states::JUMPING;
-				velocity.y = -5;
+				velocity.y = -7;
 				break;
 			}
 			if(!bottomCollision){
