@@ -22,7 +22,7 @@ class PlayerPhysics : public PhysicsComponent {
 
 class PlayerInput : public InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity) override;
+		virtual void processInput(sf::Vector2f & velocity, const std::vector<Character> & characters) override;
 };
 
 class PlayerGraphics : public GraphicsComponent {

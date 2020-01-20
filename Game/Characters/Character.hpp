@@ -8,6 +8,8 @@
 #include "SpriteAnimation.hpp"
 #include <memory>
 
+class Character;
+
 /// \brief
 /// Data needed for SpriteAnimation.
 /// \details
@@ -36,7 +38,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity) = 0;
+		virtual void processInput(sf::Vector2f & velocity, const std::vector<Character> & characters) = 0;
 };
 
 /// \brief
@@ -80,7 +82,7 @@ class Character {
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics);
 
-		void update(sf::RenderWindow & window, World & world);
+		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 

@@ -51,7 +51,7 @@ void Game::handleInput(){
 		}
 		case states::PLAYING: {
 			for(auto & character : characters){
-				character.update(window, world);
+				character.update(window, world, characters);
 			}
 			break;
 		}

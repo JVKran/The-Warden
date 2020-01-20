@@ -37,8 +37,8 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
-void Character::update(sf::RenderWindow & window, World & world){
-	input->processInput(velocity);
+void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
+	input->processInput(velocity, characters);
 	physics->processPhysics(world, position, velocity, graphics->getDimensions());
 }
 
