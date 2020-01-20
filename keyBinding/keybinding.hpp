@@ -40,6 +40,8 @@ public:
 
 	std::string getText();
 
+	void setColor(sf::Color color);
+
 	void draw( sf::RenderWindow & window );
 
 };

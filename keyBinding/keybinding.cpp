@@ -4,7 +4,6 @@
 #include "tekst.hpp"
 #include "keybinding.hpp"
 
-
 KeyBinding::KeyBinding( std::string keyName, sf::Keyboard::Key key, Text text ):
 	keyName{ keyName },
 	key{ key },
@@ -51,6 +50,10 @@ void KeyBinding::setText( std::string newName ){
 
 std::string KeyBinding::getText(){
 	return text.getText();
+}
+
+void KeyBinding::setColor(sf::Color color){
+	text.setColor(color);
 }
 
 void KeyBinding::draw( sf::RenderWindow & window ){

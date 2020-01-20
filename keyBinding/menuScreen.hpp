@@ -35,6 +35,14 @@ int MenuScreen::Run( sf::RenderWindow & window ){
 
 	while ( Running ){
 
+		for( auto & p : objects ){
+			if(p.contains( sf::Mouse::getPosition(window))){
+				p.setColor( sf::Color::Blue );	
+			}else{
+				p.setColor( sf::Color::Red );
+			}
+		}
+
 		while( window.pollEvent(event) ){
 			if (event.type == sf::Event::Closed){
 				return -1;

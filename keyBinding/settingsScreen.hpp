@@ -9,6 +9,13 @@
 #include "action.hpp"
 #include "tekst.hpp"
 #include "bindings.hpp"
+#include "keybinding.hpp"
+
+enum class State
+{
+    IDLE,
+    CHANGEKEY
+};
 
 class SettingsScreen : public cScreen {
 private:
@@ -26,56 +33,72 @@ SettingsScreen::SettingsScreen(void){
 
 int SettingsScreen::Run( sf::RenderWindow & window ){
 	sf::Event event;
+	State state = State::IDLE;
 	bool Running = true;
+	uint selectedKey = 0;
 
 	Text backButton = { "Back", sf::Vector2f{50.0, 440.0}, 1.0, sf::Color::Red};
 
 	while ( Running ){
 
 		while( window.pollEvent(event) ){
-			if (event.type == sf::Event::Closed){
-				return -1;
-			}else if(event.type == sf::Event::KeyPressed){
 
-				if(event.key.code == sf::Keyboard::Escape){
-					return 0;
-				}else if(event.key.code == sf::Keyboard::P){
-					Bindings[0].setKey(event.key.code);
-				}
+			switch(state){
+				case State::IDLE: {
 
-			}else if( event.type == sf::Event::MouseButtonPressed){
+					for( auto & key : Bindings ){
+						key.contains( sf::Mouse::getPosition(window)) ? key.setColor( sf::Color::Blue ) : key.setColor( sf::Color::Red );
+					}
 
-				if (event.mouseButton.button == sf::Mouse::Left){
-					if(backButton.contains( sf::Mouse::getPosition(window))){
+					backButton.contains( sf::Mouse::getPosition(window)) ? backButton.setColor( sf::Color::Blue ) : backButton.setColor( sf::Color::Red );
+
+					if( event.type == sf::Event::Closed ){
+						return -1;
+					}else if( sf::Keyboard::isKeyPressed(sf::Keyboard::Escape )){
 						return 0;
-					}else{
-						for( auto & p : Bindings ){
-							if(p.contains( sf::Mouse::getPosition(window))){
-								bool check = true;
-								while(check){
-
-									sf::sleep( sf::milliseconds( 10 ));
-
-									while( window.pollEvent(event)){
-										if(event.type == sf::Event::KeyPressed){
-											if(event.key.code == sf::Keyboard::A){
-												p.setKey(sf::Keyboard::A);
-												check = false;
-											}else{
-												p.setKey(event.key.code);
-												check = false;
-											}
-										}else if( event.type == sf::Event::MouseButtonPressed){
-											if (event.mouseButton.button == sf::Mouse::Left){
-												check = false;
-											}
-										}
-									}
+					}else if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){
+						if( backButton.contains( sf::Mouse::getPosition(window)) ){
+							return 0;
+						}else{
+							uint counter = 0;
+							for( KeyBinding & keyRef : Bindings ){
+								if( keyRef.contains( sf::Mouse::getPosition(window)) ){
+									keyRef.setColor( sf::Color::Blue );
+									selectedKey = counter;
+									state = State::CHANGEKEY;
 								}
+								counter++;
 							}
 						}
-					}
+					}			
+
+					break;
 				}
+				case State::CHANGEKEY: {
+					if( event.type == sf::Event::Closed ){
+						return -1;
+					}else if( event.type == sf::Event::KeyPressed ){
+						bool usedKey = false;
+						for( KeyBinding & keyRef : Bindings ){
+							if(event.key.code == keyRef.getKey()){
+								usedKey = true;
+
+							}
+						}
+						if( event.key.code == sf::Keyboard::A && !usedKey){
+							Bindings[selectedKey].setKey(sf::Keyboard::A);
+							state = State::IDLE;
+						}else if(event.key.code && !usedKey){
+							Bindings[selectedKey].setKey(event.key.code);
+							state = State::IDLE;
+						}
+					}else if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){
+						state = State::IDLE;
+					}
+
+					break;
+				}
+
 			}
 		}
 
@@ -89,7 +112,7 @@ int SettingsScreen::Run( sf::RenderWindow & window ){
 
 		window.display();
 
-		sf::sleep( sf::milliseconds( 10 ));
+		sf::sleep( sf::milliseconds( 20 ));
 	}
 
 	return -1;

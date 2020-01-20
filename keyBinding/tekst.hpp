@@ -35,6 +35,8 @@ public:
 		);
 	}
 
+	void setColor(sf::Color color);
+
 };
 
 #endif

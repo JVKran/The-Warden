@@ -42,3 +42,7 @@ bool Text::contains( const sf::Vector2f& object ) const {
 bool Text::contains( const sf::Vector2i& object ){
 	return text.getGlobalBounds().contains( castToF(object) );
 }
+
+void Text::setColor(sf::Color newColor){
+	color = newColor;
+}
