@@ -60,7 +60,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 		case (states::STANDING):
 			if(direction.y < 0){
 				state = states::JUMPING;
-				velocity.y = -7;
+				velocity.y = -6;
 				break;
 			}
 			if(!bottomCollision){
