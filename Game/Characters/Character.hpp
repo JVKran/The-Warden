@@ -27,7 +27,7 @@ struct SpriteCharacter {
 /// This class is responsible for updating and managing physics for a Character.
 class PhysicsComponent {
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, const sf::Vector2f & dimensions) = 0;
+		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions) = 0;
 };
 
 /// \brief
@@ -36,7 +36,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity) = 0;
+		virtual void processInput(sf::Vector2f & direction) = 0;
 };
 
 /// \brief
@@ -71,8 +71,9 @@ class GraphicsComponent {
 /// The functioning of a Character is defined completely in its components; The component pattern has been used here.
 class Character {
 	private:
-		sf::Vector2f position;							//!< The Position of the Character in the world.
-		sf::Vector2f velocity;							//!< The Velocity of the Character in the world.
+		sf::Vector2f position;
+		sf::Vector2f velocity;
+		sf::Vector2f direction;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.

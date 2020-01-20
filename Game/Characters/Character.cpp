@@ -38,8 +38,8 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world){
-	input->processInput(velocity);
-	physics->processPhysics(world, position, velocity, graphics->getDimensions());
+	input->processInput(direction);
+	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
 }
 
 /// \brief
@@ -50,6 +50,12 @@ void Character::update(sf::RenderWindow & window, World & world){
 /// @param world The World to perform physics calculations on.
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
+	// debug draw hitbox
+	//window.display();
 }
 
 /// \brief

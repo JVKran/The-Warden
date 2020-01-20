@@ -16,34 +16,24 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 }
 
 
-void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &  velocity, const sf::Vector2f & dimensions){
+void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions){
 
-	if(clock.getElapsedTime().asMilliseconds()-lastup>2){
+	if(clock.getElapsedTime().asMilliseconds() - lastup.asMilliseconds() > 2){
 	
 	
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
-	bool leftCollision=0, rightCollision=0, bottomCollision=0,topCollision=0;
-	int jumplen=700;
-	float jumpacc=-5;
-	bool iswater=0;
-	float fallacc=5;
+	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
-	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y-2));
+	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
 	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -8));
-
 	for(const auto & tile : tiles){
 
         tileBounds = tile.getBounds();
-		if(tile.getName()=="water1"||tile.getName()=="tree2"){
-			
-			tileBounds.top+=50;
-			
-			if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
-			iswater=1;
-			
-       		}
-			 
+		if(tile.getName()=="water1"){
+			if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
+				hasResistance += true;
+       		} 
 		}
         if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
         	bottomCollision += tileBounds.intersects(bottomHitbox); 
@@ -54,36 +44,24 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
        }
     }
 
-
-    if(leftCollision && velocity.x < 0){
-		velocity.x = 0;
-	}
-	
-	if(rightCollision && velocity.x > 0){
-		velocity.x = 0;
-	}
-	if(iswater==1){
-		velocity.x=velocity.x/2;
-			}
-
-	switch (state){
+    switch (state){
 		case (states::FALLING): {
 			if(bottomCollision){
 				state = states::STANDING;
 				velocity.y = 0;
 			} else {
-				velocity.y = fallacc;
+				if(velocity.y < 4){
+					velocity.y += 0.09;
+				}
 			}
 			
 			break;
 		}
 		case (states::STANDING):
-			if(velocity.y < 0){
+			if(direction.y < 0){
 				state = states::JUMPING;
-				current = (clock.getElapsedTime().asMilliseconds());
-				previous = current;
-				velocity.y = jumpacc;
-				//break;
+				velocity.y = -5;
+				break;
 			}
 			if(!bottomCollision){
 				state = states::FALLING;
@@ -93,41 +71,70 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			velocity.y=0;
 			break;
 		case(states::JUMPING):
-			current = (clock.getElapsedTime().asMilliseconds());
-			elapsed = current - previous;
 			//std::cout<<elapsed<<'\n';
-			if(elapsed > jumplen){
-				state = states::FALLING;
-				velocity.y = 0;
-				break;
-			}
 			if(topCollision){
 				state=states::FALLING;
 			}
-			velocity.y = jumpacc;
+			if(bottomCollision){
+				state = states::STANDING;
+			}
+			if(velocity.y < 4){
+				velocity.y += 0.09;
+			}
 			break;
 		default:
 			state= states::FALLING; 
 			break;
 	}
+	lastup = clock.getElapsedTime();
+
+    if(velocity.x < 5 && direction.x > 0){
+    	velocity.x += direction.x * 0.07;
+    }
+    if(direction.x == 0 && velocity.x != 0){
+    	if(velocity.x - 0.1 > 0){
+    		velocity.x -= 0.07;
+    	} else if(velocity.x + 0.1 < 0){
+    		velocity.x += 0.07;
+    	} else {
+    		velocity.x = 0;
+    	}
+    }
+    if(velocity.x > -5 && direction.x < 0){
+    	velocity.x += direction.x * 0.07;
+    }
+    //velocity.x = direction.x;
+
+
+    if(leftCollision && direction.x < 0){
+		velocity.x = 0;
+	}
+	
+	if(rightCollision && direction.x > 0){
+		velocity.x = 0;
+	}
+	if(hasResistance){
+		velocity.x=velocity.x/2;
+	}
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::T)){
-		position = sf::Vector2f(100,100);
+		position = sf::Vector2f(-100,100);
 	}
 	position += velocity;
-	lastup = clock.getElapsedTime().asMilliseconds();
 	}
 }
 
-void PlayerInput::processInput(sf::Vector2f & velocity){
-	velocity.x = 0;	//Stand still
+void PlayerInput::processInput(sf::Vector2f & direction){
+	direction.x = 0;	//Stand still
+	direction.y = 0;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-		velocity.x = -4;
+		direction.x = -1;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-		velocity.x = 4;
+		direction.x = 1;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-		velocity.y -=1;
+		direction.y -=1;
 	}
 }
 
@@ -137,7 +144,7 @@ void PlayerInput::processInput(sf::Vector2f & velocity){
 /// This function draws the Characte in the RenderWindow and sets the View to the position
 /// of the Character to keep the player centered.
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
-	sprite.setPosition(position);
+
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
 		if(position != previousPosition){
 			switch(state){
@@ -196,6 +203,7 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
 	}
+	Animation.move(sf::Vector2f(position.x,position.y));
 	if(position.y < 300){
 		view.setCenter(sf::Vector2f(position.x, position.y));
 	} else {
@@ -205,6 +213,6 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
-	//return sf::Vector2f(sprite.getGlobalBounds().width sprite.getGlobalBounds().height);
+	//return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 	return Animation.getDimensions();
 }
