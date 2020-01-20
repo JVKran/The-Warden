@@ -95,6 +95,19 @@ class sortingFailed : public std::exception {
 		}
 };
 
+class unknownSoundFilename : public std::exception {
+	private:
+		std::string error;
+	public:
+		unknownSoundFilename( const std::string & filename ){
+			error = "(!)-- Unknown given filename: " + filename + " for loading a sound." + "\n";
+		}
+
+		const char* what() const noexcept{
+			return error.c_str();
+		}
+};
+
 class endOfFile : public std::exception {};
 
 #endif //__EXCEPTIONS_HPP
