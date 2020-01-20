@@ -9,11 +9,11 @@
 
 
 int main(){
-	Game game("Assets/objects.txt");
-
 	bool playMode;
 	std::cout << "Play (1) or edit (0)?" << std::endl;
 	std::cin >> playMode;
+
+	Game game("Assets/objects.txt");
 
 	if(playMode){
 		game.startWorld("World/world.txt");

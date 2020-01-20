@@ -144,6 +144,7 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 /// @param object The Tile to add to the world.
 void World::addTile(Tile object){
 	tiles.push_back(object);
+	sortWorld();
 }
 
 /// \brief

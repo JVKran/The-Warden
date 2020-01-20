@@ -64,6 +64,8 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+    bool downPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+    bool upPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
 
     std::vector<Tile> & tiles = world.getTiles();
     for(auto & tile : tiles){
@@ -119,6 +121,13 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 	if(rightPressed){
 		view.setCenter(sf::Vector2f(view.getCenter().x + 3, view.getCenter().y));
 	}
+	if(upPressed){
+		view.setCenter(sf::Vector2f(view.getCenter().x , view.getCenter().y + 3));
+    }
+    if(downPressed) {
+    	view.setCenter(sf::Vector2f(view.getCenter().x , view.getCenter().y - 3));
+    }
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
 		editingDone();
 	}
@@ -130,8 +139,11 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 		if(leftMousePressed || rightMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.isPartOfWorld()){
+					std::cout << "Added object at position " << object.getPosition().x << std::endl;
 					Tile objectToAdd = object;
 					objectToAdd.setNewScale(1);
+					objectToAdd.setFollowMouse(true);
+					objectToAdd.setWindowLayer(1);
 					world.addTile(objectToAdd);
 					object.makePartOfWorld(true);
 				}
@@ -144,6 +156,12 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 	    }
 	    if(leftPressed) {
 	    	object.setPosition(sf::Vector2f(object.getPosition().x - 3, object.getPosition().y));
+	    }
+	    if(upPressed){
+			object.setPosition(sf::Vector2f(object.getPosition().x, object.getPosition().y + 3));
+	    }
+	    if(downPressed) {
+	    	object.setPosition(sf::Vector2f(object.getPosition().x, object.getPosition().y - 3));
 	    }
 	}
 }
