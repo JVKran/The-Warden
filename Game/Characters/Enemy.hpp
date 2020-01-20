@@ -13,7 +13,7 @@
 
 class EnemyInput : public InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity, const std::vector<Character> & characters) override;
+		virtual void processInput(sf::Vector2f & velocity, const sf::Vector2f & position, const std::vector<Character> & characters) override;
 };
 
 

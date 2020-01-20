@@ -38,7 +38,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & velocity, const std::vector<Character> & characters) = 0;
+		virtual void processInput(sf::Vector2f & velocity, const sf::Vector2f & position, const std::vector<Character> & characters) = 0;
 };
 
 /// \brief
@@ -76,13 +76,19 @@ class Character {
 		sf::Vector2f position;							//!< The Position of the Character in the world.
 		sf::Vector2f velocity;							//!< The Velocity of the Character in the world.
 
+		const bool isPlayerType;
+
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 
 		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
+
+		bool isPlayer() const;
+		sf::Vector2f getPosition() const;
+
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 

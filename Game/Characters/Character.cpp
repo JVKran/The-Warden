@@ -23,8 +23,9 @@ SpriteCharacter::SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, 
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType):
 	position(position),
+	isPlayerType(isPlayerType),
 	input(input),
 	physics(physics),
 	graphics(graphics)
@@ -38,7 +39,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
-	input->processInput(velocity, characters);
+	input->processInput(velocity, position, characters);
 	physics->processPhysics(world, position, velocity, graphics->getDimensions());
 }
 
@@ -64,3 +65,18 @@ GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager
 {
 	sprite.setTexture(assets.getTexture(assetName));
 }
+
+/// \brief
+/// Is player?
+/// \return Returns wether or not the Character is a player.
+bool Character::isPlayer() const {
+	return isPlayerType;
+}
+
+/// \brief
+/// Get position of character.
+/// \return Returns the position of the Character.
+sf::Vector2f Character::getPosition() const {
+	return position;
+}
+
