@@ -5,26 +5,14 @@
 /// \brief
 /// Create an instance.
 /// \details
-/// This creates a SpriteCharacter based on its parameters.
-/// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
-/// @param spriteCharacterAction No idea.
-/// @param spriteCharacterNames All available actions to perform.
-SpriteCharacter::SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
-	spriteCharacterData(spriteCharacterData),
-	spriteCharacterAction(spriteCharacterAction),
-	spriteCharacterNames(spriteCharacterNames)
-{}
-
-/// \brief
-/// Create an instance.
-/// \details
 /// This creates a Character based on its parameters.
 /// @param position The initial position of the Character.
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType):
 	position(position),
+	isPlayerType(isPlayerType),
 	input(input),
 	physics(physics),
 	graphics(graphics)
@@ -37,8 +25,8 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
-void Character::update(sf::RenderWindow & window, World & world){
-	input->processInput(direction);
+void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
+	input->processInput(velocity, position, direction, characters);
 	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
 }
 
@@ -65,8 +53,25 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// @param assetName The name of the Texture to retrieve from the AssetManager
 /// @param assets The AssetManager to retrieve textures from.
 /// @param characterData The SpriteCharacter to use for getting the necessary data.
-GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
-	characterData(characterData)
-{
+GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets){
 	sprite.setTexture(assets.getTexture(assetName));
 }
+
+sf::Vector2f GraphicsComponent::getDimensions(){
+	return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
+}
+
+/// \brief
+/// Is player?
+/// \return Returns wether or not the Character is a player.
+bool Character::isPlayer() const {
+	return isPlayerType;
+}
+
+/// \brief
+/// Get position of character.
+/// \return Returns the position of the Character.
+sf::Vector2f Character::getPosition() const {
+	return position;
+}
+

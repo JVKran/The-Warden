@@ -8,18 +8,7 @@
 #include "SpriteAnimation.hpp"
 #include <memory>
 
-/// \brief
-/// Data needed for SpriteAnimation.
-/// \details
-/// This class contains all data needed for a functioning SpriteAnimation. This just enables the developers
-/// to pass all these vectors in one object instead of all vectors single.
-struct SpriteCharacter {
-	std::vector<sf::Vector2i> spriteCharacterData;
-	std::vector<sf::Vector2i> spriteCharacterAction;
-	std::vector<std::string> spriteCharacterNames;
-
-	SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
-};
+class Character;
 
 /// \brief
 /// Physicscomponent for Characters.
@@ -36,7 +25,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(sf::Vector2f & direction) = 0;
+		virtual void processInput(sf::Vector2f & velocity, const sf::Vector2f & position, const sf::Vector2f & direction, const std::vector<Character> & characters) = 0;
 };
 
 /// \brief
@@ -46,22 +35,11 @@ class InputComponent {
 class GraphicsComponent {
 	protected:
 		sf::Sprite sprite;
-		SpriteCharacter characterData;
-
-		sf::Clock clock;
-		sf::Time previousTime;
-
-		sf::Vector2f previousPosition;
-
-		enum class states {IDLE, WALK, JUMP};
-		states state = states::JUMP;
-		bool isIdle = true;
-		bool isWalkingLeft = false;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
+		GraphicsComponent(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
-		virtual sf::Vector2f getDimensions() = 0;
+		virtual sf::Vector2f getDimensions();
 };
 
 /// \brief
@@ -75,13 +53,19 @@ class Character {
 		sf::Vector2f velocity;
 		sf::Vector2f direction;
 
+		const bool isPlayerType;
+
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 
-		void update(sf::RenderWindow & window, World & world);
+		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
+
+		bool isPlayer() const;
+		sf::Vector2f getPosition() const;
+
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 
