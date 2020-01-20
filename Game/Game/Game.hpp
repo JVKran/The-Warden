@@ -10,6 +10,7 @@
 #include "FactoryFunction.hpp"
 #include "Character.hpp"
 #include "Player.hpp"
+#include "LootDrop.hpp"
 #include <memory>
 
 /// \brief
@@ -22,6 +23,7 @@ class Game {
 	private:
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
+		LootDrop lootDrop;
 		Editor editor;							//!< The Editor to edit World 's with.'
 		
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.

@@ -16,7 +16,7 @@ Game::Game(const std::string & objectConfigurationFile):
 	loadCharacters();
 	//characters.push_back(Character(sf::Vector2f(500,100),"player",assets,window, std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>("player", assets)));
 
-	//window.setFramerateLimit(60);
+	window.setFramerateLimit(60);
 
 	window.setVerticalSyncEnabled(1);
 }
@@ -172,7 +172,7 @@ void Game::loadCharacters(){
 			data = true;
 			textureName = false;
 			if(readName == "player"){
-				characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
+				characters.push_back(Character(sf::Vector2f(500,350), lootDrop, std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
 			} 
 			//if(readName != "player"){
 			//	type = ArtificalInput() oid.
