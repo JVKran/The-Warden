@@ -33,7 +33,7 @@ void Editor::editingDone(){
 /// This function draws both, the editor and world to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
 void Editor::draw(sf::RenderWindow & window, sf::View & view){
-	for(int_fast8_t windowLayer = 0; windowLayer < 3; windowLayer++){
+	for(int_fast8_t windowLayer = 0; windowLayer <= 4; windowLayer++){
 		world.draw( window, view, windowLayer );
 	}
 	drawTileBar( window, view );
@@ -96,6 +96,9 @@ void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View 
 			}
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
 				tile.setWindowLayer(3);
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
+				tile.setWindowLayer(4);
 			}
 			if(event.type == sf::Event::MouseWheelMoved){
 				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
