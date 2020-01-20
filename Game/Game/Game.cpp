@@ -88,7 +88,9 @@ void Game::display(){
 			for(auto & character : characters){
 				character.draw(window, view);			// Then all characters.
 			}
-			world.draw(window, view, 2);				// Finaly, draw one more layer that's also able to draw over Characters.
+			for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
+				world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
+			}
 			break;
 		}
 		case states::EDITING: {
