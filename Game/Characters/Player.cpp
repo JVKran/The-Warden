@@ -2,7 +2,7 @@
 
 #include "Player.hpp"
 
-PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
+PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData):
 	GraphicsComponent(assetName, assets, characterData),
 	Animation(sprite, assets.getTexture(assetName), sf::Vector2i{350,592}, sf::Vector2i{7,16}, sf::Vector2i{5,5}, 3)
 {

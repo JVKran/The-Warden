@@ -60,7 +60,7 @@ class GraphicsComponent {
 		bool isIdle = true;
 		bool isWalkingLeft = false;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
+		GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
 		virtual sf::Vector2f getDimensions() = 0;

@@ -60,7 +60,7 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// @param assetName The name of the Texture to retrieve from the AssetManager
 /// @param assets The AssetManager to retrieve textures from.
 /// @param characterData The SpriteCharacter to use for getting the necessary data.
-GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
+GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter characterData):
 	characterData(characterData)
 {
 	sprite.setTexture(assets.getTexture(assetName));
