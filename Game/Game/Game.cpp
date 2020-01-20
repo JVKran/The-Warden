@@ -8,11 +8,11 @@
 /// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
 /// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
 /// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
-Game::Game(const std::string & objectConfigurationFile):
+Game::Game(sf::RenderWindow & window, AssetManager & assets):
 	world(assets),
-	editor(assets)
-{
-	assets.loadObjects(objectConfigurationFile);				//"Assets/objects.txt"
+	editor(assets),
+	window(window)
+{			//"Assets/objects.txt"
 	loadCharacters();
 	window.setVerticalSyncEnabled(1);
 }
@@ -39,7 +39,7 @@ void Game::editWorld(const std::string & worldName){
 /// Hanlde input.
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
-void Game::handleInput(){
+void Game::handleInput(const sf::Event & event){
 	switch(state){
 		case states::EDITING: {
 			editor.handleInput(window, event, view);
@@ -55,20 +55,6 @@ void Game::handleInput(){
 			break;
 		}
 	}
-	while(window.pollEvent(event)){
-		if( event.type == sf::Event::Closed ){
-			window.close();
-		}
-		switch(state){
-			case states::EDITING: {
-				editor.handleInput(window, event, view);
-				break;
-			}
-			default: {
-				break;
-			}
-		}
-	}
 }
 
 /// \brief
@@ -76,7 +62,6 @@ void Game::handleInput(){
 /// \details
 /// This displays the current state of the game on screen.
 void Game::display(){
-	window.clear();
 	switch(state){
 		case states::PLAYING: {
 			world.draw(window, view, 0);				// First draw layer 0 of the world.
@@ -98,7 +83,6 @@ void Game::display(){
 		}
 	}
 	window.setView(view);
-	window.display();
 }
 
 

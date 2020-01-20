@@ -6,40 +6,50 @@
 #include "Game.hpp"
 #include "Editor.hpp"
 #include "Character.hpp"
+#include "Interface.hpp"
 
 
 int main(){
-	bool playMode;
-	std::cout << "Play (1) or edit (0)?" << std::endl;
-	std::cin >> playMode;
 
-	Game game("Assets/objects.txt");
+	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
 
-	if(playMode){
-		game.startWorld("World/world.txt");
-	} else {
-		game.editWorld("World/world.txt");
-	}
+	sf::Event event;
+	AssetManager assets;
+	Game game(window, assets);
+	Interface interface(game, assets, window);
 
 	sf::Clock clock;
 	uint_fast8_t msPerUpdate = 16.67;
 	double previous, lag, current, elapsed;
 
 
-	while (true){	
+	while (window.isOpen()){	
 		current = (clock.getElapsedTime().asMilliseconds());
 		elapsed = current - previous;
 		previous = current;
 		lag += elapsed;
 
-		game.handleInput();
+		game.handleInput(event);
+		interface.handleInput(event);
 
 		while (lag >= msPerUpdate){
-			game.handleInput();
+			game.handleInput(event);
+			interface.handleInput(event);
 			lag -= msPerUpdate;
 		}
 
+		while(window.pollEvent(event)){
+			if( event.type == sf::Event::Closed ){
+				window.close();
+			}
+			game.handleInput(event);
+			interface.handleInput(event);
+		}
+
+		window.clear();
 		game.display();
+		interface.display();
+		window.display();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;

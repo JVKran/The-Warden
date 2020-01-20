@@ -26,17 +26,15 @@ class Game {
 		Editor editor;							//!< The Editor to edit World 's with.'
 		
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
-
-		sf::Event event;						//!< The Event that's used to handle more complex input.
-		sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
+		sf::RenderWindow & window;
 		sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
 		enum class states {PLAYING, EDITING, PAUSED};
-		states state = states::PLAYING;
+		states state = states::PAUSED;
 
 		void loadCharacters();
 	public:
-		Game(const std::string & objectConfigurationFile);
+		Game(sf::RenderWindow & window, AssetManager & assets);
 		~Game(){
 			window.close();
 		}
@@ -44,7 +42,7 @@ class Game {
 		void startWorld(const std::string & worldName);
 		void editWorld(const std::string & worldName);
 
-		void handleInput();
+		void handleInput(const sf::Event & event);
 		void display();
 };
 

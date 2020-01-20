@@ -59,7 +59,7 @@ void Editor::drawTileBar( sf::RenderWindow & window, sf::View & view ){
 /// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
 /// @param window The window to use for determining the absolute position of the mouseclicks.
-void Editor::handleInput(sf::RenderWindow & window, sf::Event & event, sf::View & view){
+void Editor::handleInput(sf::RenderWindow & window, const sf::Event & event, sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);

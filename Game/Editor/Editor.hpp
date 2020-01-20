@@ -32,7 +32,7 @@ public:
 	void selectWorld(const std::string & worldName);
 
 	void editingDone();
-	void handleInput(sf::RenderWindow & window, sf::Event & event, sf::View & view);
+	void handleInput(sf::RenderWindow & window, const sf::Event & event, sf::View & view);
 
 	void loadObjects(const std::string & editorConfigName = "Editor/editorObjects.txt");
 
