@@ -28,6 +28,16 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
 	input->processInput(velocity, position, direction, characters);
 	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
+	if(position.y < 2000){
+		health = 0;
+	}
+}
+
+/// \brief
+/// Is alive?
+/// \return Wheter or not the Character is alive.
+bool Character::isAlive(){
+	return health > 0;
 }
 
 /// \brief

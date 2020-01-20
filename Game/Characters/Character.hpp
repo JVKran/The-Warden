@@ -54,6 +54,7 @@ class Character {
 		sf::Vector2f direction;
 
 		const bool isPlayerType;
+		int_fast8_t health = 100;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
@@ -62,6 +63,7 @@ class Character {
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 
 		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
+		bool isAlive();
 
 		bool isPlayer() const;
 		sf::Vector2f getPosition() const;

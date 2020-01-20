@@ -48,6 +48,9 @@ void Game::handleInput(const sf::Event & event){
 		case states::PLAYING: {
 			for(auto & character : characters){
 				character.update(window, world, characters);
+				// if(!character.isAlive()){
+				// 	characters.erase(std::find(characters.begin(), characters.end(), character));
+				// }
 			}
 			break;
 		}
