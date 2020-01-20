@@ -50,9 +50,10 @@ void Game::handleInput(){
 			break;
 		}
 		case states::PLAYING: {
-			for(auto & character : characters){
-				character.update(window, world, characters);
-			}
+			// for(auto & character : characters){
+			// 	character.update(window, world, characters);
+			// }
+			characters[0].update(window, world, characters);
 			break;
 		}
 		default: {
@@ -154,16 +155,16 @@ void Game::loadCharacters(){
 			// spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
 			spritePlayerAction.erase(spritePlayerAction.begin());
 			spritePlayerNames.erase(spritePlayerNames.begin());
-			// for(const auto & vector : spritePlayerData){
-			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			// }
-			// for(const auto & vector : spritePlayerAction){
-			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			// }
-			// for(const auto & vector : spritePlayerNames){
-			// 	std::cout << vector << std::endl;
-			// }
-			// std::cout << readName << std::endl;
+			for(const auto & vector : spritePlayerData){
+				std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+			}
+			for(const auto & vector : spritePlayerAction){
+				std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+			}
+			for(const auto & vector : spritePlayerNames){
+				std::cout << vector << std::endl;
+			}
+			std::cout << readName << std::endl;
 			// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
 			// spritePlayerNames = {"idle","slide", "walk", "jump"};
 			characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
@@ -172,15 +173,16 @@ void Game::loadCharacters(){
 			if(readName == "player"){
 				characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData), true));
 			} else {
-				characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData), true));
+				characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
 			}
 			//if(readName != "player"){
 			//	type = ArtificalInput() oid.
 			//}
+			//std::cout << spritePlayerData[0].x << std::endl;
 
-			// spritePlayerData.clear();
-			// spritePlayerAction.clear();
-			// spritePlayerNames.clear();
+				spritePlayerData.clear();
+				spritePlayerAction.clear();
+				spritePlayerNames.clear();
 		}
 	}
 }
