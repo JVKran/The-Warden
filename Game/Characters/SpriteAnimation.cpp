@@ -77,7 +77,9 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 		
 		//std::cout << rectSourceSprite.left << " : " << rectSourceSprite.top << "\n";
 		sprite.setTextureRect(rectSourceSprite);
+
 		spriteClock.restart();
 	}
+
 	window.draw(sprite);
 }

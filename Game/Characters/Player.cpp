@@ -138,7 +138,7 @@ void PlayerInput::processInput(sf::Vector2f & direction){
 }
 
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
-	sprite.setPosition(position);
+
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
 		if(position != previousPosition){
 			switch(state){
@@ -197,6 +197,7 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
 	}
+	Animation.move(sf::Vector2f(position.x,position.y));
 	if(position.y < 300){
 		view.setCenter(sf::Vector2f(position.x, position.y));
 	} else {
@@ -206,6 +207,6 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
-	//return sf::Vector2f(sprite.getGlobalBounds().width sprite.getGlobalBounds().height);
+	//return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 	return Animation.getDimensions();
 }

@@ -14,6 +14,12 @@ void Character::update(sf::RenderWindow & window, World & world){
 
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
+	// debug draw hitbox
+	//window.display();
 }
 
 GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, spriteCharacter & characterData):
