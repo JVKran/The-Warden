@@ -17,8 +17,7 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 
 void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions){
 
-	if(clock.getElapsedTime().asMilliseconds() - lastPhysicsUpdate.asMilliseconds() > 2){
-		lastPhysicsUpdate = clock.getElapsedTime();
+	if(clock.getElapsedTime().asMilliseconds() - lastup.asMilliseconds() > 2){
 	
 	
 	std::vector<Tile> & tiles= world.getTiles();
@@ -26,8 +25,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	//sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x, position.y + dimensions.y + 10), sf::Vector2f(dimensions.x, dimensions.y + 50));
-
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -8));
 	for(const auto & tile : tiles){
 
         tileBounds = tile.getBounds();
@@ -36,70 +34,73 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 				hasResistance += true;
        		} 
 		}
-        if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)) && tile.isCollidable()*/)){
-        	bottomCollision += tileBounds.intersects(hitbox); 
-        	std::cout << bottomCollision << std::endl;
-        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width,hitbox.height));
-        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width,hitbox.height));
-			topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width,hitbox.height));
+        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
+        	bottomCollision += tileBounds.intersects(bottomHitbox); 
+        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
+        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
+			topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
 			
        }
     }
 
-    switch(state){
-    	case states::FALLING: {
-    		if(bottomCollision){
-    			velocity.y = 0;
-    			direction.y = 0;
-    			state = states::STANDING;
-    			//position.y -= 10;
-    		} else {
-    			if(velocity.y < 1){
-    				velocity.y += 0.08;
-    			}
-    		}
-    		break;
-    	}
-    	case states::JUMPING: {
-    		if(topCollision){
-    			velocity.y = 0;
-    			state = states::FALLING;
-    		} else {
-    			if(velocity.y < 1){
-    				velocity.y += 0.08;
-    			}
-    		}
-    		break;
-    	}
-    	case states::STANDING: {
-    		if(direction.y < 0 && velocity.y >= 0){
-    			velocity.y = -5;
-    			state = states::JUMPING;
-    		}
-    		if(!bottomCollision){
-    			state = states::FALLING;
-    		}
-    		break;
-    	}
-    	default: {
-    		break;
-    	}
-    }
+    switch (state){
+		case (states::FALLING): {
+			if(bottomCollision){
+				state = states::STANDING;
+				velocity.y = 0;
+			} else {
+				if(velocity.y < 4){
+					velocity.y += 0.09;
+				}
+			}
+			
+			break;
+		}
+		case (states::STANDING):
+			if(direction.y < 0){
+				state = states::JUMPING;
+				velocity.y = -5;
+				break;
+			}
+			if(!bottomCollision){
+				state = states::FALLING;
+				break;
+			}
+			
+			velocity.y=0;
+			break;
+		case(states::JUMPING):
+			//std::cout<<elapsed<<'\n';
+			if(topCollision){
+				state=states::FALLING;
+			}
+			if(bottomCollision){
+				state = states::STANDING;
+			}
+			if(velocity.y < 4){
+				velocity.y += 0.09;
+			}
+			break;
+		default:
+			state= states::FALLING; 
+			break;
+	}
+	lastup = clock.getElapsedTime();
 
     if(velocity.x < 5 && direction.x > 0){
-    	velocity.x += direction.x * 0.05;
+    	velocity.x += direction.x * 0.07;
     }
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.05;
+    		velocity.x -= 0.07;
     	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.05;
+    		velocity.x += 0.07;
     	} else {
     		velocity.x = 0;
     	}
     }
     if(velocity.x > -5 && direction.x < 0){
-    	velocity.x += direction.x * 0.05;
+    	velocity.x += direction.x * 0.07;
     }
     //velocity.x = direction.x;
 
@@ -124,6 +125,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 
 void PlayerInput::processInput(sf::Vector2f & direction){
 	direction.x = 0;	//Stand still
+	direction.y = 0;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 		direction.x = -1;
 	}

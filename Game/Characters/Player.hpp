@@ -10,7 +10,7 @@
 class PlayerPhysics : public PhysicsComponent {
 	private:
 		sf::Clock clock;
-		sf::Time lastPhysicsUpdate;
+		sf::Time lastup;
 
 		bool bottomCollision, topCollision, leftCollision, rightCollision;
 		bool hasResistance = false;
