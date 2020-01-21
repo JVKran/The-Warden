@@ -168,9 +168,9 @@ void World::saveWorld(){
 		std::ofstream worldFile (worldFileName, std::ofstream::out);
 		std::cout << "(i)-- Saving world to " << worldFileName << std::endl;
 
-		worldFile << backgroundName << std::endl;
+		worldFile << backgroundName;
 		for(const Tile & tile : tiles ){
-			worldFile << tile.getConfiguration() << std::endl;
+			worldFile << std::endl << tile.getConfiguration();
 		}
 
 		worldFile.close();

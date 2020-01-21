@@ -38,7 +38,7 @@ class Game {
 
 		void startWorld(const std::string & worldName);
 
-		void handleInput(const sf::Event & event);
+		void handleInput();
 		void display(sf::View & view);
 };
 

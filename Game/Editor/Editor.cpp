@@ -60,7 +60,7 @@ void Editor::drawTileBar( sf::View & view ){
 /// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
 /// @param window The window to use for determining the absolute position of the mouseclicks.
-void Editor::handleInput(const sf::Event & event, sf::View & view){
+void Editor::handleInput(sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
@@ -101,19 +101,6 @@ void Editor::handleInput(const sf::Event & event, sf::View & view){
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
 				tile.setWindowLayer(4);
 			}
-			if(event.type == sf::Event::MouseWheelMoved){
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
-					tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
-				} else {
-					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
-				}
-			}
-			if(event.type == sf::Event::MouseButtonPressed){
-				tile.setFollowMouse(true);
-			}
-			if(event.type == sf::Event::MouseButtonReleased){
-				tile.setFollowMouse(false);
-			}
 		}
     	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
     }
@@ -134,9 +121,6 @@ void Editor::handleInput(const sf::Event & event, sf::View & view){
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
 		editingDone();
-	}
-	if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
-		scrollTileBar(event.mouseWheel.delta);
 	}
 
 	for(auto & object : objects){
@@ -167,6 +151,31 @@ void Editor::handleInput(const sf::Event & event, sf::View & view){
 	    if(downPressed) {
 	    	object.setPosition(sf::Vector2f(object.getPosition().x, object.getPosition().y - 3));
 	    }
+	}
+}
+
+void Editor::handleEvent(const sf::Event & event, sf::View & view){
+	if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
+		scrollTileBar(event.mouseWheel.delta);
+	}
+
+	std::vector<Tile> & tiles = world.getTiles();
+    for(auto & tile : tiles){
+    	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+			if(event.type == sf::Event::MouseWheelMoved){
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+					tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
+				} else {
+					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
+				}
+			}
+			if(event.type == sf::Event::MouseButtonPressed){
+				tile.setFollowMouse(true);
+			}
+			if(event.type == sf::Event::MouseButtonReleased){
+				tile.setFollowMouse(false);
+			}
+		}
 	}
 }
 

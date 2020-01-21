@@ -33,7 +33,8 @@ public:
 	void selectWorld(const std::string & worldName);
 
 	void editingDone();
-	void handleInput(const sf::Event & event, sf::View & view);
+	void handleInput( sf::View & view);
+	void handleEvent(const sf::Event & event, sf::View & view);
 
 	void loadObjects(const std::string & editorConfigName = "Editor/editorObjects.txt");
 
