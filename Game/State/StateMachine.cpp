@@ -1,59 +1,57 @@
 #include "StateMachine.hpp"
 
-void MenuState::handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine){
-	interface.handleInput(machine);
+void MenuState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine){
+	objects.interface.handleInput(machine);
 }
 
-void MenuState::display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	interface.display();
+void MenuState::display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.interface.display();
 }
 
-void MenuState::handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	interface.handleEvent(event, machine);
+void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.interface.handleEvent(viewObjects.event, machine);
 }
 
-void PlayingState::handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine){
-	game.handleInput();
+void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine){
+	objects.game.handleInput();
 }
 
-void PlayingState::display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	game.display(view);
+void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.game.display(viewObjects.view);
 }
 
-void PlayingState::handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
+void PlayingState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
 }
 
 
 
-void EditingState::handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
+void EditingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
 	//interface.handleInput(event, machine);
-	editor.handleInput(view);
+	objects.editor.handleInput(viewObjects.view);
 }
 
-void EditingState::display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine)  {
-	editor.draw(view);
+void EditingState::display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine)  {
+	objects.editor.draw(viewObjects.view);
 }
 
-void EditingState::handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
+void EditingState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.editor.handleEvent(viewObjects.event, viewObjects.view);
 }
 
-void SettingsState::handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	settings.handleInput();
+void SettingsState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.settings.handleInput();
 }
 
-void SettingsState::display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	settings.draw();
+void SettingsState::display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.settings.draw();
 }
 
-void SettingsState::handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	settings.handleEvent(event, machine);
+void SettingsState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.settings.handleEvent(viewObjects.event, machine);
 }
 
 StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings):
-	game(game),
-	interface(interface),
-	editor(editor),
-	settings(settings),
+	stateDependantObjects(game, interface, editor, settings),
 	currentState(std::make_shared<MenuState>())
 {}
 
@@ -66,13 +64,16 @@ std::shared_ptr<State> StateMachine::getCurrentState(){
 }
 
 void StateMachine::handleInput(const sf::Event & event, sf::View & view){
-	currentState->handleInput(game, interface, editor, settings, event, view, this);
+	ViewObjects viewObjects(view, event);
+	currentState->handleInput(stateDependantObjects, viewObjects, this);
 }
 
 void StateMachine::handleEvent(const sf::Event & event, sf::View & view){
-	currentState->handleEvent(game, interface, editor, settings, event, view, this);
+	ViewObjects viewObjects(view, event);
+	currentState->handleEvent(stateDependantObjects, viewObjects, this);
 }
 
 void StateMachine::display(const sf::Event & event, sf::View & view){
-	currentState->display(game, interface, editor, settings, event, view, this);
+	ViewObjects viewObjects(view, event);
+	currentState->display(stateDependantObjects, viewObjects, this);
 }

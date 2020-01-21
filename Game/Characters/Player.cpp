@@ -6,7 +6,7 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 	GraphicsComponent(assetName, assets)
 {}
 
-void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, std::vector<Character> & characters, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
 	if(sf::Keyboard::isKeyPressed(Bindings[0].getKey())){

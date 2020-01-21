@@ -11,47 +11,68 @@ class Interface;
 class StateMachine;
 class Settings;
 
+struct StateDependantObjects {
+	Game & game;
+	Interface & interface;
+	Editor & editor;
+	Settings & settings;
+
+	StateDependantObjects(Game & game, Interface & interface, Editor & editor, Settings & settings):
+		game(game),
+		interface(interface),
+		editor(editor),
+		settings(settings)
+	{}
+};
+
+struct ViewObjects {
+	sf::View & view;
+	const sf::Event & event;
+
+	ViewObjects(sf::View & view, const sf::Event & event):
+		view(view),
+		event(event)
+	{}
+};
+
 class State {
 	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) = 0;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) = 0;
-		virtual void display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) = 0;
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) = 0;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) = 0;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) = 0;
 };
 
 class MenuState : public State {
 	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override ;
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override ;
 };
 
 class PlayingState : public State {
 	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
 };
 
 class EditingState : public State {
 	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
 };
 
 class SettingsState : public State {
 	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) override;
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) override;
 };
 
 class StateMachine {
 	private:
-		Game & game;
-		Interface & interface;
-		Editor & editor;
-		Settings & settings;
+		StateDependantObjects stateDependantObjects;
 
 		std::shared_ptr<State> currentState;
 	public:

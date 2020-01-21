@@ -1,6 +1,7 @@
 #include "Items.hpp"
 
-Weapon::Weapon(const int damageFactor):
+Weapon::Weapon(const int damageFactor, const int_fast16_t hitPeriod):
+	hitPeriod(hitPeriod),
 	damageFactor(damageFactor)
 {}
 
@@ -10,10 +11,9 @@ Consumable::Consumable(const int foodValue):
 
 void Weapon::use(Character * character, std::vector<Character> & characters){
 	for(Character & comparingCharacter : characters){
-		if(*character != comparingCharacter){
+		if(*character != comparingCharacter && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
+			lastAttack = clock.getElapsedTime();
 			if(character->getBounds().intersects(comparingCharacter.getBounds())){
-				std::cout << "Hit character!" << std::endl;
-				std::cout << character->getHealth() << std::endl;
 				character->setHealth( (character->getHealth()) - damageFactor );
 				if(character->getHealth() < 0){
 					characters.erase(std::find(characters.begin(), characters.end(), comparingCharacter));

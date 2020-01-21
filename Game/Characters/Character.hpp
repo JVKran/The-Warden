@@ -27,7 +27,7 @@ class PhysicsComponent {
 		bool bottomCollision, topCollision, leftCollision, rightCollision;
 		bool hasResistance = false;
 	public:
-		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity);
+		virtual void processPhysics(sf::Vector2f & velocity);
 		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 };
@@ -37,8 +37,16 @@ class PhysicsComponent {
 /// \details
 /// This class is responsible for managing input for a Character.
 class InputComponent {
+	protected:
+		World & world;
+		std::vector<Character> & characters;
 	public:
-		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, std::vector<Character> & characters, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) = 0;
+		InputComponent(World & world, std::vector<Character> & characters):
+			world(world),
+			characters(characters)
+		{}
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) = 0;
+		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 };
 
 /// \brief
@@ -91,32 +99,9 @@ class Character {
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 
-		bool operator!=(const Character & lhs){
-			if(lhs.position != position){
-				return true;
-			}
-			return false;
-		}
-
-		bool operator==(const Character & lhs){
-			if(lhs.position == position){
-				return true;
-			}
-			return false;
-		}
-
-		Character & operator=(Character lhs){
-			position = lhs.position;
-			velocity = lhs.velocity;
-			direction = lhs.direction;
-			items = lhs.items;
-			experiencePoints = lhs.experiencePoints;
-			health = lhs.health;
-			input = lhs.input;
-			physics = lhs.physics;
-			graphics = lhs.graphics;
-			return *this;
-		}
+		bool operator!=(const Character & lhs);
+		bool operator==(const Character & lhs);
+		Character & operator=(Character lhs);
 
 		int getExperience() const;
 		void setExperience(const int & experiencePointsToAdd);

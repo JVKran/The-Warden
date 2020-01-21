@@ -14,9 +14,13 @@ class Item{
 
 class Weapon : public Item{
 	private:	
+		sf::Clock clock;
+		sf::Time lastAttack;
+		const int_fast16_t hitPeriod;
+
 		const int damageFactor;
 	public:
-		Weapon(const int damageFactor);
+		Weapon(const int damageFactor, const int_fast16_t hitPeriod);
 		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 

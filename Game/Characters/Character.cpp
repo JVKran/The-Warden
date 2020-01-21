@@ -17,7 +17,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	physics(physics),
 	graphics(graphics)
 {
-	items.push_back(std::make_shared<Weapon>(10));
+	items.push_back(std::make_shared<Weapon>(10, 500));
 }
 
 /// \brief
@@ -28,9 +28,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters){
-	input->processInput(velocity, position, direction, characters, items, this);
+	input->processInput(position, direction);
+	input->processItemUsage(items, this);
 	physics->processCollisions(world, position, graphics->getDimensions());
-	physics->processPhysics(direction, velocity);
+	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	if(position.y > 2000){
 		health = 0;
@@ -94,6 +95,10 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
     		velocity.x = 0;
     	}
     }
+    if(direction.y < 0 && state != states::JUMPING){
+    	velocity.y = -6;
+    }
+
     if(velocity.x > -5 && direction.x < 0){
     	velocity.x += direction.x * 0.07;
     }
@@ -111,7 +116,7 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 	}
 }
 
-void PhysicsComponent::processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity){
+void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 	switch (state){
 		case (states::FALLING): {
 			if(bottomCollision){
@@ -125,9 +130,8 @@ void PhysicsComponent::processPhysics(sf::Vector2f & direction, sf::Vector2f & v
 			break;
 		}
 		case (states::STANDING): {
-			if(direction.y < 0){
+			if(velocity.y < 0){
 				state = states::JUMPING;
-				velocity.y = -6;
 				break;
 			}
 			if(!bottomCollision){
@@ -199,6 +203,33 @@ int Character::getExperience() const{
 	return experiencePoints;
 }
 
+bool Character::operator!=(const Character & lhs){
+	if(lhs.position != position){
+		return true;
+	}
+	return false;
+}
+
+bool Character::operator==(const Character & lhs){
+	if(lhs.position == position){
+		return true;
+	}
+	return false;
+}
+
+Character & Character::operator=(Character lhs){
+	position = lhs.position;
+	velocity = lhs.velocity;
+	direction = lhs.direction;
+	items = lhs.items;
+	experiencePoints = lhs.experiencePoints;
+	health = lhs.health;
+	input = lhs.input;
+	physics = lhs.physics;
+	graphics = lhs.graphics;
+	return *this;
+}
+
 /// \brief 
 /// Set player experience points.
 /// \details
@@ -211,7 +242,6 @@ void Character::setExperience(const int & experiencePointsToAdd){
 /// Get player health points.
 /// \return Returns the current health points of the Character.
 int Character::getHealth() const{
-	std::cout << "Getter " << health << std::endl;
 	return health;
 }
 
@@ -221,5 +251,4 @@ int Character::getHealth() const{
 /// This function adds the given health points to the current amount of Character health.
 void Character::setHealth(const int newHealth){
 	health = newHealth;
-	std::cout << "Health: " << int(health) << std::endl;
 }
