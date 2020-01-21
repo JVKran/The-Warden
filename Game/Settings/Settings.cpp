@@ -35,7 +35,6 @@ void Settings::handleEvent( const sf::Event & event, StateMachine * machine ){
 			if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){			
 				if( backButton.contains( sf::Mouse::getPosition(window)) ){		//if backButton is pressed go back to menu screen
 					machine->changeState(std::make_shared<MenuState>());
-					return;
 				}else{
 					uint counter = 0;												//holds the index of Bindings object (see uint selectedKey)
 					for( KeyBinding & keyRef : Bindings ){
@@ -48,7 +47,7 @@ void Settings::handleEvent( const sf::Event & event, StateMachine * machine ){
 					}
 				}
 			}	
-					
+
 			break;
 		}
 		case StateSettings::CHANGEKEY: {		//state if one of the Bindings objects is pressed
@@ -79,8 +78,8 @@ void Settings::handleEvent( const sf::Event & event, StateMachine * machine ){
 void Settings::draw(){
 	window.draw(background);
 	for( auto & p : Bindings ){
-		p.draw( window );
+		p.draw( window );				//all the key objects
 	}
 
-	backButton.draw( window );
+	backButton.draw( window );			//backbutton object
 }

@@ -8,6 +8,7 @@
 #include "AssetManager.hpp"
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
+#include "bindings.hpp"
 
 class PlayerPhysics : public PhysicsComponent {
 	private:
