@@ -60,9 +60,11 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_physics_component-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">PhysicsComponent Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">PhysicsComponent Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -76,26 +78,66 @@ Inheritance diagram for PhysicsComponent:</div>
  <div class="center">
   <img src="class_physics_component.png" usemap="#PhysicsComponent_map" alt=""/>
   <map id="PhysicsComponent_map" name="PhysicsComponent_map">
-<area href="class_player_physics.html" alt="PlayerPhysics" shape="rect" coords="0,56,119,80"/>
+<area href="class_enemy_physics.html" alt="EnemyPhysics" shape="rect" coords="0,56,119,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8107e68c09cb93330461947c4085afa6"><td class="memItemLeft" align="right" valign="top"><a id="a8107e68c09cb93330461947c4085afa6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processPhysics</b> (<a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, sf::Vector2f &amp;velocity, const sf::Vector2f &amp;dimensions)=0</td></tr>
-<tr class="separator:a8107e68c09cb93330461947c4085afa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8304a061533ccfe2c67f7a27cb21f78"><td class="memItemLeft" align="right" valign="top"><a id="ad8304a061533ccfe2c67f7a27cb21f78"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processPhysics</b> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
+<tr class="separator:ad8304a061533ccfe2c67f7a27cb21f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9b1a668ff94b4592d329b304cc37cb4"><td class="memItemLeft" align="right" valign="top"><a id="ac9b1a668ff94b4592d329b304cc37cb4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processCollisions</b> (<a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions)</td></tr>
+<tr class="separator:ac9b1a668ff94b4592d329b304cc37cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720de026edc23e9174614f2b5c677d85"><td class="memItemLeft" align="right" valign="top"><a id="a720de026edc23e9174614f2b5c677d85"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processVelocity</b> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
+<tr class="separator:a720de026edc23e9174614f2b5c677d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a4e995f37eccfa49b145aee07a00b32ac"><td class="memItemLeft" align="right" valign="top"><a id="a4e995f37eccfa49b145aee07a00b32ac"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>states</b> { <b>JUMPING</b>, 
+<b>STANDING</b>, 
+<b>FALLING</b>, 
+<b>INSIDE</b>
+ }</td></tr>
+<tr class="separator:a4e995f37eccfa49b145aee07a00b32ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a5ada09d7e645cde5865724f24395846c"><td class="memItemLeft" align="right" valign="top"><a id="a5ada09d7e645cde5865724f24395846c"></a>
+sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
+<tr class="separator:a5ada09d7e645cde5865724f24395846c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82d878406ec9becfcd451fa473b4ce2"><td class="memItemLeft" align="right" valign="top"><a id="aa82d878406ec9becfcd451fa473b4ce2"></a>
+states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::FALLING</td></tr>
+<tr class="separator:aa82d878406ec9becfcd451fa473b4ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18553528969e2740ab5dee5e669293e2"><td class="memItemLeft" align="right" valign="top"><a id="a18553528969e2740ab5dee5e669293e2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>bottomCollision</b></td></tr>
+<tr class="separator:a18553528969e2740ab5dee5e669293e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39ec77b410149b90bb6334cf1250f4bd"><td class="memItemLeft" align="right" valign="top"><a id="a39ec77b410149b90bb6334cf1250f4bd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>topCollision</b></td></tr>
+<tr class="separator:a39ec77b410149b90bb6334cf1250f4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab59a3895f42bc238edbf46be177da18"><td class="memItemLeft" align="right" valign="top"><a id="aab59a3895f42bc238edbf46be177da18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>leftCollision</b></td></tr>
+<tr class="separator:aab59a3895f42bc238edbf46be177da18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080fe54d708989af4c9c0c6fd34b7fef"><td class="memItemLeft" align="right" valign="top"><a id="a080fe54d708989af4c9c0c6fd34b7fef"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>rightCollision</b></td></tr>
+<tr class="separator:a080fe54d708989af4c9c0c6fd34b7fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ffb7cefcb1511fc750624184d558d7"><td class="memItemLeft" align="right" valign="top"><a id="ac8ffb7cefcb1511fc750624184d558d7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasResistance</b> = false</td></tr>
+<tr class="separator:ac8ffb7cefcb1511fc750624184d558d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Physicscomponent for Characters. </p>
 <p>This class is responsible for updating and managing physics for a <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_character_8hpp_source.html">Character.hpp</a></li>
+<li><a class="el" href="_character_8cpp.html">Character.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 20 2020 09:17:48 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

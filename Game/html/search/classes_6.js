@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['screenobject',['ScreenObject',['../class_screen_object.html',1,'']]],
-  ['spriteanimation',['SpriteAnimation',['../class_sprite_animation.html',1,'']]],
-  ['spritecharacter',['SpriteCharacter',['../struct_sprite_character.html',1,'']]]
+  ['physicscomponent',['PhysicsComponent',['../class_physics_component.html',1,'']]],
+  ['playergraphics',['PlayerGraphics',['../class_player_graphics.html',1,'']]],
+  ['playerinput',['PlayerInput',['../class_player_input.html',1,'']]]
 ];

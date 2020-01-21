@@ -199,7 +199,7 @@ sf::FloatRect Character::getBounds() const {
 
 /// Get curent experience points.
 /// \return Returns the current experience points of the Character.
-int Character::getExperience() const{
+int_fast16_t Character::getExperience() const{
 	return experiencePoints;
 }
 
@@ -234,14 +234,14 @@ Character & Character::operator=(Character lhs){
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::setExperience(const int & experiencePointsToAdd){
+void Character::setExperience(const int_fast16_t & experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 
 /// \brief
 /// Get player health points.
 /// \return Returns the current health points of the Character.
-int Character::getHealth() const{
+int_fast8_t Character::getHealth() const{
 	return health;
 }
 
@@ -249,6 +249,6 @@ int Character::getHealth() const{
 /// Set player health points.
 /// \details
 /// This function adds the given health points to the current amount of Character health.
-void Character::setHealth(const int newHealth){
+void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
 }

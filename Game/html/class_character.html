@@ -74,29 +74,77 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a3c985f2d7ea4d6f718e8026bcfcdd8bb">Character</a> (sf::Vector2f <a class="el" href="class_character.html#ae052b694df2c91c125174ef6ee64ddc9">position</a>, std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt; <a class="el" href="class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d">input</a>, std::shared_ptr&lt; <a class="el" href="class_physics_component.html">PhysicsComponent</a> &gt; <a class="el" href="class_character.html#adefc0615066a7b4544383e0e214e23be">physics</a>, std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt; <a class="el" href="class_character.html#a9a6b32676483db2aa8a96c2d35dc2957">graphics</a>)</td></tr>
-<tr class="memdesc:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a3c985f2d7ea4d6f718e8026bcfcdd8bb">More...</a><br /></td></tr>
-<tr class="separator:a3c985f2d7ea4d6f718e8026bcfcdd8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fd32781c66fca2d35fa8619c94ac62b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a0fd32781c66fca2d35fa8619c94ac62b">update</a> (sf::RenderWindow &amp;window, <a class="el" href="class_world.html">World</a> &amp;world)</td></tr>
-<tr class="memdesc:a0fd32781c66fca2d35fa8619c94ac62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a0fd32781c66fca2d35fa8619c94ac62b">More...</a><br /></td></tr>
-<tr class="separator:a0fd32781c66fca2d35fa8619c94ac62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa1bdcb2f2f58d3e208822c23269ae3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a2aa1bdcb2f2f58d3e208822c23269ae3">Character</a> (sf::Vector2f position, std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt; <a class="el" href="class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d">input</a>, std::shared_ptr&lt; <a class="el" href="class_physics_component.html">PhysicsComponent</a> &gt; <a class="el" href="class_character.html#adefc0615066a7b4544383e0e214e23be">physics</a>, std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt; <a class="el" href="class_character.html#a9a6b32676483db2aa8a96c2d35dc2957">graphics</a>, const bool isPlayerType=false)</td></tr>
+<tr class="memdesc:a2aa1bdcb2f2f58d3e208822c23269ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a2aa1bdcb2f2f58d3e208822c23269ae3">More...</a><br /></td></tr>
+<tr class="separator:a2aa1bdcb2f2f58d3e208822c23269ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cfd1ba5e6d767efc82e01e8b40ce5d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a4cfd1ba5e6d767efc82e01e8b40ce5d8">update</a> (sf::RenderWindow &amp;window, <a class="el" href="class_world.html">World</a> &amp;world, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters)</td></tr>
+<tr class="memdesc:a4cfd1ba5e6d767efc82e01e8b40ce5d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a4cfd1ba5e6d767efc82e01e8b40ce5d8">More...</a><br /></td></tr>
+<tr class="separator:a4cfd1ba5e6d767efc82e01e8b40ce5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa49f985b1b05751b2d4b3de74b4acc8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa49f985b1b05751b2d4b3de74b4acc8c">isAlive</a> ()</td></tr>
+<tr class="memdesc:aa49f985b1b05751b2d4b3de74b4acc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is alive?  <a href="#aa49f985b1b05751b2d4b3de74b4acc8c">More...</a><br /></td></tr>
+<tr class="separator:aa49f985b1b05751b2d4b3de74b4acc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad03740ab474e84411b44362dc62319f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aad03740ab474e84411b44362dc62319f">isPlayer</a> () const</td></tr>
+<tr class="memdesc:aad03740ab474e84411b44362dc62319f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is player?  <a href="#aad03740ab474e84411b44362dc62319f">More...</a><br /></td></tr>
+<tr class="separator:aad03740ab474e84411b44362dc62319f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee027a152ed35e0568c530422e102e9"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a7ee027a152ed35e0568c530422e102e9">getPosition</a> () const</td></tr>
+<tr class="memdesc:a7ee027a152ed35e0568c530422e102e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get position of character.  <a href="#a7ee027a152ed35e0568c530422e102e9">More...</a><br /></td></tr>
+<tr class="separator:a7ee027a152ed35e0568c530422e102e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3964657c350f9a431a91a73eeb14c2"><td class="memItemLeft" align="right" valign="top">sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aac3964657c350f9a431a91a73eeb14c2">getBounds</a> () const</td></tr>
+<tr class="memdesc:aac3964657c350f9a431a91a73eeb14c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get bounds of character.  <a href="#aac3964657c350f9a431a91a73eeb14c2">More...</a><br /></td></tr>
+<tr class="separator:aac3964657c350f9a431a91a73eeb14c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a891042a5f9ba38a4ab98d79e32a590b9"><td class="memItemLeft" align="right" valign="top"><a id="a891042a5f9ba38a4ab98d79e32a590b9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>attack</b> ()</td></tr>
 <tr class="separator:a891042a5f9ba38a4ab98d79e32a590b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a5c7a465e30c60e5ef88622fa8a122e4c">draw</a> (sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
 <tr class="memdesc:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a5c7a465e30c60e5ef88622fa8a122e4c">More...</a><br /></td></tr>
 <tr class="separator:a5c7a465e30c60e5ef88622fa8a122e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ddf69e2b033143b06fedff6e6cc49ae"><td class="memItemLeft" align="right" valign="top"><a id="a9ddf69e2b033143b06fedff6e6cc49ae"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_character.html">Character</a> &amp;lhs)</td></tr>
+<tr class="separator:a9ddf69e2b033143b06fedff6e6cc49ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a195dfda7d65c821043fe2b4a9eb99cdb"><td class="memItemLeft" align="right" valign="top"><a id="a195dfda7d65c821043fe2b4a9eb99cdb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_character.html">Character</a> &amp;lhs)</td></tr>
+<tr class="separator:a195dfda7d65c821043fe2b4a9eb99cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4723a767f1c0be72e8020dfb07677852"><td class="memItemLeft" align="right" valign="top"><a id="a4723a767f1c0be72e8020dfb07677852"></a>
+<a class="el" href="class_character.html">Character</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_character.html">Character</a> lhs)</td></tr>
+<tr class="separator:a4723a767f1c0be72e8020dfb07677852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df144cc273f3b86b8a6413aca11850f"><td class="memItemLeft" align="right" valign="top">int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a8df144cc273f3b86b8a6413aca11850f">getExperience</a> () const</td></tr>
+<tr class="separator:a8df144cc273f3b86b8a6413aca11850f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dc5038bdeaa6e4064fa0ede9c06e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a34dc5038bdeaa6e4064fa0ede9c06e9b">setExperience</a> (const int_fast16_t &amp;experiencePointsToAdd)</td></tr>
+<tr class="memdesc:a34dc5038bdeaa6e4064fa0ede9c06e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set player experience points.  <a href="#a34dc5038bdeaa6e4064fa0ede9c06e9b">More...</a><br /></td></tr>
+<tr class="separator:a34dc5038bdeaa6e4064fa0ede9c06e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89c1ff283a813ee53d9234016dc171e3"><td class="memItemLeft" align="right" valign="top">int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a89c1ff283a813ee53d9234016dc171e3">getHealth</a> () const</td></tr>
+<tr class="memdesc:a89c1ff283a813ee53d9234016dc171e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get player health points.  <a href="#a89c1ff283a813ee53d9234016dc171e3">More...</a><br /></td></tr>
+<tr class="separator:a89c1ff283a813ee53d9234016dc171e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4e64ba6313e0d44735125c3d0fd184a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa4e64ba6313e0d44735125c3d0fd184a">setHealth</a> (const int_fast8_t newHealth)</td></tr>
+<tr class="memdesc:aa4e64ba6313e0d44735125c3d0fd184a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set player health points.  <a href="#aa4e64ba6313e0d44735125c3d0fd184a">More...</a><br /></td></tr>
+<tr class="separator:aa4e64ba6313e0d44735125c3d0fd184a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae052b694df2c91c125174ef6ee64ddc9"><td class="memItemLeft" align="right" valign="top"><a id="ae052b694df2c91c125174ef6ee64ddc9"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae052b694df2c91c125174ef6ee64ddc9">position</a></td></tr>
-<tr class="memdesc:ae052b694df2c91c125174ef6ee64ddc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Position of the <a class="el" href="class_character.html" title="Character. ">Character</a> in the world. <br /></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:ae052b694df2c91c125174ef6ee64ddc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1be10a2441d9fd85c0ad4829569cef6"><td class="memItemLeft" align="right" valign="top"><a id="ab1be10a2441d9fd85c0ad4829569cef6"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab1be10a2441d9fd85c0ad4829569cef6">velocity</a></td></tr>
-<tr class="memdesc:ab1be10a2441d9fd85c0ad4829569cef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Velocity of the <a class="el" href="class_character.html" title="Character. ">Character</a> in the world. <br /></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b></td></tr>
 <tr class="separator:ab1be10a2441d9fd85c0ad4829569cef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a859e08e1c0c038216e5b008b196d137e"><td class="memItemLeft" align="right" valign="top"><a id="a859e08e1c0c038216e5b008b196d137e"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></td></tr>
+<tr class="separator:a859e08e1c0c038216e5b008b196d137e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101f773dfe438fc98dfab0c75c819686"><td class="memItemLeft" align="right" valign="top"><a id="a101f773dfe438fc98dfab0c75c819686"></a>
+<a class="el" href="class_loot_drop.html">LootDrop</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lootDrop</b></td></tr>
+<tr class="separator:a101f773dfe438fc98dfab0c75c819686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95bcf4ce013e6725481ce36bbe02b7d"><td class="memItemLeft" align="right" valign="top"><a id="ad95bcf4ce013e6725481ce36bbe02b7d"></a>
+std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>items</b></td></tr>
+<tr class="separator:ad95bcf4ce013e6725481ce36bbe02b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc4880469eff242e806277a4e4e3cb20"><td class="memItemLeft" align="right" valign="top"><a id="adc4880469eff242e806277a4e4e3cb20"></a>
+const bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPlayerType</b></td></tr>
+<tr class="separator:adc4880469eff242e806277a4e4e3cb20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b633cc3e8550359c4783053904209b4"><td class="memItemLeft" align="right" valign="top"><a id="a0b633cc3e8550359c4783053904209b4"></a>
+int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><b>experiencePoints</b> = 0</td></tr>
+<tr class="separator:a0b633cc3e8550359c4783053904209b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b66c07dc8f4bd066891f4bd39c4b9a"><td class="memItemLeft" align="right" valign="top"><a id="a03b66c07dc8f4bd066891f4bd39c4b9a"></a>
+int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>health</b> = 100</td></tr>
+<tr class="separator:a03b66c07dc8f4bd066891f4bd39c4b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb1a27ac8aba4f7b7f88d4fd30aa263d"><td class="memItemLeft" align="right" valign="top"><a id="afb1a27ac8aba4f7b7f88d4fd30aa263d"></a>
 std::shared_ptr&lt; <a class="el" href="class_input_component.html">InputComponent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d">input</a></td></tr>
 <tr class="memdesc:afb1a27ac8aba4f7b7f88d4fd30aa263d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A smart pointer to an on the heap allocated <a class="el" href="class_input_component.html" title="Inputcomponent for Characters. ">InputComponent</a>. <br /></td></tr>
@@ -114,8 +162,8 @@ std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsC
 <div class="textblock"><p><a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
 <p>This class features a <a class="el" href="class_character.html" title="Character. ">Character</a>. Every character is the same, except for the (possibly) different components. The functioning of a <a class="el" href="class_character.html" title="Character. ">Character</a> is defined completely in its components; The component pattern has been used here. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3c985f2d7ea4d6f718e8026bcfcdd8bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c985f2d7ea4d6f718e8026bcfcdd8bb">&#9670;&nbsp;</a></span>Character()</h2>
+<a id="a2aa1bdcb2f2f58d3e208822c23269ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa1bdcb2f2f58d3e208822c23269ae3">&#9670;&nbsp;</a></span>Character()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +190,13 @@ std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsC
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsComponent</a> &gt;&#160;</td>
-          <td class="paramname"><em>graphics</em>&#160;</td>
+          <td class="paramname"><em>graphics</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>isPlayerType</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -203,8 +257,168 @@ std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsC
 
 </div>
 </div>
-<a id="a0fd32781c66fca2d35fa8619c94ac62b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fd32781c66fca2d35fa8619c94ac62b">&#9670;&nbsp;</a></span>update()</h2>
+<a id="aac3964657c350f9a431a91a73eeb14c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac3964657c350f9a431a91a73eeb14c2">&#9670;&nbsp;</a></span>getBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::FloatRect Character::getBounds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get bounds of character. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the bounds of the character. </dd></dl>
+
+</div>
+</div>
+<a id="a8df144cc273f3b86b8a6413aca11850f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df144cc273f3b86b8a6413aca11850f">&#9670;&nbsp;</a></span>getExperience()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int_fast16_t Character::getExperience </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get curent experience points. </p><dl class="section return"><dt>Returns</dt><dd>Returns the current experience points of the <a class="el" href="class_character.html" title="Character. ">Character</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a89c1ff283a813ee53d9234016dc171e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89c1ff283a813ee53d9234016dc171e3">&#9670;&nbsp;</a></span>getHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int_fast8_t Character::getHealth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get player health points. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the current health points of the <a class="el" href="class_character.html" title="Character. ">Character</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a7ee027a152ed35e0568c530422e102e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee027a152ed35e0568c530422e102e9">&#9670;&nbsp;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f Character::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get position of character. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the position of the <a class="el" href="class_character.html" title="Character. ">Character</a>. </dd></dl>
+
+</div>
+</div>
+<a id="aa49f985b1b05751b2d4b3de74b4acc8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49f985b1b05751b2d4b3de74b4acc8c">&#9670;&nbsp;</a></span>isAlive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Character::isAlive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is alive? </p>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the <a class="el" href="class_character.html" title="Character. ">Character</a> is alive. </dd></dl>
+
+</div>
+</div>
+<a id="aad03740ab474e84411b44362dc62319f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad03740ab474e84411b44362dc62319f">&#9670;&nbsp;</a></span>isPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Character::isPlayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is player? </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns wether or not the <a class="el" href="class_character.html" title="Character. ">Character</a> is a player. </dd></dl>
+
+</div>
+</div>
+<a id="a34dc5038bdeaa6e4064fa0ede9c06e9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34dc5038bdeaa6e4064fa0ede9c06e9b">&#9670;&nbsp;</a></span>setExperience()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Character::setExperience </td>
+          <td>(</td>
+          <td class="paramtype">const int_fast16_t &amp;&#160;</td>
+          <td class="paramname"><em>experiencePointsToAdd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set player experience points. </p>
+<p>This function adds the given experience points to the current amount of <a class="el" href="class_character.html" title="Character. ">Character</a> experience. </p>
+
+</div>
+</div>
+<a id="aa4e64ba6313e0d44735125c3d0fd184a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4e64ba6313e0d44735125c3d0fd184a">&#9670;&nbsp;</a></span>setHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Character::setHealth </td>
+          <td>(</td>
+          <td class="paramtype">const int_fast8_t&#160;</td>
+          <td class="paramname"><em>newHealth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set player health points. </p>
+<p>This function adds the given health points to the current amount of <a class="el" href="class_character.html" title="Character. ">Character</a> health. </p>
+
+</div>
+</div>
+<a id="a4cfd1ba5e6d767efc82e01e8b40ce5d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cfd1ba5e6d767efc82e01e8b40ce5d8">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +433,13 @@ std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsC
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
-          <td class="paramname"><em>world</em>&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>characters</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -247,7 +467,7 @@ std::shared_ptr&lt; <a class="el" href="class_graphics_component.html">GraphicsC
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 20 2020 09:17:48 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

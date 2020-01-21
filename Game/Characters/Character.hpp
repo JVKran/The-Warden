@@ -78,8 +78,8 @@ class Character {
 		std::vector<std::shared_ptr<Item>> items;
 		const bool isPlayerType;
 
-		int experiencePoints = 0;
-		int health = 100;
+		int_fast16_t experiencePoints = 0;
+		int_fast8_t health = 100;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
@@ -103,10 +103,10 @@ class Character {
 		bool operator==(const Character & lhs);
 		Character & operator=(Character lhs);
 
-		int getExperience() const;
-		void setExperience(const int & experiencePointsToAdd);
-		int getHealth() const;
-		void setHealth(const int newHealth);
+		int_fast16_t getExperience() const;
+		void setExperience(const int_fast16_t & experiencePointsToAdd);
+		int_fast8_t getHealth() const;
+		void setHealth(const int_fast8_t newHealth);
 };
 
 #endif //__CHARACTER_HPP
