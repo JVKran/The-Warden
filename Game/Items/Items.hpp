@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdint>
 #include "Character.hpp"
+
 class Character; 
 
 class Item{
@@ -13,17 +14,17 @@ class Item{
 
 class Weapon : public Item{
 	private:	
-		const int_fast8_t damageFactor;
+		const int damageFactor;
 	public:
-		Weapon(const int_fast8_t damageFactor);
+		Weapon(const int damageFactor);
 		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 
 class Consumable : public Item{
 	private:
-		const uint_fast8_t foodValue;
+		const int foodValue;
 	public:
-		Consumable(const uint_fast8_t foodValue);
+		Consumable(const int foodValue);
 		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 

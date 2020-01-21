@@ -1,10 +1,10 @@
 #include "Items.hpp"
 
-Weapon::Weapon(const int_fast8_t damageFactor):
+Weapon::Weapon(const int damageFactor):
 	damageFactor(damageFactor)
 {}
 
-Consumable::Consumable(const uint_fast8_t foodValue):
+Consumable::Consumable(const int foodValue):
 	foodValue(foodValue)
 {}
 
@@ -13,7 +13,11 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 		if(*character != comparingCharacter){
 			if(character->getBounds().intersects(comparingCharacter.getBounds())){
 				std::cout << "Hit character!" << std::endl;
-				character->setHealth(character->getHealth() - damageFactor);
+				std::cout << character->getHealth() << std::endl;
+				character->setHealth( (character->getHealth()) - damageFactor );
+				if(character->getHealth() < 0){
+					characters.erase(std::find(characters.begin(), characters.end(), comparingCharacter));
+				}
 			}
 		}
 	}
@@ -22,6 +26,6 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 void Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
 	if(character->getHealth() > 100){
-		character->setHealth(int_fast8_t(100));
+		character->setHealth(100);
 	}
 }

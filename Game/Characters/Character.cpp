@@ -32,7 +32,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(world, position, graphics->getDimensions());
 	physics->processPhysics(direction, velocity);
 	physics->processVelocity(direction, velocity);
-	if(position.y < 2000){
+	if(position.y > 2000){
 		health = 0;
 	}
 	position += velocity;
@@ -195,7 +195,7 @@ sf::FloatRect Character::getBounds() const {
 
 /// Get curent experience points.
 /// \return Returns the current experience points of the Character.
-int_fast16_t Character::getExperience() const{
+int Character::getExperience() const{
 	return experiencePoints;
 }
 
@@ -203,14 +203,15 @@ int_fast16_t Character::getExperience() const{
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::setExperience(const int_fast16_t & experiencePointsToAdd){
+void Character::setExperience(const int & experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 
 /// \brief
 /// Get player health points.
 /// \return Returns the current health points of the Character.
-int_fast8_t Character::getHealth() const{
+int Character::getHealth() const{
+	std::cout << "Getter " << health << std::endl;
 	return health;
 }
 
@@ -218,7 +219,7 @@ int_fast8_t Character::getHealth() const{
 /// Set player health points.
 /// \details
 /// This function adds the given health points to the current amount of Character health.
-void Character::setHealth(const int_fast8_t newHealth){
+void Character::setHealth(const int newHealth){
 	health = newHealth;
 	std::cout << "Health: " << int(health) << std::endl;
 }
