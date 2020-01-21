@@ -41,17 +41,17 @@ int main(){
 		// 	lag -= msPerUpdate;
 		// }
 
+		window.clear();
+		window.setView(view);
+		machine.display(event, view);
+		window.display();
+
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
 			machine.handleInput(event, view);
 		}
-
-		window.clear();
-		window.setView(view);
-		machine.display(event, view);
-		window.display();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;

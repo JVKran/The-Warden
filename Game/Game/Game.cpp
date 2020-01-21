@@ -48,7 +48,6 @@ void Game::display(sf::View & view){
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
-	window.setView(view);
 }
 
 
