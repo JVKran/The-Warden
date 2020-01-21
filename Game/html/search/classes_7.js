@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tile',['Tile',['../class_tile.html',1,'']]]
+  ['screenobject',['ScreenObject',['../class_screen_object.html',1,'']]],
+  ['spriteanimation',['SpriteAnimation',['../class_sprite_animation.html',1,'']]]
 ];

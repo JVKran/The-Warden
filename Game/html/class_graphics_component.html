@@ -60,7 +60,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_graphics_component-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -78,63 +77,35 @@ Inheritance diagram for GraphicsComponent:</div>
  <div class="center">
   <img src="class_graphics_component.png" usemap="#GraphicsComponent_map" alt=""/>
   <map id="GraphicsComponent_map" name="GraphicsComponent_map">
-<area href="class_player_graphics.html" alt="PlayerGraphics" shape="rect" coords="0,56,126,80"/>
+<area href="class_enemy_graphics.html" alt="EnemyGraphics" shape="rect" coords="0,56,126,80"/>
+<area href="class_player_graphics.html" alt="PlayerGraphics" shape="rect" coords="136,56,262,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa3e6c89591d333134b50b434bb26dac7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_component.html#aa3e6c89591d333134b50b434bb26dac7">GraphicsComponent</a> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, <a class="el" href="struct_sprite_character.html">SpriteCharacter</a> &amp;characterData)</td></tr>
-<tr class="memdesc:aa3e6c89591d333134b50b434bb26dac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#aa3e6c89591d333134b50b434bb26dac7">More...</a><br /></td></tr>
-<tr class="separator:aa3e6c89591d333134b50b434bb26dac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac67ce02617b691a71f320264c9127c35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graphics_component.html#ac67ce02617b691a71f320264c9127c35">GraphicsComponent</a> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
+<tr class="memdesc:ac67ce02617b691a71f320264c9127c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#ac67ce02617b691a71f320264c9127c35">More...</a><br /></td></tr>
+<tr class="separator:ac67ce02617b691a71f320264c9127c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7713ea719ad1576b85d1f50d7aeaeea3"><td class="memItemLeft" align="right" valign="top"><a id="a7713ea719ad1576b85d1f50d7aeaeea3"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processGraphics</b> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;position, sf::View &amp;view)=0</td></tr>
 <tr class="separator:a7713ea719ad1576b85d1f50d7aeaeea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab549c585d644684d4e5a0948163fefa6"><td class="memItemLeft" align="right" valign="top"><a id="ab549c585d644684d4e5a0948163fefa6"></a>
-virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> ()=0</td></tr>
-<tr class="separator:ab549c585d644684d4e5a0948163fefa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:a3cbaa2443dd2e40b8dad5a58abdad355"><td class="memItemLeft" align="right" valign="top"><a id="a3cbaa2443dd2e40b8dad5a58abdad355"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>states</b> { <b>IDLE</b>, 
-<b>WALK</b>, 
-<b>JUMP</b>
- }</td></tr>
-<tr class="separator:a3cbaa2443dd2e40b8dad5a58abdad355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4e01bdb0dc590e8a48cf11104cd6108"><td class="memItemLeft" align="right" valign="top"><a id="aa4e01bdb0dc590e8a48cf11104cd6108"></a>
+virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> ()</td></tr>
+<tr class="separator:aa4e01bdb0dc590e8a48cf11104cd6108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a2e37c3d34d8b09db5b22fc439390e525"><td class="memItemLeft" align="right" valign="top"><a id="a2e37c3d34d8b09db5b22fc439390e525"></a>
 sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td></tr>
 <tr class="separator:a2e37c3d34d8b09db5b22fc439390e525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00acf8c48a1561f3637beece8a622772"><td class="memItemLeft" align="right" valign="top"><a id="a00acf8c48a1561f3637beece8a622772"></a>
-<a class="el" href="struct_sprite_character.html">SpriteCharacter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>characterData</b></td></tr>
-<tr class="separator:a00acf8c48a1561f3637beece8a622772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5118540e07d8f24f3f776b0f871c412"><td class="memItemLeft" align="right" valign="top"><a id="aa5118540e07d8f24f3f776b0f871c412"></a>
-sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
-<tr class="separator:aa5118540e07d8f24f3f776b0f871c412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2e8c83de03d3c87cedc30a3ab96d33d"><td class="memItemLeft" align="right" valign="top"><a id="ab2e8c83de03d3c87cedc30a3ab96d33d"></a>
-sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>previousTime</b></td></tr>
-<tr class="separator:ab2e8c83de03d3c87cedc30a3ab96d33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcd99315c0543c8bc3e08a233f5ba50"><td class="memItemLeft" align="right" valign="top"><a id="a0bcd99315c0543c8bc3e08a233f5ba50"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>previousPosition</b></td></tr>
-<tr class="separator:a0bcd99315c0543c8bc3e08a233f5ba50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7020ce29474d4ffa5b6159228cb0d853"><td class="memItemLeft" align="right" valign="top"><a id="a7020ce29474d4ffa5b6159228cb0d853"></a>
-states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::JUMP</td></tr>
-<tr class="separator:a7020ce29474d4ffa5b6159228cb0d853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7f477bf0db2061c02be97c99cdf162a"><td class="memItemLeft" align="right" valign="top"><a id="af7f477bf0db2061c02be97c99cdf162a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIdle</b> = true</td></tr>
-<tr class="separator:af7f477bf0db2061c02be97c99cdf162a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c526f08ed34a5b3104edde25cf733e6"><td class="memItemLeft" align="right" valign="top"><a id="a2c526f08ed34a5b3104edde25cf733e6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = false</td></tr>
-<tr class="separator:a2c526f08ed34a5b3104edde25cf733e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Graphicscomponent for Characters. </p>
 <p>This class is responsible for managing all graphics related actions. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa3e6c89591d333134b50b434bb26dac7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3e6c89591d333134b50b434bb26dac7">&#9670;&nbsp;</a></span>GraphicsComponent()</h2>
+<a id="ac67ce02617b691a71f320264c9127c35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac67ce02617b691a71f320264c9127c35">&#9670;&nbsp;</a></span>GraphicsComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,13 +120,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = f
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>assets</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_sprite_character.html">SpriteCharacter</a> &amp;&#160;</td>
-          <td class="paramname"><em>characterData</em>&#160;</td>
+          <td class="paramname"><em>assets</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -170,7 +135,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = f
   <table class="params">
     <tr><td class="paramname">assetName</td><td>The name of the Texture to retrieve from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> </td></tr>
     <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to retrieve textures from. </td></tr>
-    <tr><td class="paramname">characterData</td><td>The <a class="el" href="struct_sprite_character.html" title="Data needed for SpriteAnimation. ">SpriteCharacter</a> to use for getting the necessary data. </td></tr>
+    <tr><td class="paramname">characterData</td><td>The SpriteCharacter to use for getting the necessary data. </td></tr>
   </table>
   </dd>
 </dl>
@@ -184,7 +149,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = f
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 20 2020 09:17:48 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
