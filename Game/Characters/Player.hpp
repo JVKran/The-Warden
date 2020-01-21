@@ -11,7 +11,7 @@
 
 class PlayerInput : public InputComponent {
 	public:
-		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) override;
+		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, std::vector<Character> & characters, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) override;
 };
 
 class PlayerGraphics : public GraphicsComponent {

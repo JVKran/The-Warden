@@ -38,7 +38,7 @@ class PhysicsComponent {
 /// This class is responsible for managing input for a Character.
 class InputComponent {
 	public:
-		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) = 0;
+		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, std::vector<Character> & characters, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) = 0;
 };
 
 /// \brief
@@ -67,7 +67,7 @@ class Character {
 		sf::Vector2f direction;
 
 		LootDrop lootDrop;
-		std::vector<Item> items;
+		std::vector<std::shared_ptr<Item>> items;
 		const bool isPlayerType;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
@@ -79,16 +79,25 @@ class Character {
 		int_fast8_t health = 100;
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 
-		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
+		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters);
 		bool isAlive();
 
 		bool isPlayer() const;
+
 		sf::Vector2f getPosition() const;
+		sf::FloatRect getBounds() const;
 
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 
 		uint_fast16_t getLevel(const uint_fast16_t & experiencePoints) const;
+
+		bool operator!=(const Character & lhs){
+			if(lhs.position != position){
+				return true;
+			}
+			return false;
+		}
 };
 
 #endif //__CHARACTER_HPP

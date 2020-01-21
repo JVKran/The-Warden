@@ -8,7 +8,7 @@ class Character;
 
 class Item{
 	public:
-		virtual void use(Character & character, std::vector<Character> & characters) = 0;
+		virtual void use(Character * character, std::vector<Character> & characters) = 0;
 };
 
 class Weapon : public Item{
@@ -16,7 +16,7 @@ class Weapon : public Item{
 		const uint_fast8_t damageFactor;
 	public:
 		Weapon(const uint_fast8_t damageFactor);
-		virtual void use(Character & character, std::vector<Character> & characters) override;
+		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 
 class Consumable : public Item{
@@ -24,7 +24,7 @@ class Consumable : public Item{
 		const uint_fast16_t foodValue;
 	public:
 		Consumable(const uint_fast16_t foodValue);
-		virtual void use(Character & character, std::vector<Character> & characters) override;
+		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 
 #endif //Items.hpp

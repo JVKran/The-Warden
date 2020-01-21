@@ -16,7 +16,9 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	input(input),
 	physics(physics),
 	graphics(graphics)
-{}
+{
+	items.push_back(std::make_shared<Weapon>(10));
+}
 
 /// \brief
 /// Update Character.
@@ -25,8 +27,8 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
-void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
-	input->processInput(velocity, position, direction, characters);
+void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters){
+	input->processInput(velocity, position, direction, characters, items, this);
 	physics->processCollisions(world, position, graphics->getDimensions());
 	physics->processPhysics(direction, velocity);
 	physics->processVelocity(direction, velocity);
@@ -182,6 +184,13 @@ bool Character::isPlayer() const {
 /// \return Returns the position of the Character.
 sf::Vector2f Character::getPosition() const {
 	return position;
+}
+
+/// \brief
+/// Get bounds of character.
+/// \return Returns the bounds of the character.
+sf::FloatRect Character::getBounds() const {
+	return sf::FloatRect(position, graphics->getDimensions());
 }
 
 /// \brief
