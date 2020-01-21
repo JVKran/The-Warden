@@ -1,8 +1,9 @@
 #include "Interface.hpp"
 
-Interface::Interface(Game & game, Editor & editor, AssetManager & assets, sf::RenderWindow & window):
+Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window):
 	game(game),
 	editor(editor),
+	settings(settings),
 	window(window)
 {
 	background.setTexture(assets.getTexture("background"));
@@ -11,6 +12,8 @@ Interface::Interface(Game & game, Editor & editor, AssetManager & assets, sf::Re
 	interfaceElements.push_back(sf::Sprite(assets.getTexture("editButton")));
 	interfaceElements[1].setPosition(150, 300);
 	interfaceElements[1].setScale(0.35, 0.35);
+	interfaceElements.push_back(sf::Sprite(assets.getTexture("startButton")));
+	interfaceElements[2].setPosition(100, 100);
 }
 
 void Interface::handleInput(StateMachine * machine){
@@ -34,6 +37,9 @@ void Interface::handleEvent(const sf::Event & event, StateMachine * machine){
 			if(event.type == sf::Event::MouseButtonPressed && sprite.getPosition() == sf::Vector2f(150, 300)){
 				editor.selectWorld("World/world.txt");
 				machine->changeState(std::make_shared<EditingState>());
+			}
+			if(event.type == sf::Event::MouseButtonPressed && sprite.getPosition() == sf::Vector2f(100, 100)){
+				machine->changeState(std::make_shared<SettingsState>());
 			}
 		}
 	}
