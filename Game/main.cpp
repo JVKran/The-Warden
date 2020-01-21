@@ -20,7 +20,7 @@ int main(){
 
 	Game game(window, assets);
 	Editor editor(window, assets);
-	Interface interface(game, editor, assets, window);
+	Interface interface(game, machine, editor, assets, window);
 	StateMachine machine(game, interface, editor);
 
 	sf::Clock clock;

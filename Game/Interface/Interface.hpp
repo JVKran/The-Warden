@@ -6,6 +6,8 @@
 #include <memory>
 #include "Game.hpp"
 #include "StateMachine.hpp"
+#include "InterfaceElement.hpp"
+#include "ScreenObject.hpp"
 
 class StateMachine;
 
@@ -17,9 +19,9 @@ class Interface {
 		sf::RenderWindow & window;
 
 		sf::Sprite background;
-		std::vector<sf::Sprite> interfaceElements;
+		std::vector<InterfaceElement> interfaceElements;
 	public:
-		Interface(Game & game, Editor & editor, AssetManager & assets, sf::RenderWindow & window);
+		Interface(Game & game, StateMachine * machine, Editor & editor, AssetManager & assets, sf::RenderWindow & window);
 
 		void handleInput(StateMachine * machine);
 		void handleEvent(const sf::Event & event, StateMachine * machine);
