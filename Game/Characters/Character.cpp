@@ -87,8 +87,31 @@ sf::Vector2f Character::getPosition() const {
 }
 
 /// \brief
-/// Get curent character level.
-/// \return Returns the current level of the Character.
-uint_fast16_t getLevel(const uint_fast16_t & experiencePoints){
-	return experiencePoints / uint_fast16_t(100);
+/// Get curent experience points.
+/// \return Returns the current experience points of the Character.
+uint_fast16_t Character::getExperience() const{
+	return experiencePoints;
+}
+
+/// \brief 
+/// Set player experience points.
+/// \details
+/// This function adds the given experience points to the current amount of Character experience.
+void Character::setExperience(const uint_fast16_t & experiencePointsToAdd){
+	experiencePoints += experiencePointsToAdd;
+}
+
+/// \brief
+/// Get player health points.
+/// \return Returns the current health points of the Character.
+int_fast8_t Character::getHealth() const{
+	return health;
+}
+
+/// \brief
+/// Set player health points.
+/// \details
+/// This function adds the given health points to the current amount of Character health.
+void Character::setHealth(const int_fast8_t & healthPointsToAdd){
+	health += healthPointsToAdd;
 }

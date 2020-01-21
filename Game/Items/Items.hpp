@@ -21,9 +21,9 @@ class Weapon : public Item{
 
 class Consumable : public Item{
 	private:
-		const uint_fast16_t foodValue;
+		const uint_fast8_t foodValue;
 	public:
-		Consumable(const uint_fast16_t foodValue);
+		Consumable(const uint_fast8_t foodValue);
 		virtual void use(Character & character, std::vector<Character> & characters) override;
 };
 
