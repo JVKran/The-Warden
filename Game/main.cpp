@@ -21,7 +21,7 @@ int main(){
 
 	Game game(window, assets);
 	Editor editor(window, assets);
-	Settings settings(window);
+	Settings settings(window, assets);
 	Interface interface(game, editor, settings, assets, window);
 	StateMachine machine(game, interface, editor, settings);
 

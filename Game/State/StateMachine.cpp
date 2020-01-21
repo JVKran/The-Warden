@@ -38,14 +38,15 @@ void EditingState::handleEvent(Game & game, Interface & interface, Editor & edit
 }
 
 void SettingsState::handleInput(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	settings.handleInput(event, machine);
+	settings.handleInput();
 }
 
 void SettingsState::display(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
+	settings.draw();
 }
 
 void SettingsState::handleEvent(Game & game, Interface & interface, Editor & editor, Settings & settings, const sf::Event & event, sf::View & view, StateMachine * machine) {
-	settings.handleInput(event, machine);
+	settings.handleEvent(event, machine);
 }
 
 StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings):
