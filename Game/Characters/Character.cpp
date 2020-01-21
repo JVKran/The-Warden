@@ -28,11 +28,12 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
 	input->processInput(velocity, position, direction, characters);
 	physics->processCollisions(world, position, graphics->getDimensions());
-	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
+	physics->processPhysics(direction, velocity);
 	physics->processVelocity(direction, velocity);
 	if(position.y < 2000){
 		health = 0;
 	}
+	position += velocity;
 }
 
 /// \brief
@@ -50,12 +51,6 @@ bool Character::isAlive(){
 /// @param world The World to perform physics calculations on.
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
-	// sf::RectangleShape hit(graphics->getDimensions());
-	// hit.setPosition(position);
-	// hit.setFillColor(sf::Color(0,255,0,128));
-	// window.draw(hit);
-	// debug draw hitbox
-	//window.display();
 }
 
 void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions){

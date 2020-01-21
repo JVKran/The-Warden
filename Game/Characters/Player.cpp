@@ -7,10 +7,7 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 {}
 
 
-void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions){
-
-	if(clock.getElapsedTime().asMilliseconds() - lastup.asMilliseconds() > 2){
-
+void PlayerPhysics::processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity){
     switch (state){
 		case (states::FALLING): {
 			if(bottomCollision){
@@ -21,10 +18,9 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 					velocity.y += 0.09;
 				}
 			}
-			
 			break;
 		}
-		case (states::STANDING):
+		case (states::STANDING): {
 			if(direction.y < 0){
 				state = states::JUMPING;
 				velocity.y = -6;
@@ -37,8 +33,8 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			
 			velocity.y=0;
 			break;
-		case(states::JUMPING):
-			//std::cout<<elapsed<<'\n';
+		}
+		case(states::JUMPING): {
 			if(topCollision){
 				state=states::FALLING;
 			}
@@ -49,15 +45,11 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 				velocity.y += 0.09;
 			}
 			break;
-		default:
+		}
+		default: {
 			state= states::FALLING; 
 			break;
-	}
-	lastup = clock.getElapsedTime();
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-		position = sf::Vector2f(500,100);
-	}
-	position += velocity;
+		}
 	}
 }
 

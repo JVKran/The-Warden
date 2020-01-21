@@ -19,7 +19,7 @@ class PhysicsComponent {
 		bool bottomCollision, topCollision, leftCollision, rightCollision;
 		bool hasResistance = false;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions) = 0;
+		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity) = 0;
 		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 };

@@ -12,12 +12,11 @@
 class PlayerPhysics : public PhysicsComponent {
 	private:
 		sf::Clock clock;
-		sf::Time lastup;
 
 		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:
-		virtual void processPhysics(World & world, sf::Vector2f & position, sf::Vector2f &velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions) override;
+		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity) override;
 };
 
 class PlayerInput : public InputComponent {
