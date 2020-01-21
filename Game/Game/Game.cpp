@@ -29,7 +29,7 @@ void Game::startWorld(const std::string & worldName){
 /// Hanlde input.
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
-void Game::handleInput(const sf::Event & event){
+void Game::handleInput(){
 	for(auto & character : characters){
 		character.update(window, world, characters);
 	}

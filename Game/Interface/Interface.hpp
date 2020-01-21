@@ -21,7 +21,8 @@ class Interface {
 	public:
 		Interface(Game & game, Editor & editor, AssetManager & assets, sf::RenderWindow & window);
 
-		void handleInput(const sf::Event & event, StateMachine * machine);
+		void handleInput(StateMachine * machine);
+		void handleEvent(const sf::Event & event, StateMachine * machine);
 		void display();
 };
 

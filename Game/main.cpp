@@ -37,7 +37,7 @@ int main(){
 		machine.handleInput(event, view);
 
 		// while (lag >= msPerUpdate){
-		// 	machine.handleInput(event, view);
+		// 	machine.handleEvent(event, view);
 		// 	lag -= msPerUpdate;
 		// }
 
@@ -50,7 +50,7 @@ int main(){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
-			machine.handleInput(event, view);
+			machine.handleEvent(event, view);
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){

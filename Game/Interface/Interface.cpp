@@ -13,7 +13,7 @@ Interface::Interface(Game & game, Editor & editor, AssetManager & assets, sf::Re
 	interfaceElements[1].setScale(0.35, 0.35);
 }
 
-void Interface::handleInput(const sf::Event & event, StateMachine * machine){
+void Interface::handleInput(StateMachine * machine){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 		game.startWorld("World/world.txt");
 		machine->changeState(std::make_shared<PlayingState>());
@@ -22,6 +22,9 @@ void Interface::handleInput(const sf::Event & event, StateMachine * machine){
 		editor.selectWorld("World/world.txt");
 		machine->changeState(std::make_shared<EditingState>());
 	}
+}
+
+void Interface::handleEvent(const sf::Event & event, StateMachine * machine){
 	for(const sf::Sprite & sprite : interfaceElements){
 		if(sprite.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y))){
 			if(event.type == sf::Event::MouseButtonPressed && sprite.getPosition() == sf::Vector2f(550, 300)){
