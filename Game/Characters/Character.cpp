@@ -220,5 +220,4 @@ int_fast8_t Character::getHealth() const{
 /// This function adds the given health points to the current amount of Character health.
 void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
-	// std::cout << "Health: " << int(health) << std::endl;
 }

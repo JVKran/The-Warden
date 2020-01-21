@@ -1,9 +1,21 @@
+/// @file
+
 #include "Items.hpp"
 
+/// \brief
+/// Create weapon instance.
+/// \details
+/// This function creates a Weapon.
+/// @param damageFactor The damagefactor to calculate damage dealt.
 Weapon::Weapon(const int_fast8_t damageFactor):
 	damageFactor(damageFactor)
 {}
 
+/// \brief
+/// Create consumable instance.
+/// \details
+/// This function creates a Consumable.
+/// @param foodValue The foodvalue to calculate new amount of health.
 Consumable::Consumable(const int_fast8_t foodValue):
 	foodValue(foodValue)
 {}
@@ -23,6 +35,10 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 	}
 }
 
+/// \brief
+/// Replenish Character health.
+/// \details
+/// This function adds the foodValue to the Character's current health.
 void Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
 	if(character->getHealth() > 100){
