@@ -9,16 +9,6 @@
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
 
-class PlayerPhysics : public PhysicsComponent {
-	private:
-		sf::Clock clock;
-
-		enum class states { JUMPING, STANDING, FALLING, INSIDE};
-		states state = states::FALLING;
-	public:
-		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity) override;
-};
-
 class PlayerInput : public InputComponent {
 	public:
 		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) override;

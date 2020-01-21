@@ -6,53 +6,6 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 	GraphicsComponent(assetName, assets)
 {}
 
-
-void PlayerPhysics::processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity){
-    switch (state){
-		case (states::FALLING): {
-			if(bottomCollision){
-				state = states::STANDING;
-				velocity.y = 0;
-			} else {
-				if(velocity.y < 4){
-					velocity.y += 0.09;
-				}
-			}
-			break;
-		}
-		case (states::STANDING): {
-			if(direction.y < 0){
-				state = states::JUMPING;
-				velocity.y = -6;
-				break;
-			}
-			if(!bottomCollision){
-				state = states::FALLING;
-				break;
-			}
-			
-			velocity.y=0;
-			break;
-		}
-		case(states::JUMPING): {
-			if(topCollision){
-				state=states::FALLING;
-			}
-			if(bottomCollision){
-				state = states::STANDING;
-			}
-			if(velocity.y < 4){
-				velocity.y += 0.09;
-			}
-			break;
-		}
-		default: {
-			state= states::FALLING; 
-			break;
-		}
-	}
-}
-
 void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters){
 	direction.x = 0;	//Stand still
 	direction.y = 0;

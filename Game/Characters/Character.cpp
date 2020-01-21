@@ -109,6 +109,52 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 	}
 }
 
+void PhysicsComponent::processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity){
+	switch (state){
+		case (states::FALLING): {
+			if(bottomCollision){
+				state = states::STANDING;
+				velocity.y = 0;
+			} else {
+				if(velocity.y < 4){
+					velocity.y += 0.09;
+				}
+			}
+			break;
+		}
+		case (states::STANDING): {
+			if(direction.y < 0){
+				state = states::JUMPING;
+				velocity.y = -6;
+				break;
+			}
+			if(!bottomCollision){
+				state = states::FALLING;
+				break;
+			}
+			
+			velocity.y=0;
+			break;
+		}
+		case(states::JUMPING): {
+			if(topCollision){
+				state=states::FALLING;
+			}
+			if(bottomCollision){
+				state = states::STANDING;
+			}
+			if(velocity.y < 4){
+				velocity.y += 0.09;
+			}
+			break;
+		}
+		default: {
+			state= states::FALLING; 
+			break;
+		}
+	}
+}
+
 /// \brief
 /// Create an instance.
 /// \details
@@ -137,4 +183,3 @@ bool Character::isPlayer() const {
 sf::Vector2f Character::getPosition() const {
 	return position;
 }
-

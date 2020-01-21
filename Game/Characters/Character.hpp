@@ -16,10 +16,15 @@ class Character;
 /// This class is responsible for updating and managing physics for a Character.
 class PhysicsComponent {
 	protected:
+		sf::Clock clock;
+
+		enum class states { JUMPING, STANDING, FALLING, INSIDE};
+		states state = states::FALLING;
+		
 		bool bottomCollision, topCollision, leftCollision, rightCollision;
 		bool hasResistance = false;
 	public:
-		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity) = 0;
+		virtual void processPhysics(sf::Vector2f & direction, sf::Vector2f & velocity);
 		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 };

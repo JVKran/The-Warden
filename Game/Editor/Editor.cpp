@@ -46,7 +46,7 @@ void Editor::draw(sf::View & view){
 /// This function draws all available tiles to choose from to the passed RenderWindow.
 /// @param window The window to write the editor and world to.
 void Editor::drawTileBar( sf::View & view ){
-	for( const auto & object : objects ){
+	for( const Tile & object : objects ){
 		if(object.getPosition().x + 100 > view.getCenter().x-view.getSize().x && object.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
 			object.draw(window);
 			//std::cout << tile.getPosition().x << std::endl;
@@ -69,7 +69,7 @@ void Editor::handleInput(sf::View & view){
     bool upPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
 
     std::vector<Tile> & tiles = world.getTiles();
-    for(auto & tile : tiles){
+    for(Tile & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 			// if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
 			// 	tile.setFollowMouse(true);
@@ -123,7 +123,7 @@ void Editor::handleInput(sf::View & view){
 		editingDone();
 	}
 
-	for(auto & object : objects){
+	for(Tile & object : objects){
 		if(leftMousePressed || rightMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.isPartOfWorld()){
@@ -160,7 +160,7 @@ void Editor::handleEvent(const sf::Event & event, sf::View & view){
 	}
 
 	std::vector<Tile> & tiles = world.getTiles();
-    for(auto & tile : tiles){
+    for(Tile & tile : tiles){
     	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 			if(event.type == sf::Event::MouseWheelMoved){
 				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
@@ -185,7 +185,7 @@ void Editor::handleEvent(const sf::Event & event, sf::View & view){
 /// This function is used to scroll through the tiles that can be placed in the world.
 /// @param mouseWHeelDelta The new position of the mousewheel relative to its previous position.
 void Editor::scrollTileBar( const int_fast16_t & mouseWheelDelta ){
-	for( auto & object : objects ){
+	for( Tile & object : objects ){
 		sf::Vector2f position = object.getPosition();
 		position.y += mouseWheelDelta * 30;
 		object.setPosition(position);

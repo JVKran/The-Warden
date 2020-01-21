@@ -7,17 +7,17 @@
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
 
-// class EnemyPhysics : public PhsysicsComponent {
-// 	private:
-		
-// };
+class EnemyPhysics : public PhysicsComponent {
+	public:
+		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
+};
 
 class EnemyInput : public InputComponent {
 	public:
 		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) override;
 };
 
-class EnemyGraphics : public GraphicsComponent{
+class EnemyGraphics : public GraphicsComponent {
 	public:
 		EnemyGraphics(const std::string & assetName, AssetManager & assets);
 
