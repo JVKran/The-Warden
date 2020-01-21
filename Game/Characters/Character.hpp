@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
 #include "SpriteAnimation.hpp"
+#include "LootDrop.hpp"
 #include <memory>
 
 class Character;
@@ -53,14 +54,17 @@ class Character {
 		sf::Vector2f velocity;
 		sf::Vector2f direction;
 
+		LootDrop & lootDrop;
+
 		const bool isPlayerType;
 		int_fast8_t health = 100;
+		uint_fast16_t experiencePoints = 0;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, LootDrop & lootDrop, const bool isPlayerType = false);
 
 		void update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters);
 		bool isAlive();
