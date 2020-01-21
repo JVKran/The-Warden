@@ -32,7 +32,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(world, position, graphics->getDimensions());
 	physics->processPhysics(direction, velocity);
 	physics->processVelocity(direction, velocity);
-	if(position.y < 2000){
+	if(position.y > 2000){
 		health = 0;
 	}
 	position += velocity;
@@ -211,6 +211,7 @@ void Character::setExperience(const int & experiencePointsToAdd){
 /// Get player health points.
 /// \return Returns the current health points of the Character.
 int Character::getHealth() const{
+	std::cout << "Getter " << health << std::endl;
 	return health;
 }
 

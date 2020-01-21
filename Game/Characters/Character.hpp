@@ -71,7 +71,7 @@ class Character {
 		const bool isPlayerType;
 
 		int experiencePoints = 0;
-		int health = 200;
+		int health = 100;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
@@ -96,6 +96,26 @@ class Character {
 				return true;
 			}
 			return false;
+		}
+
+		bool operator==(const Character & lhs){
+			if(lhs.position == position){
+				return true;
+			}
+			return false;
+		}
+
+		Character & operator=(Character lhs){
+			position = lhs.position;
+			velocity = lhs.velocity;
+			direction = lhs.direction;
+			items = lhs.items;
+			experiencePoints = lhs.experiencePoints;
+			health = lhs.health;
+			input = lhs.input;
+			physics = lhs.physics;
+			graphics = lhs.graphics;
+			return *this;
 		}
 
 		int getExperience() const;
