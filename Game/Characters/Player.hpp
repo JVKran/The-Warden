@@ -14,9 +14,6 @@ class PlayerPhysics : public PhysicsComponent {
 		sf::Clock clock;
 		sf::Time lastup;
 
-		bool bottomCollision, topCollision, leftCollision, rightCollision;
-		bool hasResistance = false;
-
 		enum class states { JUMPING, STANDING, FALLING, INSIDE};
 		states state = states::FALLING;
 	public:

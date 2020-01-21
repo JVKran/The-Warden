@@ -27,7 +27,9 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, const std::vector<Character> & characters){
 	input->processInput(velocity, position, direction, characters);
+	physics->processCollisions(world, position, graphics->getDimensions());
 	physics->processPhysics(world, position, velocity, direction, graphics->getDimensions());
+	physics->processVelocity(direction, velocity);
 	if(position.y < 2000){
 		health = 0;
 	}
@@ -54,6 +56,62 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	// window.draw(hit);
 	// debug draw hitbox
 	//window.display();
+}
+
+void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions){
+	std::vector<Tile> & tiles= world.getTiles();
+	sf::FloatRect tileBounds;
+	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
+
+	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -2));
+	for(const auto & tile : tiles){
+
+        tileBounds = tile.getBounds();
+		if(tile.getName()=="water1"){
+			if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
+				hasResistance += true;
+       		} 
+		}
+        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
+        	bottomCollision += tileBounds.intersects(bottomHitbox); 
+        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
+        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
+			topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
+			
+       }
+    }
+}
+
+void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
+	if(velocity.x < 5 && direction.x > 0){
+    	velocity.x += direction.x * 0.07;
+    }
+
+    if(direction.x == 0 && velocity.x != 0){
+    	if(velocity.x - 0.1 > 0){
+    		velocity.x -= 0.07;
+    	} else if(velocity.x + 0.1 < 0){
+    		velocity.x += 0.07;
+    	} else {
+    		velocity.x = 0;
+    	}
+    }
+    if(velocity.x > -5 && direction.x < 0){
+    	velocity.x += direction.x * 0.07;
+    }
+
+    if(leftCollision && direction.x < 0){
+		velocity.x = 0;
+	}
+	
+	if(rightCollision && direction.x > 0){
+		velocity.x = 0;
+	}
+
+	if(hasResistance){
+		velocity.x=velocity.x/2;
+	}
 }
 
 /// \brief

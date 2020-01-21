@@ -2,11 +2,11 @@
 
 void EnemyInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters){
 	for(const Character & character : characters){
-		if((character.isPlayer() && (position.x - 500 > character.getPosition().x || position.x - 500 > character.getPosition().x))){
+		if((character.isPlayer() && (position.x  > character.getPosition().x - 500 || position.x < character.getPosition().x + 500))){
 			if(position.x > character.getPosition().x - 300){
-				direction.x = -3;
+				direction.x = -1;
 			} else if(position.x < character.getPosition().x + 300){
-				direction.x = 3;
+				direction.x = 1;
 			} else {
 				direction.x = 0;
 			}

@@ -8,7 +8,8 @@
 #include "SpriteAnimation.hpp"
 
 // class EnemyPhysics : public PhsysicsComponent {
-
+// 	private:
+		
 // };
 
 class EnemyInput : public InputComponent {

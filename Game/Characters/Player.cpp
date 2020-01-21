@@ -10,30 +10,6 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::Vector2f & velocity, sf::Vector2f & direction, const sf::Vector2f & dimensions){
 
 	if(clock.getElapsedTime().asMilliseconds() - lastup.asMilliseconds() > 2){
-	
-	
-	std::vector<Tile> & tiles= world.getTiles();
-	sf::FloatRect tileBounds;
-	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
-
-	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -2));
-	for(const auto & tile : tiles){
-
-        tileBounds = tile.getBounds();
-		if(tile.getName()=="water1"){
-			if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
-				hasResistance += true;
-       		} 
-		}
-        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
-        	bottomCollision += tileBounds.intersects(bottomHitbox); 
-        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
-        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
-			topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
-			
-       }
-    }
 
     switch (state){
 		case (states::FALLING): {
@@ -78,38 +54,8 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			break;
 	}
 	lastup = clock.getElapsedTime();
-
-    if(velocity.x < 5 && direction.x > 0){
-    	velocity.x += direction.x * 0.07;
-    }
-    if(direction.x == 0 && velocity.x != 0){
-    	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.07;
-    	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.07;
-    	} else {
-    		velocity.x = 0;
-    	}
-    }
-    if(velocity.x > -5 && direction.x < 0){
-    	velocity.x += direction.x * 0.07;
-    }
-    //velocity.x = direction.x;
-
-
-    if(leftCollision && direction.x < 0){
-		velocity.x = 0;
-	}
-	
-	if(rightCollision && direction.x > 0){
-		velocity.x = 0;
-	}
-	if(hasResistance){
-		velocity.x=velocity.x/2;
-	}
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::T)){
-		position = sf::Vector2f(-100,100);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+		position = sf::Vector2f(500,100);
 	}
 	position += velocity;
 	}
