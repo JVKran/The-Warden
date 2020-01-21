@@ -124,7 +124,7 @@ void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f
 	if(sf::Keyboard::isKeyPressed(Bindings[1].getKey())){
 		direction.x = 1;
 	}
-	if(sf::Keyboard::isKeyPressed(Bindings[4].getKey())){
+	if(sf::Keyboard::isKeyPressed(Bindings[2].getKey())){
 		direction.y -=1;
 	}
 }
