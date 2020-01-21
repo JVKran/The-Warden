@@ -5,6 +5,7 @@
 #include "World.hpp"
 #include "Game.hpp"
 #include "Editor.hpp"
+#include "Settings.hpp"
 #include "Character.hpp"
 #include "Interface.hpp"
 #include "StateMachine.hpp"
@@ -20,8 +21,9 @@ int main(){
 
 	Game game(window, assets);
 	Editor editor(window, assets);
-	Interface interface(game, editor, assets, window);
-	StateMachine machine(game, interface, editor);
+	Settings settings(window, assets);
+	Interface interface(game, editor, settings, assets, window);
+	StateMachine machine(game, interface, editor, settings);
 
 	sf::Clock clock;
 	//uint_fast8_t msPerUpdate = 16.67;

@@ -9,13 +9,13 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, std::vector<Character> & characters, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+	if(sf::Keyboard::isKeyPressed(Bindings[0].getKey())){
 		direction.x = -1;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+	if(sf::Keyboard::isKeyPressed(Bindings[1].getKey())){
 		direction.x = 1;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+	if(sf::Keyboard::isKeyPressed(Bindings[2].getKey())){
 		direction.y -=1;
 	}
 }

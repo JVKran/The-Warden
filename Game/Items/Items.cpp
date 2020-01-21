@@ -13,8 +13,11 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 		if(*character != comparingCharacter){
 			if(character->getBounds().intersects(comparingCharacter.getBounds())){
 				std::cout << "Hit character!" << std::endl;
-				std::cout << character->getHealth() << std::endl;
-				character->setHealth(character->getHealth() - damageFactor);
+				// std::cout << character->getHealth() << std::endl;
+				character->setHealth( (character->getHealth()) - damageFactor );
+				if(character->getHealth() < 0){
+					characters.erase(std::find(characters.begin(), characters.end(), comparingCharacter));
+				}
 			}
 		}
 	}

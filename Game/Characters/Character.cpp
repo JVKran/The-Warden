@@ -32,7 +32,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(world, position, graphics->getDimensions());
 	physics->processPhysics(direction, velocity);
 	physics->processVelocity(direction, velocity);
-	if(position.y < 2000){
+	if(position.y > 2000){
 		health = 0;
 	}
 	position += velocity;
@@ -220,5 +220,5 @@ int_fast8_t Character::getHealth() const{
 /// This function adds the given health points to the current amount of Character health.
 void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
-	std::cout << "Health: " << int(health) << std::endl;
+	// std::cout << "Health: " << int(health) << std::endl;
 }
