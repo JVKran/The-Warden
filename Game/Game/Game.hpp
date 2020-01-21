@@ -12,6 +12,7 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "LootDrop.hpp"
+#include "Audio.hpp"
 #include <memory>
 
 /// \brief
@@ -25,6 +26,7 @@ class Game {
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
 		
+		Music musicPlayer = Music("test.wav");
 		LootDrop lootDrop;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 		sf::RenderWindow & window;

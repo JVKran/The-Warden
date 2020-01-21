@@ -8,6 +8,7 @@
 #include "SpriteAnimation.hpp"
 #include "LootDrop.hpp"
 #include "Items.hpp"
+#include "Audio.hpp"
 #include <memory>
 #include <vector>
 
@@ -67,6 +68,7 @@ class Character {
 		sf::Vector2f direction;
 
 		LootDrop lootDrop;
+		Sound soundplayer = Sound("hello.wav");
 		std::vector<std::shared_ptr<Item>> items;
 		const bool isPlayerType;
 

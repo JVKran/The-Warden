@@ -15,6 +15,8 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets):
 	loadCharacters();
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(1);
+	musicPlayer.playMusic();
+	// musicPlayer.setMusicVolume(float(10));
 }
 
 /// \brief

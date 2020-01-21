@@ -18,6 +18,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	graphics(graphics)
 {
 	items.push_back(std::make_shared<Weapon>(10));
+	soundplayer.playSound();
 }
 
 /// \brief
