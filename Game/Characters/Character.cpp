@@ -38,7 +38,7 @@ void Character::update(sf::RenderWindow & window, World & world, const std::vect
 
 /// \brief
 /// Is alive?
-/// \return Wheter or not the Character is alive.
+/// \return Whether or not the Character is alive.
 bool Character::isAlive(){
 	return health > 0;
 }
@@ -182,4 +182,11 @@ bool Character::isPlayer() const {
 /// \return Returns the position of the Character.
 sf::Vector2f Character::getPosition() const {
 	return position;
+}
+
+/// \brief
+/// Get curent character level.
+/// \return Returns the current level of the Character.
+uint_fast16_t getLevel(const uint_fast16_t & experiencePoints){
+	return experiencePoints / uint_fast16_t(100);
 }
