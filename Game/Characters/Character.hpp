@@ -70,13 +70,14 @@ class Character {
 		std::vector<std::shared_ptr<Item>> items;
 		const bool isPlayerType;
 
+		int_fast16_t experiencePoints = 0;
+		int_fast8_t health = 200;
+
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
 
 	public:
-		uint_fast16_t experiencePoints = 0;
-		int_fast8_t health = 100;
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters);
@@ -90,14 +91,17 @@ class Character {
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
 
-		uint_fast16_t getLevel(const uint_fast16_t & experiencePoints) const;
-
 		bool operator!=(const Character & lhs){
 			if(lhs.position != position){
 				return true;
 			}
 			return false;
 		}
+
+		int_fast16_t getExperience() const;
+		void setExperience(const int_fast16_t & experiencePointsToAdd);
+		int_fast8_t getHealth() const;
+		void setHealth(const int_fast8_t newHealth);
 };
 
 #endif //__CHARACTER_HPP

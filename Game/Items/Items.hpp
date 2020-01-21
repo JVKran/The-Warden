@@ -13,17 +13,17 @@ class Item{
 
 class Weapon : public Item{
 	private:	
-		const uint_fast8_t damageFactor;
+		const int_fast8_t damageFactor;
 	public:
-		Weapon(const uint_fast8_t damageFactor);
+		Weapon(const int_fast8_t damageFactor);
 		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 
 class Consumable : public Item{
 	private:
-		const uint_fast16_t foodValue;
+		const uint_fast8_t foodValue;
 	public:
-		Consumable(const uint_fast16_t foodValue);
+		Consumable(const uint_fast8_t foodValue);
 		virtual void use(Character * character, std::vector<Character> & characters) override;
 };
 
