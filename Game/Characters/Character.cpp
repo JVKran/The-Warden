@@ -50,10 +50,10 @@ void Character::update(sf::RenderWindow & window, World & world){
 /// @param world The World to perform physics calculations on.
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
-	// sf::RectangleShape hit(graphics->getDimensions());
-	// hit.setPosition(position);
-	// hit.setFillColor(sf::Color(0,255,0,128));
-	// window.draw(hit);
+	 sf::RectangleShape hit(graphics->getDimensions());
+	hit.setPosition(position);
+	 hit.setFillColor(sf::Color(0,255,0,128));
+	 window.draw(hit);
 	// debug draw hitbox
 	//window.display();
 }

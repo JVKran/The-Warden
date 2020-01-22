@@ -8,6 +8,8 @@
 #include "AssetManager.hpp"
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
+#include <iostream>
+#include <exception>
 
 class PlayerPhysics : public PhysicsComponent {
 	private:
@@ -30,7 +32,9 @@ class PlayerInput : public InputComponent {
 
 class PlayerGraphics : public GraphicsComponent {
 	private:
-		SpriteAnimation Animation;	
+		SpriteAnimation idleAnimation;
+		SpriteAnimation jumpAnimation;
+		SpriteAnimation *currentAnimation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 	public:

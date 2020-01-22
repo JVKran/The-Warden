@@ -111,72 +111,153 @@ void Game::display(){
 /// \details
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
-	std::ifstream charactersFile("Characters/characters.txt");
+	
+	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){
-		throw fileNotFound("Characters/characters.txt");
+		throw fileNotFound("Characters/instances.txt");
 	}
+	std::string carname="player";
 	std::vector<sf::Vector2i> spritePlayerData;
 	std::vector<sf::Vector2i> spritePlayerAction;
 	std::vector<std::string> spritePlayerNames;
 	SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	std::string prevstring="";
+	sf::Vector2i position;
+	std::string filename="";
 	while (!isEmpty(charactersFile)){
-		bool data, action, names, textureName;
-		sf::Vector2i position;
-		std::string readName = "";
-		try{
-			if(data | action){
-				charactersFile >> position;
-			} else {
-				charactersFile >> readName;
-			}
-		} catch (...){
-			if(data){
-				action = true;
-				data = false;
-			} else if (action){
-				names = true;
-				action = false;
-			}
-		}
-		if(readName.find("|") != std::string::npos){
-			charactersFile >> readName;
-			names = false;
-			textureName = true;
+		//bool data, action, names, textureName;
+		
+		std::string currstring = "";
+
+
+		charactersFile>>currstring;
+		/*
+		//std::cout<<readName<<'\n';
+		if((currstring.find("size")!= std::string::npos)){
+			charactersFile>>position;
+			spritePlayerData.push_back(position);
+			
+			//std::cout<<position.x<<'\n';
 		}
 
-		//std::cout << position.x << ", " << position.y << ", " << readName << std::endl;
-		if(data){
+		if((currstring.find("grid")!= std::string::npos)){
+			charactersFile>>position;
 			spritePlayerData.push_back(position);
-		} else if (action){
-			spritePlayerAction.push_back(position);
-		} else if (names){
-			spritePlayerNames.push_back(readName);
-		} else if (textureName){
-			//readName contains the textureName.
-			// spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
-			spritePlayerAction.erase(spritePlayerAction.begin());
-			spritePlayerNames.erase(spritePlayerNames.begin());
-			// for(const auto & vector : spritePlayerData){
-			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			// }
-			// for(const auto & vector : spritePlayerAction){
-			// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-			// }
-			// for(const auto & vector : spritePlayerNames){
-			// 	std::cout << vector << std::endl;
-			// }
-			// std::cout << readName << std::endl;
-			// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
-			// spritePlayerNames = {"idle","slide", "walk", "jump"};
-			characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
-			data = true;
-			textureName = false;
-			if(readName == "player"){
-				characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
-			} 
-			//if(readName != "player"){
-			//	type = ArtificalInput() oid.
-			//}
+			//std::cout<<position.x<<'\n';
 		}
+		if((currstring.find("action")!= std::string::npos)){
+			charactersFile>>position;
+			spritePlayerAction.push_back(position);
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("scale")!= std::string::npos)){
+			charactersFile>>position;
+			spritePlayerData.push_back(position);
+			
+			//std::cout<<position.x<<'\n';
+		}
+		
+		if((currstring.find("state")!= std::string::npos)){
+			charactersFile>>currstring;
+			spritePlayerNames.push_back(currstring);
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("filename")!= std::string::npos)){
+			charactersFile>>currstring;
+			filename=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		*/
+		prevstring=currstring;
+		//characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
+		if(currstring == carname){
+				//std::cout<<spritePlayerData[2].x<<"   "<<spritePlayerData[0].y<<'\n';				std::cout<<"jawoel"<<'\n';
+		 		characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(currstring, assets, characterData)));
+		 		std::cout<<"jawoeplayerl"<<'\n';
+			 } 
+		if((currstring.find("eind")!= std::string::npos)){
+			currstring="";
+			spritePlayerData.clear();
+			spritePlayerNames.clear();
+			spritePlayerAction.clear();
+			std::cout<<"CLEAAAAARED"<<'\n';
+			//std::cout<<position.x<<'\n';
+		}
+
+	
+
+		// try{
+		// 	if(data | action){
+		// 		charactersFile >> position;
+		// 	} else {
+		// 		charactersFile >> readName;
+		// 	}
+		// } catch (...){
+		// 	//std::cout<<"caught"<<'\n';
+		// 	if(data){
+		// 		action = true;
+		// 		data = false;
+		// 	} else if (action){
+		// 		names = true;
+		// 		action = false;
+		// 	}
+		// }
+		// if(readName.find("|") != std::string::npos&&0){
+		// 	charactersFile >> readName;
+		// 	names = false;
+		// 	textureName = true;
+
+		// }		if(readName.find("/") != std::string::npos&&0){
+		// 	std::string testvar;
+		// 	charactersFile >> testvar;
+		// 	std::cout<<testvar<<'\n';
+		// 	//names = false;
+		// 	//textureName = true;
+
+		// }
+		// //std::cout<<readName<<'\n';
+		// //std::cout << position.x << ", " << position.y << ", " << readName << std::endl;
+		// if(data){
+		// 	spritePlayerData.push_back(position);
+		// 	//std::cout<<position.x<<'\n';
+		// } else if (action){
+		// 	spritePlayerAction.push_back(position);
+		// } else if (names){
+		// 	//std::cout<<"names   "<<readName<<'\n';
+		// 	spritePlayerNames.push_back(readName);
+		// } else if (textureName){
+		// 	//readName contains the textureName.
+		// 	// spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
+		// 	spritePlayerAction.erase(spritePlayerAction.begin());
+		// 	spritePlayerNames.erase(spritePlayerNames.begin());
+		// 	// for(const auto & vector : spritePlayerData){
+		// 	// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+		// 	// }
+		// 	// for(const auto & vector : spritePlayerAction){
+		// 	// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
+		// 	// }
+		// 	// for(const auto & vector : spritePlayerNames){
+		// 	// 	std::cout << vector << std::endl;
+		// 	// }
+		// 	// std::cout << readName << std::endl;
+		// 	// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
+		// 	// spritePlayerNames = {"idle","slide", "walk", "jump"};
+		// 	characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
+		// 	//std::cout<<spritePlayerNames[0]<<'\n';
+		// 	data = true;
+		// 	textureName = false;
+		// 	if(readName == "waterBubble"){
+		// 		characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
+		// 	} else
+		// 	{
+		// 		spritePlayerNames.clear();
+		// 		spritePlayerData.clear();
+		// 		spritePlayerAction.clear();
+		// 	}
+			
+		// 	//if(readName != "player"){
+		// 	//	type = ArtificalInput() oid.
+		// 	//}
+		// }
 	}
 }

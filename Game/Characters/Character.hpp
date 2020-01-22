@@ -18,6 +18,7 @@ struct SpriteCharacter {
 	std::vector<sf::Vector2i> spriteCharacterAction;
 	std::vector<std::string> spriteCharacterNames;
 
+
 	SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
 };
 
@@ -46,6 +47,7 @@ class InputComponent {
 class GraphicsComponent {
 	protected:
 		sf::Sprite sprite;
+		sf::Sprite spritei;
 		SpriteCharacter characterData;
 
 		sf::Clock clock;

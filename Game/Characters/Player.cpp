@@ -1,18 +1,29 @@
 /// @file
-
+#include <iostream>
 #include "Player.hpp"
 
 PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
+	
 	GraphicsComponent(assetName, assets, characterData),
-	Animation(sprite, assets.getTexture(assetName), sf::Vector2i{350,592}, sf::Vector2i{7,16}, sf::Vector2i{5,5}, 3)
+		idleAnimation(assets,spritei,"waterBubble","waterBubble"),
+	jumpAnimation(assets,sprite,"playerjump","player"),
+
+	currentAnimation(&idleAnimation)
+
+	//Animation(sprite, assets.getTexture(assetName), characterData.spriteCharacterData[0] /* sf::Vector2i{2400,1440}*/, /*sf::Vector2i{5,3}*/characterData.spriteCharacterData[1],  characterData.spriteCharacterData[2] , characterData.spriteCharacterData[3])
 {
+		//Animation.sethitboxscale(0.2);
+		std::cout<<"constgrapbody"<<'\n';
+		//std::cout<<characterData.spriteCharacterData[1].x<<"   "<<characterData.spriteCharacterData[1].y<<'\n';
+		std::cout<<"whot"<<'\n';
 	// Fill map with actions
 	for( unsigned int i=0; i<characterData.spriteCharacterNames.size();i++){
+		std::cout<<"i   "<<i<<"     "<<characterData.spriteCharacterNames[i]<<'\n';
 		animation[characterData.spriteCharacterNames[i]] = std::vector<sf::Vector2i> {characterData.spriteCharacterAction[i+i], characterData.spriteCharacterAction[i+i+1]};
 	}
 
 	// Start animation with idle
-	Animation.changeStartEndFrame( animation["idle"][0], animation["idle"][1], 0);
+	//Animation.changeStartEndFrame( sf::Vector2i(0,0), sf::Vector2i(3,15), 0);
 }
 
 
@@ -61,6 +72,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			if(direction.y < 0){
 				state = states::JUMPING;
 				velocity.y = -7;
+				
 				break;
 			}
 			if(!bottomCollision){
@@ -151,44 +163,53 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 				case states::IDLE: {
 					if(position.y < previousPosition.y){
 						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
+						currentAnimation =&jumpAnimation;
+						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
+						
+						
 					} else if(position.y > previousPosition.y){
 						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
+						currentAnimation =&jumpAnimation;
+						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
+						
 					}
 					if (position.x < previousPosition.x){
 						state = states::WALK;
 						isWalkingLeft = true;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						
 					} else if (position.x > previousPosition.x){
 						state = states::WALK;
 						isWalkingLeft = false;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						
+						
 					}
 					break;
 				}
 				case states::WALK: {
 					if(position.y < previousPosition.y){
 						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					} else if (position.y > previousPosition.y){
 						state = states::JUMP;
-						Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					}
 					if (position.x < previousPosition.x && !isWalkingLeft){
 						state = states::WALK;
 						isWalkingLeft = true;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 					} else if (position.x > previousPosition.x && isWalkingLeft){
 						state = states::WALK;
 						isWalkingLeft = false;
-						Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 					}
 					break;
 				}
 				case states::JUMP: {
 					if(position.y == previousPosition.y){
 						state = states::IDLE;
+						currentAnimation =&idleAnimation;
 						break;
 					}
 				}
@@ -198,21 +219,23 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 			}
 		} else if(state != states::IDLE){
 			state = states::IDLE;
-			Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1], isWalkingLeft);
+			currentAnimation =&idleAnimation;
+			//Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1], isWalkingLeft);
 		}
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
 	}
-	Animation.move(sf::Vector2f(position.x,position.y));
+	currentAnimation->move(sf::Vector2f(position.x,position.y));
 	if(position.y < 300){
 		view.setCenter(sf::Vector2f(position.x, position.y));
 	} else {
 		view.setCenter(sf::Vector2f(position.x, 300));
 	}
-	Animation.draw(window);
+	currentAnimation->draw(window);
+
 }
 
 sf::Vector2f PlayerGraphics::getDimensions(){
 	//return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
-	return Animation.getDimensions();
+	return currentAnimation->getDimensions();
 }
