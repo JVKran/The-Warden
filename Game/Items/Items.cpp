@@ -23,13 +23,19 @@ Consumable::Consumable(const int_fast8_t foodValue):
 {}
 
 void Weapon::use(Character * character, std::vector<Character> & characters){
-	for(Character & comparingCharacter : characters){
-		if(*character != comparingCharacter && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
+	for(Character & characterToHit : characters){
+		if(*character != characterToHit && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
 			lastAttack = clock.getElapsedTime();
-			if(character->getBounds().intersects(comparingCharacter.getBounds())){
+			if(character->getBounds().intersects(characterToHit.getBounds())){
 				character->setHealth( (character->getHealth()) - damageFactor );
 				if(character->getHealth() < 0){
-					characters.erase(std::find(characters.begin(), characters.end(), comparingCharacter));
+					try{
+						characters.erase( std::find(characters.begin(), characters.end(), characterToHit) );
+					} catch (const std::exception & error){
+						std::cout << "(!)-- " << error.what() << std::endl;
+					} catch (...){
+						std::cout << "(!)-- Something went wrong..." << std::endl;
+					}
 				}
 			}
 		}

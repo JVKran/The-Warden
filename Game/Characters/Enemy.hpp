@@ -19,7 +19,13 @@ class EnemyInput : public InputComponent {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) override;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
-			items[0]->use(ownCharacter, characters);
+			items.at(0)->use(ownCharacter, characters);
+		}
+
+		EnemyInput & operator=(EnemyInput lhs){
+			world = lhs.world;
+			characters = lhs.characters;
+			return *this;
 		}
 };
 
@@ -28,6 +34,11 @@ class EnemyGraphics : public GraphicsComponent {
 		EnemyGraphics(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
+
+		EnemyGraphics & operator=(EnemyGraphics lhs){
+			sprite = lhs.sprite;
+			return *this;
+		}
 };
 
 

@@ -35,6 +35,17 @@ class PhysicsComponent {
 		virtual void processPhysics(sf::Vector2f & velocity);
 		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
+
+		PhysicsComponent & operator=(PhysicsComponent lhs){
+			clock = lhs.clock;
+			state = lhs.state;
+			bottomCollision = lhs.bottomCollision;
+			topCollision = lhs.topCollision;
+			leftCollision = lhs.leftCollision;
+			rightCollision = lhs.rightCollision;
+			hasResistance = lhs.hasResistance;
+			return *this;
+		}
 };
 
 /// \brief
@@ -81,7 +92,7 @@ class Character {
 
 		LootDrop lootDrop;
 		std::vector<std::shared_ptr<Item>> items;
-		const bool isPlayerType;
+		bool isPlayerType;
 
 		int_fast16_t experiencePoints = 0;
 		int_fast8_t health = 100;
@@ -92,7 +103,7 @@ class Character {
 
 		CollisionBounds collisionBounds;
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, const bool isPlayerType = false);
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters);
 		bool isAlive();

@@ -37,6 +37,14 @@ class World {
 		std::vector<Tile> & getTiles();
 
 		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
+
+		World & operator=(World lhs){
+			tiles = lhs.tiles;
+			worldFileName = lhs.worldFileName;
+			backgroundName = lhs.backgroundName;
+			background = lhs.background;
+			return *this;
+		}
 };
 
 #endif //__WORLD_HPP

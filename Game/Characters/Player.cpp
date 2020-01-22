@@ -20,6 +20,12 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	}
 }
 
+void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		items.at(0)->use(ownCharacter, characters);
+	}
+}
+
 /// \brief
 /// Draw the Character.
 /// \details
