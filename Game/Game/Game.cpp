@@ -30,8 +30,12 @@ void Game::startWorld(const std::string & worldName){
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(){
-	for(auto & character : characters){
-		character.update(window, world, characters);
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		// try {
+			characters.at(i).update(window, world, characters);
+		// } catch  {
+
+		// }
 	}
 }
 
@@ -56,6 +60,6 @@ void Game::display(sf::View & view){
 /// \details
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
-	characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<PlayerGraphics>("crate", assets), true));
-	characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<EnemyGraphics>("bush1", assets)));
+	characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<EnemyGraphics>("bush1", assets), std::make_shared<Weapon>(150, 500)));
+	characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<PlayerGraphics>("crate", assets), std::make_shared<Weapon>(150, 100), true));
 }
