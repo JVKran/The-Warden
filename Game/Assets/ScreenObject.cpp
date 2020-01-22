@@ -154,6 +154,30 @@ void Tile::setCollidable(const bool newCollidable){
 	collidable = newCollidable;
 }
 
+bool Tile::isInteractable() const{
+	return interactable;
+}
+
+void Tile::setInteractability(const bool newInteractability){
+	interactable = newInteractability;
+}
+
+bool Tile::isPassageWay() const{
+	return passageWay;
+}
+
+void Tile::setPassageWay(const bool newPassageWay){
+	passageWay = newPassageWay;
+}
+
+bool Tile::isPassageEntrance() const{
+	return passageEntrance;
+}
+
+void Tile::changePassageEntrance(const bool newPassageEntrance){
+	passageEntrance = newPassageEntrance;
+}
+
 /// \brief
 /// Set mouse following.
 /// \details

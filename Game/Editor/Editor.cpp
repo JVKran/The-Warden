@@ -164,6 +164,18 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
 			tile.setWindowLayer(4);
 		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+			tile.setInteractability(!tile.isInteractable());
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
+			tile.setPassageWay(!tile.isPassageWay());
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+			tile.changePassageEntrance(true);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
+			tile.changePassageEntrance(false);
+		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 }

@@ -39,3 +39,4 @@ startButton Assets/Textures/startButton.png
 editButton Assets/Textures/editIcon.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
+door Assets/Textures/Others/doors_all.png

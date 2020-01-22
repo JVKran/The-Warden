@@ -45,7 +45,7 @@ void AssetManager::loadObjects(const std::string & assetFileName){
 /// @param input The input to read the textureName and filepath from.
 /// \exception noSuchPicture() The filepath provided does not lead to a valid or existing texture.
 void AssetManager::loadTexture(std::ifstream & input){
-	std::string name, fileName;
+	std::string name, interaction ,fileName;
 	input >> name >> fileName;
 	sf::Texture texture;
 	if (!texture.loadFromFile(fileName)){
