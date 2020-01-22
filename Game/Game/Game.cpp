@@ -60,6 +60,6 @@ void Game::display(sf::View & view){
 /// \details
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
-	characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<EnemyGraphics>("bush1", assets), std::make_shared<Weapon>(150, 500)));
-	characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<PlayerGraphics>("crate", assets), std::make_shared<Weapon>(150, 100), true));
+	characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<EnemyGraphics>("bush1", assets), std::make_shared<Weapon>(10, 500)));
+	characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<PlayerGraphics>("crate", assets), std::make_shared<Weapon>(15, 100), true));
 }

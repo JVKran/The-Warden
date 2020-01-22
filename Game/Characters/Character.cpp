@@ -13,11 +13,14 @@
 Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, const bool isPlayerType):
 	position(position),
 	isPlayerType(isPlayerType),
+	healthBar(sf::Vector2f(health,  20)),
 	input(input),
 	physics(physics),
 	graphics(graphics)
 {
 	items.push_back(startItem);
+	healthBar.setOutlineThickness(2);
+	healthBar.setOutlineColor(sf::Color::Black);
 }
 
 /// \brief
@@ -30,7 +33,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters){
 	input->processInput(position, direction);
 	input->processItemUsage(items, this);
-	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds);
+	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	if(position.y > 2000){
@@ -54,9 +57,13 @@ bool Character::isAlive(){
 /// @param world The World to perform physics calculations on.
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
+	healthBar.setPosition(sf::Vector2f(position.x, position.y - 50));
+	healthBar.setFillColor(sf::Color(health - 100, health, 0, 200));
+	healthBar.setSize(sf::Vector2f(health, 20));
+	window.draw(healthBar);
 }
 
-void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds){
+void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
@@ -89,6 +96,20 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	    	}
 		}
 	);
+
+	for(Character & character : characters){
+		if(hitbox.intersects(character.getBounds()) && character.getPosition() != position){
+			bottomCollision += character.getBounds().intersects(bottomHitbox); 
+        	leftCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+20,hitbox.top,hitbox.width-20,hitbox.height));
+        	rightCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+ 20,hitbox.top,hitbox.width-20,hitbox.height));
+			topCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
+			if(character.isPlayer()){
+				std::cout << "Player left: " << leftCollision << ", right: " << rightCollision << std::endl;
+			} else {
+				std::cout << "Enemy left: " << leftCollision << ", right: " << rightCollision << std::endl;
+			}
+		}
+	}
 }
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
@@ -113,11 +134,11 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
     	velocity.x += direction.x * 0.07;
     }
 
-    if(leftCollision && direction.x < 0){
+    if(leftCollision){
 		velocity.x = 0;
 	}
 	
-	if(rightCollision && direction.x > 0){
+	if(rightCollision){
 		velocity.x = 0;
 	}
 

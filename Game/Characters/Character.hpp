@@ -33,7 +33,7 @@ class PhysicsComponent {
 		bool hasResistance = false;
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
-		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds);
+		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 
 		PhysicsComponent & operator=(PhysicsComponent lhs){
@@ -96,6 +96,7 @@ class Character {
 
 		int_fast16_t experiencePoints = 0;
 		int_fast8_t health = 100;
+		sf::RectangleShape healthBar;
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
