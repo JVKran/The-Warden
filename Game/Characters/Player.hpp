@@ -34,6 +34,7 @@ class PlayerGraphics : public GraphicsComponent {
 	private:
 		SpriteAnimation idleAnimation;
 		SpriteAnimation jumpAnimation;
+		SpriteAnimation walkAnimation;
 		SpriteAnimation *currentAnimation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;

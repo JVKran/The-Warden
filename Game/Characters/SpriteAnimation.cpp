@@ -254,7 +254,7 @@ texture(assets.getTexture(filename))
 	sprite.setScale(static_cast<sf::Vector2f>(scale));				// Set the scale
 	sprite.setOrigin(pixelRow/2, pixelColumn/2);
 	std::cout<<"missingtest    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';						// Set the origin to the middle
-	changeStartEndFrame(startFrame,missingRowCollom,0);
+	changeStartEndFrame(startFrame,missingRowCollom,1);
 	animationSpeed=0.1;
 	//sethitboxscale(0.2);
 	std::cout<<"rowcol    "<<spriteRowColumn.x<<"     "<<spriteRowColumn.y<<'\n';

@@ -5,22 +5,22 @@
 PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 	
 	GraphicsComponent(assetName, assets, characterData),
-		idleAnimation(assets,spritei,"waterBubble","waterBubble"),
+		idleAnimation(assets,spritei,"playeridle","player"),
 	jumpAnimation(assets,sprite,"playerjump","player"),
-
+	walkAnimation(assets,sprite,"playerwalk","player"),
 	currentAnimation(&idleAnimation)
 
 	//Animation(sprite, assets.getTexture(assetName), characterData.spriteCharacterData[0] /* sf::Vector2i{2400,1440}*/, /*sf::Vector2i{5,3}*/characterData.spriteCharacterData[1],  characterData.spriteCharacterData[2] , characterData.spriteCharacterData[3])
 {
 		//Animation.sethitboxscale(0.2);
 		std::cout<<"constgrapbody"<<'\n';
-		//std::cout<<characterData.spriteCharacterData[1].x<<"   "<<characterData.spriteCharacterData[1].y<<'\n';
+		//std::cout<<characterData.spriteCharacterData[1].x<	<"   "<<characterData.spriteCharacterData[1].y<<'\n';
 		std::cout<<"whot"<<'\n';
 	// Fill map with actions
-	for( unsigned int i=0; i<characterData.spriteCharacterNames.size();i++){
-		std::cout<<"i   "<<i<<"     "<<characterData.spriteCharacterNames[i]<<'\n';
-		animation[characterData.spriteCharacterNames[i]] = std::vector<sf::Vector2i> {characterData.spriteCharacterAction[i+i], characterData.spriteCharacterAction[i+i+1]};
-	}
+	// for( unsigned int i=0; i<characterData.spriteCharacterNames.size();i++){
+	// 	std::cout<<"i   "<<i<<"     "<<characterData.spriteCharacterNames[i]<<'\n';
+	// 	animation[characterData.spriteCharacterNames[i]] = std::vector<sf::Vector2i> {characterData.spriteCharacterAction[i+i], characterData.spriteCharacterAction[i+i+1]};
+	// }
 
 	// Start animation with idle
 	//Animation.changeStartEndFrame( sf::Vector2i(0,0), sf::Vector2i(3,15), 0);
@@ -176,11 +176,15 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 					if (position.x < previousPosition.x){
 						state = states::WALK;
 						isWalkingLeft = true;
+						currentAnimation =&walkAnimation;
+						currentAnimation->left(1);
 						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 						
 					} else if (position.x > previousPosition.x){
 						state = states::WALK;
 						isWalkingLeft = false;
+						currentAnimation =&walkAnimation;
+						currentAnimation->left(0);
 						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 						
 						
@@ -190,18 +194,25 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 				case states::WALK: {
 					if(position.y < previousPosition.y){
 						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					} else if (position.y > previousPosition.y){
 						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					}
 					if (position.x < previousPosition.x && !isWalkingLeft){
 						state = states::WALK;
 						isWalkingLeft = true;
+
+						currentAnimation =&walkAnimation;
+						currentAnimation->left(1);
 						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 					} else if (position.x > previousPosition.x && isWalkingLeft){
 						state = states::WALK;
 						isWalkingLeft = false;
+						currentAnimation =&walkAnimation;
+						currentAnimation->left(0);
 						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
 					}
 					break;

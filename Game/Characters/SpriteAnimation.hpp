@@ -54,6 +54,10 @@ class SpriteAnimation {
 			// std::cout<<"schaal"<<hitboxscale<<'\n';
 			sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale+offset.x,where.y-pixelColumn*0.5*hitboxscale+offset.y));
 		}
+		void left(bool where){
+			// std::cout<<"schaal"<<hitboxscale<<'\n';
+		changeStartEndFrame(startFrame,missingRowCollom,where);
+		}
 		
 };
 
