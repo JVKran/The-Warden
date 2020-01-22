@@ -13,8 +13,6 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets):
 	window(window)
 {			//"Assets/objects.txt"
 	loadCharacters();
-	window.setFramerateLimit(60);
-	window.setVerticalSyncEnabled(1);
 }
 
 /// \brief
