@@ -53,14 +53,13 @@ texture(assets.getTexture(filename))
 		throw fileNotFound("Characters/characters.txt");
 	}
 	//std::string carname="player";
-	std::vector<sf::Vector2i> spritePlayerData;
-	std::vector<sf::Vector2i> spritePlayerAction;
-	std::vector<std::string> spritePlayerNames;
-	SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	// std::vector<sf::Vector2i> spritePlayerData;
+	// std::vector<sf::Vector2i> spritePlayerAction;
+	// std::vector<std::string> spritePlayerNames;
+	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
 	std::string prevstring="";
 	sf::Vector2i position;
-	sf::Vector2f scaled;
-	//std::string filename="";
+	sf::Vector2f datafloat;;
 	while (!isEmpty(charactersFile)){
 		//bool data, action, names, textureName;
 
@@ -88,7 +87,7 @@ texture(assets.getTexture(filename))
 		if((currstring.find("action")!= std::string::npos)){
 
 			charactersFile>>position;
-			spritePlayerAction.push_back(position);
+			//spritePlayerAction.push_back(position);
 			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("scale")!= std::string::npos)){
@@ -96,17 +95,17 @@ texture(assets.getTexture(filename))
 			charactersFile>>position;
 			scale=sf::Vector2f(position);
 			std::cout<<"scale    "<<position.x<<"     "<<position.y<<'\n';
-			spritePlayerData.push_back(position);
+			
 			
 			//std::cout<<position.x<<'\n';
 		}
 		
-		if((currstring.find("state")!= std::string::npos)){
+		// if((currstring.find("state")!= std::string::npos)){
 
-			charactersFile>>currstring;
-			spritePlayerNames.push_back(currstring);
-			//std::cout<<position.x<<'\n';
-		}
+		// 	charactersFile>>currstring;
+		// 	spritePlayerNames.push_back(currstring);
+		// 	//std::cout<<position.x<<'\n';
+		// }
 		if((currstring.find("filename")!= std::string::npos)){
 
 			charactersFile>>currstring;
@@ -138,114 +137,43 @@ texture(assets.getTexture(filename))
 			offset=position;
 			//std::cout<<position.x<<'\n';
 		}
+		if((currstring.find("speed")!= std::string::npos)){
+
+			charactersFile>>datafloat;
+
+			animationSpeed=datafloat.x;
+			//std::cout<<position.x<<'\n';
+		}
 		//std::cout<<currstring<<'\n';
 		if((currstring.find("hitfac")!= std::string::npos)){
 
 			std::cout<<"HITFACTOR"<<'\n';
-			charactersFile>>scaled;
-			//std::cout<<"hiscale    "<<currstring<<'\n';
-			//std::cout<<"hiscale    "<<position.x<<'\n';
-			hitboxscale=scaled.x;
+			charactersFile>>datafloat;
+
+			hitboxscale=datafloat.x;
 			std::cout<<"hiscale    "<<hitboxscale<<'\n';
-			//std::cout<<position.x<<'\n';
 		}
 		
 		prevstring=currstring;
-		// characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
+		
 		if(currstring == movename){
 				std::cout<<"filenamefound    |"<<currstring<<'\n';
-				//sstd::cout<<spritePlayerData[2].x<<"   "<<spritePlayerData[0].y<<'\n';				std::cout<<"jawoel"<<'\n';
-		 		//characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(filename, assets, characterData)));
 		 		texture=assets.getTexture(filename);
 				 std::cout<<"ehmconstructor"<<'\n';
 				 break;
 			 } 
 		if((currstring.find("eind")!= std::string::npos)){
 			currstring="";
-			spritePlayerData.clear();
-			spritePlayerNames.clear();
-			spritePlayerAction.clear();
+			// spritePlayerData.clear();
+			// spritePlayerNames.clear();
+			// spritePlayerAction.clear();
 			std::cout<<"CLEAAAAAREDconst"<<'\n';
 			//std::cout<<position.x<<'\n';
 		}
 
 
 
-		// try{
-		// 	if(data | action){
-		// 		charactersFile >> position;
-		// 	} else {
-		// 		charactersFile >> readName;
-		// 	}
-		// } catch (...){
-		// 	//std::cout<<"caught"<<'\n';
-		// 	if(data){
-		// 		action = true;
-		// 		data = false;
-		// 	} else if (action){
-		// 		names = true;
-		// 		action = false;
-		// 	}
-		// }
-		// if(readName.find("|") != std::string::npos&&0){
-		// 	charactersFile >> readName;
-		// 	names = false;
-		// 	textureName = true;
 
-		// }		if(readName.find("/") != std::string::npos&&0){
-		// 	std::string testvar;
-		// 	charactersFile >> testvar;
-		// 	std::cout<<testvar<<'\n';
-		// 	//names = false;
-		// 	//textureName = true;
-
-		// }
-		// //std::cout<<readName<<'\n';
-		// //std::cout << position.x << ", " << position.y << ", " << readName << std::endl;
-		// if(data){
-		// 	spritePlayerData.push_back(position);
-		// 	//std::cout<<position.x<<'\n';
-		// } else if (action){
-		// 	spritePlayerAction.push_back(position);
-		// } else if (names){
-		// 	//std::cout<<"names   "<<readName<<'\n';
-		// 	spritePlayerNames.push_back(readName);
-		// } else if (textureName){
-		// 	//readName contains the textureName.
-		// 	// spritePlayerData = {sf::Vector2i{350,592},sf::Vector2i{7,16}, sf::Vector2i{5,5}, sf::Vector2i{3,0}};
-		// 	spritePlayerAction.erase(spritePlayerAction.begin());
-		// 	spritePlayerNames.erase(spritePlayerNames.begin());
-		// 	// for(const auto & vector : spritePlayerData){
-		// 	// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-		// 	// }
-		// 	// for(const auto & vector : spritePlayerAction){
-		// 	// 	std::cout << '(' << vector.x << ',' << vector.y << ')' << std::endl;
-		// 	// }
-		// 	// for(const auto & vector : spritePlayerNames){
-		// 	// 	std::cout << vector << std::endl;
-		// 	// }
-		// 	// std::cout << readName << std::endl;
-		// 	// spritePlayerAction = { sf::Vector2i{0,0}, sf::Vector2i{3,0}, sf::Vector2i{3,3}, sf::Vector2i{0,0}, sf::Vector2i{1,1},sf::Vector2i{0,0}, sf::Vector2i{2,2}, sf::Vector2i{6,1}};
-		// 	// spritePlayerNames = {"idle","slide", "walk", "jump"};
-		// 	characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
-		// 	//std::cout<<spritePlayerNames[0]<<'\n';
-		// 	data = true;
-		// 	textureName = false;
-		// 	if(readName == "waterBubble"){
-		// 		characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(readName, assets, characterData)));
-		// 	} else
-		// 	{
-		// 		spritePlayerNames.clear();
-		// 		spritePlayerData.clear();
-		// 		spritePlayerAction.clear();
-		// 	}
-			
-		// 	//if(readName != "player"){
-		// 	//	type = ArtificalInput() oid.
-		// 	//}
-		// }
-		std::cout<<"missingloop    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';
-		std::cout<<'\n'<<'\n';
 	}
 	pixelRow = dimensions.x / spriteRowColumn.x;					// Length divided by row, these are the horizontal steps a frame
 	pixelColumn = dimensions.y / spriteRowColumn.y;					// Height divided by column, these are the vertical steps a frame
@@ -255,7 +183,7 @@ texture(assets.getTexture(filename))
 	sprite.setOrigin(pixelRow/2, pixelColumn/2);
 	std::cout<<"missingtest    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';						// Set the origin to the middle
 	changeStartEndFrame(startFrame,missingRowCollom,1);
-	animationSpeed=0.1;
+	//animationSpeed=0.1;
 	//sethitboxscale(0.2);
 	std::cout<<"rowcol    "<<spriteRowColumn.x<<"     "<<spriteRowColumn.y<<'\n';
 
@@ -349,12 +277,12 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 		sprite.setTextureRect(rectSourceSprite); 				// Set the texture of the sprite to the next frame.
 		spriteClock.restart();
 	}
-				sf::RectangleShape hit(sf::Vector2f(rectSourceSprite.height,rectSourceSprite.width));
-				hit.setPosition(sf::Vector2f(rectSourceSprite.left,rectSourceSprite.top));
-	 			hit.setFillColor(sf::Color(0,255,0,128));
-	 			window.draw(hit);
+				//sf::RectangleShape hit(sf::Vector2f(rectSourceSprite.height,rectSourceSprite.width));
+				// hit.setPosition(sf::Vector2f(rectSourceSprite.left,rectSourceSprite.top));
+	 			// hit.setFillColor(sf::Color(0,255,0,128));
+	 			// window.draw(hit);
 	window.draw(sprite);
-	std::cout<<"drawing  "<<missingRowCollom.x<<'\n';
+	
 }
 
 

@@ -2,28 +2,16 @@
 #include <iostream>
 #include "Player.hpp"
 
-PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
+AnimatedGraphics::AnimatedGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 	
-	GraphicsComponent(assetName, assets, characterData),
-		idleAnimation(assets,spritei,"playeridle","player"),
-	jumpAnimation(assets,sprite,"playerjump","player"),
-	walkAnimation(assets,sprite,"playerwalk","player"),
+	GraphicsComponent(assetName, assets /*characterData*/),
+	idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
+	jumpAnimation(assets,spriteIdle,"playerjump","player"),
+	walkAnimation(assets,spriteIdle,"playerwalk","player"),
 	currentAnimation(&idleAnimation)
 
 	//Animation(sprite, assets.getTexture(assetName), characterData.spriteCharacterData[0] /* sf::Vector2i{2400,1440}*/, /*sf::Vector2i{5,3}*/characterData.spriteCharacterData[1],  characterData.spriteCharacterData[2] , characterData.spriteCharacterData[3])
 {
-		//Animation.sethitboxscale(0.2);
-		std::cout<<"constgrapbody"<<'\n';
-		//std::cout<<characterData.spriteCharacterData[1].x<	<"   "<<characterData.spriteCharacterData[1].y<<'\n';
-		std::cout<<"whot"<<'\n';
-	// Fill map with actions
-	// for( unsigned int i=0; i<characterData.spriteCharacterNames.size();i++){
-	// 	std::cout<<"i   "<<i<<"     "<<characterData.spriteCharacterNames[i]<<'\n';
-	// 	animation[characterData.spriteCharacterNames[i]] = std::vector<sf::Vector2i> {characterData.spriteCharacterAction[i+i], characterData.spriteCharacterAction[i+i+1]};
-	// }
-
-	// Start animation with idle
-	//Animation.changeStartEndFrame( sf::Vector2i(0,0), sf::Vector2i(3,15), 0);
 }
 
 
@@ -155,7 +143,7 @@ void PlayerInput::processInput(sf::Vector2f & direction){
 /// \details
 /// This function draws the Characte in the RenderWindow and sets the View to the position
 /// of the Character to keep the player centered.
-void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
+void AnimatedGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
 		if(position != previousPosition){
@@ -246,7 +234,7 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 
 }
 
-sf::Vector2f PlayerGraphics::getDimensions(){
+sf::Vector2f AnimatedGraphics::getDimensions(){
 	//return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 	return currentAnimation->getDimensions();
 }

@@ -9,10 +9,17 @@
 /// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
 /// @param spriteCharacterAction No idea.
 /// @param spriteCharacterNames All available actions to perform.
-SpriteCharacter::SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames):
-	spriteCharacterData(spriteCharacterData),
-	spriteCharacterAction(spriteCharacterAction),
-	spriteCharacterNames(spriteCharacterNames)
+SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile=""):
+	idleName(idleName),
+	idleFile(idleFile),
+	jumpName(jumpName),
+	jumpFile(jumpFile),
+	walkName(walkName),
+	walkFile(walkFile),
+	attackName(attackName),
+	attackFile(attackFile),
+	dieName(dieName),
+	dieFile(dieFile)
 {}
 
 /// \brief
@@ -65,8 +72,8 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// @param assetName The name of the Texture to retrieve from the AssetManager
 /// @param assets The AssetManager to retrieve textures from.
 /// @param characterData The SpriteCharacter to use for getting the necessary data.
-GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
-	characterData(characterData)
+GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets /*SpriteCharacter & characterData*/)
+	//characterData(characterData)
 {
-	sprite.setTexture(assets.getTexture(assetName));
+	//spriteIdle.setTexture(assets.getTexture(assetName));
 }

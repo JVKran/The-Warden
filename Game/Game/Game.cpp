@@ -116,11 +116,25 @@ void Game::loadCharacters(){
 	if(!charactersFile){
 		throw fileNotFound("Characters/instances.txt");
 	}
-	std::string carname="player";
+	std::string carname="waterBubble";
 	std::vector<sf::Vector2i> spritePlayerData;
 	std::vector<sf::Vector2i> spritePlayerAction;
 	std::vector<std::string> spritePlayerNames;
-	SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	std::string idleName="";
+	std::string idleFile="";
+	std::string jumpName="";
+	std::string jumpFile="";
+	std::string walkName="";
+	std::string walkFile="";
+	std::string attackName="";
+	std::string attackFile="";
+	std::string dieName="";
+	std::string dieFile="";
+	std::string name="";
+
+	
+	
 	std::string prevstring="";
 	sf::Vector2i position;
 	std::string filename="";
@@ -162,25 +176,72 @@ void Game::loadCharacters(){
 			spritePlayerNames.push_back(currstring);
 			//std::cout<<position.x<<'\n';
 		}
-		if((currstring.find("filename")!= std::string::npos)){
+		*/
+		if((currstring.find("named")!= std::string::npos)){
 			charactersFile>>currstring;
-			filename=currstring;
+			name=currstring;
 			//std::cout<<position.x<<'\n';
 		}
-		*/
+		if((currstring.find("idleName")!= std::string::npos)){
+			charactersFile>>currstring;
+			idleName=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("idleFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			idleFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("jumpName")!= std::string::npos)){
+			charactersFile>>currstring;
+			jumpName=currstring;
+			//std::cout<<position.x<<'\n';
+		}if((currstring.find("jumpFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			jumpFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("walkName")!= std::string::npos)){
+			charactersFile>>currstring;
+			walkName=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("walkFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			walkFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		
 		prevstring=currstring;
 		//characterData = SpriteCharacter(spritePlayerData, spritePlayerAction, spritePlayerNames);
-		if(currstring == carname){
-				//std::cout<<spritePlayerData[2].x<<"   "<<spritePlayerData[0].y<<'\n';				std::cout<<"jawoel"<<'\n';
-		 		characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<PlayerGraphics>(currstring, assets, characterData)));
-		 		std::cout<<"jawoeplayerl"<<'\n';
-			 } 
+		// if(currstring == carname){
+		// 		//std::cout<<spritePlayerData[2].x<<"   "<<spritePlayerData[0].y<<'\n';				std::cout<<"jawoel"<<'\n';
+		//  		characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<AnimatedGraphics>(currstring, assets, characterData)));
+		//  		std::cout<<"jawoeplayerl"<<'\n';
+		// 	 } 
 		if((currstring.find("eind")!= std::string::npos)){
+			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
+			if(name!=""){
+			std::cout<<"idle                =            ="<<idleFile<<'\n';
+			characters.push_back(Character(sf::Vector2f(500,350), std::make_shared<PlayerInput>(), std::make_shared<PlayerPhysics>(), std::make_shared<AnimatedGraphics>(name, assets, characterData)));
+			}
+			 idleName="";
+			 idleFile="";
+			 jumpName="";
+			 jumpFile="";
+			 walkName="";
+			 walkFile="";
+			 attackName="";
+			 attackFile="";
+			 dieName="";
+			 dieFile="";
+			 name="";
+
 			currstring="";
 			spritePlayerData.clear();
 			spritePlayerNames.clear();
 			spritePlayerAction.clear();
-			std::cout<<"CLEAAAAARED"<<'\n';
+			//std::cout<<"CLEAAAAARED"<<'\n';
 			//std::cout<<position.x<<'\n';
 		}
 

@@ -37,3 +37,4 @@ dungDirtMidLeft Assets/Textures/DIY_Tiles/dungDirtMidLeft.png
 dungDirtMidRight Assets/Textures/DIY_Tiles/dungDirtMidRight.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
+waterBubble3 Assets/Textures/waterBubble3.png

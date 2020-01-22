@@ -30,7 +30,7 @@ class PlayerInput : public InputComponent {
 		virtual void processInput(sf::Vector2f & direction) override;
 };
 
-class PlayerGraphics : public GraphicsComponent {
+class AnimatedGraphics : public GraphicsComponent {
 	private:
 		SpriteAnimation idleAnimation;
 		SpriteAnimation jumpAnimation;
@@ -39,7 +39,7 @@ class PlayerGraphics : public GraphicsComponent {
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 	public:
-		PlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
+		AnimatedGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
 		virtual sf::Vector2f getDimensions() override;

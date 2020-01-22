@@ -1,5 +1,6 @@
-size (350,592) grid (7,16) scale (5,5) start (0,0) offset (-10,110) missing (3,0) hitfac (3,3) filename player playeridle eind
-size (350,592) grid (7,16) scale (5,5) start (2,2) offset (-20,90) missing (6,1) hitfac (3,3) filename player playerjump eind
-size (350,592) grid (7,16) scale (5,5) start (1,1) offset (-20,110) missing (0,0) hitfac (3,3) filename player playerwalk eind
+size (350,592) grid (7,16) scale (5,5) start (0,0) offset (-30,115) missing (3,0) hitfac (3,3) speed (0.15,0) filename player playeridle eind
+size (350,592) grid (7,16) scale (5,5) start (2,2) offset (-20,120) missing (6,1) hitfac (3,3) speed (0.15,0) filename player playerjump eind
+size (350,592) grid (7,16) scale (5,5) start (1,1) offset (-20,110) missing (0,0) hitfac (3,3) speed (0.15,0) filename player playerwalk eind
 | action (0,0) action (3,0) action (3,3) action (0,0) action (1,1) action (0,0) action (2,2) action (6,1) | state idle state slide state walk state jump | playe eind   
-size (2400,1440) grid (5,3) scale (1,1) start (0,0) offset (0,0) missing (1,0) hitfac (0.2,0.2) | action (0,0) action (1,2) | state idle | filename waterBubble eind    
+size (2400,1440) grid (5,3) scale (1,1) start (0,0) offset (0,0) missing (1,0) hitfac (0.2,0.2) speed (0.01,0) | action (0,0) action (1,2) | state idle | filename waterBubble waterBubble eind    
+size (2400,2400) grid (5,5) scale (1,1) start (0,0) offset (0,0) missing (0,4) hitfac (0.2,0.2) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename waterBubble3 waterBubbleJump eind

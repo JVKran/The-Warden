@@ -14,12 +14,19 @@
 /// This class contains all data needed for a functioning SpriteAnimation. This just enables the developers
 /// to pass all these vectors in one object instead of all vectors single.
 struct SpriteCharacter {
-	std::vector<sf::Vector2i> spriteCharacterData;
-	std::vector<sf::Vector2i> spriteCharacterAction;
-	std::vector<std::string> spriteCharacterNames;
+	std::string idleName;
+	std::string idleFile;
+	std::string jumpName;
+	std::string jumpFile;
+	std::string walkName;
+	std::string walkFile;
+	std::string attackName;
+	std::string attackFile;
+	std::string dieName;
+	std::string dieFile;
 
 
-	SpriteCharacter(std::vector<sf::Vector2i> spriteCharacterData, std::vector<sf::Vector2i> spriteCharacterAction, std::vector<std::string> spriteCharacterNames);
+	SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName, std::string attackFile, std::string dieName, std::string dieFile);
 };
 
 /// \brief
@@ -46,9 +53,10 @@ class InputComponent {
 /// This class is responsible for managing all graphics related actions.
 class GraphicsComponent {
 	protected:
-		sf::Sprite sprite;
-		sf::Sprite spritei;
-		SpriteCharacter characterData;
+		sf::Sprite spriteIdle;
+		sf::Sprite spriteJump;
+		sf::Sprite spriteWalk;
+		//SpriteCharacter characterData;
 
 		sf::Clock clock;
 		sf::Time previousTime;
@@ -60,7 +68,7 @@ class GraphicsComponent {
 		bool isIdle = true;
 		bool isWalkingLeft = false;
 	public:
-		GraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
+		GraphicsComponent(const std::string & assetName, AssetManager & assets /*SpriteCharacter & characterData*/);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
 		virtual sf::Vector2f getDimensions() = 0;
