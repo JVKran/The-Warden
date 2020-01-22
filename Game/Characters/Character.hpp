@@ -13,6 +13,11 @@
 
 class Character;
 
+struct CollisionBounds {
+	int_fast32_t leftCollisionBound;
+	int_fast32_t rightCollisionBound;
+};
+
 /// \brief
 /// Physicscomponent for Characters.
 /// \details
@@ -28,7 +33,7 @@ class PhysicsComponent {
 		bool hasResistance = false;
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
-		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions);
+		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 };
 
@@ -85,6 +90,7 @@ class Character {
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
 
+		CollisionBounds collisionBounds;
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, const bool isPlayerType = false);
 

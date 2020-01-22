@@ -69,42 +69,17 @@ void Editor::handleInput(sf::View & view){
     bool upPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
 
     std::vector<Tile> & tiles = world.getTiles();
-    for(Tile & tile : tiles){
-    	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-			// if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
-			// 	tile.setFollowMouse(true);
-			// }
-			// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-			// 	tile.setFollowMouse(false);
-			// }
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
-				tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket)){
-				tile.setCollidable(true);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
-				tile.setCollidable(false);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
-				tile.setWindowLayer(0);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
-				tile.setWindowLayer(1);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
-				tile.setWindowLayer(2);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
-				tile.setWindowLayer(3);
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
-				tile.setWindowLayer(4);
-			}
-		}
-    	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
-    }
 
+    auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [this](const Tile & tile)->bool{return tile.getPosition().x > this->leftBound;});
+	auto rightIterator = std::find_if(leftIterator, tiles.end(), [this](const Tile & tile)->bool{return tile.getPosition().x > this->rightBound;});
+
+	std::for_each(
+		leftIterator,
+		rightIterator,
+		[this, &view, &tiles](Tile & tile){
+			handleTileInput(tile, this->window, view, tiles);
+		}
+	);
 
     if(leftPressed){
 		view.setCenter(sf::Vector2f(view.getCenter().x - 3, view.getCenter().y));
@@ -152,6 +127,45 @@ void Editor::handleInput(sf::View & view){
 	    	object.setPosition(sf::Vector2f(object.getPosition().x, object.getPosition().y - 3));
 	    }
 	}
+
+	leftBound = view.getCenter().x - (view.getSize().x / 2) - 300;
+	rightBound = view.getCenter().x + (view.getSize().x / 2);
+}
+
+void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & view, std::vector<Tile> & tiles){
+	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+		// if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
+		// 	tile.setFollowMouse(true);
+		// }
+		// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+		// 	tile.setFollowMouse(false);
+		// }
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
+			tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket)){
+			tile.setCollidable(true);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
+			tile.setCollidable(false);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
+			tile.setWindowLayer(0);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
+			tile.setWindowLayer(1);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
+			tile.setWindowLayer(2);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
+			tile.setWindowLayer(3);
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
+			tile.setWindowLayer(4);
+		}
+	}
+	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 }
 
 void Editor::handleEvent(const sf::Event & event, sf::View & view){
@@ -160,21 +174,33 @@ void Editor::handleEvent(const sf::Event & event, sf::View & view){
 	}
 
 	std::vector<Tile> & tiles = world.getTiles();
-    for(Tile & tile : tiles){
-    	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-			if(event.type == sf::Event::MouseWheelMoved){
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
-					tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
-				} else {
-					tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
-				}
+
+	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [this](const Tile & tile)->bool{return tile.getPosition().x > this->leftBound;});
+	auto rightIterator = std::find_if(leftIterator, tiles.end(), [this](const Tile & tile)->bool{return tile.getPosition().x > this->rightBound;});
+
+	std::for_each(
+		leftIterator,
+		rightIterator,
+		[this, &view, &event](Tile & tile){
+			handleObjectInput(tile, this->window, view, event);
+		}
+	);
+}
+
+void Editor::handleObjectInput(Tile & tile, sf::RenderWindow & window, sf::View & view, const sf::Event & event){
+	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+		if(event.type == sf::Event::MouseWheelMoved){
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+				tile.setRotation(tile.getRotation() + event.mouseWheel.delta);
+			} else {
+				tile.setNewScale(tile.getScale().x + (event.mouseWheel.delta * 0.1));
 			}
-			if(event.type == sf::Event::MouseButtonPressed){
-				tile.setFollowMouse(true);
-			}
-			if(event.type == sf::Event::MouseButtonReleased){
-				tile.setFollowMouse(false);
-			}
+		}
+		if(event.type == sf::Event::MouseButtonPressed){
+			tile.setFollowMouse(true);
+		}
+		if(event.type == sf::Event::MouseButtonReleased){
+			tile.setFollowMouse(false);
 		}
 	}
 }

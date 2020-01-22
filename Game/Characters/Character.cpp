@@ -30,7 +30,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters){
 	input->processInput(position, direction);
 	input->processItemUsage(items, this);
-	physics->processCollisions(world, position, graphics->getDimensions());
+	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	if(position.y > 2000){
@@ -56,29 +56,39 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
 }
 
-void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions){
+void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
 	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -2));
-	for(const auto & tile : tiles){
 
-        tileBounds = tile.getBounds();
-		if(tile.getName()=="water1"){
-			if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
-				hasResistance += true;
-       		} 
+	collisionBounds.leftCollisionBound = position.x - 300;
+	collisionBounds.rightCollisionBound = position.x + 600;
+
+	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
+	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
+
+	std::for_each(
+		leftIterator,
+		rightIterator,
+		[&tileBounds, &hitbox, &bottomHitbox, this](Tile & tile){
+			tileBounds = tile.getBounds();
+			if(tile.getName()=="water1"){
+				if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
+					hasResistance += true;
+	       		} 
+			}
+	        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
+	        	bottomCollision += tileBounds.intersects(bottomHitbox); 
+	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
+	        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
+				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
+				
+	    	}
 		}
-        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
-        	bottomCollision += tileBounds.intersects(bottomHitbox); 
-        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
-        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
-			topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
-			
-       }
-    }
+	);
 }
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){

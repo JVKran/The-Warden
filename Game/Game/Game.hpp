@@ -36,6 +36,8 @@ class Game {
 			window.close();
 		}
 
+		void changeKeyBinding();
+
 		void startWorld(const std::string & worldName);
 
 		void handleInput();
