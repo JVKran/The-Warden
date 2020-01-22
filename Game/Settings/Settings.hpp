@@ -6,11 +6,11 @@
 #include <SFML/Graphics.hpp>
 #include <array>
 #include "StateMachine.hpp"
-#include "bindings.hpp"
 #include "keybinding.hpp"
 #include "tekst.hpp"
 
 class StateMachine;
+struct StateDependantObjects;
 
 enum class StateSettings
 {
@@ -25,6 +25,7 @@ enum class StateSettings
 class Settings {
 private:
 	sf::RenderWindow & window;
+	std::array<KeyBinding, 3> & bindings;
 	StateSettings state = StateSettings::IDLE;											//!< The current state of the class
 	uint selectedKey = 0;																//!< holds the index of the array Bindings, needed to select a key if pressed on it
 	Text backButton = { "Back", sf::Vector2f{50.0, 440.0}, 1.0, sf::Color::Red};		//!< seperate backButton object for going back to menu screen.
@@ -37,7 +38,9 @@ public:
 	/// \details
 	/// This is the constructor of the class.
 	/// It requires a window to draw on and assets to make the background.
-	Settings( sf::RenderWindow & window, AssetManager & assets );
+	Settings( sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings );
+
+	void addKeyBindings(StateDependantObjects & objects);
 
 	/// \brief
 	/// Handles default input

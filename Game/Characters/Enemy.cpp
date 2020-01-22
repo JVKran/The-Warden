@@ -1,6 +1,6 @@
 #include "Enemy.hpp"
 
-void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction){
+void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys){
 	for(const Character & character : characters){
 		if(character.isPlayer()){									//Enemy 					//Player
 			if(character.getPosition().x < position.x - 100 && character.getPosition().x > position.x - 500){
