@@ -33,9 +33,9 @@ int main(){
 	while (window.isOpen()){	
 		startTime = (clock.getElapsedTime().asMilliseconds());
 
-		machine.handleInput(event, view);
 
-		for(uint_fast8_t i = 0; i < 60; i++){
+		for(uint_fast8_t i = 0; i < 15; i++){
+			machine.handleInput(event, view);
 			machine.handleEvent(event, view);
 		}
 
@@ -55,6 +55,11 @@ int main(){
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;
+		}
+
+		if(clock.getElapsedTime().asMilliseconds() - startTime < msPerUpdate){
+			
+			sf::sleep(sf::milliseconds(1));
 		}
 
 	}
