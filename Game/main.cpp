@@ -34,27 +34,25 @@ int main(){
 	StateMachine machine(game, interface, editor, settings);
 
 	sf::Clock clock;
-	//uint_fast8_t msPerUpdate = 16.67;
-	double previous, lag, current, elapsed;
+	uint_fast8_t msPerUpdate = 16;
+	double startTime;
 
 
 	while (window.isOpen()){	
-		current = (clock.getElapsedTime().asMilliseconds());
-		elapsed = current - previous;
-		previous = current;
-		lag += elapsed;
+		startTime = (clock.getElapsedTime().asMilliseconds());
 
 		machine.handleInput(event, view);
 
-		// while (lag >= msPerUpdate){
-		// 	machine.handleEvent(event, view);
-		// 	lag -= msPerUpdate;
-		// }
+		for(uint_fast8_t i = 0; i < 60; i++){
+			machine.handleEvent(event, view);
+		}
 
-		window.clear();
-		window.setView(view);
-		machine.display(event, view);
-		window.display();
+		if(clock.getElapsedTime().asMilliseconds() - startTime < msPerUpdate){
+			window.clear();
+			window.setView(view);
+			machine.display(event, view);
+			window.display();
+		}
 
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){

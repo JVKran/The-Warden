@@ -24,28 +24,32 @@ void EnemyGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2
 }
 
 void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
-	if(velocity.x < 3 && direction.x > 0){
-    	velocity.x += direction.x * 0.04;
+	if(velocity.x < 4 && direction.x > 0){
+    	velocity.x += direction.x * 0.05;
     }
 
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.04;
+    		velocity.x -= 0.05;
     	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.04;
+    		velocity.x += 0.05;
     	} else {
     		velocity.x = 0;
     	}
     }
-    if(velocity.x > -3 && direction.x < 0){
-    	velocity.x += direction.x * 0.04;
+    if(direction.y < 0 && state != states::JUMPING){
+    	velocity.y = -5;
     }
 
-    if(leftCollision && direction.x < 0){
+    if(velocity.x > -4 && direction.x < 0){
+    	velocity.x += direction.x * 0.05;
+    }
+
+    if(leftCollision){
 		velocity.x = 0;
 	}
 	
-	if(rightCollision && direction.x > 0){
+	if(rightCollision){
 		velocity.x = 0;
 	}
 

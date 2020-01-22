@@ -27,8 +27,8 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 		if(*character != characterToHit && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
 			lastAttack = clock.getElapsedTime();
 			if(character->getBounds().intersects(characterToHit.getBounds())){
-				character->setHealth( (character->getHealth()) - damageFactor );
-				if(character->getHealth() < 0){
+				characterToHit.setHealth( (characterToHit.getHealth()) - damageFactor );
+				if(characterToHit.getHealth() < 0){
 					try{
 						characters.erase( std::find(characters.begin(), characters.end(), characterToHit) );
 					} catch (const std::exception & error){
