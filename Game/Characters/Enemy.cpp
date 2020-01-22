@@ -27,7 +27,11 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 	float maxVelocity = 0.8;
 	float maxAcceleration = 0.01;
 	float maxJumpAcceleration = 1;
-	if(velocity.x < maxVelocity && direction.x > 0){
+	if(velocity.x <= maxVelocity && direction.x > 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(velocity.x >= -maxVelocity && direction.x < 0){
     	velocity.x += direction.x * maxAcceleration;
     }
 
@@ -40,20 +44,23 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
     		velocity.x = 0;
     	}
     }
-    if(direction.y < 0 && state != states::JUMPING){
+    if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
     	velocity.y = -maxJumpAcceleration;
     }
 
-    if(velocity.x > -maxVelocity && direction.x < 0){
-    	velocity.x += direction.x * maxAcceleration;
-    }
-
-    if(leftCollision){
-		velocity.x = 0;
+    if(leftCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
+		//velocity.x = 0;
+		velocity.y = -maxJumpAcceleration;
 	}
 	
-	if(rightCollision){
-		velocity.x = 0;
+	if(rightCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
+		//velocity.x = 0;
+		velocity.y = -maxJumpAcceleration;
+	}
+
+	if(topCollision && !bottomCollision){
+		state = states::FALLING;
+		velocity.y = maxAcceleration;
 	}
 
 	if(hasResistance){

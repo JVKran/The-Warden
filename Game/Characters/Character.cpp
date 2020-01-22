@@ -67,6 +67,7 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
+	characterCollision = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
 	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 5 , position.y + 1.7), sf::Vector2f(dimensions.x - 10 , dimensions.y));
@@ -102,6 +103,7 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
         	rightCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
         	leftCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 			topCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
+			characterCollision = true;
 		}
 	}
 }
