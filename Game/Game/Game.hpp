@@ -12,7 +12,9 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "LootDrop.hpp"
+#include "keybinding.hpp"
 #include <memory>
+#include <array>
 
 /// \brief
 /// Game
@@ -24,19 +26,18 @@ class Game {
 	private:
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
+		sf::RenderWindow & window;
+		std::array<KeyBinding, 3> & bindings;
 		
 		LootDrop lootDrop;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
-		sf::RenderWindow & window;
 
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings );
 		~Game(){
 			window.close();
 		}
-
-		void changeKeyBinding();
 
 		void startWorld(const std::string & worldName);
 

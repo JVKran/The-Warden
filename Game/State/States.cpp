@@ -42,6 +42,7 @@ void EditingState::handleEvent(StateDependantObjects & objects, ViewObjects & vi
 //-----------------------------------------------------------------------------------------------------------------//
 
 void SettingsState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	//objects.settings.addKeyBindings(objects);
 	objects.settings.handleInput();
 }
 

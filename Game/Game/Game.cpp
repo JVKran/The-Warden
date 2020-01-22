@@ -8,9 +8,10 @@
 /// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
 /// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
 /// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
-Game::Game(sf::RenderWindow & window, AssetManager & assets):
+Game::Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings):
 	world(assets),
-	window(window)
+	window(window),
+	bindings(bindings)
 {			//"Assets/objects.txt"
 	loadCharacters();
 	window.setFramerateLimit(60);
@@ -31,7 +32,7 @@ void Game::startWorld(const std::string & worldName){
 /// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(){
 	for(auto & character : characters){
-		character.update(window, world, characters);
+		character.update(window, world, characters, bindings);
 	}
 }
 
