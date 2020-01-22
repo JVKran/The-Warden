@@ -12,7 +12,7 @@ void Interface::initialize(StateMachine * machine){
 	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(100,100), 1), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100,100), 1), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
 
 
 }

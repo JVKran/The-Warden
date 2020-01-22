@@ -3,16 +3,16 @@
 #include "Settings.hpp"
 
 Settings::Settings( sf::RenderWindow & window, AssetManager & assets ):
-	window( window )
-{
+	window( window ),
+	action(Action([]{}))
+	{
 		background.setTexture(assets.getTexture("background"));
 
 }
 
 void Settings::initialize(StateMachine * machine){
 	
-	elements = InterfaceElement( Action ( [machine]{  machine->changeState(std::make_shared<MenuState>());}));
-
+	 action = Action( [machine]{  machine->changeState(std::make_shared<MenuState>());});
 }
 
 void Settings::handleInput(){
@@ -41,7 +41,7 @@ void Settings::handleEvent( const sf::Event & event ){
 
 			if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){			
 				if( backButton.contains( sf::Mouse::getPosition(window)) ){		//if backButton is pressed go back to menu screen
-					element.changeState();
+					action.startFunction();
 				}else{
 					uint counter = 0;												//holds the index of Bindings object (see uint selectedKey)
 					for( KeyBinding & keyRef : Bindings ){
