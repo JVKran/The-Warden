@@ -12,7 +12,9 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "LootDrop.hpp"
+#include "keybinding.hpp"
 #include <memory>
+#include <array>
 
 /// \brief
 /// Game
@@ -28,15 +30,14 @@ class Game {
 		LootDrop lootDrop;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 		sf::RenderWindow & window;
+		std::array<KeyBinding, 3> & bindings;
 
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings);
 		~Game(){
 			window.close();
 		}
-
-		void changeKeyBinding();
 
 		void startWorld(const std::string & worldName);
 

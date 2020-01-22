@@ -8,14 +8,13 @@
 #include "AssetManager.hpp"
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
-#include "bindings.hpp"
 
 class PlayerInput : public InputComponent {
 	public:
 		PlayerInput(World & world, std::vector<Character> & characters):
 			InputComponent(world, characters)
 		{}
-		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) override;
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) override;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter);
 
 		PlayerInput & operator=(PlayerInput lhs){

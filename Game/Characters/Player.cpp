@@ -6,16 +6,16 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 	GraphicsComponent(assetName, assets)
 {}
 
-void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction){
+void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
-	if(sf::Keyboard::isKeyPressed(Bindings[0].getKey())){
+	if(sf::Keyboard::isKeyPressed(keys[0].getKey())){
 		direction.x = -1;
 	}
-	if(sf::Keyboard::isKeyPressed(Bindings[1].getKey())){
+	if(sf::Keyboard::isKeyPressed(keys[1].getKey())){
 		direction.x = 1;
 	}
-	if(sf::Keyboard::isKeyPressed(Bindings[2].getKey())){
+	if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
 		direction.y -=1;
 	}
 }

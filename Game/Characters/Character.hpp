@@ -8,6 +8,7 @@
 #include "SpriteAnimation.hpp"
 #include "LootDrop.hpp"
 #include "Items.hpp"
+#include "keybinding.hpp"
 #include <memory>
 #include <vector>
 
@@ -61,7 +62,7 @@ class InputComponent {
 			world(world),
 			characters(characters)
 		{}
-		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) = 0;
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 };
 
@@ -106,7 +107,7 @@ class Character {
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, const bool isPlayerType = false);
 
-		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters);
+		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
 		bool isAlive();
 
 		bool isPlayer() const;
