@@ -92,6 +92,10 @@ class Character {
 		sf::Vector2f velocity;
 		sf::Vector2f direction;
 
+		sf::Clock clock;
+		double lastUpdate = 0.0;
+		double timeDifference = 0.0;
+
 		LootDrop lootDrop;
 		std::vector<std::shared_ptr<Item>> items;
 		bool isPlayerType;

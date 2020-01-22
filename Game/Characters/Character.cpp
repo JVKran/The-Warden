@@ -36,10 +36,18 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
-	if(position.y > 2000){
+	if(position.y > 700){
 		health = 0;
 	}
-	position += velocity;
+	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
+	if(timeDifference >= 3.0 && timeDifference <= 6.0){
+		position += velocity;
+		lastUpdate = clock.getElapsedTime().asMilliseconds();
+		std::cout << timeDifference << std::endl;
+	} else if(timeDifference > 6.0) {
+		position += sf::Vector2f(velocity.x * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4), velocity.y * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4));
+		lastUpdate = clock.getElapsedTime().asMilliseconds();
+	}
 }
 
 /// \brief

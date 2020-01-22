@@ -14,7 +14,7 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBindi
 	bindings(bindings)
 {			//"Assets/objects.txt"
 	loadCharacters();
-	window.setVerticalSyncEnabled(true);
+	//window.setVerticalSyncEnabled(true);
 }
 
 /// \brief

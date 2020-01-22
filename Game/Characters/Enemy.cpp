@@ -49,12 +49,12 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
     }
 
     if(leftCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
-		//velocity.x = 0;
+		velocity.x = 0;
 		velocity.y = -maxJumpAcceleration;
 	}
 	
 	if(rightCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
-		//velocity.x = 0;
+		velocity.x = 0;
 		velocity.y = -maxJumpAcceleration;
 	}
 

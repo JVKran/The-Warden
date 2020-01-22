@@ -13,6 +13,8 @@
 #include "keybinding.hpp"
 
 
+// Geinig om te laten zien wat er gebeurt als vsync aan gaat.
+
 int main(){
 
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
@@ -62,6 +64,8 @@ int main(){
 		machine.display(event, view);
 		window.display();
 		//lastFrame = clock.getElapsedTime().asMilliseconds();
+
+		//sf::sleep(sf::milliseconds(100));
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;
