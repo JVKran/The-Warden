@@ -15,15 +15,16 @@
 /// It's responsible for loading, drawing and saving the world.
 class World {
 	private:
-		AssetManager & assets;						//!< The AssetManager to use for gathering the needed textures.
-		std::vector<Tile> tiles;					//!< The tiles the world consists of.
+		AssetManager & assets;							//!< The AssetManager to use for gathering the needed textures.
+		std::vector<Tile> tiles;						//!< The tiles the world consists of.
+		std::vector<InteractableObject> interactables; 	//!< The objects which a Character can interact with.
 
-		std::string worldFileName;					//!< The filename of the world configuration file.
-		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
-		sf::Sprite background;						//!< The background sprite.
+		std::string worldFileName;						//!< The filename of the world configuration file.
+		std::string backgroundName;						//!< The backgroundname used for retrieving the texture from the AssetManager.
+		sf::Sprite background;							//!< The background sprite.
 
 		void loadWorld();
-		void loadTile(std::ifstream & input);
+		void loadObject(std::ifstream & input);
 		void sortWorld();
 	public:
 		World(AssetManager & assets);
@@ -32,10 +33,11 @@ class World {
 		void loadWorld(const std::string & fileName);
 
 		void addTile(Tile object);
+		void addInteractable(InteractableObject & object);
 		void setBackground(const std::string & backgroundName);
 
 		std::vector<Tile> & getTiles();
-
+		std::vector<InteractableObject> & getInteractables();
 		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
 
 		World & operator=(World lhs){

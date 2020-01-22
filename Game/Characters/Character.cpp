@@ -58,7 +58,9 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 
 void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds){
 	std::vector<Tile> & tiles= world.getTiles();
+	std::vector<InteractableObject> & interactables = world.getInteractables();
 	sf::FloatRect tileBounds;
+	sf::FloatRect interactableBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
@@ -69,6 +71,9 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
+
+	auto leftIteratorInteractable = std::find_if(interactables.begin(),     interactables.end(), [&collisionBounds](const InteractableObject & interactable)->bool{return interactable.getPosition().x > collisionBounds.leftCollisionBound;});
+	auto rightIteratorInteractable = std::find_if(leftIteratorInteractable, interactables.end(), [&collisionBounds](const InteractableObject & interactable)->bool{return interactable.getPosition().x > collisionBounds.rightCollisionBound;});
 
 	std::for_each(
 		leftIterator,
@@ -87,6 +92,19 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
 				
 	    	}
+		}
+	);
+
+	std::for_each(
+		leftIteratorInteractable,
+		rightIteratorInteractable,
+		[&interactableBounds, &hitbox, &bottomHitbox, this](InteractableObject & interactable){
+			interactableBounds = interactable.getBounds();
+			if(interactable.getName()=="doors_all.png"){
+				if((hitbox.intersects(interactableBounds))){
+					std::cout<<"We got 'em bois\n";
+				}
+			}
 		}
 	);
 }

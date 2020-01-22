@@ -114,7 +114,7 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
+Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, bool interactable, const float rotation, const int windowLayer):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
 	collidable(collidable)
 {}
@@ -133,7 +133,7 @@ void Tile::makePartOfWorld(const bool & added){
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string Tile::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer) + ' ' + std::to_string(interactable));
 }
 
 /// \brief
@@ -158,26 +158,9 @@ bool Tile::isInteractable() const{
 	return interactable;
 }
 
-void Tile::setInteractability(const bool newInteractability){
-	interactable = newInteractability;
+void Tile::setInteractability(const bool newInteractable){
+	interactable = newInteractable;
 }
-
-bool Tile::isPassageWay() const{
-	return passageWay;
-}
-
-void Tile::setPassageWay(const bool newPassageWay){
-	passageWay = newPassageWay;
-}
-
-bool Tile::isPassageEntrance() const{
-	return passageEntrance;
-}
-
-void Tile::changePassageEntrance(const bool newPassageEntrance){
-	passageEntrance = newPassageEntrance;
-}
-
 /// \brief
 /// Set mouse following.
 /// \details
@@ -243,4 +226,21 @@ bool Tile::operator==(Tile lhs) const {
 /// \return Wether or not the position is smaller than the position of the passed object.
 bool Tile::operator<(Tile lhs) const {
 	return sprite.getPosition().x < lhs.sprite.getPosition().x;
+}
+
+InteractableObject::InteractableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, bool interactable, const float rotation, const int windowLayer):
+	// ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
+	Tile(assetName, assets, position, scale, rotation, windowLayer, collidable)
+{}
+
+bool InteractableObject::isPassageWay() const{
+	return passageWay;
+}
+
+void InteractableObject::setPassageWay(const bool newPassageWay){
+	passageWay = newPassageWay;
+}
+
+std::string InteractableObject::getConfiguration() const {
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(isCollidable()) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer) + ' ' + std::to_string(isInteractable()));
 }

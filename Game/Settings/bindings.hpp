@@ -5,10 +5,11 @@
 #include "keybinding.hpp"
 #include "tekst.hpp"
 
-inline std::array< KeyBinding, 3 > Bindings { 
-	KeyBinding ( "Left", 		sf::Keyboard::Left,  		Text( "Left : A", 		sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )	),
-	KeyBinding ( "Right",		sf::Keyboard::Right, 		Text( "Right : D", 		sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )	),
-	KeyBinding ( "Jump", 		sf::Keyboard::Space, 	Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 )	)
+inline std::array< KeyBinding, 4 > Bindings { 
+	KeyBinding ( "Left", 		sf::Keyboard::Left,  		Text( "Left : Left", 		sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )	),
+	KeyBinding ( "Right",		sf::Keyboard::Right, 		Text( "Right : Right", 		sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )	),
+	KeyBinding ( "Jump", 		sf::Keyboard::Space, 		Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 )	),
+	KeyBinding ( "E",			sf::Keyboard::E, 			Text( "Interact : E",	sf::Vector2f{500.0, 150.0}, 1.0, sf::Color::Red, 1 )	)
 };
 
 #endif

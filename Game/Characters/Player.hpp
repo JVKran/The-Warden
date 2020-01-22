@@ -17,7 +17,6 @@ class PlayerInput : public InputComponent {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) override;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter);
-
 		PlayerInput & operator=(PlayerInput lhs){
 			world = lhs.world;
 			characters = lhs.characters;

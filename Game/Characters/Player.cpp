@@ -1,7 +1,7 @@
 /// @file
 
 #include "Player.hpp"
-
+#include <iostream>
 PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets):
 	GraphicsComponent(assetName, assets)
 {}
@@ -18,6 +18,9 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	if(sf::Keyboard::isKeyPressed(Bindings[2].getKey())){
 		direction.y -=1;
 	}
+	if(sf::Keyboard::isKeyPressed(Bindings[3].getKey())){
+		// checkInteraction();
+	}
 }
 
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
@@ -25,7 +28,6 @@ void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, C
 		items.at(0)->use(ownCharacter, characters);
 	}
 }
-
 /// \brief
 /// Draw the Character.
 /// \details

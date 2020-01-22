@@ -53,12 +53,10 @@ class Tile : public ScreenObject {
 	private:
 		bool followMouse = false;			//!< Whether or not to follow the mouse's position.
 		bool collidable = true;				//!< Whether or not Character types should collide with this Tile.
-		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
-		bool interactable = false;			//!< Whether or not this object can be interacted with by a Character.
-		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
-		bool passageEntrance = false;		//!< Whether or not this object is an entrance to another Tile with an entrance.
+		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of 
+		bool interactable = false;
 	public:
-		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0);
+		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, bool interactable = false, const float rotation = 0, const int windowLayer = 0);
 
 		virtual std::string getConfiguration() const override;
 
@@ -71,12 +69,6 @@ class Tile : public ScreenObject {
 		bool isInteractable() const;
 		void setInteractability(const bool newInteractability);
 
-		bool isPassageWay() const;
-		void setPassageWay(const bool newPassageWay);
-
-		bool isPassageEntrance() const;
-		void changePassageEntrance(const bool newPassageWayDirection);
-
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
 
@@ -88,4 +80,15 @@ class Tile : public ScreenObject {
 
 };
 
+class InteractableObject : public Tile{
+	private:
+		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
+	public:
+		InteractableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, bool interactable = true, const float rotation = 0, const int windowLayer = 0);
+		
+		virtual std::string getConfiguration() const override;
+		
+		bool isPassageWay() const;
+		void setPassageWay(const bool newPassageWay);
+};
 #endif //__SCREEN_OBJECT

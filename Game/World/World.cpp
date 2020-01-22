@@ -46,7 +46,7 @@ void World::loadWorld(const std::string & fileName){
 	}
 	while (!isEmpty(worldFile)){
 		try {
-			loadTile(worldFile);
+			loadObject(worldFile);
 		} catch(std::ifstream::failure & e){
 			std::cerr << "(!)-- Exception opening, reading or closing file\n";
 		} catch (const std::exception & problem){
@@ -76,15 +76,20 @@ void World::loadWorld(const std::string & fileName){
 /// \exception endOfFile() End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program
 /// first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier.
 /// \exception invalidPosition() The position given is invalid. This most likely is a syntax error.
-void World::loadTile(std::ifstream & input){
+void World::loadObject(std::ifstream & input){
 	std::string assetName;
 	sf::Vector2f position;
 	float scale, rotation;
-	int windowLayer;
+	int windowLayer, interactable;
 	bool collidable;
 	try {
-		input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer;
-		tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
+		input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer >> interactable;
+		if(interactable){
+			interactables.push_back(InteractableObject(assetName, assets, position, scale, collidable, rotation, windowLayer));
+		}
+		else{
+			tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
+		}
 	} catch (...){
 		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << std::endl;
 		std::cerr << "      Note that world configuration files shouldn't end with a newline character." << std::endl;
@@ -98,10 +103,11 @@ void World::loadTile(std::ifstream & input){
 /// \exception sortingFailed() The tiles could not be sorted. This is most likely because of a std::bad_alloc.
 void World::sortWorld(){
 	try {
-		if(std::is_sorted(tiles.begin(), tiles.end())){
+		if(std::is_sorted(tiles.begin(), tiles.end()) && std::is_sorted(interactables.begin(), interactables.end())){
 			std::cout << "(i)-- World already sorted!" << std::endl;
 		} else {
 			std::sort(tiles.begin(), tiles.end(), sortByPosition);
+			std::sort(interactables.begin(), interactables.end(), sortByPosition);
 			std::cout << "(i)-- Sorted world!" << std::endl;
 		}
 	} catch (...){
@@ -121,17 +127,28 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 	}
 
 	int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
-	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
-
 	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
+
+	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
 
+	auto leftIteratorInteract = std::find_if(interactables.begin(), interactables.end(), [&leftSide](const InteractableObject & interactable)->bool{return interactable.getPosition().x > leftSide;});
+	auto rightIteratorInteract = std::find_if(interactables.begin(), interactables.end(), [&rightSide](const InteractableObject & interactable)->bool{return interactable.getPosition().x > rightSide;});
 	std::for_each(
 		leftIterator,
 		rightIterator,
 		[&window, &windowLayer](Tile & tile){
 			if(windowLayer == tile.getWindowLayer()){
 				tile.draw(window);
+			}
+		}
+	);
+	std::for_each(
+		leftIteratorInteract,
+		rightIteratorInteract,
+		[&window, &windowLayer](InteractableObject & interactable){
+			if(windowLayer == interactable.getWindowLayer()){
+				interactable.draw(window);
 			}
 		}
 	);
@@ -147,6 +164,11 @@ void World::addTile(Tile object){
 	sortWorld();
 }
 
+void World::addInteractable(InteractableObject & object){
+	interactables.push_back(object);
+	sortWorld();
+}
+
 /// \brief
 /// Get tiles.
 /// \details
@@ -155,6 +177,9 @@ std::vector<Tile> & World::getTiles(){
 	return tiles;
 }
 
+std::vector<InteractableObject> & World::getInteractables(){
+	return interactables;
+}
 /// \brief
 /// Save world to configuration file.
 /// \details
