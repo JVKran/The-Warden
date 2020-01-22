@@ -69,7 +69,7 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 4, position.y+10 ), sf::Vector2f(dimensions.x - 8, dimensions.y -2));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 5 , position.y + 1.7), sf::Vector2f(dimensions.x - 10 , dimensions.y));
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
@@ -88,11 +88,10 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	       		} 
 			}
 	        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
-	        	bottomCollision += tileBounds.intersects(bottomHitbox); 
-	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+10,hitbox.top,hitbox.width-10,hitbox.height));
-	        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top,hitbox.width-10,hitbox.height));
-				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
-				
+				bottomCollision += tileBounds.intersects(bottomHitbox); 
+	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
+	        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
+				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 	    	}
 		}
 	);
@@ -100,47 +99,49 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	for(Character & character : characters){
 		if(hitbox.intersects(character.getBounds()) && character.getPosition() != position){
 			bottomCollision += character.getBounds().intersects(bottomHitbox); 
-        	leftCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+20,hitbox.top,hitbox.width-20,hitbox.height));
-        	rightCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+ 20,hitbox.top,hitbox.width-20,hitbox.height));
-			topCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left+5,hitbox.top,hitbox.width-10,hitbox.height-5));
-			if(character.isPlayer()){
-				std::cout << "Player left: " << leftCollision << ", right: " << rightCollision << std::endl;
-			} else {
-				std::cout << "Enemy left: " << leftCollision << ", right: " << rightCollision << std::endl;
-			}
+        	rightCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
+        	leftCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
+			topCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 		}
 	}
 }
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
-	float maxVelocity = 0.08;
-	if(velocity.x < maxVelocity && direction.x > 0){
-    	velocity.x += direction.x * 0.01;
+	float maxVelocity = 1;
+	float maxAcceleration = 0.005;
+	float maxJumpAcceleration = 1;
+	if(velocity.x <= maxVelocity && direction.x > 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(velocity.x >= -maxVelocity && direction.x < 0){
+    	velocity.x += direction.x * maxAcceleration;
     }
 
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.01;
+    		velocity.x -= maxAcceleration;
     	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.01;
+    		velocity.x += maxAcceleration;
     	} else {
     		velocity.x = 0;
     	}
     }
-    if(direction.y < 0 && state != states::JUMPING){
-    	velocity.y = -0.15;
+    if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
+    	velocity.y = -maxJumpAcceleration;
     }
 
-    if(velocity.x > -maxVelocity && direction.x < 0){
-    	velocity.x += direction.x * 0.01;
-    }
-
-    if(leftCollision){
+    if(leftCollision  && direction.x < 0){
 		velocity.x = 0;
 	}
 	
-	if(rightCollision){
+	if(rightCollision && direction.x > 0){
 		velocity.x = 0;
+	}
+
+	if(topCollision && !bottomCollision){
+		state = states::FALLING;
+		velocity.y = maxAcceleration;
 	}
 
 	if(hasResistance){
@@ -149,14 +150,16 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 }
 
 void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
+	float maxAcceleration = 0.005;
+	float maxVelocity = 0.995;
 	switch (state){
 		case (states::FALLING): {
 			if(bottomCollision){
 				state = states::STANDING;
 				velocity.y = 0;
 			} else {
-				if(velocity.y < 4){
-					velocity.y += 0.00005;
+				if(velocity.y < maxVelocity){
+					velocity.y += maxAcceleration;
 				}
 			}
 			break;
@@ -181,8 +184,11 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 			if(bottomCollision){
 				state = states::STANDING;
 			}
-			if(velocity.y < 4){
-				velocity.y += 0.00005;
+			if(velocity.y < maxVelocity){
+				velocity.y += maxAcceleration;
+			}
+			if(velocity.y > 0){
+				state = states::FALLING;
 			}
 			break;
 		}

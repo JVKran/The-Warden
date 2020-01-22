@@ -19,8 +19,8 @@ int main(){
 	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
 	std::array< KeyBinding, 3 > bindings { 
-		KeyBinding ( "Left", 		sf::Keyboard::Left,  		Text( "Left : Left", 	sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )	),
-		KeyBinding ( "Right",		sf::Keyboard::Right, 		Text( "Right : Right", 	sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )	),
+		KeyBinding ( "Left", 		sf::Keyboard::A,  		Text( "Left : A", 	sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )	),
+		KeyBinding ( "Right",		sf::Keyboard::D, 		Text( "Right : D", 	sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )	),
 		KeyBinding ( "Jump", 		sf::Keyboard::Space, 		Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 )	)
 	};
 
@@ -34,23 +34,20 @@ int main(){
 	StateMachine machine(game, interface, editor, settings);
 
 	sf::Clock clock;
-	uint_fast8_t msPerUpdate = 16;
-	double startTime;
 
+	double previous = clock.getElapsedTime().asMilliseconds();
+	double lag = 0.0;
+	double simulationSpeed = 4;
 
-	while (window.isOpen()){	
-		startTime = (clock.getElapsedTime().asMilliseconds());
+	while (window.isOpen()){
+		double current = clock.getElapsedTime().asMilliseconds();
+		double elapsed = current - previous;
+		previous = current;
+		lag += elapsed;
 
-
-		for(uint_fast8_t i = 0; i < 15; i++){
+		while(lag >= simulationSpeed){
 			machine.handleInput(event, view);
-		}
-
-		if(clock.getElapsedTime().asMilliseconds() - startTime < msPerUpdate){
-			window.clear();
-			window.setView(view);
-			machine.display(event, view);
-			window.display();
+			lag -= simulationSpeed;
 		}
 
 		while(window.pollEvent(event)){
@@ -60,13 +57,14 @@ int main(){
 			machine.handleEvent(event, view);
 		}
 
+		window.clear();
+		window.setView(view);
+		machine.display(event, view);
+		window.display();
+		//lastFrame = clock.getElapsedTime().asMilliseconds();
+
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;
-		}
-
-		if(clock.getElapsedTime().asMilliseconds() - startTime < msPerUpdate){
-			
-			sf::sleep(sf::milliseconds(1));
 		}
 
 	}

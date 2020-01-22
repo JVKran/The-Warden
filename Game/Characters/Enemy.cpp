@@ -24,26 +24,28 @@ void EnemyGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2
 }
 
 void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
-	float maxVelocity = 0.06;
+	float maxVelocity = 0.8;
+	float maxAcceleration = 0.01;
+	float maxJumpAcceleration = 1;
 	if(velocity.x < maxVelocity && direction.x > 0){
-    	velocity.x += direction.x * 0.01;
+    	velocity.x += direction.x * maxAcceleration;
     }
 
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.01;
+    		velocity.x -= maxAcceleration;
     	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.01;
+    		velocity.x += maxAcceleration;
     	} else {
     		velocity.x = 0;
     	}
     }
     if(direction.y < 0 && state != states::JUMPING){
-    	velocity.y = -0.1;
+    	velocity.y = -maxJumpAcceleration;
     }
 
     if(velocity.x > -maxVelocity && direction.x < 0){
-    	velocity.x += direction.x * 0.01;
+    	velocity.x += direction.x * maxAcceleration;
     }
 
     if(leftCollision){
