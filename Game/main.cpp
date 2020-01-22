@@ -20,7 +20,7 @@ int main(){
 
 	Game game(window, assets);
 	Editor editor(window, assets);
-	Interface interface(game, machine, editor, assets, window);
+	Interface interface(game,editor, assets, window);
 	StateMachine machine(game, interface, editor);
 
 	sf::Clock clock;
@@ -44,6 +44,7 @@ int main(){
 		window.clear();
 		window.setView(view);
 		machine.display(event, view);
+
 		window.display();
 
 		while(window.pollEvent(event)){
@@ -51,6 +52,7 @@ int main(){
 				window.close();
 			}
 			machine.handleEvent(event, view);
+
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){

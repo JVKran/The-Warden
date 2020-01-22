@@ -15,16 +15,18 @@ class Interface {
 	private:
 		Game & game;
 		Editor & editor;
+		AssetManager & assets;
 
 		sf::RenderWindow & window;
 
 		sf::Sprite background;
 		std::vector<InterfaceElement> interfaceElements;
 	public:
-		Interface(Game & game, StateMachine * machine, Editor & editor, AssetManager & assets, sf::RenderWindow & window);
+		Interface(Game & game, Editor & editor, AssetManager & assets, sf::RenderWindow & window);
 
-		void handleInput(StateMachine * machine);
-		void handleEvent(const sf::Event & event, StateMachine * machine);
+		void initialize(StateMachine * machine);
+		void handleInput();
+		void handleEvent(const sf::Event & event);
 		void display();
 };
 
