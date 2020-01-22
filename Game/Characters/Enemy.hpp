@@ -14,7 +14,19 @@ class EnemyPhysics : public PhysicsComponent {
 
 class EnemyInput : public InputComponent {
 	public:
-		virtual void processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters) override;
+		EnemyInput(World & world, std::vector<Character> & characters):
+			InputComponent(world, characters)
+		{}
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction) override;
+		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+			items.at(0)->use(ownCharacter, characters);
+		}
+
+		EnemyInput & operator=(EnemyInput lhs){
+			world = lhs.world;
+			characters = lhs.characters;
+			return *this;
+		}
 };
 
 class EnemyGraphics : public GraphicsComponent {
@@ -22,6 +34,11 @@ class EnemyGraphics : public GraphicsComponent {
 		EnemyGraphics(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
+
+		EnemyGraphics & operator=(EnemyGraphics lhs){
+			sprite = lhs.sprite;
+			return *this;
+		}
 };
 
 

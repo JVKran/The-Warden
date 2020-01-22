@@ -1,52 +1,11 @@
 #include "StateMachine.hpp"
 
-void MenuState::handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view){
-	interface.handleInput();
-}
-
-void MenuState::display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-	interface.display();
-}
-
-void MenuState::handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-	interface.handleEvent(event);
-}
-
-
-
-void PlayingState::handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view){
-	game.handleInput();
-}
-
-void PlayingState::display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-	game.display(view);
-}
-
-void PlayingState::handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-}
-
-
-
-void EditingState::handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-	//interface.handleInput(event, machine);
-	editor.handleInput(view);
-}
-
-void EditingState::display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view)  {
-	editor.draw(view);
-}
-
-void EditingState::handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) {
-	editor.handleEvent(event, view);
-}
-
-StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor):
-	game(game),
-	interface(interface),
-	editor(editor),
+StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings):
+	stateDependantObjects(game, interface, editor, settings),
 	currentState(std::make_shared<MenuState>())
 { 
 	interface.initialize(this); 
+	settings.initialize(this);
 }
 
 void StateMachine::changeState(std::shared_ptr<State> newState){
@@ -58,13 +17,16 @@ std::shared_ptr<State> StateMachine::getCurrentState(){
 }
 
 void StateMachine::handleInput(const sf::Event & event, sf::View & view){
-	currentState->handleInput(game, interface, editor, event, view);
+	ViewObjects viewObjects(view, event);
+	currentState->handleInput(stateDependantObjects, viewObjects);
 }
 
 void StateMachine::handleEvent(const sf::Event & event, sf::View & view){
-	currentState->handleEvent(game, interface, editor, event, view);
+	ViewObjects viewObjects(view, event);
+	currentState->handleEvent(stateDependantObjects, viewObjects);
 }
 
 void StateMachine::display(const sf::Event & event, sf::View & view){
-	currentState->display(game, interface, editor, event, view);
+	ViewObjects viewObjects(view, event);
+	currentState->display(stateDependantObjects, viewObjects);
 }

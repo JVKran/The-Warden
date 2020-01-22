@@ -23,10 +23,14 @@ private:
 	sf::RenderWindow & window;
 
 	std::vector< Tile > objects;						//!< Vector with all placeable objects.
+	int_fast32_t leftBound;
+	int_fast32_t rightBound;
 
 	bool isFirstOneSelected(std::vector<Tile> & tiles);
 	void drawTileBar( sf::View & view );
 	void scrollTileBar( const int_fast16_t & mouseWheelDelta );
+	void handleObjectInput(Tile & tile, sf::RenderWindow & window, sf::View & view, const sf::Event & event);
+	void handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & view, std::vector<Tile> & tiles);
 public:
 	Editor( sf::RenderWindow & window, AssetManager & assets );
 

@@ -5,47 +5,47 @@
 #include "Game.hpp"
 #include "Interface.hpp"
 #include "Editor.hpp"
+#include "Settings.hpp"
+#include "States.hpp"
 
 class Interface;
 class StateMachine;
 
-class State {
-	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) = 0;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) = 0;
-		virtual void display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) = 0;
+
+class Settings;
+class State;
+
+struct StateDependantObjects {
+	Game & game;
+	Interface & interface;
+	Editor & editor;
+	Settings & settings;
+
+	StateDependantObjects(Game & game, Interface & interface, Editor & editor, Settings & settings):
+		game(game),
+		interface(interface),
+		editor(editor),
+		settings(settings)
+	{}
 };
 
-class MenuState : public State {
-	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override ;
-};
+struct ViewObjects {
+	sf::View & view;
+	const sf::Event & event;
 
-class PlayingState : public State {
-	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-};
-
-class EditingState : public State {
-	public:
-		virtual void handleInput(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
-		virtual void handleEvent(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view)override;
-		virtual void display(Game & game, Interface & interface, Editor & editor, const sf::Event & event, sf::View & view) override;
+	ViewObjects(sf::View & view, const sf::Event & event):
+		view(view),
+		event(event)
+	{}
 };
 
 class StateMachine {
 	private:
-		Game & game;
-		Interface & interface;
-		Editor & editor;
+		StateDependantObjects stateDependantObjects;
 
 		std::shared_ptr<State> currentState;
 	public:
-		StateMachine(Game & game, Interface & interface, Editor & editor);
+		StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings);
 
 		void changeState(std::shared_ptr<State> newState);
 		

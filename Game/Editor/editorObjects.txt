@@ -34,3 +34,4 @@ dungDirtLeft 0.4
 dungDirtRight 0.4
 dungDirtMidLeft 0.4
 dungDirtMidRight 0.4
+door 0.8

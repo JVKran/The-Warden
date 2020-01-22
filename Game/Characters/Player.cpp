@@ -6,17 +6,23 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 	GraphicsComponent(assetName, assets)
 {}
 
-void PlayerInput::processInput(const sf::Vector2f & velocity, const sf::Vector2f & position, sf::Vector2f & direction, const std::vector<Character> & characters){
+void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+	if(sf::Keyboard::isKeyPressed(Bindings[0].getKey())){
 		direction.x = -1;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+	if(sf::Keyboard::isKeyPressed(Bindings[1].getKey())){
 		direction.x = 1;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+	if(sf::Keyboard::isKeyPressed(Bindings[2].getKey())){
 		direction.y -=1;
+	}
+}
+
+void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		items.at(0)->use(ownCharacter, characters);
 	}
 }
 

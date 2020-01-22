@@ -5,11 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "Game.hpp"
+#include "Settings.hpp"
 #include "StateMachine.hpp"
 #include "InterfaceElement.hpp"
 #include "ScreenObject.hpp"
 
 class StateMachine;
+class Settings;
 
 class Interface {
 	private:

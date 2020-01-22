@@ -51,9 +51,12 @@ class ScreenObject {
 /// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
 class Tile : public ScreenObject {
 	private:
-		bool followMouse = false;			//!< Wether or not to follow the mouse's position.
-		bool collidable = true;					//!< Wether or not Character types should collide with this Tile.
-		bool hasBeenAdded = false;			//!< Wether or not this objec has been added to the tiles of the world; if it's part of the world.
+		bool followMouse = false;			//!< Whether or not to follow the mouse's position.
+		bool collidable = true;				//!< Whether or not Character types should collide with this Tile.
+		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
+		bool interactable = false;			//!< Whether or not this object can be interacted with by a Character.
+		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
+		bool passageEntrance = false;		//!< Whether or not this object is an entrance to another Tile with an entrance.
 	public:
 		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0);
 
@@ -64,6 +67,15 @@ class Tile : public ScreenObject {
 
 		bool isCollidable() const;
 		void setCollidable(const bool newCollidable);
+
+		bool isInteractable() const;
+		void setInteractability(const bool newInteractability);
+
+		bool isPassageWay() const;
+		void setPassageWay(const bool newPassageWay);
+
+		bool isPassageEntrance() const;
+		void changePassageEntrance(const bool newPassageWayDirection);
 
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
