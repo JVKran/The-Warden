@@ -113,25 +113,26 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 }
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
-	if(velocity.x < 5 && direction.x > 0){
-    	velocity.x += direction.x * 0.07;
+	float maxVelocity = 0.08;
+	if(velocity.x < maxVelocity && direction.x > 0){
+    	velocity.x += direction.x * 0.01;
     }
 
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
-    		velocity.x -= 0.07;
+    		velocity.x -= 0.01;
     	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += 0.07;
+    		velocity.x += 0.01;
     	} else {
     		velocity.x = 0;
     	}
     }
     if(direction.y < 0 && state != states::JUMPING){
-    	velocity.y = -6;
+    	velocity.y = -0.15;
     }
 
-    if(velocity.x > -5 && direction.x < 0){
-    	velocity.x += direction.x * 0.07;
+    if(velocity.x > -maxVelocity && direction.x < 0){
+    	velocity.x += direction.x * 0.01;
     }
 
     if(leftCollision){
@@ -155,7 +156,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 				velocity.y = 0;
 			} else {
 				if(velocity.y < 4){
-					velocity.y += 0.09;
+					velocity.y += 0.00005;
 				}
 			}
 			break;
@@ -181,7 +182,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 				state = states::STANDING;
 			}
 			if(velocity.y < 4){
-				velocity.y += 0.09;
+				velocity.y += 0.00005;
 			}
 			break;
 		}

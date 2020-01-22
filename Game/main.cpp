@@ -44,7 +44,6 @@ int main(){
 
 		for(uint_fast8_t i = 0; i < 15; i++){
 			machine.handleInput(event, view);
-			machine.handleEvent(event, view);
 		}
 
 		if(clock.getElapsedTime().asMilliseconds() - startTime < msPerUpdate){

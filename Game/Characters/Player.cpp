@@ -16,7 +16,7 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 		direction.x = 1;
 	}
 	if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
-		direction.y -=1;
+		direction.y = -1;
 	}
 }
 
