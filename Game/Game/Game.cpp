@@ -33,16 +33,23 @@ void Game::handleInput(sf::View & view){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
-	
-	if( sf::Mouse::isButtonPressed(sf::Mouse::Right) ){
-		sf::Vector2f pos = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);
-		std::cout << "Added object" << std::endl;
-		Tile objectToAdd = {"crate", assets, pos, 1, 1.0, 0.0, 2};
-		objectToAdd.setNewScale(1);
-		objectToAdd.setFollowMouse(true);
-		objectToAdd.setWindowLayer(1);
-		world.addTile(objectToAdd);
-		objectToAdd.makePartOfWorld(true);
+}
+
+/// \brief
+/// Hanlde Events.
+/// \details
+/// This handles all the events it gets.
+void Game::handleEvent(const sf::Event & event, sf::View & view){
+	if( event.type == sf::Event::MouseButtonReleased ){
+		if( event.mouseButton.button == sf::Mouse::Right ){
+			sf::Vector2f pos = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);
+			Tile objectToAdd = {"crate", assets, pos, 1, 1.0, 0.0, 1};
+			objectToAdd.setNewScale(1);
+			objectToAdd.setFollowMouse(true);
+			objectToAdd.setWindowLayer(1);
+			world.addTile(objectToAdd);
+			objectToAdd.makePartOfWorld(true);
+		}
 	}
 }
 

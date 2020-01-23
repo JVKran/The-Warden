@@ -23,6 +23,7 @@ void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewOb
 }
 
 void PlayingState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
+	objects.game.handleEvent(viewObjects.event, viewObjects.view);
 }
 
 //-----------------------------------------------------------------------------------------------------------------//

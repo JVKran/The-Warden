@@ -42,6 +42,7 @@ class Game {
 		void startWorld(const std::string & worldName);
 
 		void handleInput(sf::View & view);
+		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(sf::View & view);
 };
 
