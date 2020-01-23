@@ -32,7 +32,6 @@ class PlayerGraphics : public GraphicsComponent {
 		PlayerGraphics(const std::string & assetName, AssetManager & assets);
 
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
-		virtual sf::Vector2f getDimensions() override;
 
 		PlayerGraphics & operator=(PlayerGraphics lhs){
 			sprite = lhs.sprite;
@@ -41,18 +40,10 @@ class PlayerGraphics : public GraphicsComponent {
 };
 
 class AnimatedPlayerGraphics : public AnimatedGraphicsComponent {
-	private:
-		SpriteAnimation idleAnimation;
-		SpriteAnimation jumpAnimation;
-		SpriteAnimation walkAnimation;
-		SpriteAnimation *currentAnimation;	
-		std::map<std::string, std::vector<sf::Vector2i> > animation;
-		std::string lastAnimation;
 	public:
 		AnimatedPlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
-		virtual sf::Vector2f getDimensions() override;
+		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) override;
 };
 
 #endif //__PLAYER_HPP

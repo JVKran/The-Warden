@@ -118,6 +118,13 @@ class AnimatedGraphicsComponent {
 		sf::Sprite spriteWalk;
 		//SpriteCharacter characterData;
 
+		SpriteAnimation idleAnimation;
+		SpriteAnimation jumpAnimation;
+		SpriteAnimation walkAnimation;
+		SpriteAnimation *currentAnimation;	
+		std::map<std::string, std::vector<sf::Vector2i> > animation;
+		std::string lastAnimation;
+
 		sf::Clock clock;
 		sf::Time previousTime;
 
@@ -128,10 +135,16 @@ class AnimatedGraphicsComponent {
 		bool isIdle = true;
 		bool isWalkingLeft = false;
 	public:
-		AnimatedGraphicsComponent(const std::string & assetName, AssetManager & assets /*SpriteCharacter & characterData*/){}
+		AnimatedGraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
+			idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
+			jumpAnimation(assets,spriteJump,characterData.jumpName,characterData.jumpFile),
+			walkAnimation(assets,spriteWalk,characterData.walkName,characterData.walkFile),
+			currentAnimation(&idleAnimation)
+		{}
 
-		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
-		virtual sf::Vector2f getDimensions() = 0;
+		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
+		virtual sf::Vector2f getDimensions();
 };
 
 /// \brief

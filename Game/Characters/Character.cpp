@@ -262,6 +262,126 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 }
 
 /// \brief
+/// Draw the Character.
+/// \details
+/// This function draws the Characte in the RenderWindow and sets the View to the position
+/// of the Character to keep the player centered.
+void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
+
+	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
+		if(position != previousPosition){
+			switch(state){
+				case states::IDLE: {
+					if(position.y < previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					} else if(position.y > previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}
+					if (position.x < previousPosition.x){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
+					} else if (position.x > previousPosition.x){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
+					}
+					break;
+				}
+				case states::WALK: {
+					if(position.y < previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					} else if (position.y > previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}					}
+					if (position.x < previousPosition.x && !isWalkingLeft){
+						state = states::WALK;
+
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
+					} else if (position.x > previousPosition.x && isWalkingLeft){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
+					}
+					break;
+				}
+				case states::JUMP: {
+					if(position.y == previousPosition.y){
+						state = states::IDLE;
+					}
+					if (position.x < previousPosition.x ){
+						if(!isWalkingLeft){
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}else{
+						if(isWalkingLeft){
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}
+					break;
+				}
+				default: {
+					break;
+				}
+			}
+		} else if(state != states::IDLE){
+			state = states::IDLE;
+			currentAnimation =&idleAnimation;
+			currentAnimation->left(isWalkingLeft);
+		}
+		previousPosition = position;
+		previousTime = clock.getElapsedTime();
+	}
+	processViewChanges(view, position);
+	currentAnimation->move(sf::Vector2f(position.x,position.y));
+	currentAnimation->draw(window);
+
+}
+
+sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
+	return currentAnimation->getDimensions();
+}
+
+/// \brief
 /// Create an instance.
 /// \details
 /// This creates a GraphicsComponent based on its parameters.
