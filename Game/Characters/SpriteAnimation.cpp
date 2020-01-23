@@ -41,7 +41,8 @@ SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, cons
 	std::cout<<"----------------VERKEERDE CONSTRUCTOR-------------"<<'\n';
 }
 void SpriteAnimation::sethitboxscale(float newscale){
-	hitboxscale=newscale;
+	hitboxscale.x=newscale;
+	hitboxscale.y=newscale;
 }
 
 SpriteAnimation::SpriteAnimation(AssetManager &assets,sf::Sprite &sprite, std::string movename, std::string filename):
@@ -59,7 +60,8 @@ texture(assets.getTexture(filename))
 	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
 	std::string prevstring="";
 	sf::Vector2i position;
-	sf::Vector2f datafloat;;
+	sf::Vector2f datafloat;
+	
 	while (!isEmpty(charactersFile)){
 		//bool data, action, names, textureName;
 
@@ -92,9 +94,9 @@ texture(assets.getTexture(filename))
 		}
 		if((currstring.find("scale")!= std::string::npos)){
 
-			charactersFile>>position;
-			scale=sf::Vector2f(position);
-			std::cout<<"scale    "<<position.x<<"     "<<position.y<<'\n';
+			charactersFile>>datafloat;
+			scale=datafloat;
+			//std::cout<<"scale    "<<position.x<<"     "<<position.y<<'\n';
 			
 			
 			//std::cout<<position.x<<'\n';
@@ -150,9 +152,15 @@ texture(assets.getTexture(filename))
 			std::cout<<"HITFACTOR"<<'\n';
 			charactersFile>>datafloat;
 
-			hitboxscale=datafloat.x;
-			std::cout<<"hiscale    "<<hitboxscale<<'\n';
+			hitboxscale=datafloat;
+			//std::cout<<"hiscale    "<<hitboxscale.x<<'\n';
 		}
+		if((currstring.find("ismirrored")!= std::string::npos)){
+
+			ismirrored=true;
+			//std::cout<<"hiscale    "<<hitboxscale.x<<'\n';
+		}
+		
 		
 		prevstring=currstring;
 		
@@ -167,6 +175,7 @@ texture(assets.getTexture(filename))
 			// spritePlayerData.clear();
 			// spritePlayerNames.clear();
 			// spritePlayerAction.clear();
+			ismirrored = false;
 			std::cout<<"CLEAAAAAREDconst"<<'\n';
 			//std::cout<<position.x<<'\n';
 		}

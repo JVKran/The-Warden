@@ -37,4 +37,9 @@ dungDirtMidLeft Assets/Textures/DIY_Tiles/dungDirtMidLeft.png
 dungDirtMidRight Assets/Textures/DIY_Tiles/dungDirtMidRight.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
-waterBubble3 Assets/Textures/waterBubble3.png
+waterBubbleJump Assets/Textures/waterBubble3.png
+wizardDamage Assets/Textures/wizardDamage.png
+wizardIdle Assets/Textures/wizardIdle.png
+wizardWalk Assets/Textures/wizardWalk.png
+wizardJump Assets/Textures/wizardJump.png
+wizardAttack Assets/Textures/wizardAttack.png

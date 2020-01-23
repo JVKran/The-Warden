@@ -27,8 +27,8 @@ class Game {
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 
 		sf::Event event;						//!< The Event that's used to handle more complex input.
-		sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden", sf::Style::Resize};
-		sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+		sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden", sf::Style::Resize};
+		sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
 		enum class states {PLAYING, EDITING, PAUSED};
 		states state = states::PLAYING;

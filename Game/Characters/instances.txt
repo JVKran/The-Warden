@@ -1,5 +1,5 @@
- player  idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player eind
-named waterBubble  idleName waterBubble   idleFile waterBubble jumpName playerjump jumpFile player walkName playerwalk walkFile player eind
+named player  idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player eind
+nam wizard  idleName wizardIdle   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage eind
 
 
 ,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile="" eind

@@ -14,7 +14,7 @@ class SpriteAnimation {
 		sf::Vector2f scale;
 		int missingRow;					// If the spritesheet is missing some frames 
 		float animationSpeed;
-		float hitboxscale=0.2;
+		sf::Vector2f hitboxscale={0.2,0.2};
 		sf::Vector2i missingRowCollom;
 		sf::Vector2i startFrame;
 		sf::Vector2i offset;
@@ -27,6 +27,7 @@ class SpriteAnimation {
 		int pixelRow;
 		int pixelColumn;
 		bool startFrameLoop=false;
+		bool ismirrored;
 	
 	public:
 		SpriteAnimation(AssetManager &assets,sf::Sprite& sprite, std::string movename, std::string filename);
@@ -39,7 +40,7 @@ class SpriteAnimation {
 		void sethitboxscale(float newscale);
 
 		sf::Vector2f getDimensions() const {
-			return sf::Vector2f(pixelColumn*hitboxscale, pixelRow*hitboxscale);
+			return sf::Vector2f(pixelColumn*hitboxscale.x, pixelRow*hitboxscale.y);
 			//return sf::Vector2f(sprite.getGlobalBounds().height, sprite.getGlobalBounds().width);
 		}
 		sf::FloatRect getBounds() const {
@@ -47,16 +48,16 @@ class SpriteAnimation {
 			sf::FloatRect temp=sprite.getGlobalBounds();
 
 
-			return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale,temp.top+pixelColumn*hitboxscale),sf::Vector2f(temp.width,temp.height));
+			return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale.x,temp.top+pixelColumn*hitboxscale.y),sf::Vector2f(temp.width,temp.height));
 			//return sprite.getGlobalBounds();
 		}
 		void move(sf::Vector2f where){
 			// std::cout<<"schaal"<<hitboxscale<<'\n';
-			sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale+offset.x,where.y-pixelColumn*0.5*hitboxscale+offset.y));
+			sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale.x+offset.x,where.y-pixelColumn*0.5*hitboxscale.y+offset.y));
 		}
 		void left(bool where){
 			// std::cout<<"schaal"<<hitboxscale<<'\n';
-		changeStartEndFrame(startFrame,missingRowCollom,where);
+		changeStartEndFrame(startFrame,missingRowCollom,where!=ismirrored);
 		}
 		
 };

@@ -6,8 +6,8 @@ AnimatedGraphics::AnimatedGraphics(const std::string & assetName, AssetManager &
 	
 	GraphicsComponent(assetName, assets /*characterData*/),
 	idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
-	jumpAnimation(assets,spriteIdle,"playerjump","player"),
-	walkAnimation(assets,spriteIdle,"playerwalk","player"),
+	jumpAnimation(assets,spriteJump,characterData.jumpName,characterData.jumpFile),
+	walkAnimation(assets,spriteWalk,characterData.walkName,characterData.walkFile),
 	currentAnimation(&idleAnimation)
 
 	//Animation(sprite, assets.getTexture(assetName), characterData.spriteCharacterData[0] /* sf::Vector2i{2400,1440}*/, /*sf::Vector2i{5,3}*/characterData.spriteCharacterData[1],  characterData.spriteCharacterData[2] , characterData.spriteCharacterData[3])
@@ -74,6 +74,7 @@ void PlayerPhysics::processPhysics(World & world, sf::Vector2f & position, sf::V
 			//std::cout<<elapsed<<'\n';
 			if(topCollision){
 				state=states::FALLING;
+				
 			}
 			if(bottomCollision){
 				state = states::STANDING;
@@ -152,12 +153,28 @@ void AnimatedGraphics::processGraphics(sf::RenderWindow & window, const sf::Vect
 					if(position.y < previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							currentAnimation->left(1);
+							isWalkingLeft=true;
+						}else{
+							currentAnimation->left(0);
+							isWalkingLeft=false;
+						}
+						
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
 						
 						
 					} else if(position.y > previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
+												if (position.x < previousPosition.x){
+							currentAnimation->left(1);
+							isWalkingLeft=true;
+						}else{
+							currentAnimation->left(0);
+							isWalkingLeft=false;
+						}
+						
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
 						
 					}
@@ -183,10 +200,25 @@ void AnimatedGraphics::processGraphics(sf::RenderWindow & window, const sf::Vect
 					if(position.y < previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							currentAnimation->left(1);
+							isWalkingLeft=true;
+						}else{
+							currentAnimation->left(0);
+							isWalkingLeft=false;
+						}
+						
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					} else if (position.y > previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							currentAnimation->left(1);
+
+						}else{
+							currentAnimation->left(0);
+
+						}
 						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					}
 					if (position.x < previousPosition.x && !isWalkingLeft){
@@ -208,7 +240,7 @@ void AnimatedGraphics::processGraphics(sf::RenderWindow & window, const sf::Vect
 				case states::JUMP: {
 					if(position.y == previousPosition.y){
 						state = states::IDLE;
-						currentAnimation =&idleAnimation;
+						//currentAnimation =&idleAnimation;
 						break;
 					}
 				}
