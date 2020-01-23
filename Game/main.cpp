@@ -33,8 +33,6 @@ int main(){
 	Interface interface(game, editor, settings, assets, window);
 	StateMachine machine(game, interface, editor, settings);
 	
-
-
 	sf::Clock clock;
 
 	double previous = clock.getElapsedTime().asMilliseconds();

@@ -8,6 +8,8 @@
 #include "AssetManager.hpp"
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
+#include <iostream>
+#include <exception>
 
 class PlayerInput : public InputComponent {
 	public:
@@ -36,6 +38,21 @@ class PlayerGraphics : public GraphicsComponent {
 			sprite = lhs.sprite;
 			return *this;
 		}
+};
+
+class AnimatedPlayerGraphics : public AnimatedGraphicsComponent {
+	private:
+		SpriteAnimation idleAnimation;
+		SpriteAnimation jumpAnimation;
+		SpriteAnimation walkAnimation;
+		SpriteAnimation *currentAnimation;	
+		std::map<std::string, std::vector<sf::Vector2i> > animation;
+		std::string lastAnimation;
+	public:
+		AnimatedPlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData);
+
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) override;
+		virtual sf::Vector2f getDimensions() override;
 };
 
 #endif //__PLAYER_HPP

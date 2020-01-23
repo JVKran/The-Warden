@@ -20,6 +20,27 @@ struct CollisionBounds {
 };
 
 /// \brief
+/// Data needed for SpriteAnimation.
+/// \details
+/// This class contains all data needed for a functioning SpriteAnimation. This just enables the developers
+/// to pass all these vectors in one object instead of all vectors single.
+struct SpriteCharacter {
+	std::string idleName;
+	std::string idleFile;
+	std::string jumpName;
+	std::string jumpFile;
+	std::string walkName;
+	std::string walkFile;
+	std::string attackName;
+	std::string attackFile;
+	std::string dieName;
+	std::string dieFile;
+
+
+	SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName, std::string attackFile, std::string dieName, std::string dieFile);
+};
+
+/// \brief
 /// Physicscomponent for Characters.
 /// \details
 /// This class is responsible for updating and managing physics for a Character.
@@ -83,6 +104,37 @@ class GraphicsComponent {
 };
 
 /// \brief
+/// Graphicscomponent for Characters.
+/// \details
+/// This class is responsible for managing all graphics related actions.
+/// \brief
+/// Graphicscomponent for Characters.
+/// \details
+/// This class is responsible for managing all graphics related actions.
+class AnimatedGraphicsComponent {
+	protected:
+		sf::Sprite spriteIdle;
+		sf::Sprite spriteJump;
+		sf::Sprite spriteWalk;
+		//SpriteCharacter characterData;
+
+		sf::Clock clock;
+		sf::Time previousTime;
+
+		sf::Vector2f previousPosition;
+
+		enum class states {IDLE, WALK, JUMP};
+		states state = states::JUMP;
+		bool isIdle = true;
+		bool isWalkingLeft = false;
+	public:
+		AnimatedGraphicsComponent(const std::string & assetName, AssetManager & assets /*SpriteCharacter & characterData*/){}
+
+		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view) = 0;
+		virtual sf::Vector2f getDimensions() = 0;
+};
+
+/// \brief
 /// Character
 /// \details
 /// This class features a Character. Every character is the same, except for the (possibly) different components.
@@ -110,11 +162,11 @@ class Character {
 
 		std::shared_ptr<InputComponent> input;			//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;		//!< A smart pointer to an on the heap allocated PhysicsComponent.
-		std::shared_ptr<GraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated GraphicsComponent.
+		std::shared_ptr<AnimatedGraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated AnimatedPlayerGraphics.
 
 		CollisionBounds collisionBounds;
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
 		~Character(){
 			lootDrop.drop(items, experiencePoints);
 		}

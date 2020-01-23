@@ -5,12 +5,32 @@
 /// \brief
 /// Create an instance.
 /// \details
+/// This creates a SpriteCharacter based on its parameters.
+/// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
+/// @param spriteCharacterAction No idea.
+/// @param spriteCharacterNames All available actions to perform.
+SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile=""):
+	idleName(idleName),
+	idleFile(idleFile),
+	jumpName(jumpName),
+	jumpFile(jumpFile),
+	walkName(walkName),
+	walkFile(walkFile),
+	attackName(attackName),
+	attackFile(attackFile),
+	dieName(dieName),
+	dieFile(dieFile)
+{}
+
+/// \brief
+/// Create an instance.
+/// \details
 /// This creates a Character based on its parameters.
 /// @param position The initial position of the Character.
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
 	position(position),
 	lootDrop(world),
 	isPlayerType(isPlayerType),
@@ -96,6 +116,11 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 		}
 	}
 	window.draw(healthBar);
+
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
 }
 
 void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
@@ -145,8 +170,8 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
 	float maxVelocity = 1;
-	float maxAcceleration = 0.005;
-	float maxJumpAcceleration = 1;
+	float maxAcceleration = 0.009;
+	float maxJumpAcceleration = 1.5;
 	if(velocity.x <= maxVelocity && direction.x > 0){
     	velocity.x += direction.x * maxAcceleration;
     }
