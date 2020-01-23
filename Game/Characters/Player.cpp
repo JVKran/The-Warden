@@ -22,7 +22,13 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		items.at(0)->use(ownCharacter, characters);
+		items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters);
+	}
+}
+
+void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem){
+	if(event.type == sf::Event::MouseWheelMoved){	
+		selectedItem += event.mouseWheel.delta;
 	}
 }
 

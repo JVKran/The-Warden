@@ -65,6 +65,7 @@ class InputComponent {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
+		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) {}
 };
 
 /// \brief
@@ -98,6 +99,9 @@ class Character {
 
 		LootDrop lootDrop;
 		std::vector<std::shared_ptr<Item>> items;
+		int_fast16_t selectedItem = 0;
+		sf::RectangleShape itemSelector;
+
 		bool isPlayerType;
 
 		int_fast16_t experiencePoints = 0;
@@ -110,13 +114,18 @@ class Character {
 
 		CollisionBounds collisionBounds;
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, World & world, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
 		~Character(){
 			lootDrop.drop(items, experiencePoints);
 		}
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
+		void handleEvent(const sf::Event & event);
 		bool isAlive();
+
+		int_fast16_t getSelectedItem(){
+			return selectedItem;
+		}
 
 		bool isPlayer() const;
 

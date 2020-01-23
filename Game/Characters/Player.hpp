@@ -15,7 +15,8 @@ class PlayerInput : public InputComponent {
 			InputComponent(world, characters)
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) override;
-		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter);
+		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) override;
+		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) override;
 
 		PlayerInput & operator=(PlayerInput lhs){
 			world = lhs.world;

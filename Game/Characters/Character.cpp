@@ -10,7 +10,7 @@
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, World & world, const bool isPlayerType):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
 	position(position),
 	lootDrop(world),
 	isPlayerType(isPlayerType),
@@ -19,9 +19,13 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	physics(physics),
 	graphics(graphics)
 {
-	items.push_back(startItem);
+	items = startItems;
 	healthBar.setOutlineThickness(2);
+	itemSelector.setOutlineThickness(2);
+	itemSelector.setSize(sf::Vector2f(25, 25));
 	healthBar.setOutlineColor(sf::Color::Black);
+	itemSelector.setOutlineColor(sf::Color::Black);
+	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
 /// \brief
@@ -50,6 +54,10 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	}
 }
 
+void Character::handleEvent(const sf::Event & event){
+	input->handleEvent(event, selectedItem);
+}
+
 /// \brief
 /// Is alive?
 /// \return Whether or not the Character is alive.
@@ -68,6 +76,25 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	healthBar.setPosition(sf::Vector2f(position.x, position.y - 50));
 	healthBar.setFillColor(sf::Color(health - 100, health, 0, 200));
 	healthBar.setSize(sf::Vector2f(health, 20));
+	sf::Vector2f itemPosition = sf::Vector2f(position.x, position.y - 90);
+	int maxColumns = 3;
+	int currentItems = 0;
+	if(isPlayer()){
+		for(std::shared_ptr<Item> item : items){
+			item->setPosition(itemPosition);
+			item->draw(window);
+			if(currentItems == selectedItem){
+				itemSelector.setPosition(itemPosition.x, itemPosition.y);
+				window.draw(itemSelector);	
+			}
+			itemPosition.x += 25;
+			if(currentItems % maxColumns == 0){
+				itemPosition.y -= 25;
+				itemPosition.x = position.x;
+			}
+			currentItems ++;
+		}
+	}
 	window.draw(healthBar);
 }
 

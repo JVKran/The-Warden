@@ -8,7 +8,8 @@
 /// This function creates a Weapon.
 /// @param damageFactor The damagefactor to calculate damage dealt.
 /// @param hitPeriod The period that should be in between attacks.
-Weapon::Weapon(const int damageFactor, const int_fast16_t hitPeriod):
+Weapon::Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod):
+	Item(assetName, assets),
 	hitPeriod(hitPeriod),
 	damageFactor(damageFactor)
 {}
@@ -18,7 +19,8 @@ Weapon::Weapon(const int damageFactor, const int_fast16_t hitPeriod):
 /// \details
 /// This function creates a Consumable.
 /// @param foodValue The foodvalue to calculate new amount of health.
-Consumable::Consumable(const int_fast8_t foodValue):
+Consumable::Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue):
+	Item(assetName, assets),
 	foodValue(foodValue)
 {}
 
