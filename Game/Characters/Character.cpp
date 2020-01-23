@@ -41,10 +41,9 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 		health = 0;
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
-	if(timeDifference >= 3.0 && timeDifference <= 6.0){
+	if(timeDifference >= 3.0 && timeDifference <= 5.5){
 		position += velocity;
 		lastUpdate = clock.getElapsedTime().asMilliseconds();
-		std::cout << timeDifference << std::endl;
 	} else if(timeDifference > 6.0) {
 		position += sf::Vector2f(velocity.x * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4), velocity.y * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4));
 		lastUpdate = clock.getElapsedTime().asMilliseconds();

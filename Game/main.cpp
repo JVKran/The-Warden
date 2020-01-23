@@ -12,9 +12,6 @@
 #include "StateMachine.hpp"
 #include "keybinding.hpp"
 
-
-// Geinig om te laten zien wat er gebeurt als vsync aan gaat.
-
 int main(){
 
 	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
@@ -31,9 +28,12 @@ int main(){
 
 	Game game(window, assets, bindings);
 	Editor editor(window, assets);
+
 	Settings settings(window, assets, bindings);
 	Interface interface(game, editor, settings, assets, window);
 	StateMachine machine(game, interface, editor, settings);
+	
+
 
 	sf::Clock clock;
 
@@ -57,6 +57,7 @@ int main(){
 				window.close();
 			}
 			machine.handleEvent(event, view);
+
 		}
 
 		window.clear();
@@ -65,7 +66,7 @@ int main(){
 		window.display();
 		//lastFrame = clock.getElapsedTime().asMilliseconds();
 
-		//sf::sleep(sf::milliseconds(100));
+		//sf::sleep(sf::milliseconds(5));
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 			return 0;
