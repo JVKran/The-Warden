@@ -45,17 +45,16 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		while(lag >= simulationSpeed){
-			machine.handleInput(event, view);
-			lag -= simulationSpeed;
-		}
-
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
 			machine.handleEvent(event, view);
+		}
 
+		while(lag >= simulationSpeed){
+			machine.handleInput(event, view);
+			lag -= simulationSpeed;
 		}
 
 		window.clear();
@@ -67,7 +66,8 @@ int main(){
 		//sf::sleep(sf::milliseconds(5));
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-			return 0;
+			interface.goToMenu(view);
+			//return 0;
 		}
 
 	}
