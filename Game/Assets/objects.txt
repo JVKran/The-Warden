@@ -41,3 +41,4 @@ settingButton Assets/Textures/cogWheel.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
 door Assets/Textures/Others/doors_all.png
+menuTitle Assets/Textures/tmpMenuTitle.png

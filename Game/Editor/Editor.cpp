@@ -149,19 +149,19 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
 			tile.setCollidable(false);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
 			tile.setWindowLayer(0);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
 			tile.setWindowLayer(1);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
 			tile.setWindowLayer(2);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)){
 			tile.setWindowLayer(3);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)){
 			tile.setWindowLayer(4);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
