@@ -1,6 +1,6 @@
 
-HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp Character.hpp Game.hpp LootDrop.hpp Items.hpp Player.hpp SpriteAnimation.hpp Enemy.hpp Interface.hpp Settings.hpp StateMachine.hpp keybinding.hpp tekst.hpp Exceptions.hpp States.hpp InterfaceElement.hpp Action.hpp
-SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp Character.cpp Game.cpp Player.cpp Items.cpp SpriteAnimation.cpp Enemy.cpp Interface.cpp StateMachine.cpp Settings.cpp keybinding.cpp tekst.cpp States.cpp InterfaceElement.cpp 
+HEADERS := AssetManager.hpp Editor.hpp World.hpp ScreenObject.hpp FactoryFunction.hpp LootDrop.hpp Character.hpp Game.hpp Items.hpp Player.hpp SpriteAnimation.hpp Enemy.hpp Interface.hpp Settings.hpp StateMachine.hpp keybinding.hpp tekst.hpp Exceptions.hpp States.hpp InterfaceElement.hpp Action.hpp
+SOURCES := AssetManager.cpp Editor.cpp World.cpp ScreenObject.cpp FactoryFunction.cpp LootDrop.cpp Character.cpp Game.cpp Player.cpp Items.cpp SpriteAnimation.cpp Enemy.cpp Interface.cpp StateMachine.cpp Settings.cpp keybinding.cpp tekst.cpp States.cpp InterfaceElement.cpp 
 
 SEARCH  := AI Assets Editor Entities Physics World Characters Game Interface Items State Settings ..
 

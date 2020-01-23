@@ -32,7 +32,7 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// @param graphics A shared pointer to a GraphicsComponent.
 Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
 	position(position),
-	lootDrop(world),
+	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
 	healthBar(sf::Vector2f(health,  20)),
 	input(input),
@@ -46,6 +46,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	healthBar.setOutlineColor(sf::Color::Black);
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
+}
+
+Character::~Character(){
+	lootDrop->drop(items, experiencePoints, position);
 }
 
 /// \brief
@@ -100,19 +104,23 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	int maxColumns = 3;
 	int currentItems = 0;
 	if(isPlayer()){
-		for(std::shared_ptr<Item> item : items){
-			item->setPosition(itemPosition);
-			item->draw(window);
-			if(currentItems == selectedItem){
-				itemSelector.setPosition(itemPosition.x, itemPosition.y);
-				window.draw(itemSelector);	
+		try{
+			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+				items[i]->setPosition(itemPosition);
+				items[i]->draw(window);
+				if(currentItems == selectedItem){
+					itemSelector.setPosition(itemPosition.x, itemPosition.y);
+					window.draw(itemSelector);	
+				}
+				itemPosition.x += 25;
+				if(currentItems % maxColumns == 0){
+					itemPosition.y -= 25;
+					itemPosition.x = position.x;
+				}
+				currentItems ++;
 			}
-			itemPosition.x += 25;
-			if(currentItems % maxColumns == 0){
-				itemPosition.y -= 25;
-				itemPosition.x = position.x;
-			}
-			currentItems ++;
+		} catch(std::exception & error){
+			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
 		}
 	}
 	window.draw(healthBar);
@@ -134,6 +142,8 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
+
+	std::cout << collisionBounds.leftCollisionBound << std::endl;
 
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
@@ -415,6 +425,14 @@ sf::Vector2f Character::getPosition() const {
 /// \return Returns the bounds of the character.
 sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
+}
+
+int_fast16_t & Character::getSelectedItem(){
+	return selectedItem;
+}
+
+std::vector<std::shared_ptr<Item>> & Character::getItems(){
+	return items;
 }
 
 /// Get curent experience points.

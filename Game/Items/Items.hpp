@@ -6,6 +6,8 @@
 #include <vector>
 #include <cstdint>
 #include "Character.hpp"
+#include <memory>
+#include <functional>
 
 class Character; 
 
@@ -18,7 +20,7 @@ class Item : public Tile {
 		Item(const std::string assetName, AssetManager & assets):
 			Tile(assetName, assets)
 		{}
-		virtual void use(Character * character, std::vector<Character> & characters) = 0;
+		virtual bool use(Character * character, std::vector<Character> & characters) = 0;
 };
 
 /// \brief
@@ -34,7 +36,7 @@ class Weapon : public Item {
 		const int damageFactor;
 	public:
 		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
-		virtual void use(Character * character, std::vector<Character> & characters) override;
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
 /// \brief
@@ -46,7 +48,7 @@ class Consumable : public Item {
 		const int_fast8_t foodValue;
 	public:
 		Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue);
-		virtual void use(Character * character, std::vector<Character> & characters) override;
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
 #endif //Items.hpp

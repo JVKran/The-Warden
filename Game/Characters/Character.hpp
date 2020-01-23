@@ -6,13 +6,15 @@
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
 #include "SpriteAnimation.hpp"
-#include "LootDrop.hpp"
 #include "Items.hpp"
 #include "keybinding.hpp"
 #include <memory>
 #include <vector>
+#include "LootDrop.hpp"
 
 class Character;
+class Item;
+class LootDrop;
 
 struct CollisionBounds {
 	int_fast32_t leftCollisionBound;
@@ -162,7 +164,7 @@ class Character {
 		double lastUpdate = 0.0;
 		double timeDifference = 0.0;
 
-		LootDrop lootDrop;
+		std::shared_ptr<LootDrop> lootDrop;
 		std::vector<std::shared_ptr<Item>> items;
 		int_fast16_t selectedItem = 0;
 		sf::RectangleShape itemSelector;
@@ -180,18 +182,15 @@ class Character {
 		CollisionBounds collisionBounds;
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
-		~Character(){
-			lootDrop.drop(items, experiencePoints);
-		}
+		~Character();
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
 
-		int_fast16_t getSelectedItem(){
-			return selectedItem;
-		}
+		int_fast16_t & getSelectedItem();
 
+		std::vector<std::shared_ptr<Item>> & getItems();
 		bool isPlayer() const;
 
 		sf::Vector2f getPosition() const;

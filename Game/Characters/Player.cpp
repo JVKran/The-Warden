@@ -51,7 +51,10 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters);
+		if(items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters)){			//If item is broken
+			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItem())));
+			ownCharacter->getSelectedItem()--;
+		}
 	}
 }
 

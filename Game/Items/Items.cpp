@@ -24,7 +24,7 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 	foodValue(foodValue)
 {}
 
-void Weapon::use(Character * character, std::vector<Character> & characters){
+bool Weapon::use(Character * character, std::vector<Character> & characters){
 	for(Character & characterToHit : characters){
 		if(*character != characterToHit && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
 			lastAttack = clock.getElapsedTime();
@@ -42,15 +42,18 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 			}
 		}
 	}
+	return false;
+
 }
 
 /// \brief
 /// Replenish Character health.
 /// \details
 /// This function adds the foodValue to the Character's current health.
-void Consumable::use(Character * character, std::vector<Character> & characters){
+bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
 	if(character->getHealth() > 100){
-		character->setHealth(int_fast8_t(100));
+		character->setHealth(100);
 	}
+	return true;
 }
