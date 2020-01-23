@@ -65,6 +65,7 @@ class InputComponent {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
+		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 };
 
@@ -118,6 +119,7 @@ class Character {
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
+		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		bool isAlive();
 
 		bool isPlayer() const;

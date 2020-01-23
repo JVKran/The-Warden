@@ -55,6 +55,10 @@ void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow
 	input->addTile(event, world, window, view);
 }
 
+void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	input->deleteTile(event, world, window, view);
+}
+
 /// \brief
 /// Is alive?
 /// \return Whether or not the Character is alive.

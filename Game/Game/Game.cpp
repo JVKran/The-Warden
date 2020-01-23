@@ -43,6 +43,8 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 	if( event.type == sf::Event::MouseButtonReleased ){
 		if( event.mouseButton.button == sf::Mouse::Right ){
 			characters.at(1).addTile(event, world, window, view);
+		}else if( event.mouseButton.button == sf::Mouse::Middle ){
+			characters.at(1).deleteTile(event, world, window, view);
 		}
 	}
 }

@@ -25,6 +25,15 @@ void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWind
 	world.addTile("crate", position);
 }
 
+void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	std::vector<Tile> & objects = world.getTiles();
+	for(Tile & object : objects){
+		if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+				objects.erase( std::find(objects.begin(), objects.end(), object) );
+		}
+	}
+}
+
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		items.at(0)->use(ownCharacter, characters);
