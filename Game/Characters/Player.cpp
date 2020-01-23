@@ -47,45 +47,33 @@ void AnimatedPlayerGraphics::processGraphics(sf::RenderWindow & window, const sf
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
 						if (position.x < previousPosition.x ){
-							currentAnimation->left(1);
-							isWalkingLeft=true;
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
 						}else{
-							currentAnimation->left(0);
 							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
 						}
-						
-						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
-						
-						
 					} else if(position.y > previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
-												if (position.x < previousPosition.x){
-							currentAnimation->left(1);
+						if (position.x < previousPosition.x){
 							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
 						}else{
-							currentAnimation->left(0);
 							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
 						}
-						
-						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], false);
-						
 					}
 					if (position.x < previousPosition.x){
 						state = states::WALK;
-						isWalkingLeft = true;
 						currentAnimation =&walkAnimation;
-						currentAnimation->left(1);
-						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-						
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
 					} else if (position.x > previousPosition.x){
 						state = states::WALK;
-						isWalkingLeft = false;
 						currentAnimation =&walkAnimation;
-						currentAnimation->left(0);
-						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
-						
-						
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
 					}
 					break;
 				}
@@ -94,48 +82,53 @@ void AnimatedPlayerGraphics::processGraphics(sf::RenderWindow & window, const sf
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
 						if (position.x < previousPosition.x ){
-							currentAnimation->left(1);
 							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
 						}else{
-							currentAnimation->left(0);
 							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
 						}
-						
-						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
 					} else if (position.y > previousPosition.y){
 						state = states::JUMP;
 						currentAnimation =&jumpAnimation;
 						if (position.x < previousPosition.x ){
-							currentAnimation->left(1);
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
 
 						}else{
-							currentAnimation->left(0);
-
-						}
-						//Animation.changeStartEndFrame(animation["jump"][0], animation["jump"][1], isWalkingLeft);
-					}
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}					}
 					if (position.x < previousPosition.x && !isWalkingLeft){
 						state = states::WALK;
-						isWalkingLeft = true;
 
 						currentAnimation =&walkAnimation;
-						currentAnimation->left(1);
-						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
 					} else if (position.x > previousPosition.x && isWalkingLeft){
 						state = states::WALK;
-						isWalkingLeft = false;
 						currentAnimation =&walkAnimation;
-						currentAnimation->left(0);
-						//Animation.changeStartEndFrame(animation["walk"][0], animation["walk"][1], isWalkingLeft);
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
 					}
 					break;
 				}
 				case states::JUMP: {
 					if(position.y == previousPosition.y){
 						state = states::IDLE;
-						currentAnimation =&idleAnimation;
-						break;
 					}
+					if (position.x < previousPosition.x ){
+						if(!isWalkingLeft){
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}else{
+						if(isWalkingLeft){
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}
+					break;
 				}
 				default: {
 					break;
@@ -144,7 +137,7 @@ void AnimatedPlayerGraphics::processGraphics(sf::RenderWindow & window, const sf
 		} else if(state != states::IDLE){
 			state = states::IDLE;
 			currentAnimation =&idleAnimation;
-			//Animation.changeStartEndFrame(animation["idle"][0], animation["idle"][1], isWalkingLeft);
+			currentAnimation->left(isWalkingLeft);
 		}
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();

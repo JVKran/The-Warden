@@ -66,7 +66,7 @@ void Game::display(sf::View & view){
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
-	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
+	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
@@ -145,7 +145,7 @@ void Game::loadCharacters(){
 			if(name=="player"){
 				characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
-				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 100);
+				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
 				characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

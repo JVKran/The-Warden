@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-(350,592) (7,16) (5,5) (3,0) | (0,0) (3,0) (3,3) (0,0) (1,1) (0,0) (2,2) (6,1) | idle slide walk jump | player 
-(1920,1080) (5,3) (1,1) (1,0) | (0,0) (1,2) | idle | waterBubble
-=======
+
 size (350,592) grid (7,16) scale (5,5) start (0,0) offset (-30,115) missing (3,0) hitfac (3,3) speed (0.15,0) filename player playeridle eind
 size (350,592) grid (7,16) scale (5,5) start (2,2) offset (-20,120) missing (6,1) hitfac (3,3) speed (0.15,0) filename player playerjump eind
 size (350,592) grid (7,16) scale (5,5) start (1,1) offset (-20,110) missing (0,0) hitfac (3,3) speed (0.13,0) filename player playerwalk eind

@@ -17,7 +17,9 @@ bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWi
 /// @param view The view to use for scrolling through the world.
 World::World(AssetManager & assets):
 	assets(assets)
-{}
+{
+	background.setScale(2, 2);
+}
 
 /// \brief
 /// Load world from configuration.
