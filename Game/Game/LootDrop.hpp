@@ -3,12 +3,21 @@
 
 #include <vector>
 #include "Items.hpp"
+#include <memory>
 
 class Item;
 
 class LootDrop{
+	private:
+		World & world;
 	public:
-		void drop(std::vector<Item> & items, const int experience);
+		LootDrop(World & world):
+			world(world)
+		{}
+
+		void drop(std::vector<std::shared_ptr<Item>> & items, int_fast16_t experience){
+			std::cout << "drop" << std::endl;
+		}
 };
 
 #endif // LootDrop.hpp

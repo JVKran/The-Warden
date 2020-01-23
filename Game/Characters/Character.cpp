@@ -10,8 +10,9 @@
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, const bool isPlayerType):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, World & world, const bool isPlayerType):
 	position(position),
+	lootDrop(world),
 	isPlayerType(isPlayerType),
 	healthBar(sf::Vector2f(health,  20)),
 	input(input),

@@ -110,9 +110,9 @@ class Character {
 
 		CollisionBounds collisionBounds;
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::shared_ptr<Item> startItem, World & world, const bool isPlayerType = false);
 		~Character(){
-			std::cout << "Lootdrop!" << std::endl;
+			lootDrop.drop(items, experiencePoints);
 		}
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);

@@ -27,7 +27,7 @@ class Game {
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
 		
-		LootDrop lootDrop;
+		std::vector<LootDrop> lootDrops;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 		sf::RenderWindow & window;
 		std::array<KeyBinding, 3> & bindings;
