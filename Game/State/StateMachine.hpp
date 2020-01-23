@@ -10,6 +10,8 @@
 
 class Interface;
 class StateMachine;
+
+
 class Settings;
 class State;
 
@@ -46,9 +48,8 @@ class StateMachine {
 		StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings);
 
 		void changeState(std::shared_ptr<State> newState);
-
+		
 		std::shared_ptr<State> getCurrentState();
-
 		void handleInput(const sf::Event & event, sf::View & view);
 		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(const sf::Event & event, sf::View & view);

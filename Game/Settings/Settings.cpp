@@ -2,11 +2,19 @@
 
 #include "Settings.hpp"
 
-Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings):
+
+Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings ):
 	window( window ),
-	bindings(bindings)
-{
-	background.setTexture(assets.getTexture("background"));
+	bindings(bindings),
+	action(Action([]{}))
+	{
+		background.setTexture(assets.getTexture("background"));
+
+}
+
+void Settings::initialize(StateMachine * machine){
+	
+	 action = Action( [machine]{  machine->changeState(std::make_shared<MenuState>());});
 }
 
 void Settings::handleInput(){
@@ -28,14 +36,14 @@ void Settings::handleInput(){
 	}
 }
 
-void Settings::handleEvent( const sf::Event & event, StateMachine * machine ){									
+void Settings::handleEvent( const sf::Event & event ){									
 
 	switch(state){
 		case StateSettings::IDLE: {		//default state
 
 			if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){			
 				if( backButton.contains( sf::Mouse::getPosition(window)) ){		//if backButton is pressed go back to menu screen
-					machine->changeState(std::make_shared<MenuState>());
+					action.startFunction();
 				}else{
 					uint counter = 0;												//holds the index of Bindings object (see uint selectedKey)
 					for( KeyBinding & keyRef : bindings ){

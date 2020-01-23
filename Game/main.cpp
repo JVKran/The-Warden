@@ -28,9 +28,12 @@ int main(){
 
 	Game game(window, assets, bindings);
 	Editor editor(window, assets);
+
 	Settings settings(window, assets, bindings);
 	Interface interface(game, editor, settings, assets, window);
 	StateMachine machine(game, interface, editor, settings);
+	
+
 
 	sf::Clock clock;
 
@@ -54,6 +57,7 @@ int main(){
 				window.close();
 			}
 			machine.handleEvent(event, view);
+
 		}
 
 		window.clear();
