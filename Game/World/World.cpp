@@ -147,6 +147,13 @@ void World::addTile(Tile object){
 	sortWorld();
 }
 
+void World::addTile(std::string object, sf::Vector2f position){
+	Tile objectToAdd = {object, assets, position, 1, 1.0, 0.0, 1};							//creates an instance of a crate object
+	objectToAdd.setWindowLayer(1);
+	addTile(objectToAdd);
+	objectToAdd.makePartOfWorld(true);
+}
+
 /// \brief
 /// Get tiles.
 /// \details

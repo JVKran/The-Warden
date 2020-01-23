@@ -29,7 +29,7 @@ void Game::startWorld(const std::string & worldName){
 /// Hanlde input.
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
-void Game::handleInput(sf::View & view){
+void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
@@ -42,13 +42,7 @@ void Game::handleInput(sf::View & view){
 void Game::handleEvent(const sf::Event & event, sf::View & view){
 	if( event.type == sf::Event::MouseButtonReleased ){
 		if( event.mouseButton.button == sf::Mouse::Right ){
-			sf::Vector2f pos = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);
-			Tile objectToAdd = {"crate", assets, pos, 1, 1.0, 0.0, 1};
-			objectToAdd.setNewScale(1);
-			objectToAdd.setFollowMouse(true);
-			objectToAdd.setWindowLayer(1);
-			world.addTile(objectToAdd);
-			objectToAdd.makePartOfWorld(true);
+			characters.at(1).addTile(event, world, window, view);
 		}
 	}
 }

@@ -51,6 +51,10 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	}
 }
 
+void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	input->addTile(event, world, window, view);
+}
+
 /// \brief
 /// Is alive?
 /// \return Whether or not the Character is alive.

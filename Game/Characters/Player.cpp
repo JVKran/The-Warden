@@ -20,6 +20,11 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	}
 }
 
+void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);		//gets to position based on the mouse coordinates in a view
+	world.addTile("crate", position);
+}
+
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		items.at(0)->use(ownCharacter, characters);

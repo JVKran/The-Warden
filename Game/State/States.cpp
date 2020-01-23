@@ -15,7 +15,7 @@ void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewO
 //-----------------------------------------------------------------------------------------------------------------//
 
 void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine){
-	objects.game.handleInput(viewObjects.view);
+	objects.game.handleInput(viewObjects.view, viewObjects.event);
 }
 
 void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewObjects, StateMachine * machine) {
