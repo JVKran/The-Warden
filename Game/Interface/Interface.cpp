@@ -12,7 +12,7 @@ void Interface::initialize(StateMachine * machine){
 	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100,100), 1), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
 
 
 }
@@ -42,7 +42,7 @@ void Interface::handleEvent(const sf::Event & event){
 				editor.selectWorld("World/world.txt");
 				sprite.changeState();
 			}
-			if(event.type == sf::Event::MouseButtonPressed && sprite.comparePosition(sf::Vector2f(100, 100))){
+			if(event.type == sf::Event::MouseButtonPressed && sprite.comparePosition(sf::Vector2f(0, 0))){
 				sprite.changeState();
 			}
 		}
