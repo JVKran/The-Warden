@@ -405,6 +405,7 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 		if((clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds())>500){
 			state=states::IDLE;
 			isAttacking=false;
+			currentAnimation=&idleAnimation;
 		}
 	}
 	
@@ -420,6 +421,8 @@ sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 void AnimatedGraphicsComponent::setFightAnimation(){
 	isAttacking=true;
 	currentAnimation=&attackAnimation;
+	attackTime = clock.getElapsedTime();
+	currentAnimation->left(isWalkingLeft);
 }
 /// \brief
 /// Create an instance.

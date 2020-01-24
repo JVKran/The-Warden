@@ -147,6 +147,17 @@ void Game::loadCharacters(){
 			walkFile=currstring;
 			//std::cout<<position.x<<'\n';
 		}
+		if((currstring.find("attackName")!= std::string::npos)){
+			charactersFile>>currstring;
+			attackName=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("attackFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			attackFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		
 		
 		prevstring=currstring;
 		if((currstring.find("eind")!= std::string::npos)){
