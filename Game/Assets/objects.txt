@@ -1,4 +1,5 @@
 background Assets/Textures/freetileset/png/BG/BG.png
+
 grassLeft Assets/Textures/freetileset/png/Tiles/1.png
 grassMiddle Assets/Textures/freetileset/png/Tiles/2.png
 grassRight Assets/Textures/freetileset/png/Tiles/3.png
@@ -41,4 +42,25 @@ settingButton Assets/Textures/cogWheel.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
 door Assets/Textures/Others/doors_all.png
+battleAxe Assets/Textures/Items/BattleAxe.png
+bigDagger Assets/Textures/Items/BigDagger.png   
+club Assets/Textures/Items/Club.png   
+diamondSword Assets/Textures/Items/DiamondSword.png
+fist Assets/Textures/Items/Fist.png
+hunger Assets/Textures/Items/Hunger.png
+ironSword Assets/Textures/Items/IronSword.png
+morningStar Assets/Textures/Items/MorningStar.png
+pirateSword Assets/Textures/Items/PirateSword.png
+saber Assets/Textures/Items/Saber.png
+strenght Assets/Textures/Items/Strength.png
+whip Assets/Textures/Items/Whip.png
+woodenSword Assets/Textures/Items/WoodenSword.png
+player Assets/Textures/adventurer.png
+waterBubble Assets/Textures/waterBubble.png
+waterBubbleJump Assets/Textures/waterBubble3.png
+wizardDamage Assets/Textures/wizardDamage.png
+wizardIdle Assets/Textures/wizardIdle.png
+wizardWalk Assets/Textures/wizardWalk.png
+wizardJump Assets/Textures/wizardJump.png
+wizardAttack Assets/Textures/wizardAttack.png
 menuTitle Assets/Textures/tmpMenuTitle.png

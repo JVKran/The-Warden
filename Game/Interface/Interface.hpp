@@ -36,7 +36,7 @@ class Interface {
 		Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window);
 
 		void initialize(StateMachine * machine);
-		void goToPauseMenu();
+		void goToPauseMenu(sf::View& view);
 		void pauseSettings(const sf::Event & event, sf::View & view);
 		void handleInput();
 		void handleEvent(const sf::Event & event, sf::View & view);

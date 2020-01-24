@@ -14,13 +14,14 @@
 
 int main(){
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
-	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden", sf::Style::Fullscreen};
+	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
-	std::array< KeyBinding, 3 > bindings { 
+	std::vector<KeyBinding> bindings { 
 		KeyBinding ( "Left", 		sf::Keyboard::A,  		Text( "Left : A", 	sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )		),
 		KeyBinding ( "Right",		sf::Keyboard::D, 		Text( "Right : D", 	sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )		),
-		KeyBinding ( "Jump", 		sf::Keyboard::Space, 	Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 ) 	)
+		KeyBinding ( "Jump", 		sf::Keyboard::Space, 	Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 ) 	),
+		KeyBinding ( "E",			sf::Keyboard::E,		Text( "E : E",		sf::Vector2f{500.0, 150.0}, 1.0, sf::Color::Red, 1)			)
 	};
 
 	sf::Event event;
@@ -33,8 +34,6 @@ int main(){
 	Interface interface(game, editor, settings, assets, window);
 	StateMachine machine(game, interface, editor, settings);
 	
-
-
 	sf::Clock clock;
 
 	double previous = clock.getElapsedTime().asMilliseconds();
@@ -47,17 +46,16 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		while(lag >= simulationSpeed){
-			machine.handleInput(event, view);
-			lag -= simulationSpeed;
-		}
-
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
 			machine.handleEvent(event, view);
+		}
 
+		while(lag >= simulationSpeed){
+			machine.handleInput(event, view);
+			lag -= simulationSpeed;
 		}
 
 		window.clear();
@@ -69,8 +67,8 @@ int main(){
 		//sf::sleep(sf::milliseconds(5));
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-			interface.goToPauseMenu();
-			//return 0;
+			interface.goToPauseMenu(view);
+
 		}
 
 	}

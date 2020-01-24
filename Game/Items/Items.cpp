@@ -2,13 +2,19 @@
 
 #include "Items.hpp"
 
+
+bool Item::isWeapon() {
+	return false;
+}
+
 /// \brief
 /// Create weapon instance.
 /// \details
 /// This function creates a Weapon.
 /// @param damageFactor The damagefactor to calculate damage dealt.
 /// @param hitPeriod The period that should be in between attacks.
-Weapon::Weapon(const int damageFactor, const int_fast16_t hitPeriod):
+Weapon::Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod):
+	Item(assetName, assets),
 	hitPeriod(hitPeriod),
 	damageFactor(damageFactor)
 {}
@@ -18,11 +24,12 @@ Weapon::Weapon(const int damageFactor, const int_fast16_t hitPeriod):
 /// \details
 /// This function creates a Consumable.
 /// @param foodValue The foodvalue to calculate new amount of health.
-Consumable::Consumable(const int_fast8_t foodValue):
+Consumable::Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue):
+	Item(assetName, assets),
 	foodValue(foodValue)
 {}
 
-void Weapon::use(Character * character, std::vector<Character> & characters){
+bool Weapon::use(Character * character, std::vector<Character> & characters){
 	for(Character & characterToHit : characters){
 		if(*character != characterToHit && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
 			lastAttack = clock.getElapsedTime();
@@ -37,18 +44,25 @@ void Weapon::use(Character * character, std::vector<Character> & characters){
 						std::cout << "(!)-- Something went wrong..." << std::endl;
 					}
 				}
+				return true;
 			}
 		}
 	}
+	return false;
+}
+
+bool Weapon::isWeapon(){
+	return true;
 }
 
 /// \brief
 /// Replenish Character health.
 /// \details
 /// This function adds the foodValue to the Character's current health.
-void Consumable::use(Character * character, std::vector<Character> & characters){
+bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
 	if(character->getHealth() > 100){
-		character->setHealth(int_fast8_t(100));
+		character->setHealth(100);
 	}
+	return true;
 }

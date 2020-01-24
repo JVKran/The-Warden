@@ -55,8 +55,9 @@ class Tile : public ScreenObject {
 		bool collidable = true;				//!< Whether or not Character types should collide with this Tile.
 		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
 		bool interactable = false;			//!< Whether or not this object can be interacted with by a Character.
+		bool selected = false;
 		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
-		bool passageEntrance = false;		//!< Whether or not this object is an entrance to another Tile with an entrance.
+		sf::Vector2f teleportPosition;		//!< The position a Character will be teleported to when entering the passage.
 	public:
 		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0);
 
@@ -74,11 +75,14 @@ class Tile : public ScreenObject {
 		bool isPassageWay() const;
 		void setPassageWay(const bool newPassageWay);
 
-		bool isPassageEntrance() const;
-		void changePassageEntrance(const bool newPassageWayDirection);
+		sf::Vector2f getTeleportPosition() const;
+		void changeTeleportPosition(const sf::Vector2f & newTeleportPosition);
 
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
+
+		bool isSelected() const;
+		void changeSelected(const bool newSelected);
 
 		void move(const sf::Vector2f & position);
 

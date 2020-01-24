@@ -17,7 +17,9 @@ bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWi
 /// @param view The view to use for scrolling through the world.
 World::World(AssetManager & assets):
 	assets(assets)
-{}
+{
+	background.setScale(2, 2);
+}
 
 /// \brief
 /// Load world from configuration.
@@ -145,6 +147,19 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 void World::addTile(Tile object){
 	tiles.push_back(object);
 	sortWorld();
+}
+
+/// \brief
+/// Adds tile to world.
+/// \details
+/// This adds an object to the world by pushing back to the vector containing all tiles.
+/// @param object The string used to search the right object to create in tiles
+/// @param position The position where we are going to add a new Object in the world
+void World::addTile(std::string object, sf::Vector2f position){
+	Tile objectToAdd = {object, assets, position, 1, 1.0, 0.0, 1};							//creates an instance of a crate object
+	objectToAdd.setWindowLayer(1);
+	addTile(objectToAdd);
+	objectToAdd.makePartOfWorld(true);
 }
 
 /// \brief

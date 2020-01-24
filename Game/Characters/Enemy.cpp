@@ -1,6 +1,6 @@
 #include "Enemy.hpp"
 
-void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys){
+void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	for(const Character & character : characters){
 		if(character.isPlayer()){									//Enemy 					//Player
 			if(character.getPosition().x < position.x - 100 && character.getPosition().x > position.x - 500){
@@ -14,6 +14,18 @@ void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & dire
 	}
 }
 
+EnemyInput & EnemyInput::operator=(EnemyInput lhs){
+	world = lhs.world;
+	characters = lhs.characters;
+	return *this;
+}
+
+void EnemyInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
+	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
+		ownCharacter->getGraphics()->setFightAnimation();
+	}
+}
+
 EnemyGraphics::EnemyGraphics(const std::string & assetName, AssetManager & assets):
 	GraphicsComponent(assetName, assets)
 {}
@@ -21,6 +33,11 @@ EnemyGraphics::EnemyGraphics(const std::string & assetName, AssetManager & asset
 void EnemyGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
 	window.draw(sprite);
+}
+
+EnemyGraphics & EnemyGraphics::operator=(EnemyGraphics lhs){
+	sprite = lhs.sprite;
+	return *this;
 }
 
 void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){

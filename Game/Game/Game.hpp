@@ -29,17 +29,20 @@ class Game {
 		
 		std::vector<LootDrop> lootDrops;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
+
 		sf::RenderWindow & window;
-		std::array<KeyBinding, 3> & bindings;
+		std::vector<KeyBinding> & bindings;
 
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings);
 		~Game(){
 			window.close();
 		}
 		void startWorld(const std::string & worldName);
-		void handleInput();
+
+		void handleInput(sf::View & view,  const sf::Event & event);
+		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(sf::View & view);
 };
 

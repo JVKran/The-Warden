@@ -8,12 +8,12 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	world(assets),
 	window(window)
 { 
-	world.loadWorld("Interface/backgroundWorld.txt");
-	//world.loadWorld("World/world.txt");
+	//world.loadWorld("Interface/backgroundWorld.txt");
+	world.loadWorld("World/world.txt");
  }
 
 void Interface::initialize(StateMachine * machine){
-	//background.setTexture(assets.getTexture("background"));
+	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
@@ -24,31 +24,34 @@ void Interface::initialize(StateMachine * machine){
 
 }
 
-void Interface::goToPauseMenu(){ 
+void Interface::goToPauseMenu(sf::View & view){ 
 	interfaceElements[3].changeState();
-	//view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f)); 
+
+	//view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
+
 }
 
 void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	sf::Vector2f position = view.getCenter() - (view.getSize()/2.0f);
 	pauseBackground.setPosition(position.x,position.y);
 	pauseBackground.setFillColor(sf::Color(0,0,0,50));
-	pauseBackground.setSize(sf::Vector2f(1000,580));
+	pauseBackground.setSize(sf::Vector2f(1920,1080));
 
-	pauseElements[0].setPosition(sf::Vector2f(position.x+200,position.y+200));
-	pauseElements[1].setPosition(sf::Vector2f(position.x+500,position.y+200));
+
+	pauseElements[0].setPosition(sf::Vector2f(position.x+600,position.y+440));
+	pauseElements[1].setPosition(sf::Vector2f(position.x+900,position.y+440));
 	pauseGame = true;
 
 	for(InterfaceElement& element : pauseElements){
 		if(element.contains(window,view)){
-			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+200,position.y+200))){				
+			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+700,position.y+440))){				
 				
-				view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f)); 
+				view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
 				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
 			}
-			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+500,position.y+200))){		
+			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+1000,position.y+440))){		
 				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();

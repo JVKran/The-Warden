@@ -117,7 +117,9 @@ sf::FloatRect ScreenObject::getBounds() const {
 Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
 	collidable(collidable)
-{}
+{
+	teleportPosition = {0,0};
+}
 
 bool Tile::isPartOfWorld() const{
 	return hasBeenAdded;
@@ -170,12 +172,15 @@ void Tile::setPassageWay(const bool newPassageWay){
 	passageWay = newPassageWay;
 }
 
-bool Tile::isPassageEntrance() const{
-	return passageEntrance;
+sf::Vector2f Tile::getTeleportPosition() const{
+	return teleportPosition;
 }
 
-void Tile::changePassageEntrance(const bool newPassageEntrance){
-	passageEntrance = newPassageEntrance;
+void Tile::changeTeleportPosition(const sf::Vector2f & newTeleportPosition){
+	if(!isPassageWay()){
+		setPassageWay(true);
+	}
+	teleportPosition = newTeleportPosition;
 }
 
 /// \brief
@@ -209,6 +214,14 @@ void Tile::move(const sf::Vector2f & position){
 	}
 }
 
+bool Tile::isSelected() const{
+	return selected;
+}
+
+void Tile::changeSelected(const bool newSelected){
+	selected = newSelected;
+}
+
 /// \brief
 /// Assignment operator.
 /// \details
@@ -216,12 +229,17 @@ void Tile::move(const sf::Vector2f & position){
 /// @param lhs Tile to copy.
 /// \return Refrence to itself.
 Tile& Tile::operator=(Tile lhs){
-	if(&lhs != this){
-		followMouse = lhs.followMouse;
-		assetName = lhs.assetName;
-		sprite = lhs.sprite;
-		collidable = lhs.collidable;
-	}
+	followMouse = lhs.followMouse;
+	assetName = lhs.assetName;
+	sprite = lhs.sprite;
+	collidable = lhs.collidable;
+	windowLayer = lhs.windowLayer;
+	followMouse = lhs.followMouse;
+	hasBeenAdded = lhs.hasBeenAdded;
+	interactable = lhs.interactable;
+	selected = lhs.selected;
+	passageWay = lhs.passageWay;
+	teleportPosition = lhs.teleportPosition;
 	return *this;
 }
 

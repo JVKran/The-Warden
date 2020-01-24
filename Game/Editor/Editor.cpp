@@ -62,7 +62,6 @@ void Editor::drawTileBar( sf::View & view ){
 /// @param window The window to use for determining the absolute position of the mouseclicks.
 void Editor::handleInput(sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
     bool downPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
@@ -99,7 +98,7 @@ void Editor::handleInput(sf::View & view){
 	}
 
 	for(Tile & object : objects){
-		if(leftMousePressed || rightMousePressed){
+		if(leftMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.isPartOfWorld()){
 					std::cout << "Added object at position " << object.getPosition().x << std::endl;
@@ -149,19 +148,19 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
 			tile.setCollidable(false);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
 			tile.setWindowLayer(0);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
 			tile.setWindowLayer(1);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
 			tile.setWindowLayer(2);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
 			tile.setWindowLayer(3);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
 			tile.setWindowLayer(4);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
@@ -170,11 +169,16 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
 			tile.setPassageWay(!tile.isPassageWay());
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-			tile.changePassageEntrance(true);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+			if(tile.isPassageWay()){
+				tile.changeSelected(!tile.isSelected());
+			}
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
-			tile.changePassageEntrance(false);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+			if(tile.isSelected()){
+				tile.changeTeleportPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
+				tile.changeSelected(false);
+			}
 		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));

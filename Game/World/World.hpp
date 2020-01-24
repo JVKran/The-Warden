@@ -7,6 +7,7 @@
 #include "ScreenObject.hpp"
 #include "Exceptions.hpp"
 #include <string>
+#include <memory>
 
 /// \brief
 /// World
@@ -32,6 +33,8 @@ class World {
 		void loadWorld(const std::string & fileName);
 
 		void addTile(Tile object);
+
+		void addTile(std::string object, sf::Vector2f position);
 		void setBackground(const std::string & backgroundName);
 
 		std::vector<Tile> & getTiles();
