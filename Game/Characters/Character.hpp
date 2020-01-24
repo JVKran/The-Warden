@@ -90,7 +90,7 @@ class InputComponent {
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
-		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) {}
+		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem, int_fast8_t size) {}
 };
 
 /// \brief
@@ -168,7 +168,7 @@ class Character {
 
 		std::shared_ptr<LootDrop> lootDrop;
 		std::vector<std::shared_ptr<Item>> items;
-		int_fast16_t selectedItem = 0;
+		int_fast16_t selectedItem = 2;
 		sf::RectangleShape itemSelector;
 
 		bool isPlayerType;

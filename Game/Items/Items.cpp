@@ -61,8 +61,7 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 /// \brief
 /// Create block instance.
 /// \details
-/// This function creates a block.
-/// @param foodValue The foodvalue to calculate new amount of health.
+/// This function creates a block item.
 Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
 	Item(assetName, assets),
 	amountOfObjects(amountOfObjects),
@@ -74,8 +73,10 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 		
 bool Block::use(Character * character, std::vector<Character> & characters){
 	if(amountOfObjects > 0){
-		character->addTile(event, world, window, view);
+		characters.at(0).addTile(event, world, window, view);
 		amountOfObjects--;
+		return false;
+	}else{
+		return true;
 	}
-	return false;
 }

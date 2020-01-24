@@ -100,7 +100,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// \details
 /// Handles a event for a selected item
 void Character::handleEvent(const sf::Event & event){
-	input->handleEvent(event, selectedItem);
+	input->handleEvent(event, selectedItem, items.size());
 }
 
 /// \brief
@@ -164,7 +164,7 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
 
-	std::cout << collisionBounds.leftCollisionBound << std::endl;
+	//std::cout << collisionBounds.leftCollisionBound << std::endl;
 
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});

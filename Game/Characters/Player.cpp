@@ -82,9 +82,16 @@ void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, C
 	}
 }
 
-void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem){
-	if(event.type == sf::Event::MouseWheelMoved){	
-		selectedItem += event.mouseWheel.delta;
+void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem, int_fast8_t size){
+	if(event.type == sf::Event::MouseWheelMoved){
+		std::cout << event.mouseWheel.delta << std::endl;
+		if(selectedItem + event.mouseWheel.delta < 0){
+			selectedItem = 0;
+		}else if(selectedItem + event.mouseWheel.delta > size-1){		
+			selectedItem = size-1;
+		}else{
+			selectedItem += event.mouseWheel.delta;
+		}
 	}
 
 	/*if( event.type == sf::Event::MouseButtonReleased ){

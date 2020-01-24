@@ -45,13 +45,13 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 		characters.at(i).handleEvent(event);
 	}
 
-	/*if( event.type == sf::Event::MouseButtonReleased ){
+	if( event.type == sf::Event::MouseButtonReleased ){
 		if( event.mouseButton.button == sf::Mouse::Right ){
 			characters.at(0).addTile(event, world, window, view);		//adds a new tile using the character player
 		}else if( event.mouseButton.button == sf::Mouse::Middle ){
 			characters.at(0).deleteTile(event, world, window, view);	//deletes a block using player if the mouse is on the tile
 		}
-	}*/
+	}
 }
 
 /// \brief
@@ -80,7 +80,7 @@ void Game::loadCharacters(){
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
+	//startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
 	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
