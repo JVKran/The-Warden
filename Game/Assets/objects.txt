@@ -1,5 +1,5 @@
 background Assets/Textures/freetileset/png/BG/BG.png
-background1 Assets/Textures/freetileset/png/BG/jos.png
+
 grassLeft Assets/Textures/freetileset/png/Tiles/1.png
 grassMiddle Assets/Textures/freetileset/png/Tiles/2.png
 grassRight Assets/Textures/freetileset/png/Tiles/3.png

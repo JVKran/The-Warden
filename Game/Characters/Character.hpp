@@ -120,32 +120,36 @@ class AnimatedGraphicsComponent {
 		sf::Sprite spriteIdle;
 		sf::Sprite spriteJump;
 		sf::Sprite spriteWalk;
+		sf::Sprite spriteAttack;
 		//SpriteCharacter characterData;
 
 		SpriteAnimation idleAnimation;
 		SpriteAnimation jumpAnimation;
 		SpriteAnimation walkAnimation;
+		SpriteAnimation attackAnimation;
 		SpriteAnimation *currentAnimation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 
 		sf::Clock clock;
 		sf::Time previousTime;
-
+		sf::Time attackTime;
 		sf::Vector2f previousPosition;
 
 		enum class states {IDLE, JUMP, WALK};
 		states state = states::IDLE;
 		bool isIdle = true;
 		bool isWalkingLeft = false;
+		bool isAttacking;
 	public:
 		AnimatedGraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 			idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
 			jumpAnimation(assets,spriteJump,characterData.jumpName,characterData.jumpFile),
 			walkAnimation(assets,spriteWalk,characterData.walkName,characterData.walkFile),
+			attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 			currentAnimation(&idleAnimation)
 		{}
-
+		void setFightAnimation();
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();

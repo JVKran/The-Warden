@@ -297,7 +297,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 /// of the Character to keep the player centered.
 void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 
-	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
+	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50&&(isAttacking==false)){
 		if(position != previousPosition){
 			switch(state){
 				case states::IDLE: {
@@ -399,7 +399,15 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 		}
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
+	}else if (isAttacking==true)
+	{
+		
+		if((clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds())>500){
+			state=states::IDLE;
+			isAttacking=false;
+		}
 	}
+	
 	processViewChanges(view, position);
 	currentAnimation->move(sf::Vector2f(position.x,position.y));
 	currentAnimation->draw(window);
@@ -409,7 +417,10 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 	return currentAnimation->getDimensions();
 }
-
+void AnimatedGraphicsComponent::setFightAnimation(){
+	isAttacking=true;
+	currentAnimation=&attackAnimation;
+}
 /// \brief
 /// Create an instance.
 /// \details
