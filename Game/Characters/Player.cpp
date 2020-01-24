@@ -47,7 +47,31 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	}
 }
 
+/// \brief
+/// Adds a tile in the world
+/// \details
+/// This is called by the game, it adds a new tile in the vector tiles in the world,
+/// on the location of the mouse in the window's view (so not the normal pixel locations)
+/// the new tile is a 'crate' object
+void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);		//gets to position based on the mouse coordinates in a view
+	world.addTile("crate", position);
+}
 
+/// \brief
+/// Deletes a tile in the world
+/// \details
+/// This is called by the game, and it deletes the object where the mouse is located on.
+/// The mouse position is called by mapPixelToCoords which uses view to get the right location
+/// and not the mouse window location.
+void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	std::vector<Tile> & objects = world.getTiles();
+	for(Tile & object : objects){
+		if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+				objects.erase( std::find(objects.begin(), objects.end(), object) );
+		}
+	}
+}
 
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){

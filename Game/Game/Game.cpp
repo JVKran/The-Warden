@@ -28,19 +28,27 @@ void Game::startWorld(const std::string & worldName){
 /// Hanlde input.
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
-void Game::handleInput(){
+void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
-		// try {
-			characters.at(i).update(window, world, characters, bindings);
-		// } catch  {
-
-		// }
+		characters.at(i).update(window, world, characters, bindings);
 	}
 }
 
-void Game::handleEvent(const sf::Event & event){
+/// \brief
+/// Hanlde Events.
+/// \details
+/// This handles all the events it gets.
+void Game::handleEvent(const sf::Event & event, sf::View & view){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).handleEvent(event);
+	}
+
+	if( event.type == sf::Event::MouseButtonReleased ){
+		if( event.mouseButton.button == sf::Mouse::Right ){
+			characters.at(0).addTile(event, world, window, view);		//adds a new tile using the character player
+		}else if( event.mouseButton.button == sf::Mouse::Middle ){
+			characters.at(0).deleteTile(event, world, window, view);	//deletes a block using player if the mouse is on the tile
+		}
 	}
 }
 
