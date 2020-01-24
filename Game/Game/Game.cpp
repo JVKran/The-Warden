@@ -80,7 +80,7 @@ void Game::loadCharacters(){
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	//startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
+	startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
 	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	
 	std::ifstream charactersFile("Characters/instances.txt");

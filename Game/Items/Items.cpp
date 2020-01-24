@@ -62,6 +62,7 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 /// Create block instance.
 /// \details
 /// This function creates a block item.
+/// @param amountOfObjects The amount of objects we are able to create
 Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
 	Item(assetName, assets),
 	amountOfObjects(amountOfObjects),
@@ -70,13 +71,17 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 	window(window),
 	view(view)
 {}
-		
+
+/// \brief
+/// Create a tile.
+/// \details
+/// This function creates a new Tile object as long as amountOfObjects is bigger than 0	
 bool Block::use(Character * character, std::vector<Character> & characters){
-	if(amountOfObjects > 0){
-		characters.at(0).addTile(event, world, window, view);
-		amountOfObjects--;
-		return false;
+	if(amountOfObjects > 0){										//can create new objects as long as there are more than 0 amountOfObjects
+		characters.at(0).addTile(event, world, window, view);		//creates new crate object
+		amountOfObjects--;											//decreases the amount of objects that can be created					
+		return false;												//return false as long as we can create objects
 	}else{
-		return true;
+		return true;												//return true when there are no objects to create anymore
 	}
 }

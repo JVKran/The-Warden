@@ -73,24 +73,27 @@ void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderW
 	}
 }
 
-void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		if(items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters)){			//If item is broken
-			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItem())));
-			ownCharacter->getSelectedItem()--;
+void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+	if(event.type == sf::Event::MouseButtonReleased){
+		if(event.mouseButton.button == sf::Mouse::Left){
+			if(items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters)){			//If item is broken
+				items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItem())));
+				ownCharacter->getSelectedItem()--;
+			}
 		}
 	}
 }
 
 void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem, int_fast8_t size){
 	if(event.type == sf::Event::MouseWheelMoved){
-		std::cout << event.mouseWheel.delta << std::endl;
-		if(selectedItem + event.mouseWheel.delta < 0){
+
+		//makes sure we won't go out of bounce with selected items
+		if(selectedItem + event.mouseWheel.delta < 0){					//checks if the selectedItem with the mouseWheel is smaller than 0
 			selectedItem = 0;
-		}else if(selectedItem + event.mouseWheel.delta > size-1){		
+		}else if(selectedItem + event.mouseWheel.delta > size-1){		//checks if the selectedItem with the mouseWheel is bigger than the vector size		
 			selectedItem = size-1;
 		}else{
-			selectedItem += event.mouseWheel.delta;
+			selectedItem += event.mouseWheel.delta;						//only get a selectedItem if it is >= 0 and <= vector.size()-1
 		}
 	}
 

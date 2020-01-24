@@ -61,7 +61,6 @@ Character::~Character(){
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys){
 	input->processInput(position, direction, keys);
-	input->processItemUsage(items, this);
 	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
@@ -101,6 +100,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles a event for a selected item
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem, items.size());
+	input->processItemUsage(event, items, this);
 }
 
 /// \brief
