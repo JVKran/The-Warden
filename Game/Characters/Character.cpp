@@ -49,7 +49,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 }
 
 Character::~Character(){
-	lootDrop->drop(items, experiencePoints, position);
+	//lootDrop->drop(items, experiencePoints, position);
 }
 
 /// \brief
