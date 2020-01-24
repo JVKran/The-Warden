@@ -30,21 +30,26 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 {}
 
 bool Weapon::use(Character * character, std::vector<Character> & characters){
-	for(Character & characterToHit : characters){
-		if(*character != characterToHit && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		if(*character != characters.at(i) && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
 			lastAttack = clock.getElapsedTime();
-			if(character->getBounds().intersects(characterToHit.getBounds())){
-				characterToHit.setHealth( (characterToHit.getHealth()) - damageFactor );
-				if(characterToHit.getHealth() < 0){
+			if(character->getBounds().intersects(characters.at(i).getBounds())){
+				characters.at(i).setHealth( (characters.at(i).getHealth()) - damageFactor );
+				if(characters.at(i).getHealth() < 0){
 					try{
-						characters.erase( std::find(characters.begin(), characters.end(), characterToHit) );
+						if(characters.at(i).isPlayer()){
+							characters.at(i).respawn();
+							characters.at(i).setHealth(100);
+						} else {
+							characters.erase( std::find(characters.begin(), characters.end(), characters.at(i)) );
+						}
 					} catch (const std::exception & error){
 						std::cout << "(!)-- " << error.what() << std::endl;
 					} catch (...){
 						std::cout << "(!)-- Something went wrong..." << std::endl;
 					}
+					return true;
 				}
-				return true;
 			}
 		}
 	}

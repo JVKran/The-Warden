@@ -68,10 +68,10 @@ void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWind
 /// The mouse position is called by mapPixelToCoords which uses view to get the right location
 /// and not the mouse window location.
 void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
-	std::vector<Tile> & objects = world.getTiles();
-	for(Tile & object : objects){
-		if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-				objects.erase( std::find(objects.begin(), objects.end(), object) );
+	std::vector<Tile> & tiles = world.getTiles();
+	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
+		if(tiles.at(i).getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+			tiles.erase( std::find(tiles.begin(), tiles.end(), tiles.at(i)) );
 		}
 	}
 }
@@ -95,10 +95,10 @@ void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedIt
 }
 
 void PlayerInput::handleInteraction(World & world){
-	std::vector<Tile> & objects = world.getTiles();
-	for(Tile & object : objects){
-		if(object.isInteractable()){
-			if(object.isPassageWay()){
+	std::vector<Tile> & tiles = world.getTiles();
+	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
+		if(tiles.at(i).isInteractable()){
+			if(tiles.at(i).isPassageWay()){
 				std::cout<<"Deur\n";
 			}
 		}

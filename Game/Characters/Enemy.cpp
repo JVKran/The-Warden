@@ -1,11 +1,11 @@
 #include "Enemy.hpp"
 
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
-	for(const Character & character : characters){
-		if(character.isPlayer()){									//Enemy 					//Player
-			if(character.getPosition().x < position.x - 100 && character.getPosition().x > position.x - 500){
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		if(characters.at(i).isPlayer()){									//Enemy 					//Player
+			if(characters.at(i).getPosition().x < position.x - 100 && characters.at(i).getPosition().x > position.x - 500){
 				direction.x = -1;
-			} else if (character.getPosition().x > position.x + 200 && character.getPosition().x - 500 < position.x){
+			} else if (characters.at(i).getPosition().x > position.x + 200 && characters.at(i).getPosition().x - 500 < position.x){
 				direction.x = 1;
 			} else {
 				direction.x = 0;

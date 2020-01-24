@@ -13,7 +13,6 @@
 #include "keybinding.hpp"
 
 int main(){
-
 	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden", sf::Style::Fullscreen};
 	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
