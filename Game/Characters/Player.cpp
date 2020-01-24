@@ -27,6 +27,7 @@ AnimatedPlayerGraphics::AnimatedPlayerGraphics(const std::string & assetName, As
 	idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
 	jumpAnimation(assets,spriteJump,characterData.jumpName,characterData.jumpFile),
 	walkAnimation(assets,spriteWalk,characterData.walkName,characterData.walkFile),
+	attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 	currentAnimation(&idleAnimation)
 
 	//Animation(sprite, assets.getTexture(assetName), characterData.spriteCharacterData[0] /* sf::Vector2i{2400,1440}*/, /*sf::Vector2i{5,3}*/characterData.spriteCharacterData[1],  characterData.spriteCharacterData[2] , characterData.spriteCharacterData[3])

@@ -45,6 +45,7 @@ class AnimatedPlayerGraphics : public AnimatedGraphicsComponent {
 		SpriteAnimation idleAnimation;
 		SpriteAnimation jumpAnimation;
 		SpriteAnimation walkAnimation;
+		SpriteAnimation attackAnimation;
 		SpriteAnimation *currentAnimation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;

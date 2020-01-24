@@ -67,3 +67,7 @@ dogWalk Assets/Textures/dogWalk.png
 dogJump Assets/Textures/dogJump.png
 dogDamage Assets/Textures/dogDamage.png
 dogAttack Assets/Textures/dogAttack.png
+orcIdle Assets/Textures/orcIdle.png
+orcWalk Assets/Textures/orcWalk.png
+orcDamage Assets/Textures/orcDamage.png
+orcAttack Assets/Textures/orcAttack.png

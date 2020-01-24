@@ -116,6 +116,7 @@ class AnimatedGraphicsComponent {
 		sf::Sprite spriteIdle;
 		sf::Sprite spriteJump;
 		sf::Sprite spriteWalk;
+		sf::Sprite spriteAttack;
 		//SpriteCharacter characterData;
 
 		sf::Clock clock;
@@ -123,7 +124,7 @@ class AnimatedGraphicsComponent {
 
 		sf::Vector2f previousPosition;
 
-		enum class states {IDLE, JUMP, WALK};
+		enum class states {IDLE, JUMP, WALK,ATTACK};
 		states state = states::IDLE;
 		bool isIdle = true;
 		bool isWalkingLeft = false;

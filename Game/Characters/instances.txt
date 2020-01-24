@@ -1,8 +1,8 @@
-named player position (200,0)  idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player eind
+named player position (100,0)  idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player eind
 named dog  position (200,350)  idleName dogIdle   idleFile dogIdle jumpName dogWalk jumpFile dogWalk walkName dogWalk walkFile dogWalk dieName dogDamage dieFile dogDamage eind
-named dog  position (300,350)  idleName dogIdle   idleFile dogIdle jumpName dogWalk jumpFile dogWalk walkName dogWalk walkFile dogWalk dieName dogDamage dieFile dogDamage eind
+named dog  position (300,350)  idleName orcDamage   idleFile orcDamage jumpName dogWalk jumpFile dogWalk walkName orcAttack walkFile orcAttack dieName dogDamage dieFile dogDamage eind
 
-nam wizard  idleName wizardIdle   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage eind
+named wizard  idleName wizardIdle   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage eind
 
 
 
