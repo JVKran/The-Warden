@@ -114,12 +114,11 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
-Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
+Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer, sf::Vector2f teleportPosition):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
-	collidable(collidable)
-{
-	teleportPosition = {0,0};
-}
+	collidable(collidable),
+	teleportPosition(teleportPosition)
+{}
 
 bool Tile::isPartOfWorld() const{
 	return hasBeenAdded;
@@ -135,7 +134,7 @@ void Tile::makePartOfWorld(const bool & added){
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
 /// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
 std::string Tile::getConfiguration() const {
-	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
+	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + ' ' + std::to_string(teleportPosition) + ' ' + std::to_string(windowLayer));
 }
 
 /// \brief

@@ -169,7 +169,7 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
 			tile.setPassageWay(!tile.isPassageWay());
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)){
 			if(tile.isPassageWay()){
 				tile.changeSelected(!tile.isSelected());
 			}

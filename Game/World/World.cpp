@@ -1,8 +1,8 @@
 /// @file
 
 #include "World.hpp"
-#include "FactoryFunction.hpp"
 #include "Editor.hpp"
+#include "FactoryFunction.hpp"
 
 bool sortByPosition(Tile &lhs, Tile &rhs) { return lhs.getPosition().x < rhs.getPosition().x; }
 bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWindowLayer(); }
@@ -72,7 +72,7 @@ void World::loadWorld(const std::string & fileName){
 /// (127,498) grass 1 1.000000
 /// ~~~~~
 /// This means the background name for this world is called "background". The name "background", can be used with the AssetManager
-/// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw
+/// to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, seassetNamt the position and draw
 /// it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world.
 /// All these parameters are used to construct a Tile that's stored in the tiles vector.
 /// \exception endOfFile() End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program
@@ -80,15 +80,15 @@ void World::loadWorld(const std::string & fileName){
 /// \exception invalidPosition() The position given is invalid. This most likely is a syntax error.
 void World::loadTile(std::ifstream & input){
 	std::string assetName;
-	sf::Vector2f position;
+	sf::Vector2f position, teleportPosition;
 	float scale, rotation;
 	int windowLayer;
 	bool collidable;
 	try {
-		input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer;
-		tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
+		input >> position >> assetName >> collidable >> scale >> rotation >> teleportPosition >> windowLayer;
+		tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, teleportPosition, windowLayer));
 	} catch (...){
-		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << std::endl;
+		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << "(" << teleportPosition.x << "," << teleportPosition.y << ")" << ' ' << windowLayer << std::endl;
 		std::cerr << "      Note that world configuration files shouldn't end with a newline character." << std::endl;
 	}
 }
