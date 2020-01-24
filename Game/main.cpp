@@ -14,7 +14,7 @@
 
 int main(){
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
+	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden"};
 	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
 
 	std::array< KeyBinding, 3 > bindings { 

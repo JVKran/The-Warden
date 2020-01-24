@@ -171,10 +171,10 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 			tile.setPassageWay(!tile.isPassageWay());
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-			tile.changePassageEntrance(true);
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
-			tile.changePassageEntrance(false);
+			if(tile.isPassageWay()){
+				tile.changeTeleportPosition(sf::Mouse::getPosition(window));
+				std::cout<<"Gottem";
+			}
 		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));

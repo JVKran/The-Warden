@@ -117,7 +117,9 @@ sf::FloatRect ScreenObject::getBounds() const {
 Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
 	collidable(collidable)
-{}
+{
+	teleportPosition = {0,0};
+}
 
 bool Tile::isPartOfWorld() const{
 	return hasBeenAdded;
@@ -170,12 +172,15 @@ void Tile::setPassageWay(const bool newPassageWay){
 	passageWay = newPassageWay;
 }
 
-bool Tile::isPassageEntrance() const{
-	return passageEntrance;
+sf::Vector2i Tile::getTeleportPosition() const{
+	return teleportPosition;
 }
 
-void Tile::changePassageEntrance(const bool newPassageEntrance){
-	passageEntrance = newPassageEntrance;
+void Tile::changeTeleportPosition(const sf::Vector2i & newTeleportPosition){
+	if(!isPassageWay()){
+		setPassageWay(true);
+	}
+	teleportPosition = newTeleportPosition;
 }
 
 /// \brief
@@ -207,6 +212,14 @@ void Tile::move(const sf::Vector2f & position){
 	if(followMouse){
 		sprite.setPosition(sf::Vector2f(position.x - sprite.getGlobalBounds().width / 2, position.y +- sprite.getGlobalBounds().height / 2));
 	}
+}
+
+bool Tile::isSelected() const{
+	return selected;
+}
+
+void Tile::changeSelected(const bool newSelected){
+	selected = newSelected;
 }
 
 /// \brief
