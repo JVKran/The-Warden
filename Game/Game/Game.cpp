@@ -24,6 +24,7 @@ void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
+
 /// \brief
 /// Hanlde input.
 /// \details

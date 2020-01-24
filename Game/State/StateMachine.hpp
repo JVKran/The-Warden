@@ -8,6 +8,7 @@
 #include "Settings.hpp"
 #include "States.hpp"
 
+class Game;
 class Interface;
 class StateMachine;
 
