@@ -164,8 +164,6 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
 
-	std::cout << collisionBounds.leftCollisionBound << std::endl;
-
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
 
