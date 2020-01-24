@@ -14,8 +14,8 @@
 
 int main(){
 
-	sf::RenderWindow window{ sf::VideoMode{ 1000, 580 }, "The Warden"};
-	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1000.f, 580.f));
+	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden",sf::Style::Fullscreen};
+	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
 	std::array< KeyBinding, 3 > bindings { 
 		KeyBinding ( "Left", 		sf::Keyboard::A,  		Text( "Left : A", 	sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )		),

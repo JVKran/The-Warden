@@ -62,3 +62,8 @@ wizardIdle Assets/Textures/wizardIdle.png
 wizardWalk Assets/Textures/wizardWalk.png
 wizardJump Assets/Textures/wizardJump.png
 wizardAttack Assets/Textures/wizardAttack.png
+dogIdle Assets/Textures/dogIdle.png
+dogWalk Assets/Textures/dogWalk.png
+dogJump Assets/Textures/dogJump.png
+dogDamage Assets/Textures/dogDamage.png
+dogAttack Assets/Textures/dogAttack.png

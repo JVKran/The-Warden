@@ -286,7 +286,7 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 		sprite.setTextureRect(rectSourceSprite); 				// Set the texture of the sprite to the next frame.
 		spriteClock.restart();
 	}
-				//sf::RectangleShape hit(sf::Vector2f(rectSourceSprite.height,rectSourceSprite.width));
+				// sf::RectangleShape hit(sf::Vector2f(rectSourceSprite.height,rectSourceSprite.width));
 				// hit.setPosition(sf::Vector2f(rectSourceSprite.left,rectSourceSprite.top));
 	 			// hit.setFillColor(sf::Color(0,255,0,128));
 	 			// window.draw(hit);
