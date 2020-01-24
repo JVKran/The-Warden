@@ -66,11 +66,106 @@ void Game::display(sf::View & view){
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
-	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
+	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	characters.push_back(Character(sf::Vector2f(200,350), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<EnemyGraphics>("bush1", assets), startItems, world));
-	startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 100);
-	characters.push_back(Character(sf::Vector2f(600,350), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<PlayerGraphics>("crate", assets), startItems, world, true));
+	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+	
+	std::ifstream charactersFile("Characters/instances.txt");
+	if(!charactersFile){
+		throw fileNotFound("Characters/instances.txt");
+	}
+	std::string carname="waterBubble";
+	std::vector<sf::Vector2i> spritePlayerData;
+	std::vector<sf::Vector2i> spritePlayerAction;
+	std::vector<std::string> spritePlayerNames;
+	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+	std::string idleName="";
+	std::string idleFile="";
+	std::string jumpName="";
+	std::string jumpFile="";
+	std::string walkName="";
+	std::string walkFile="";
+	std::string attackName="";
+	std::string attackFile="";
+	std::string dieName="";
+	std::string dieFile="";
+	std::string name="";
+
+	
+	
+	std::string prevstring="";
+	sf::Vector2i position;
+	std::string filename="";
+	while (!isEmpty(charactersFile)){
+		//bool data, action, names, textureName;
+		
+		std::string currstring = "";
+
+
+		charactersFile>>currstring;
+		if((currstring.find("named")!= std::string::npos)){
+			charactersFile>>currstring;
+			name=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("idleName")!= std::string::npos)){
+			charactersFile>>currstring;
+			idleName=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("idleFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			idleFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("jumpName")!= std::string::npos)){
+			charactersFile>>currstring;
+			jumpName=currstring;
+			//std::cout<<position.x<<'\n';
+		}if((currstring.find("jumpFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			jumpFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("walkName")!= std::string::npos)){
+			charactersFile>>currstring;
+			walkName=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		if((currstring.find("walkFile")!= std::string::npos)){
+			charactersFile>>currstring;
+			walkFile=currstring;
+			//std::cout<<position.x<<'\n';
+		}
+		
+		prevstring=currstring;
+		if((currstring.find("eind")!= std::string::npos)){
+			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
+			if(name=="player"){
+				characters.push_back(Character(sf::Vector2f(600,320), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
+			}else if (name !=""){
+				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
+				characters.push_back(Character(sf::Vector2f(200,320), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
+			}
+			 idleName="";
+			 idleFile="";
+			 jumpName="";
+			 jumpFile="";
+			 walkName="";
+			 walkFile="";
+			 attackName="";
+			 attackFile="";
+			 dieName="";
+			 dieFile="";
+			 name="";
+
+			currstring="";
+			spritePlayerData.clear();
+			spritePlayerNames.clear();
+			spritePlayerAction.clear();
+		}
+
+	}
 }

@@ -5,14 +5,34 @@
 /// \brief
 /// Create an instance.
 /// \details
+/// This creates a SpriteCharacter based on its parameters.
+/// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
+/// @param spriteCharacterAction No idea.
+/// @param spriteCharacterNames All available actions to perform.
+SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile=""):
+	idleName(idleName),
+	idleFile(idleFile),
+	jumpName(jumpName),
+	jumpFile(jumpFile),
+	walkName(walkName),
+	walkFile(walkFile),
+	attackName(attackName),
+	attackFile(attackFile),
+	dieName(dieName),
+	dieFile(dieFile)
+{}
+
+/// \brief
+/// Create an instance.
+/// \details
 /// This creates a Character based on its parameters.
 /// @param position The initial position of the Character.
 /// @param input A shard pointer to an InputComponent.
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<GraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
 	position(position),
-	lootDrop(world),
+	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
 	healthBar(sf::Vector2f(health,  20)),
 	input(input),
@@ -26,6 +46,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	healthBar.setOutlineColor(sf::Color::Black);
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
+}
+
+Character::~Character(){
+	lootDrop->drop(items, experiencePoints, position);
 }
 
 /// \brief
@@ -80,22 +104,31 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	int maxColumns = 3;
 	int currentItems = 0;
 	if(isPlayer()){
-		for(std::shared_ptr<Item> item : items){
-			item->setPosition(itemPosition);
-			item->draw(window);
-			if(currentItems == selectedItem){
-				itemSelector.setPosition(itemPosition.x, itemPosition.y);
-				window.draw(itemSelector);	
+		try{
+			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+				items[i]->setPosition(itemPosition);
+				items[i]->draw(window);
+				if(currentItems == selectedItem){
+					itemSelector.setPosition(itemPosition.x, itemPosition.y);
+					window.draw(itemSelector);	
+				}
+				itemPosition.x += 25;
+				if(currentItems % maxColumns == 0){
+					itemPosition.y -= 25;
+					itemPosition.x = position.x;
+				}
+				currentItems ++;
 			}
-			itemPosition.x += 25;
-			if(currentItems % maxColumns == 0){
-				itemPosition.y -= 25;
-				itemPosition.x = position.x;
-			}
-			currentItems ++;
+		} catch(std::exception & error){
+			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
 		}
 	}
 	window.draw(healthBar);
+
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
 }
 
 void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
@@ -109,6 +142,8 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
+
+	std::cout << collisionBounds.leftCollisionBound << std::endl;
 
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
@@ -145,8 +180,8 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
 	float maxVelocity = 1;
-	float maxAcceleration = 0.005;
-	float maxJumpAcceleration = 1;
+	float maxAcceleration = 0.009;
+	float maxJumpAcceleration = 1.5;
 	if(velocity.x <= maxVelocity && direction.x > 0){
     	velocity.x += direction.x * maxAcceleration;
     }
@@ -237,6 +272,126 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 }
 
 /// \brief
+/// Draw the Character.
+/// \details
+/// This function draws the Characte in the RenderWindow and sets the View to the position
+/// of the Character to keep the player centered.
+void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
+
+	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
+		if(position != previousPosition){
+			switch(state){
+				case states::IDLE: {
+					if(position.y < previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					} else if(position.y > previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}
+					if (position.x < previousPosition.x){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
+					} else if (position.x > previousPosition.x){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
+					}
+					break;
+				}
+				case states::WALK: {
+					if(position.y < previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					} else if (position.y > previousPosition.y){
+						state = states::JUMP;
+						currentAnimation =&jumpAnimation;
+						if (position.x < previousPosition.x ){
+							isWalkingLeft=true;
+							currentAnimation->left(isWalkingLeft);
+
+						}else{
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}					}
+					if (position.x < previousPosition.x && !isWalkingLeft){
+						state = states::WALK;
+
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = true;
+						currentAnimation->left(isWalkingLeft);
+					} else if (position.x > previousPosition.x && isWalkingLeft){
+						state = states::WALK;
+						currentAnimation =&walkAnimation;
+						isWalkingLeft = false;
+						currentAnimation->left(isWalkingLeft);
+					}
+					break;
+				}
+				case states::JUMP: {
+					if(position.y == previousPosition.y){
+						state = states::IDLE;
+					}
+					if (position.x < previousPosition.x ){
+						if(!isWalkingLeft){
+							isWalkingLeft = true;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}else{
+						if(isWalkingLeft){
+							isWalkingLeft=false;
+							currentAnimation->left(isWalkingLeft);
+						}
+					}
+					break;
+				}
+				default: {
+					break;
+				}
+			}
+		} else if(state != states::IDLE){
+			state = states::IDLE;
+			currentAnimation =&idleAnimation;
+			currentAnimation->left(isWalkingLeft);
+		}
+		previousPosition = position;
+		previousTime = clock.getElapsedTime();
+	}
+	processViewChanges(view, position);
+	currentAnimation->move(sf::Vector2f(position.x,position.y));
+	currentAnimation->draw(window);
+
+}
+
+sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
+	return currentAnimation->getDimensions();
+}
+
+/// \brief
 /// Create an instance.
 /// \details
 /// This creates a GraphicsComponent based on its parameters.
@@ -270,6 +425,14 @@ sf::Vector2f Character::getPosition() const {
 /// \return Returns the bounds of the character.
 sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
+}
+
+int_fast16_t & Character::getSelectedItem(){
+	return selectedItem;
+}
+
+std::vector<std::shared_ptr<Item>> & Character::getItems(){
+	return items;
 }
 
 /// Get curent experience points.

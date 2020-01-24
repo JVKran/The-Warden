@@ -170,10 +170,15 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
 			tile.setPassageWay(!tile.isPassageWay());
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+		if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 			if(tile.isPassageWay()){
+				tile.changeSelected(!tile.isSelected());
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+			if(tile.isSelected()){
 				tile.changeTeleportPosition(sf::Mouse::getPosition(window));
-				std::cout<<"Gottem";
+				tile.changeSelected(false);
 			}
 		}
 	}

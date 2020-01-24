@@ -5,7 +5,7 @@ void MenuState::handleInput(StateDependantObjects & objects, ViewObjects & viewO
 }
 
 void MenuState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
-	objects.interface.display();
+	objects.interface.display(viewObjects.view);
 }
 
 void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {

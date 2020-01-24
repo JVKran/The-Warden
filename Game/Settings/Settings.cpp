@@ -9,8 +9,7 @@ Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::array
 	action(Action([]{}))
 	{
 		background.setTexture(assets.getTexture("background"));
-
-}
+	}
 
 void Settings::initialize(StateMachine * machine){
 	

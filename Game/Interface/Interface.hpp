@@ -9,6 +9,7 @@
 #include "StateMachine.hpp"
 #include "InterfaceElement.hpp"
 #include "ScreenObject.hpp"
+#include "World.hpp"
 
 class StateMachine;
 class Settings;
@@ -20,6 +21,8 @@ class Interface {
 		AssetManager & assets;
 		Settings & settings;
 
+		World world;
+
 		sf::RenderWindow & window;
 
 		sf::Sprite background;
@@ -28,9 +31,10 @@ class Interface {
 		Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window);
 
 		void initialize(StateMachine * machine);
+		void goToMenu(sf::View & view);
 		void handleInput();
 		void handleEvent(const sf::Event & event);
-		void display();
+		void display(sf::View & view);
 };
 
 #endif //__INTERFACE_HPP

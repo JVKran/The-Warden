@@ -7,17 +7,13 @@
 
 class Item;
 
-class LootDrop{
+class LootDrop {
 	private:
 		World & world;
 	public:
-		LootDrop(World & world):
-			world(world)
-		{}
+		LootDrop(World & world);
 
-		void drop(std::vector<std::shared_ptr<Item>> & items, int_fast16_t experience){
-			std::cout << "drop" << std::endl;
-		}
+		void drop(std::vector<std::shared_ptr<Item>> & items, int_fast16_t experience, const sf::Vector2f & position);
 };
 
 #endif // LootDrop.hpp
