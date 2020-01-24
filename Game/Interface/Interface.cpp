@@ -10,6 +10,7 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 
 void Interface::initialize(StateMachine * machine){
 	background.setTexture(assets.getTexture("background"));
+	background.setScale(2, 2);
 	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));

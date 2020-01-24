@@ -123,8 +123,8 @@ class AnimatedGraphicsComponent {
 
 		sf::Vector2f previousPosition;
 
-		enum class states {IDLE, WALK, JUMP};
-		states state = states::JUMP;
+		enum class states {IDLE, JUMP, WALK};
+		states state = states::IDLE;
 		bool isIdle = true;
 		bool isWalkingLeft = false;
 	public:
