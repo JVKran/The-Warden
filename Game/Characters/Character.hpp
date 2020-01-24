@@ -17,8 +17,8 @@ class Item;
 class LootDrop;
 
 struct CollisionBounds {
-	int_fast32_t leftCollisionBound;
-	int_fast32_t rightCollisionBound;
+	int leftCollisionBound;
+	int rightCollisionBound;
 };
 
 /// \brief
@@ -162,6 +162,7 @@ class AnimatedGraphicsComponent {
 /// The functioning of a Character is defined completely in its components; The component pattern has been used here.
 class Character {
 	private:
+		sf::Vector2f spawnPosition;
 		sf::Vector2f position;
 		sf::Vector2f velocity;
 		sf::Vector2f direction;
@@ -220,10 +221,14 @@ class Character {
 
 		int_fast16_t getExperience() const;
 		void setExperience(const int_fast16_t & experiencePointsToAdd);
+
 		int_fast8_t getHealth() const;
 		void setHealth(const int_fast8_t newHealth);
 
 		void setPosition(const sf::Vector2f & newPosition);
+		void respawn(){
+			position = spawnPosition;
+		}
 };
 
 #endif //__CHARACTER_HPP

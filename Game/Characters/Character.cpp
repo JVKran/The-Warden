@@ -31,6 +31,7 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// @param physics A shaared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
 Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
+	spawnPosition(position),
 	position(position),
 	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
@@ -61,10 +62,10 @@ Character::~Character(){
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
-	input->processItemUsage(items, this);
 	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
+	input->processItemUsage(items, this);
 	if(position.y > 700){
 		health = 0;
 	}
@@ -173,7 +174,7 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 		[&tileBounds, &hitbox, &bottomHitbox, this](Tile & tile){
 			tileBounds = tile.getBounds();
 			if(tile.getName()=="water1"){
-				if((hitbox.intersects(tileBounds) /*|| bottomHitbox.intersects(tileBounds)*/)){
+				if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds))){
 					hasResistance += true;
 	       		} 
 			}
@@ -186,12 +187,13 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 		}
 	);
 
-	for(Character & character : characters){
-		if(hitbox.intersects(character.getBounds()) && character.getPosition() != position){
-			bottomCollision += character.getBounds().intersects(bottomHitbox); 
-        	rightCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
-        	leftCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
-			topCollision += character.getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
+
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		if(hitbox.intersects(characters.at(i).getBounds()) && characters.at(i).getPosition() != position){
+			bottomCollision += characters.at(i).getBounds().intersects(bottomHitbox); 
+        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
+        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
+			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
 		}
 	}

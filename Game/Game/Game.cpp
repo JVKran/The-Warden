@@ -59,8 +59,8 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 void Game::display(sf::View & view){
 	world.draw(window, view, 0);				// First draw layer 0 of the world.
 	world.draw(window, view, 1);				// Then the first layer.
-	for(auto & character : characters){
-		character.draw(window, view);			// Then all characters.
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters[i].draw(window, view);			// Then all characters.
 	}
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
@@ -104,7 +104,7 @@ void Game::loadCharacters(){
 	
 	
 	std::string prevstring="";
-	sf::Vector2i position;
+	sf::Vector2f position;
 	std::string filename="";
 	while (!isEmpty(charactersFile)){
 		//bool data, action, names, textureName;
@@ -142,6 +142,10 @@ void Game::loadCharacters(){
 			walkName=currstring;
 			//std::cout<<position.x<<'\n';
 		}
+		if((currstring.find("position")!= std::string::npos)){
+			charactersFile>>position;
+			//std::cout<<position.x<<'\n';
+		}
 		if((currstring.find("walkFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			walkFile=currstring;
@@ -163,10 +167,10 @@ void Game::loadCharacters(){
 		if((currstring.find("eind")!= std::string::npos)){
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
-				characters.push_back(Character(sf::Vector2f(600,320), std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
+				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
 				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
-				characters.push_back(Character(sf::Vector2f(200,320), std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
+				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";
 			 idleFile="";
@@ -181,6 +185,7 @@ void Game::loadCharacters(){
 			 name="";
 
 			currstring="";
+			position = {0,0};
 			spritePlayerData.clear();
 			spritePlayerNames.clear();
 			spritePlayerAction.clear();

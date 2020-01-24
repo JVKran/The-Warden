@@ -25,8 +25,8 @@ class World {
 
 		void loadWorld();
 		void loadTile(std::ifstream & input);
-		void sortWorld();
 	public:
+		void sortWorld();
 		World(AssetManager & assets);
 
 		void saveWorld();

@@ -58,6 +58,7 @@ void World::loadWorld(const std::string & fileName){
 			std::cerr << "(!)-- Something went wrong in " << __FILE__ << " at line " << std::to_string(__LINE__) << std::endl;
 		}
 	}
+	sortWorld();
 	std::cout << "(i)-- Loaded world into memory." << std::endl;
 }
 
