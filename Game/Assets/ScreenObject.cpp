@@ -172,11 +172,11 @@ void Tile::setPassageWay(const bool newPassageWay){
 	passageWay = newPassageWay;
 }
 
-sf::Vector2i Tile::getTeleportPosition() const{
+sf::Vector2f Tile::getTeleportPosition() const{
 	return teleportPosition;
 }
 
-void Tile::changeTeleportPosition(const sf::Vector2i & newTeleportPosition){
+void Tile::changeTeleportPosition(const sf::Vector2f & newTeleportPosition){
 	if(!isPassageWay()){
 		setPassageWay(true);
 	}

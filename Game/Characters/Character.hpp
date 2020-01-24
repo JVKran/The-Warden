@@ -86,7 +86,7 @@ class InputComponent {
 			world(world),
 			characters(characters)
 		{}
-		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector< KeyBinding> & keys) = 0;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
@@ -120,32 +120,36 @@ class AnimatedGraphicsComponent {
 		sf::Sprite spriteIdle;
 		sf::Sprite spriteJump;
 		sf::Sprite spriteWalk;
+		sf::Sprite spriteAttack;
 		//SpriteCharacter characterData;
 
 		SpriteAnimation idleAnimation;
 		SpriteAnimation jumpAnimation;
 		SpriteAnimation walkAnimation;
+		SpriteAnimation attackAnimation;
 		SpriteAnimation *currentAnimation;	
 		std::map<std::string, std::vector<sf::Vector2i> > animation;
 		std::string lastAnimation;
 
 		sf::Clock clock;
 		sf::Time previousTime;
-
+		sf::Time attackTime;
 		sf::Vector2f previousPosition;
 
 		enum class states {IDLE, JUMP, WALK};
 		states state = states::IDLE;
 		bool isIdle = true;
 		bool isWalkingLeft = false;
+		bool isAttacking;
 	public:
 		AnimatedGraphicsComponent(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 			idleAnimation(assets,spriteIdle,characterData.idleName,characterData.idleFile),
 			jumpAnimation(assets,spriteJump,characterData.jumpName,characterData.jumpFile),
 			walkAnimation(assets,spriteWalk,characterData.walkName,characterData.walkFile),
+			attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 			currentAnimation(&idleAnimation)
 		{}
-
+		void setFightAnimation();
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
@@ -189,7 +193,7 @@ class Character {
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
 		~Character();
 
-		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
+		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
@@ -221,6 +225,8 @@ class Character {
 		void setExperience(const int_fast16_t & experiencePointsToAdd);
 		int_fast8_t getHealth() const;
 		void setHealth(const int_fast8_t newHealth);
+
+		void setPosition(const sf::Vector2f & newPosition);
 };
 
 #endif //__CHARACTER_HPP

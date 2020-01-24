@@ -3,7 +3,7 @@
 #include "Settings.hpp"
 
 
-Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings ):
+Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings ):
 	window( window ),
 	bindings(bindings),
 	action(Action([]{}))

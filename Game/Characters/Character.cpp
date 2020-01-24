@@ -59,7 +59,7 @@ Character::~Character(){
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
-void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys){
+void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
 	input->processItemUsage(items, this);
 	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
@@ -163,8 +163,6 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
-
-	std::cout << collisionBounds.leftCollisionBound << std::endl;
 
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.leftCollisionBound;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
@@ -299,7 +297,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 /// of the Character to keep the player centered.
 void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 
-	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50){
+	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50&&(isAttacking==false)){
 		if(position != previousPosition){
 			switch(state){
 				case states::IDLE: {
@@ -401,7 +399,15 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 		}
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
+	}else if (isAttacking==true)
+	{
+		
+		if((clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds())>500){
+			state=states::IDLE;
+			isAttacking=false;
+		}
 	}
+	
 	processViewChanges(view, position);
 	currentAnimation->move(sf::Vector2f(position.x,position.y));
 	currentAnimation->draw(window);
@@ -411,7 +417,10 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 	return currentAnimation->getDimensions();
 }
-
+void AnimatedGraphicsComponent::setFightAnimation(){
+	isAttacking=true;
+	currentAnimation=&attackAnimation;
+}
 /// \brief
 /// Create an instance.
 /// \details
@@ -511,4 +520,8 @@ int_fast8_t Character::getHealth() const{
 /// This function adds the given health points to the current amount of Character health.
 void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
+}
+
+void Character::setPosition(const sf::Vector2f & newPosition){
+	position = newPosition;
 }
