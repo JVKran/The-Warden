@@ -149,13 +149,10 @@ class AnimatedGraphicsComponent {
 			attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 			currentAnimation(&idleAnimation)
 		{}
-		void setFightAnimation();
+		virtual void setFightAnimation();
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
-		virtual void setFightAnimation(){
-			std::cout << "Fight" << std::endl;
-		}
 };
 
 /// \brief
