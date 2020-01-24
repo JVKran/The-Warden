@@ -33,9 +33,12 @@ class Game {
 		sf::RenderWindow & window;
 		std::array<KeyBinding, 3> & bindings;
 
+		const sf::Event & event; 
+		sf::View & view;
+
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings, const sf::Event & event, sf::View & view);
 		~Game(){
 			window.close();
 		}

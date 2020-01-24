@@ -51,4 +51,21 @@ class Consumable : public Item {
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
+/// \brief
+/// Block
+/// \details
+/// This class is responsible for placing blocks.
+class Block : public Item {
+	private:
+		int_fast8_t amountOfObjects;
+		const sf::Event & event;
+		World & world;
+		sf::RenderWindow & window;
+		sf::View & view;
+
+	public:
+		Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
+};
+
 #endif //Items.hpp
