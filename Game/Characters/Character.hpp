@@ -87,6 +87,8 @@ class InputComponent {
 			characters(characters)
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
+		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
+		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) {}
 };
@@ -185,6 +187,8 @@ class Character {
 		~Character();
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
+		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
+		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
 

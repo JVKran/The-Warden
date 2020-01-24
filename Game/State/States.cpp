@@ -9,14 +9,13 @@ void MenuState::display(StateDependantObjects & objects, ViewObjects & viewObjec
 }
 
 void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
-
 	objects.interface.handleEvent(viewObjects.event);
 }
 
 //-----------------------------------------------------------------------------------------------------------------//
 
 void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects){
-	objects.game.handleInput();
+	objects.game.handleInput(viewObjects.view, viewObjects.event);
 }
 
 void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
@@ -24,7 +23,7 @@ void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewOb
 }
 
 void PlayingState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
-	objects.game.handleEvent(viewObjects.event);
+	objects.game.handleEvent(viewObjects.event, viewObjects.view);
 }
 
 //-----------------------------------------------------------------------------------------------------------------//

@@ -78,6 +78,27 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	}
 }
 
+/// \brief
+/// Adds a tile
+/// \details
+/// This function calls the addTile function to add a new tile to the world.
+void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	input->addTile(event, world, window, view);
+}
+
+/// \brief
+/// Deletes a tile
+/// \details
+/// This function calls the deleteTile function to delete a 
+/// tile out of the vector in the world.
+void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
+	input->deleteTile(event, world, window, view);
+}
+
+/// \brief
+/// Handles an event
+/// \details
+/// Handles a event for a selected item
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
 }
