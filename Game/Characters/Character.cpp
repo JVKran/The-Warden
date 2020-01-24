@@ -49,7 +49,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 }
 
 Character::~Character(){
-	//lootDrop->drop(items, experiencePoints, position);
+	lootDrop->drop(items, experiencePoints, position);
 }
 
 /// \brief
@@ -448,7 +448,7 @@ sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
 }
 
-int_fast16_t & Character::getSelectedItem(){
+int_fast16_t & Character::getSelectedItemNumber(){
 	return selectedItem;
 }
 

@@ -75,9 +75,12 @@ void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderW
 
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		if(items.at(ownCharacter->getSelectedItem())->use(ownCharacter, characters)){			//If item is broken
-			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItem())));
-			ownCharacter->getSelectedItem()--;
+		if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters)){			//If item is broken
+			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItemNumber())));
+			ownCharacter->getSelectedItemNumber()--;
+		}
+		if(ownCharacter->getSelectedItem()->isWeapon()){
+			ownCharacter->getGraphics()->setFightAnimation();
 		}
 	}
 }

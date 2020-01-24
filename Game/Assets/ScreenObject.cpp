@@ -229,12 +229,17 @@ void Tile::changeSelected(const bool newSelected){
 /// @param lhs Tile to copy.
 /// \return Refrence to itself.
 Tile& Tile::operator=(Tile lhs){
-	if(&lhs != this){
-		followMouse = lhs.followMouse;
-		assetName = lhs.assetName;
-		sprite = lhs.sprite;
-		collidable = lhs.collidable;
-	}
+	followMouse = lhs.followMouse;
+	assetName = lhs.assetName;
+	sprite = lhs.sprite;
+	collidable = lhs.collidable;
+	windowLayer = lhs.windowLayer;
+	followMouse = lhs.followMouse;
+	hasBeenAdded = lhs.hasBeenAdded;
+	interactable = lhs.interactable;
+	selected = lhs.selected;
+	passageWay = lhs.passageWay;
+	teleportPosition = lhs.teleportPosition;
 	return *this;
 }
 

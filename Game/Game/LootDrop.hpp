@@ -13,7 +13,7 @@ class LootDrop {
 	public:
 		LootDrop(World & world);
 
-		void drop(std::vector<std::shared_ptr<Item>> & items, int_fast16_t experience, sf::Vector2f position);
+		void drop(std::vector<std::shared_ptr<Item>> items, int_fast16_t experience, sf::Vector2f position);
 };
 
 #endif // LootDrop.hpp

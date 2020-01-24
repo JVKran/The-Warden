@@ -2,6 +2,11 @@
 
 #include "Items.hpp"
 
+
+bool Item::isWeapon() {
+	return false;
+}
+
 /// \brief
 /// Create weapon instance.
 /// \details
@@ -43,7 +48,10 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 		}
 	}
 	return false;
+}
 
+bool Weapon::isWeapon(){
+	return true;
 }
 
 /// \brief

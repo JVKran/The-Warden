@@ -21,6 +21,7 @@ class Item : public Tile {
 			Tile(assetName, assets)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters) = 0;
+		virtual bool isWeapon();
 };
 
 /// \brief
@@ -37,6 +38,7 @@ class Weapon : public Item {
 	public:
 		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
+		virtual bool isWeapon() override;
 };
 
 /// \brief

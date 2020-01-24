@@ -149,6 +149,9 @@ class AnimatedGraphicsComponent {
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
+		virtual void setFightAnimation(){
+			std::cout << "Fight" << std::endl;
+		}
 };
 
 /// \brief
@@ -192,7 +195,14 @@ class Character {
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
 
-		int_fast16_t & getSelectedItem();
+		int_fast16_t & getSelectedItemNumber();
+
+		std::shared_ptr<Item> getSelectedItem(){
+			return items[selectedItem];
+		}
+		std::shared_ptr<AnimatedGraphicsComponent> getGraphics(){
+			return graphics;
+		}
 
 		std::vector<std::shared_ptr<Item>> & getItems();
 		bool isPlayer() const;
