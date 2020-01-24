@@ -77,11 +77,22 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 /// \details
 /// This function creates a new Tile object as long as amountOfObjects is bigger than 0	
 bool Block::use(Character * character, std::vector<Character> & characters){
+	std::vector<Tile> & objects = world.getTiles();
+
+	if(true){
+		for(Tile & object : objects){
+			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
+				objects.erase( std::find(objects.begin(), objects.end(), object) );
+				amountOfObjects++;
+				return false;
+			}
+		}
+	}
 	if(amountOfObjects > 0){										//can create new objects as long as there are more than 0 amountOfObjects
 		characters.at(0).addTile(event, world, window, view);		//creates new crate object
 		amountOfObjects--;											//decreases the amount of objects that can be created					
 		return false;												//return false as long as we can create objects
 	}else{
-		return true;												//return true when there are no objects to create anymore
+		return false;												//return true when there are no objects to create anymore
 	}
 }
