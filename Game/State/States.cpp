@@ -10,7 +10,7 @@ void MenuState::display(StateDependantObjects & objects, ViewObjects & viewObjec
 
 void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
 
-	objects.interface.handleEvent(viewObjects.event);
+	objects.interface.handleEvent(viewObjects.event, viewObjects.view);
 }
 
 //-----------------------------------------------------------------------------------------------------------------//
@@ -24,6 +24,19 @@ void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewOb
 }
 
 void PlayingState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
+}
+//-----------------------------------------------------------------------------------------------------------------//
+
+void PauseState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects){
+	objects.interface.pauseSettings(viewObjects.event, viewObjects.view);
+}
+
+void PauseState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
+	objects.game.display(viewObjects.view);
+	objects.interface.display(viewObjects.view);
+}
+
+void PauseState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
 }
 
 //-----------------------------------------------------------------------------------------------------------------//
@@ -53,3 +66,4 @@ void SettingsState::display(StateDependantObjects & objects, ViewObjects & viewO
 void SettingsState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {
 	objects.settings.handleEvent(viewObjects.event);
 }
+

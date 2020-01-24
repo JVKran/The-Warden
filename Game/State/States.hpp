@@ -28,6 +28,13 @@ class PlayingState : public State {
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
 };
 
+class PauseState : public State {
+	public:
+		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
+		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
+		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+};
+
 class EditingState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;

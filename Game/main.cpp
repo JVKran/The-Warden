@@ -69,7 +69,7 @@ int main(){
 		//sf::sleep(sf::milliseconds(5));
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-			interface.goToMenu(view);
+			interface.goToPauseMenu();
 			//return 0;
 		}
 

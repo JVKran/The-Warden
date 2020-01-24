@@ -13,9 +13,11 @@ class InterfaceElement {
 
 		bool comparePosition( sf::Vector2f position );
 
-		bool contains( sf::RenderWindow & window );
+		bool contains( sf::RenderWindow & window, sf::View & view );
 
 		void changeState();
+
+		void setPosition(const sf::Vector2f & position);
 
 		void draw( sf::RenderWindow & window );
 	};

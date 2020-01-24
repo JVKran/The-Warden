@@ -11,6 +11,7 @@
 #include "ScreenObject.hpp"
 #include "World.hpp"
 
+class Game;
 class StateMachine;
 class Settings;
 
@@ -25,15 +26,20 @@ class Interface {
 
 		sf::RenderWindow & window;
 
+		bool pauseGame=false;
+
 		sf::Sprite background;
 		std::vector<InterfaceElement> interfaceElements;
+		std::vector<InterfaceElement> pauseElements;
+		sf::RectangleShape pauseBackground;
 	public:
 		Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window);
 
 		void initialize(StateMachine * machine);
-		void goToMenu(sf::View & view);
+		void goToPauseMenu();
+		void pauseSettings(const sf::Event & event, sf::View & view);
 		void handleInput();
-		void handleEvent(const sf::Event & event);
+		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(sf::View & view);
 };
 
