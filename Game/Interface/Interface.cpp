@@ -8,8 +8,8 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	world(assets),
 	window(window)
 { 
-	//world.loadWorld("Interface/backgroundWorld.txt");
-	world.loadWorld("World/world.txt");
+	world.loadWorld("Interface/backgroundWorld.txt");
+	//world.loadWorld("World/world.txt");
  }
 
 void Interface::initialize(StateMachine * machine){
@@ -44,14 +44,14 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 
 	for(InterfaceElement& element : pauseElements){
 		if(element.contains(window,view)){
-			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+700,position.y+440))){				
+			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+600,position.y+440))){				
 				
 				view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
 				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
 			}
-			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+1000,position.y+440))){		
+			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+900,position.y+440))){		
 				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();
