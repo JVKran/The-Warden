@@ -8,7 +8,7 @@
 /// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
 /// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
 /// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
-Game::Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings):
+Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings):
 	world(assets),
 	window(window),
 	bindings(bindings)

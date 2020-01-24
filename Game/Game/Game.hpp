@@ -31,11 +31,11 @@ class Game {
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 
 		sf::RenderWindow & window;
-		std::array<KeyBinding, 3> & bindings;
+		std::vector<KeyBinding> & bindings;
 
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets, std::array<KeyBinding, 3> & bindings);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings);
 		~Game(){
 			window.close();
 		}

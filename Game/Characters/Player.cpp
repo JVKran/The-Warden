@@ -33,7 +33,7 @@ PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & ass
 	GraphicsComponent(assetName, assets)
 {}
 
-void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys){
+void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
 	if(sf::Keyboard::isKeyPressed(keys[0].getKey())){
@@ -44,6 +44,9 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	}
 	if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
 		direction.y = -1;
+	}
+	if(sf::Keyboard::isKeyPressed(keys[3].getKey())){
+
 	}
 }
 
@@ -85,5 +88,16 @@ void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, C
 void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem){
 	if(event.type == sf::Event::MouseWheelMoved){	
 		selectedItem += event.mouseWheel.delta;
+	}
+}
+
+void PlayerInput::handleInteraction(World & world){
+	std::vector<Tile> & objects = world.getTiles();
+	for(Tile & object : objects){
+		if(object.isInteractable()){
+			if(object.isPassageWay()){
+				std::cout<<"Deur\n";
+			}
+		}
 	}
 }

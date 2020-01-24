@@ -59,7 +59,7 @@ Character::~Character(){
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
-void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys){
+void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
 	input->processItemUsage(items, this);
 	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
@@ -511,4 +511,8 @@ int_fast8_t Character::getHealth() const{
 /// This function adds the given health points to the current amount of Character health.
 void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
+}
+
+void Character::setPosition(const sf::Vector2f & newPosition){
+	position = newPosition;
 }

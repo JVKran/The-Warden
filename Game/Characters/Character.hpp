@@ -86,7 +86,7 @@ class InputComponent {
 			world(world),
 			characters(characters)
 		{}
-		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::array< KeyBinding, 3 > & keys) = 0;
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector< KeyBinding> & keys) = 0;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
@@ -186,7 +186,7 @@ class Character {
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
 		~Character();
 
-		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::array< KeyBinding, 3 > & keys);
+		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
@@ -211,6 +211,8 @@ class Character {
 		void setExperience(const int_fast16_t & experiencePointsToAdd);
 		int_fast8_t getHealth() const;
 		void setHealth(const int_fast8_t newHealth);
+
+		void setPosition(const sf::Vector2f & newPosition);
 };
 
 #endif //__CHARACTER_HPP
