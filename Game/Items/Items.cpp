@@ -44,6 +44,7 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 						std::cout << "(!)-- Something went wrong..." << std::endl;
 					}
 				}
+				return true;
 			}
 		}
 	}

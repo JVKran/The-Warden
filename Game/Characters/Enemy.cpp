@@ -21,8 +21,7 @@ EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 }
 
 void EnemyInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
-	items.at(0)->use(ownCharacter, characters);
-	if(ownCharacter->getSelectedItem()->isWeapon()){
+	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
 		ownCharacter->getGraphics()->setFightAnimation();
 	}
 }
