@@ -10,6 +10,16 @@
 #include "SpriteAnimation.hpp"
 #include <iostream>
 #include <exception>
+#include "opencv2/objdetect.hpp"
+#include "opencv2/videoio.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include <iostream>
+#include <stdio.h>
+#include <thread> 
+
+using namespace std;
+using namespace cv;
 
 class PlayerInput : public InputComponent {
 	public:
@@ -27,6 +37,28 @@ class PlayerInput : public InputComponent {
 			world = lhs.world;
 			characters = lhs.characters;
 			return *this;
+		}
+};
+
+class InteractiveInput : public PlayerInput {
+	private:
+	    bool isCreated = false;
+	    static void detectPosition( sf::Vector2f & direction );
+	public:
+		InteractiveInput(World & world, std::vector<Character> & characters):
+			PlayerInput(world, characters)
+		{}
+
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
+			if(!isCreated){
+				thread inputThread(detectPosition, std::ref(direction));
+				inputThread.detach();
+				isCreated = true;
+				std::cout << "Detached" << std::endl;
+			}
+			if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
+				direction.y = -1;
+			}
 		}
 };
 

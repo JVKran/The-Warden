@@ -168,7 +168,7 @@ void Game::loadCharacters(){
 		if((currstring.find("eind")!= std::string::npos)){
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
-				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
+				characters.push_back(Character(position, std::make_shared<InteractiveInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
 				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));

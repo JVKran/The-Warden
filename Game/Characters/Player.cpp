@@ -2,6 +2,9 @@
 #include <iostream>
 #include "Player.hpp"
 
+using namespace std;
+using namespace cv;
+
 /// \brief
 /// Draw the Character.
 /// \details
@@ -101,6 +104,63 @@ void PlayerInput::handleInteraction(World & world){
 			if(tiles.at(i).isPassageWay()){
 				std::cout<<"Deur\n";
 			}
+		}
+	}
+}
+
+void InteractiveInput::detectPosition( sf::Vector2f & direction ){
+    String face_cascade_name = "Characters/haarcascade_frontalface_alt.xml";
+	String eyes_cascade_name = "Characters/haarcascade_eye_tree_eyeglasses.xml";
+	CascadeClassifier face_cascade;
+	CascadeClassifier eyes_cascade;
+	String window_name = "Capture - Face detection";
+
+	VideoCapture capture;
+	Mat frame;
+    //-- Detect faces
+    int xPoint;
+    int yPoint;
+
+    if( !face_cascade.load( face_cascade_name ) ){ printf("--(!)Error loading face cascade\n");};
+    if( !eyes_cascade.load( eyes_cascade_name ) ){ printf("--(!)Error loading eyes cascade\n");};
+    //-- 2. Read the video stream
+    capture.open( -1 );
+    if ( ! capture.isOpened() ) { printf("--(!)Error opening video capture\n");}
+
+	while(capture.read(frame)){
+		if( frame.empty() ){
+			printf(" --(!) No captured frame -- Break!");
+		} else {
+			std::vector<Rect> faces;
+		    Mat frame_gray;
+		    cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
+		    equalizeHist( frame_gray, frame_gray );
+		    face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
+			for ( size_t i = 0; i < faces.size(); i++ ){
+		        Point center( faces[i].x + faces[i].width/2, faces[i].y + faces[i].height/2 );
+		        xPoint = center.x;
+		        yPoint = center.y;
+		        ellipse( frame, center, Size( faces[i].width/2, faces[i].height/2 ), 0, 0, 360, Scalar( 255, 0, 255 ), 4, 8, 0 );
+		        Mat faceROI = frame_gray( faces[i] );
+		        std::vector<Rect> eyes;
+		        //-- In each face, detect eyes
+		        eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CASCADE_SCALE_IMAGE, Size(30, 30) );
+		        for ( size_t j = 0; j < eyes.size(); j++ )
+		        {
+		            Point eye_center( faces[i].x + eyes[j].x + eyes[j].width/2, faces[i].y + eyes[j].y + eyes[j].height/2 );
+		            int radius = cvRound( (eyes[j].width + eyes[j].height)*0.25 );
+		            circle( frame, eye_center, radius, Scalar( 255, 0, 0 ), 4, 8, 0 );
+		        }
+			}
+		    if(xPoint < 200){
+		    	direction.x = 1;
+		    } else if (xPoint > 500){
+		    	direction.x = -1;
+		    } else if(xPoint != 0) {
+		    	direction.x = 0;
+		    } else {
+		    	std::cout << "Fail" << std::endl;
+		    }	
 		}
 	}
 }
