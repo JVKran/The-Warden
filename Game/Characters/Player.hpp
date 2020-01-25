@@ -56,9 +56,6 @@ class InteractiveInput : public PlayerInput {
 				isCreated = true;
 				std::cout << "Detached" << std::endl;
 			}
-			if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
-				direction.y = -1;
-			}
 		}
 };
 

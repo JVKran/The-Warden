@@ -153,14 +153,23 @@ void InteractiveInput::detectPosition( sf::Vector2f & direction ){
 		        }
 			}
 		    if(xPoint < 200){
+		    	std::cout << 'r' << std::endl;
 		    	direction.x = 1;
 		    } else if (xPoint > 500){
+		    	std::cout << 'l' << std::endl;
 		    	direction.x = -1;
 		    } else if(xPoint != 0) {
+		    	std::cout << 'm' << std::endl;
 		    	direction.x = 0;
 		    } else {
 		    	std::cout << "Fail" << std::endl;
-		    }	
+		    }
+		    if(yPoint < 300){
+		    	direction.y = -1;
+		    	std::cout << "Jump" << std::endl;
+		    } else {
+		    	direction.y = 0;
+		    }
 		}
 	}
 }

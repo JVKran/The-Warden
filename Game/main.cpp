@@ -57,8 +57,6 @@ int main(){
 			lag -= simulationSpeed;
 		}
 
-		std::cout << current - clock.getElapsedTime().asMilliseconds() << std::endl;
-
 		window.clear();
 		window.setView(view);
 		machine.display(event, view);
