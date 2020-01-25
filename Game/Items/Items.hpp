@@ -20,7 +20,7 @@ class Item : public Tile {
 		Item(const std::string assetName, AssetManager & assets):
 			Tile(assetName, assets)
 		{}
-		virtual bool use(Character * character, std::vector<Character> & characters) = 0;
+		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
 		virtual bool isWeapon();
 };
 

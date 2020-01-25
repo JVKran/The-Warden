@@ -62,7 +62,7 @@ Character::~Character(){
 /// @param world The World to perform physics calculations on.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
-	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
+	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
@@ -153,7 +153,7 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	// window.draw(hit);
 }
 
-void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
+void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
@@ -195,6 +195,14 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
         	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
+		}
+	}
+
+	std::vector<std::shared_ptr<Item>> & items = world.getItems();
+
+	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
+			characterItems.push_back(items.at(i));
 		}
 	}
 }

@@ -58,7 +58,7 @@ class PhysicsComponent {
 		bool hasResistance = false;
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
-		virtual void processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters);
+		virtual void processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 
 		PhysicsComponent & operator=(PhysicsComponent lhs){

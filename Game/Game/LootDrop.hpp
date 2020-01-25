@@ -4,8 +4,10 @@
 #include <vector>
 #include "Items.hpp"
 #include <memory>
+#include "World.hpp"
 
 class Item;
+class World;
 
 class LootDrop {
 	private:

@@ -138,6 +138,10 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 			}
 		}
 	);
+
+	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+		items.at(i)->draw(window);
+	}
 }
 
 /// \brief
@@ -161,6 +165,10 @@ void World::addTile(std::string object, sf::Vector2f position){
 	objectToAdd.setWindowLayer(1);
 	addTile(objectToAdd);
 	objectToAdd.makePartOfWorld(true);
+}
+
+void World::addItem(std::shared_ptr<Item> item){
+	items.push_back(item);
 }
 
 /// \brief
