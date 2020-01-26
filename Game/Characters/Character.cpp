@@ -75,8 +75,8 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
-	if(position.y > 700){
-		health = 0;
+	if(position.y > 600){
+		respawn();
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 	if(timeDifference >= 3.0 && timeDifference <= 5.5){
