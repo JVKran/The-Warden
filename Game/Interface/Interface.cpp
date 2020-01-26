@@ -12,23 +12,17 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	//world.loadWorld("World/world.txt");
  }
 
-void Interface::initialize(StateMachine * machine){
+void Interface::initialize(StateMachine * newMachine){
 	
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(-1,-1), float(0)), Action( [machine] {machine->changeState(std::make_shared<PauseState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [newMachine]{ newMachine->changeState(std::make_shared<EditingState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [newMachine] {newMachine->changeState(std::make_shared<SettingsState>());})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(-1,-1), float(0)), Action( [newMachine] {newMachine->changeState(std::make_shared<PauseState>());})));
 	//Pause elements
-	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [machine] {machine->changeState(std::make_shared<MenuState>());})));
-	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [machine] {machine->changeState(std::make_shared<PlayingState>());})));
+	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [newMachine] {newMachine->changeState(std::make_shared<MenuState>());})));
+	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [newMachine] {newMachine->changeState(std::make_shared<PlayingState>());})));
 
-}
-
-void Interface::goToPauseMenu(sf::View & view){ 
-	interfaceElements[3].changeState();
-
-	//view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
-
+	machine = newMachine;
 }
 
 void Interface::pauseSettings( const sf::Event & event, sf::View & view){
@@ -44,8 +38,7 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 
 	for(InterfaceElement& element : pauseElements){
 		if(element.contains(window,view)){
-			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+600,position.y+440))){				
-				
+			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+600,position.y+440))){
 				view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
 				std::cout<<"go menu\n";
 				pauseGame = false;
@@ -63,17 +56,8 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 
 
 void Interface::handleInput(){
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::G)){
-		game.startWorld("World/world.txt");
-		interfaceElements[0].changeState();
-	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
-		 editor.selectWorld("World/world.txt");
-		interfaceElements[1].changeState();
-	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		interfaceElements[2].changeState();
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+		machine->changeState(std::make_shared<PauseState>());
 	}
 }
 

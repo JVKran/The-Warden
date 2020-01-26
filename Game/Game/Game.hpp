@@ -15,6 +15,7 @@
 #include "keybinding.hpp"
 #include <memory>
 #include <array>
+#include "Audio.hpp"
 
 /// \brief
 /// Game

@@ -10,6 +10,22 @@ StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, 
 
 void StateMachine::changeState(std::shared_ptr<State> newState){
 	currentState = newState;
+	switch(currentState->getName()){
+		case 2: {
+			backgroundMusic.playMusic();
+			editingMusic.pauseMusic();
+			break;
+		}
+		case 4: {
+			backgroundMusic.pauseMusic();
+			editingMusic.playMusic();
+		}
+		default: {
+			backgroundMusic.pauseMusic();
+			editingMusic.pauseMusic();
+			break;
+		}
+	}
 }
 
 std::shared_ptr<State> StateMachine::getCurrentState(){

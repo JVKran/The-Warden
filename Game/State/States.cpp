@@ -15,6 +15,7 @@ void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewO
 //-----------------------------------------------------------------------------------------------------------------//
 
 void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects){
+	objects.interface.handleInput();
 	objects.game.handleInput(viewObjects.view, viewObjects.event);
 }
 
@@ -42,6 +43,7 @@ void PauseState::handleEvent(StateDependantObjects & objects, ViewObjects & view
 //-----------------------------------------------------------------------------------------------------------------//
 
 void EditingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) {
+	objects.interface.handleInput();
 	objects.editor.handleInput(viewObjects.view);
 }
 

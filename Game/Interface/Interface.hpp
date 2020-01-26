@@ -21,6 +21,7 @@ class Interface {
 		Editor & editor;
 		AssetManager & assets;
 		Settings & settings;
+		StateMachine * machine;
 
 		World world;
 
@@ -35,8 +36,7 @@ class Interface {
 	public:
 		Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window);
 
-		void initialize(StateMachine * machine);
-		void goToPauseMenu(sf::View& view);
+		void initialize(StateMachine * newMachine);
 		void pauseSettings(const sf::Event & event, sf::View & view);
 		void handleInput();
 		void handleEvent(const sf::Event & event, sf::View & view);

@@ -43,6 +43,8 @@ struct ViewObjects {
 class StateMachine {
 	private:
 		StateDependantObjects stateDependantObjects;
+		Music backgroundMusic = Music("background.wav");
+		Music editingMusic = Music("editingBackground.wav");
 
 		std::shared_ptr<State> currentState;
 	public:

@@ -61,14 +61,6 @@ int main(){
 		window.setView(view);
 		machine.display(event, view);
 		window.display();
-		//lastFrame = clock.getElapsedTime().asMilliseconds();
-
-		//sf::sleep(sf::milliseconds(5));
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-			interface.goToPauseMenu(view);
-
-		}
 
 	}
 
