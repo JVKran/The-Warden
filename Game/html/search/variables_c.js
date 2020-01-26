@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['windowlayer',['windowLayer',['../class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5',1,'ScreenObject']]],
-  ['world',['world',['../class_editor.html#a30368d993935c2f8cd001ef885840770',1,'Editor::world()'],['../class_game.html#ad0070f4acde4e5fc774df02245809b90',1,'Game::world()']]],
-  ['worldfilename',['worldFileName',['../class_world.html#ac45cf87eaa09e4b7312d67583c276b7c',1,'World']]]
+  ['passageway',['passageWay',['../class_tile.html#a21779e897ad55e56fe2c8c4e0efc21af',1,'Tile']]],
+  ['physics',['physics',['../class_character.html#adefc0615066a7b4544383e0e214e23be',1,'Character']]],
+  ['position',['position',['../class_character.html#ae052b694df2c91c125174ef6ee64ddc9',1,'Character']]],
+  ['previousposition',['previousPosition',['../class_animated_graphics_component.html#a7a5655442cf3670eabf0f3802fb3fd7f',1,'AnimatedGraphicsComponent']]],
+  ['previoustime',['previousTime',['../class_animated_graphics_component.html#a729a15e04b24855b3b839d34b0b01e55',1,'AnimatedGraphicsComponent']]]
 ];

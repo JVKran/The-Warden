@@ -87,8 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a37089ab724683cd918638cc5e5cfd01b"><td class="memItemLeft" align="right" valign="top"><a id="a37089ab724683cd918638cc5e5cfd01b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AnimatedGraphicsComponent</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, <a class="el" href="struct_sprite_character.html">SpriteCharacter</a> &amp;characterData)</td></tr>
 <tr class="separator:a37089ab724683cd918638cc5e5cfd01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9798c6e23782b1a4078431396f5c88f6"><td class="memItemLeft" align="right" valign="top"><a id="a9798c6e23782b1a4078431396f5c88f6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setFightAnimation</b> ()</td></tr>
+<tr class="memitem:a9798c6e23782b1a4078431396f5c88f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a9798c6e23782b1a4078431396f5c88f6">setFightAnimation</a> ()</td></tr>
+<tr class="memdesc:a9798c6e23782b1a4078431396f5c88f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set fight animation.  <a href="#a9798c6e23782b1a4078431396f5c88f6">More...</a><br /></td></tr>
 <tr class="separator:a9798c6e23782b1a4078431396f5c88f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c151d775b46d23f9cbafe1d196862e4"><td class="memItemLeft" align="right" valign="top"><a id="a9c151d775b46d23f9cbafe1d196862e4"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processViewChanges</b> (sf::View &amp;view, const sf::Vector2f &amp;position)</td></tr>
@@ -96,8 +96,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processViewCh
 <tr class="memitem:a0ee69fa04fc64e00dc921497bc87c9e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a0ee69fa04fc64e00dc921497bc87c9e5">processGraphics</a> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;position, sf::View &amp;view)</td></tr>
 <tr class="memdesc:a0ee69fa04fc64e00dc921497bc87c9e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#a0ee69fa04fc64e00dc921497bc87c9e5">More...</a><br /></td></tr>
 <tr class="separator:a0ee69fa04fc64e00dc921497bc87c9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a79196befdc59a2cedea0cfad468d4"><td class="memItemLeft" align="right" valign="top"><a id="af6a79196befdc59a2cedea0cfad468d4"></a>
-virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> ()</td></tr>
+<tr class="memitem:af6a79196befdc59a2cedea0cfad468d4"><td class="memItemLeft" align="right" valign="top">virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#af6a79196befdc59a2cedea0cfad468d4">getDimensions</a> ()</td></tr>
+<tr class="memdesc:af6a79196befdc59a2cedea0cfad468d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get dimensions of animation.  <a href="#af6a79196befdc59a2cedea0cfad468d4">More...</a><br /></td></tr>
 <tr class="separator:af6a79196befdc59a2cedea0cfad468d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
@@ -144,36 +144,70 @@ std::map&lt; std::string, std::vector&lt; sf::Vector2i &gt; &gt;&#160;</td><td c
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lastAnimation</b></td></tr>
 <tr class="separator:a97259f0cbdcb3ba21ffe9799fc33a9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66c6f4dfeac3672de6dade7e88f03d0a"><td class="memItemLeft" align="right" valign="top"><a id="a66c6f4dfeac3672de6dade7e88f03d0a"></a>
-sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
+sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a66c6f4dfeac3672de6dade7e88f03d0a">clock</a></td></tr>
+<tr class="memdesc:a66c6f4dfeac3672de6dade7e88f03d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The clock used to determine when to change to the next sprite in the spritesheet. <br /></td></tr>
 <tr class="separator:a66c6f4dfeac3672de6dade7e88f03d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a729a15e04b24855b3b839d34b0b01e55"><td class="memItemLeft" align="right" valign="top"><a id="a729a15e04b24855b3b839d34b0b01e55"></a>
-sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>previousTime</b></td></tr>
+sf::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a729a15e04b24855b3b839d34b0b01e55">previousTime</a></td></tr>
+<tr class="memdesc:a729a15e04b24855b3b839d34b0b01e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last time the sprite changed. <br /></td></tr>
 <tr class="separator:a729a15e04b24855b3b839d34b0b01e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af26386cbff96d68f713466c562fb514f"><td class="memItemLeft" align="right" valign="top"><a id="af26386cbff96d68f713466c562fb514f"></a>
-sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>attackTime</b></td></tr>
+sf::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#af26386cbff96d68f713466c562fb514f">attackTime</a></td></tr>
+<tr class="memdesc:af26386cbff96d68f713466c562fb514f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time an attack should take. <br /></td></tr>
 <tr class="separator:af26386cbff96d68f713466c562fb514f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a5655442cf3670eabf0f3802fb3fd7f"><td class="memItemLeft" align="right" valign="top"><a id="a7a5655442cf3670eabf0f3802fb3fd7f"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>previousPosition</b></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a7a5655442cf3670eabf0f3802fb3fd7f">previousPosition</a></td></tr>
+<tr class="memdesc:a7a5655442cf3670eabf0f3802fb3fd7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The previous position of the sprite. <br /></td></tr>
 <tr class="separator:a7a5655442cf3670eabf0f3802fb3fd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a100c5c44d40aa387c31077bc256f01c7"><td class="memItemLeft" align="right" valign="top"><a id="a100c5c44d40aa387c31077bc256f01c7"></a>
-states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::IDLE</td></tr>
+states&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a100c5c44d40aa387c31077bc256f01c7">state</a> = states::IDLE</td></tr>
+<tr class="memdesc:a100c5c44d40aa387c31077bc256f01c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial state. <br /></td></tr>
 <tr class="separator:a100c5c44d40aa387c31077bc256f01c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4f28a881c6ed873ff50fd85cd14723b"><td class="memItemLeft" align="right" valign="top"><a id="ad4f28a881c6ed873ff50fd85cd14723b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIdle</b> = true</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#ad4f28a881c6ed873ff50fd85cd14723b">isIdle</a> = true</td></tr>
+<tr class="memdesc:ad4f28a881c6ed873ff50fd85cd14723b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not the character is standing still. <br /></td></tr>
 <tr class="separator:ad4f28a881c6ed873ff50fd85cd14723b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3b82af8bcbce425eb8ca12f9819a859"><td class="memItemLeft" align="right" valign="top"><a id="ab3b82af8bcbce425eb8ca12f9819a859"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWalkingLeft</b> = false</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#ab3b82af8bcbce425eb8ca12f9819a859">isWalkingLeft</a> = false</td></tr>
+<tr class="memdesc:ab3b82af8bcbce425eb8ca12f9819a859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not the character is walking left. <br /></td></tr>
 <tr class="separator:ab3b82af8bcbce425eb8ca12f9819a859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a316a2366d40a55afd4e932bdaa5a9583"><td class="memItemLeft" align="right" valign="top"><a id="a316a2366d40a55afd4e932bdaa5a9583"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAttacking</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animated_graphics_component.html#a316a2366d40a55afd4e932bdaa5a9583">isAttacking</a></td></tr>
+<tr class="memdesc:a316a2366d40a55afd4e932bdaa5a9583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not the character is attacking. <br /></td></tr>
 <tr class="separator:a316a2366d40a55afd4e932bdaa5a9583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Graphicscomponent for Characters. </p>
-<p>This class is responsible for managing all graphics related actions.</p>
-<p>Graphicscomponent for Characters.</p>
-<p>This class is responsible for managing all graphics related actions. </p>
+<p>This class is responsible for managing all graphics related actions for a given sprite sheet. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af6a79196befdc59a2cedea0cfad468d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6a79196befdc59a2cedea0cfad468d4">&#9670;&nbsp;</a></span>getDimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f AnimatedGraphicsComponent::getDimensions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get dimensions of animation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The dimensions of the currently showing animation. </dd></dl>
+
+</div>
+</div>
 <a id="a0ee69fa04fc64e00dc921497bc87c9e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ee69fa04fc64e00dc921497bc87c9e5">&#9670;&nbsp;</a></span>processGraphics()</h2>
 
@@ -215,7 +249,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAttacking</b></td><
 </div><div class="memdoc">
 
 <p>Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
-<p>This function draws the Characte in the RenderWindow and sets the View to the position of the <a class="el" href="class_character.html" title="Character. ">Character</a> to keep the player centered. </p>
+<p>This function draws the <a class="el" href="class_character.html" title="Character. ">Character</a> in the RenderWindow and processes animation changes based on state changes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow to draw itself into. </td></tr>
+    <tr><td class="paramname">position</td><td>The position of the character to draw. </td></tr>
+    <tr><td class="paramname">view</td><td>The view to use for setting the position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9798c6e23782b1a4078431396f5c88f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9798c6e23782b1a4078431396f5c88f6">&#9670;&nbsp;</a></span>setFightAnimation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimatedGraphicsComponent::setFightAnimation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set fight animation. </p>
+<p>This function sets the current animation to the fight animation. </p>
 
 </div>
 </div>
@@ -226,7 +295,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAttacking</b></td><
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:03:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

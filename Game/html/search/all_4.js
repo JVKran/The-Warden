@@ -8,5 +8,6 @@ var searchData=
   ['endoffile',['endOfFile',['../classend_of_file.html',1,'']]],
   ['enemygraphics',['EnemyGraphics',['../class_enemy_graphics.html',1,'']]],
   ['enemyinput',['EnemyInput',['../class_enemy_input.html',1,'']]],
-  ['enemyphysics',['EnemyPhysics',['../class_enemy_physics.html',1,'']]]
+  ['enemyphysics',['EnemyPhysics',['../class_enemy_physics.html',1,'']]],
+  ['experiencepoints',['experiencePoints',['../class_character.html#a0b633cc3e8550359c4783053904209b4',1,'Character']]]
 ];

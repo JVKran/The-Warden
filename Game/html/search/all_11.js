@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['unknowncolor',['unknownColor',['../classunknown_color.html',1,'']]],
-  ['unknownshape',['unknownShape',['../classunknown_shape.html',1,'']]],
-  ['update',['update',['../class_character.html#a4fc634f6e0ffec4bad09c11932423d75',1,'Character']]],
-  ['use',['use',['../class_consumable.html#a4b99311770c77c52a45d7b599f26660b',1,'Consumable']]]
+  ['tekst_2ehpp',['tekst.hpp',['../tekst_8hpp.html',1,'']]],
+  ['teleportposition',['teleportPosition',['../class_tile.html#ae937a22063a2cf8bf5bfce01f7050acb',1,'Tile']]],
+  ['text',['Text',['../class_text.html',1,'Text'],['../class_text.html#a62e41ffb60cfcb1df626fc4b29056d75',1,'Text::Text()']]],
+  ['texturemap',['textureMap',['../class_asset_manager.html#a1c82f39e9dd5f2418813f16e2dcfbee2',1,'AssetManager']]],
+  ['tile',['Tile',['../class_tile.html',1,'Tile'],['../class_tile.html#a9ea72fbe4159c00b7883b00498e41568',1,'Tile::Tile()']]],
+  ['tiles',['tiles',['../class_world.html#a6aeacfe70531e5eae0b5c42216e447d2',1,'World']]],
+  ['timedifference',['timeDifference',['../class_character.html#a8d7a058411c9a83004b9bcb2053f502b',1,'Character']]]
 ];
