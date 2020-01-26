@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['physics',['physics',['../class_character.html#adefc0615066a7b4544383e0e214e23be',1,'Character']]],
-  ['physicscomponent',['PhysicsComponent',['../class_physics_component.html',1,'']]],
-  ['player_2ecpp',['Player.cpp',['../_player_8cpp.html',1,'']]],
-  ['player_2ehpp',['Player.hpp',['../_player_8hpp.html',1,'']]],
-  ['playergraphics',['PlayerGraphics',['../class_player_graphics.html',1,'']]],
-  ['playerinput',['PlayerInput',['../class_player_input.html',1,'']]],
-  ['processgraphics',['processGraphics',['../class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571',1,'PlayerGraphics']]]
+  ['objects',['objects',['../class_editor.html#a955c712f6f646e57011bc728457e606a',1,'Editor']]],
+  ['operator_3c',['operator&lt;',['../class_tile.html#ab7d6e7de791638e2b68965db73cb41b1',1,'Tile']]],
+  ['operator_3d',['operator=',['../class_tile.html#aa262392457db03666e1b474e1d8486fd',1,'Tile']]],
+  ['operator_3d_3d',['operator==',['../class_tile.html#ad1233683299f3a7c36169dd1279d2f45',1,'Tile']]]
 ];

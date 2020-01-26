@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['world_2ecpp',['World.cpp',['../_world_8cpp.html',1,'']]],
-  ['world_2ehpp',['World.hpp',['../_world_8hpp.html',1,'']]]
+  ['screenobject_2ecpp',['ScreenObject.cpp',['../_screen_object_8cpp.html',1,'']]],
+  ['screenobject_2ehpp',['ScreenObject.hpp',['../_screen_object_8hpp.html',1,'']]],
+  ['settings_2ecpp',['Settings.cpp',['../_settings_8cpp.html',1,'']]],
+  ['settings_2ehpp',['Settings.hpp',['../_settings_8hpp.html',1,'']]],
+  ['spriteanimation_2ecpp',['SpriteAnimation.cpp',['../_sprite_animation_8cpp.html',1,'']]]
 ];

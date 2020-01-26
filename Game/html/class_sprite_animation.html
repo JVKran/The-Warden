@@ -69,9 +69,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a549012e697046e6e1bed4d1dbcbff654"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#a549012e697046e6e1bed4d1dbcbff654">SpriteAnimation</a> (sf::Sprite &amp;sprite, sf::Texture &amp;texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, sf::Vector2i scale=sf::Vector2i{1, 1}, int missingRow=0, float animationSpeed=0.1f)</td></tr>
-<tr class="memdesc:a549012e697046e6e1bed4d1dbcbff654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a549012e697046e6e1bed4d1dbcbff654">More...</a><br /></td></tr>
-<tr class="separator:a549012e697046e6e1bed4d1dbcbff654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12489b9720ad1e0291b5b403bb99a12b"><td class="memItemLeft" align="right" valign="top"><a id="a12489b9720ad1e0291b5b403bb99a12b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpriteAnimation</b> (<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, sf::Sprite &amp;sprite, std::string movename, std::string filename)</td></tr>
+<tr class="separator:a12489b9720ad1e0291b5b403bb99a12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac41e2e7b3df2ef89c085f41ed804b57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#aac41e2e7b3df2ef89c085f41ed804b57">SpriteAnimation</a> (sf::Sprite &amp;sprite, sf::Texture &amp;texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, sf::Vector2i scale=sf::Vector2i{5, 5}, sf::Vector2i missingRowCollom=sf::Vector2i{0, 0}, sf::Vector2i startpos=sf::Vector2i{0, 0}, float animationSpeed=0.1f)</td></tr>
+<tr class="memdesc:aac41e2e7b3df2ef89c085f41ed804b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#aac41e2e7b3df2ef89c085f41ed804b57">More...</a><br /></td></tr>
+<tr class="separator:aac41e2e7b3df2ef89c085f41ed804b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac10cf72d474d256d7745d41e28bb63db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#ac10cf72d474d256d7745d41e28bb63db">leftSprite</a> (bool left)</td></tr>
 <tr class="memdesc:ac10cf72d474d256d7745d41e28bb63db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable left side of sprite.  <a href="#ac10cf72d474d256d7745d41e28bb63db">More...</a><br /></td></tr>
 <tr class="separator:ac10cf72d474d256d7745d41e28bb63db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -87,6 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9027d76bab247badb198291251491d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#ae9027d76bab247badb198291251491d2">draw</a> (sf::RenderWindow &amp;window)</td></tr>
 <tr class="memdesc:ae9027d76bab247badb198291251491d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This draws the sprite.  <a href="#ae9027d76bab247badb198291251491d2">More...</a><br /></td></tr>
 <tr class="separator:ae9027d76bab247badb198291251491d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4a71dcce388bfc61c295d8694ee3218"><td class="memItemLeft" align="right" valign="top"><a id="ac4a71dcce388bfc61c295d8694ee3218"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sethitboxscale</b> (float newscale)</td></tr>
+<tr class="separator:ac4a71dcce388bfc61c295d8694ee3218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8199f9da9846e26339b2bebc6bffb7ac"><td class="memItemLeft" align="right" valign="top"><a id="a8199f9da9846e26339b2bebc6bffb7ac"></a>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getDimensions</b> () const</td></tr>
 <tr class="separator:a8199f9da9846e26339b2bebc6bffb7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -96,6 +102,9 @@ sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getBounds</b
 <tr class="memitem:a8eb2a95a12d72807f0faa9335abdb5be"><td class="memItemLeft" align="right" valign="top"><a id="a8eb2a95a12d72807f0faa9335abdb5be"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (sf::Vector2f where)</td></tr>
 <tr class="separator:a8eb2a95a12d72807f0faa9335abdb5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3408ce88047624377edeef727cd4476"><td class="memItemLeft" align="right" valign="top"><a id="aa3408ce88047624377edeef727cd4476"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>left</b> (bool where)</td></tr>
+<tr class="separator:aa3408ce88047624377edeef727cd4476"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -105,9 +114,9 @@ sf::Sprite &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b
 <tr class="memitem:af8968079588cae7960844b7cc21b81eb"><td class="memItemLeft" align="right" valign="top"><a id="af8968079588cae7960844b7cc21b81eb"></a>
 sf::Texture &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>texture</b></td></tr>
 <tr class="separator:af8968079588cae7960844b7cc21b81eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c5a60172372e78ca0e581f90a05b65"><td class="memItemLeft" align="right" valign="top"><a id="a62c5a60172372e78ca0e581f90a05b65"></a>
-const sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>dimensions</b></td></tr>
-<tr class="separator:a62c5a60172372e78ca0e581f90a05b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a543977c99b972303f4fb17a66b467ad5"><td class="memItemLeft" align="right" valign="top"><a id="a543977c99b972303f4fb17a66b467ad5"></a>
+sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>dimensions</b></td></tr>
+<tr class="separator:a543977c99b972303f4fb17a66b467ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7f2dda770dfea09f74b863535b94ace"><td class="memItemLeft" align="right" valign="top"><a id="af7f2dda770dfea09f74b863535b94ace"></a>
 sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>spriteRowColumn</b></td></tr>
 <tr class="separator:af7f2dda770dfea09f74b863535b94ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,6 +129,18 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>missingRow</b></td></t
 <tr class="memitem:a2844a0cae4b6429f238811aa3b6cc6aa"><td class="memItemLeft" align="right" valign="top"><a id="a2844a0cae4b6429f238811aa3b6cc6aa"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>animationSpeed</b></td></tr>
 <tr class="separator:a2844a0cae4b6429f238811aa3b6cc6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9014752ad3b6fe7276d25b8e148ed7"><td class="memItemLeft" align="right" valign="top"><a id="aca9014752ad3b6fe7276d25b8e148ed7"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>hitboxscale</b> ={0.2,0.2}</td></tr>
+<tr class="separator:aca9014752ad3b6fe7276d25b8e148ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a618fb2f7db5e157359aa0b9feeb05b4b"><td class="memItemLeft" align="right" valign="top"><a id="a618fb2f7db5e157359aa0b9feeb05b4b"></a>
+sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>missingRowCollom</b></td></tr>
+<tr class="separator:a618fb2f7db5e157359aa0b9feeb05b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a38d8ad00399dc10ce570ef4ffbbb3b"><td class="memItemLeft" align="right" valign="top"><a id="a9a38d8ad00399dc10ce570ef4ffbbb3b"></a>
+sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>startFrame</b></td></tr>
+<tr class="separator:a9a38d8ad00399dc10ce570ef4ffbbb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc79b4503c7fab5fb0542e0d1a781e80"><td class="memItemLeft" align="right" valign="top"><a id="abc79b4503c7fab5fb0542e0d1a781e80"></a>
+sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>offset</b></td></tr>
+<tr class="separator:abc79b4503c7fab5fb0542e0d1a781e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a121b5e26001dd0a4835d8c5ac4e35fe8"><td class="memItemLeft" align="right" valign="top"><a id="a121b5e26001dd0a4835d8c5ac4e35fe8"></a>
 sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>spriteClock</b></td></tr>
 <tr class="separator:a121b5e26001dd0a4835d8c5ac4e35fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,10 +159,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>pixelColumn</b></td></
 <tr class="memitem:a5a000d5fa35a215cb77a1b13c0b9b852"><td class="memItemLeft" align="right" valign="top"><a id="a5a000d5fa35a215cb77a1b13c0b9b852"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>startFrameLoop</b> =false</td></tr>
 <tr class="separator:a5a000d5fa35a215cb77a1b13c0b9b852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08a649d86ad64bc786ea0b1dbf16bc6"><td class="memItemLeft" align="right" valign="top"><a id="af08a649d86ad64bc786ea0b1dbf16bc6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ismirrored</b></td></tr>
+<tr class="separator:af08a649d86ad64bc786ea0b1dbf16bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a549012e697046e6e1bed4d1dbcbff654"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a549012e697046e6e1bed4d1dbcbff654">&#9670;&nbsp;</a></span>SpriteAnimation()</h2>
+<a id="aac41e2e7b3df2ef89c085f41ed804b57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac41e2e7b3df2ef89c085f41ed804b57">&#9670;&nbsp;</a></span>SpriteAnimation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,13 +198,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>startFrameLoop</b> =f
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">sf::Vector2i&#160;</td>
-          <td class="paramname"><em>scale</em> = <code>sf::Vector2i{1,1}</code>, </td>
+          <td class="paramname"><em>scale</em> = <code>sf::Vector2i{5,5}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>missingRow</em> = <code>0</code>, </td>
+          <td class="paramtype">sf::Vector2i&#160;</td>
+          <td class="paramname"><em>missingRowCollom</em> = <code>sf::Vector2i{0,0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2i&#160;</td>
+          <td class="paramname"><em>startpos</em> = <code>sf::Vector2i{0,0}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -356,7 +386,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>startFrameLoop</b> =f
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:03:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

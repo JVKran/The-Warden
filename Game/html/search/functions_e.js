@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['update',['update',['../class_character.html#a4cfd1ba5e6d767efc82e01e8b40ce5d8',1,'Character']]],
-  ['use',['use',['../class_consumable.html#a654ca024747c4e5c5cbf88bed50a01be',1,'Consumable']]]
+  ['update',['update',['../class_character.html#a4fc634f6e0ffec4bad09c11932423d75',1,'Character']]],
+  ['use',['use',['../class_consumable.html#a4b99311770c77c52a45d7b599f26660b',1,'Consumable']]]
 ];

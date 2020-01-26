@@ -75,6 +75,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:abb3930c9378d1af1f57d3d8a8636b136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#abb3930c9378d1af1f57d3d8a8636b136">sortWorld</a> ()</td></tr>
+<tr class="memdesc:abb3930c9378d1af1f57d3d8a8636b136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loading done.  <a href="#abb3930c9378d1af1f57d3d8a8636b136">More...</a><br /></td></tr>
+<tr class="separator:abb3930c9378d1af1f57d3d8a8636b136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae84bef41fd4a1e029633f34f10bf4507"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ae84bef41fd4a1e029633f34f10bf4507">World</a> (<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_world.html#ae4c5c391ec85c39928cb3f517b62ed10">assets</a>)</td></tr>
 <tr class="memdesc:ae84bef41fd4a1e029633f34f10bf4507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#ae84bef41fd4a1e029633f34f10bf4507">More...</a><br /></td></tr>
 <tr class="separator:ae84bef41fd4a1e029633f34f10bf4507"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -87,15 +90,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af8ed6a47e0fb9e2ea642050059c4ebfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#af8ed6a47e0fb9e2ea642050059c4ebfa">addTile</a> (<a class="el" href="class_tile.html">Tile</a> object)</td></tr>
 <tr class="memdesc:af8ed6a47e0fb9e2ea642050059c4ebfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add tile to world.  <a href="#af8ed6a47e0fb9e2ea642050059c4ebfa">More...</a><br /></td></tr>
 <tr class="separator:af8ed6a47e0fb9e2ea642050059c4ebfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47394550e166ccf6ddfce9a3385ba9b"><td class="memItemLeft" align="right" valign="top"><a id="ab47394550e166ccf6ddfce9a3385ba9b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addItem</b> (std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt; item)</td></tr>
+<tr class="separator:ab47394550e166ccf6ddfce9a3385ba9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30e1da48187e2c0954dc36c4defaa29c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a30e1da48187e2c0954dc36c4defaa29c">addTile</a> (std::string object, sf::Vector2f position)</td></tr>
+<tr class="memdesc:a30e1da48187e2c0954dc36c4defaa29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds tile to world.  <a href="#a30e1da48187e2c0954dc36c4defaa29c">More...</a><br /></td></tr>
+<tr class="separator:a30e1da48187e2c0954dc36c4defaa29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef9444d45fd451b1df392ff11669868a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#aef9444d45fd451b1df392ff11669868a">setBackground</a> (const std::string &amp;<a class="el" href="class_world.html#a895b24d5cc3e1c9eb0609bd7ca588881">backgroundName</a>)</td></tr>
 <tr class="memdesc:aef9444d45fd451b1df392ff11669868a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change background.  <a href="#aef9444d45fd451b1df392ff11669868a">More...</a><br /></td></tr>
 <tr class="separator:aef9444d45fd451b1df392ff11669868a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad835dde433824a3a2d9ed2b89517c528"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ad835dde433824a3a2d9ed2b89517c528">getTiles</a> ()</td></tr>
 <tr class="memdesc:ad835dde433824a3a2d9ed2b89517c528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get tiles.  <a href="#ad835dde433824a3a2d9ed2b89517c528">More...</a><br /></td></tr>
 <tr class="separator:ad835dde433824a3a2d9ed2b89517c528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac73496bfc1a24bb1c4367c7e4968795"><td class="memItemLeft" align="right" valign="top"><a id="aac73496bfc1a24bb1c4367c7e4968795"></a>
+std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getItems</b> ()</td></tr>
+<tr class="separator:aac73496bfc1a24bb1c4367c7e4968795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed3c8f25bd7867dfce4e55c2610c5c58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#aed3c8f25bd7867dfce4e55c2610c5c58">draw</a> (sf::RenderWindow &amp;window, sf::View &amp;view, const int_fast8_t windowLayer)</td></tr>
 <tr class="memdesc:aed3c8f25bd7867dfce4e55c2610c5c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw world.  <a href="#aed3c8f25bd7867dfce4e55c2610c5c58">More...</a><br /></td></tr>
 <tr class="separator:aed3c8f25bd7867dfce4e55c2610c5c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74bb99e12da8fc227d3ab5d8f27e1868"><td class="memItemLeft" align="right" valign="top"><a id="a74bb99e12da8fc227d3ab5d8f27e1868"></a>
+<a class="el" href="class_world.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_world.html">World</a> lhs)</td></tr>
+<tr class="separator:a74bb99e12da8fc227d3ab5d8f27e1868"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -105,9 +120,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>loadWorld</b> ()</td>
 <tr class="memitem:a3832e9490f846f6d1a9b5806e9bca1bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a3832e9490f846f6d1a9b5806e9bca1bb">loadTile</a> (std::ifstream &amp;input)</td></tr>
 <tr class="memdesc:a3832e9490f846f6d1a9b5806e9bca1bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load tile.  <a href="#a3832e9490f846f6d1a9b5806e9bca1bb">More...</a><br /></td></tr>
 <tr class="separator:a3832e9490f846f6d1a9b5806e9bca1bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb3930c9378d1af1f57d3d8a8636b136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#abb3930c9378d1af1f57d3d8a8636b136">sortWorld</a> ()</td></tr>
-<tr class="memdesc:abb3930c9378d1af1f57d3d8a8636b136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loading done.  <a href="#abb3930c9378d1af1f57d3d8a8636b136">More...</a><br /></td></tr>
-<tr class="separator:abb3930c9378d1af1f57d3d8a8636b136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -119,6 +131,9 @@ Private Attributes</h2></td></tr>
 std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a6aeacfe70531e5eae0b5c42216e447d2">tiles</a></td></tr>
 <tr class="memdesc:a6aeacfe70531e5eae0b5c42216e447d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The tiles the world consists of. <br /></td></tr>
 <tr class="separator:a6aeacfe70531e5eae0b5c42216e447d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94ed2c9c36f509c33f64bdeeabd986a2"><td class="memItemLeft" align="right" valign="top"><a id="a94ed2c9c36f509c33f64bdeeabd986a2"></a>
+std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>items</b></td></tr>
+<tr class="separator:a94ed2c9c36f509c33f64bdeeabd986a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45cf87eaa09e4b7312d67583c276b7c"><td class="memItemLeft" align="right" valign="top"><a id="ac45cf87eaa09e4b7312d67583c276b7c"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ac45cf87eaa09e4b7312d67583c276b7c">worldFileName</a></td></tr>
 <tr class="memdesc:ac45cf87eaa09e4b7312d67583c276b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The filename of the world configuration file. <br /></td></tr>
@@ -166,7 +181,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="af8ed6a47e0fb9e2ea642050059c4ebfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8ed6a47e0fb9e2ea642050059c4ebfa">&#9670;&nbsp;</a></span>addTile()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af8ed6a47e0fb9e2ea642050059c4ebfa">&#9670;&nbsp;</a></span>addTile() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,6 +200,43 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>This adds an object to the world by pushing back to the vector containing all tiles. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">object</td><td>The <a class="el" href="class_tile.html" title="Selectable Object. ">Tile</a> to add to the world. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a30e1da48187e2c0954dc36c4defaa29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e1da48187e2c0954dc36c4defaa29c">&#9670;&nbsp;</a></span>addTile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void World::addTile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds tile to world. </p>
+<p>This adds an object to the world by pushing back to the vector containing all tiles. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>The string used to search the right object to create in tiles </td></tr>
+    <tr><td class="paramname">position</td><td>The position where we are going to add a new Object in the world </td></tr>
   </table>
   </dd>
 </dl>
@@ -280,8 +332,8 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Load tile. </p>
 <p>This reads the configuration for one tile from a world configuration file. The configuration file should follow a specific syntax. </p><div class="fragment"><div class="line"><a class="code" href="class_world.html#ad54b3fd201bc93baa91633711f960686">background</a></div><div class="line">(-1,498) grass 1 1.000000</div><div class="line">(50,454) tree1 0 1.000000</div><div class="line">(127,498) grass 1 1.000000</div></div><!-- fragment --><p> This means the background name for this world is called "background". The name "background", can be used with the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to retrieve its texture from the map. After the texture has been retrieved, one can create a sprite, set the position and draw it on screen. Each tile itself needs a position (in this case a sf::Vector2f()), assetName, collidable option and scale in the world. All these parameters are used to construct a <a class="el" href="class_tile.html" title="Selectable Object. ">Tile</a> that's stored in the tiles vector. </p><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">endOfFile()</td><td>End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier. </td></tr>
-    <tr><td class="paramname">invalidPosition()</td><td>The position given is invalid. This most likely is a syntax error. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classend_of_file.html">endOfFile()</a></td><td>End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classinvalid_position.html">invalidPosition()</a></td><td>The position given is invalid. This most likely is a syntax error. </td></tr>
   </table>
   </dd>
 </dl>
@@ -360,9 +412,6 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void World::sortWorld </td>
@@ -371,17 +420,12 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Loading done. </p>
 <p>This does everything that needs to be done to save a world. This currently only consists of sorting the tiles. </p><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">sortingFailed()</td><td>The tiles could not be sorted. This is most likely because of a std::bad_alloc. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsorting_failed.html">sortingFailed()</a></td><td>The tiles could not be sorted. This is most likely because of a std::bad_alloc. </td></tr>
   </table>
   </dd>
 </dl>
@@ -395,7 +439,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:03:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

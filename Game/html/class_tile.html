@@ -77,23 +77,26 @@ Inheritance diagram for Tile:</div>
  <div class="center">
   <img src="class_tile.png" usemap="#Tile_map" alt=""/>
   <map id="Tile_map" name="Tile_map">
-<area href="class_screen_object.html" title="Screen Object. " alt="ScreenObject" shape="rect" coords="0,0,90,24"/>
+<area href="class_screen_object.html" title="Screen Object. " alt="ScreenObject" shape="rect" coords="50,0,140,24"/>
+<area href="class_item.html" title="Item. " alt="Item" shape="rect" coords="50,112,140,136"/>
+<area href="class_consumable.html" title="Consumable. " alt="Consumable" shape="rect" coords="0,168,90,192"/>
+<area href="class_weapon.html" title="Weapon. " alt="Weapon" shape="rect" coords="100,168,190,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ea72fbe4159c00b7883b00498e41568"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int windowLayer=0)</td></tr>
+<tr class="memitem:a9ea72fbe4159c00b7883b00498e41568"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
 <tr class="memdesc:a9ea72fbe4159c00b7883b00498e41568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a9ea72fbe4159c00b7883b00498e41568">More...</a><br /></td></tr>
 <tr class="separator:a9ea72fbe4159c00b7883b00498e41568"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeff8e22b0829e24ec42953b826d4db6"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">getConfiguration</a> () const override</td></tr>
 <tr class="memdesc:abeff8e22b0829e24ec42953b826d4db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration.  <a href="#abeff8e22b0829e24ec42953b826d4db6">More...</a><br /></td></tr>
 <tr class="separator:abeff8e22b0829e24ec42953b826d4db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b84ac39d875348257fd6986a9141dc"><td class="memItemLeft" align="right" valign="top"><a id="ae4b84ac39d875348257fd6986a9141dc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPartOfWorld</b> () const</td></tr>
+<tr class="memitem:ae4b84ac39d875348257fd6986a9141dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ae4b84ac39d875348257fd6986a9141dc">isPartOfWorld</a> () const</td></tr>
+<tr class="memdesc:ae4b84ac39d875348257fd6986a9141dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this tile part of the world?  <a href="#ae4b84ac39d875348257fd6986a9141dc">More...</a><br /></td></tr>
 <tr class="separator:ae4b84ac39d875348257fd6986a9141dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee39cb323a2d084506a6beeff8d591dd"><td class="memItemLeft" align="right" valign="top"><a id="aee39cb323a2d084506a6beeff8d591dd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>makePartOfWorld</b> (const bool &amp;added)</td></tr>
+<tr class="memitem:aee39cb323a2d084506a6beeff8d591dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#aee39cb323a2d084506a6beeff8d591dd">makePartOfWorld</a> (const bool &amp;added)</td></tr>
+<tr class="memdesc:aee39cb323a2d084506a6beeff8d591dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make tile part of world.  <a href="#aee39cb323a2d084506a6beeff8d591dd">More...</a><br /></td></tr>
 <tr class="separator:aee39cb323a2d084506a6beeff8d591dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18a53d461961de8017c0cb4a4de5977c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a18a53d461961de8017c0cb4a4de5977c">isCollidable</a> () const</td></tr>
 <tr class="memdesc:a18a53d461961de8017c0cb4a4de5977c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collidability.  <a href="#a18a53d461961de8017c0cb4a4de5977c">More...</a><br /></td></tr>
@@ -101,12 +104,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>makePartOfWorld</b> (
 <tr class="memitem:a142d8646312b96d13eb5f2a73b036e4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a142d8646312b96d13eb5f2a73b036e4a">setCollidable</a> (const bool newCollidable)</td></tr>
 <tr class="memdesc:a142d8646312b96d13eb5f2a73b036e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set collidability.  <a href="#a142d8646312b96d13eb5f2a73b036e4a">More...</a><br /></td></tr>
 <tr class="separator:a142d8646312b96d13eb5f2a73b036e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0eeda9ee504840011a57ce751ad8b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a6e0eeda9ee504840011a57ce751ad8b9">isInteractable</a> () const</td></tr>
+<tr class="memdesc:a6e0eeda9ee504840011a57ce751ad8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is interactable?  <a href="#a6e0eeda9ee504840011a57ce751ad8b9">More...</a><br /></td></tr>
+<tr class="separator:a6e0eeda9ee504840011a57ce751ad8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6acd5e9402f4787454e4f72f64ef741"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ab6acd5e9402f4787454e4f72f64ef741">setInteractability</a> (const bool newInteractability)</td></tr>
+<tr class="memdesc:ab6acd5e9402f4787454e4f72f64ef741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set interactability.  <a href="#ab6acd5e9402f4787454e4f72f64ef741">More...</a><br /></td></tr>
+<tr class="separator:ab6acd5e9402f4787454e4f72f64ef741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24">isPassageWay</a> () const</td></tr>
+<tr class="memdesc:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this tile a passageway.  <a href="#a31d0db6619f0dc9997f120dbbfc5ac24">More...</a><br /></td></tr>
+<tr class="separator:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a424e4692b49d8361a565d9d495e1899f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a424e4692b49d8361a565d9d495e1899f">setPassageWay</a> (const bool newPassageWay)</td></tr>
+<tr class="memdesc:a424e4692b49d8361a565d9d495e1899f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a passageway.  <a href="#a424e4692b49d8361a565d9d495e1899f">More...</a><br /></td></tr>
+<tr class="separator:a424e4692b49d8361a565d9d495e1899f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed033d169a0530dfeb713ad365058e2"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a4ed033d169a0530dfeb713ad365058e2">getTeleportPosition</a> () const</td></tr>
+<tr class="memdesc:a4ed033d169a0530dfeb713ad365058e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get teleport position.  <a href="#a4ed033d169a0530dfeb713ad365058e2">More...</a><br /></td></tr>
+<tr class="separator:a4ed033d169a0530dfeb713ad365058e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577e48c4cc06d3ca32fd1405d8aa875b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a577e48c4cc06d3ca32fd1405d8aa875b">changeTeleportPosition</a> (const sf::Vector2f &amp;newTeleportPosition)</td></tr>
+<tr class="memdesc:a577e48c4cc06d3ca32fd1405d8aa875b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set teleport position.  <a href="#a577e48c4cc06d3ca32fd1405d8aa875b">More...</a><br /></td></tr>
+<tr class="separator:a577e48c4cc06d3ca32fd1405d8aa875b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a3678d40ae79e44d49eb2524dbbe40e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a4a3678d40ae79e44d49eb2524dbbe40e">setFollowMouse</a> (const bool follow)</td></tr>
 <tr class="memdesc:a4a3678d40ae79e44d49eb2524dbbe40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set mouse following.  <a href="#a4a3678d40ae79e44d49eb2524dbbe40e">More...</a><br /></td></tr>
 <tr class="separator:a4a3678d40ae79e44d49eb2524dbbe40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f924d5135208a2835f5d07ec9c6dd6f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a1f924d5135208a2835f5d07ec9c6dd6f">isFollowingMouse</a> () const</td></tr>
 <tr class="memdesc:a1f924d5135208a2835f5d07ec9c6dd6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is following mouse?  <a href="#a1f924d5135208a2835f5d07ec9c6dd6f">More...</a><br /></td></tr>
 <tr class="separator:a1f924d5135208a2835f5d07ec9c6dd6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a979793d54468a9fdb5d3d446068fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ae8a979793d54468a9fdb5d3d446068fb">isSelected</a> () const</td></tr>
+<tr class="memdesc:ae8a979793d54468a9fdb5d3d446068fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this tile selected?  <a href="#ae8a979793d54468a9fdb5d3d446068fb">More...</a><br /></td></tr>
+<tr class="separator:ae8a979793d54468a9fdb5d3d446068fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa69319dc9d545a60d77a7693101cac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a4aa69319dc9d545a60d77a7693101cac">changeSelected</a> (const bool newSelected)</td></tr>
+<tr class="memdesc:a4aa69319dc9d545a60d77a7693101cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set selected.  <a href="#a4aa69319dc9d545a60d77a7693101cac">More...</a><br /></td></tr>
+<tr class="separator:a4aa69319dc9d545a60d77a7693101cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cc50e1d8db125a1b7f9381c0fc43a7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a7cc50e1d8db125a1b7f9381c0fc43a7c">move</a> (const sf::Vector2f &amp;position)</td></tr>
 <tr class="memdesc:a7cc50e1d8db125a1b7f9381c0fc43a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to position.  <a href="#a7cc50e1d8db125a1b7f9381c0fc43a7c">More...</a><br /></td></tr>
 <tr class="separator:a7cc50e1d8db125a1b7f9381c0fc43a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,7 +147,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>makePartOfWorld</b> (
 <tr class="memdesc:ab7d6e7de791638e2b68965db73cb41b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smaller than operator.  <a href="#ab7d6e7de791638e2b68965db73cb41b1">More...</a><br /></td></tr>
 <tr class="separator:ab7d6e7de791638e2b68965db73cb41b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_screen_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_screen_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_screen_object.html">ScreenObject</a></td></tr>
-<tr class="memitem:a79714d35c13843ac8da464d5e7e935b7 inherit pub_methods_class_screen_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7">ScreenObject</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int windowLayer=0)</td></tr>
+<tr class="memitem:a79714d35c13843ac8da464d5e7e935b7 inherit pub_methods_class_screen_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7">ScreenObject</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
 <tr class="memdesc:a79714d35c13843ac8da464d5e7e935b7 inherit pub_methods_class_screen_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7">More...</a><br /></td></tr>
 <tr class="separator:a79714d35c13843ac8da464d5e7e935b7 inherit pub_methods_class_screen_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af59a8d1caadd59e74f7637bdd1fe51d7 inherit pub_methods_class_screen_object"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#af59a8d1caadd59e74f7637bdd1fe51d7">getName</a> () const</td></tr>
@@ -161,16 +188,32 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowLayer</b> () 
 Private Attributes</h2></td></tr>
 <tr class="memitem:a437291bbb6e029359b1ce493c19a194e"><td class="memItemLeft" align="right" valign="top"><a id="a437291bbb6e029359b1ce493c19a194e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a437291bbb6e029359b1ce493c19a194e">followMouse</a> = false</td></tr>
-<tr class="memdesc:a437291bbb6e029359b1ce493c19a194e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not to follow the mouse's position. <br /></td></tr>
+<tr class="memdesc:a437291bbb6e029359b1ce493c19a194e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to follow the mouse's position. <br /></td></tr>
 <tr class="separator:a437291bbb6e029359b1ce493c19a194e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae399354876c1b90b2bf4157334e4238d"><td class="memItemLeft" align="right" valign="top"><a id="ae399354876c1b90b2bf4157334e4238d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a> = true</td></tr>
-<tr class="memdesc:ae399354876c1b90b2bf4157334e4238d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not <a class="el" href="class_character.html" title="Character. ">Character</a> types should collide with this <a class="el" href="class_tile.html" title="Selectable Object. ">Tile</a>. <br /></td></tr>
+<tr class="memdesc:ae399354876c1b90b2bf4157334e4238d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not <a class="el" href="class_character.html" title="Character. ">Character</a> types should collide with this <a class="el" href="class_tile.html" title="Selectable Object. ">Tile</a>. <br /></td></tr>
 <tr class="separator:ae399354876c1b90b2bf4157334e4238d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e1f901e5df6e2e8b8ba6f518c2461f5"><td class="memItemLeft" align="right" valign="top"><a id="a2e1f901e5df6e2e8b8ba6f518c2461f5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a2e1f901e5df6e2e8b8ba6f518c2461f5">hasBeenAdded</a> = false</td></tr>
-<tr class="memdesc:a2e1f901e5df6e2e8b8ba6f518c2461f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not this objec has been added to the tiles of the world; if it's part of the world. <br /></td></tr>
+<tr class="memdesc:a2e1f901e5df6e2e8b8ba6f518c2461f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not this objec has been added to the tiles of the world; if it's part of the world. <br /></td></tr>
 <tr class="separator:a2e1f901e5df6e2e8b8ba6f518c2461f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0fa472b89b2dc6a8d8e15dac421ecf0"><td class="memItemLeft" align="right" valign="top"><a id="af0fa472b89b2dc6a8d8e15dac421ecf0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#af0fa472b89b2dc6a8d8e15dac421ecf0">interactable</a> = false</td></tr>
+<tr class="memdesc:af0fa472b89b2dc6a8d8e15dac421ecf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not this object can be interacted with by a <a class="el" href="class_character.html" title="Character. ">Character</a>. <br /></td></tr>
+<tr class="separator:af0fa472b89b2dc6a8d8e15dac421ecf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c3476e62de7d53f5f87e36b346f8e8"><td class="memItemLeft" align="right" valign="top"><a id="a74c3476e62de7d53f5f87e36b346f8e8"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a74c3476e62de7d53f5f87e36b346f8e8">selected</a> = false</td></tr>
+<tr class="memdesc:a74c3476e62de7d53f5f87e36b346f8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not this object is currently selected (should follow the mouse cursor). <br /></td></tr>
+<tr class="separator:a74c3476e62de7d53f5f87e36b346f8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21779e897ad55e56fe2c8c4e0efc21af"><td class="memItemLeft" align="right" valign="top"><a id="a21779e897ad55e56fe2c8c4e0efc21af"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a21779e897ad55e56fe2c8c4e0efc21af">passageWay</a> = false</td></tr>
+<tr class="memdesc:a21779e897ad55e56fe2c8c4e0efc21af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not this object is a passageway or not. <br /></td></tr>
+<tr class="separator:a21779e897ad55e56fe2c8c4e0efc21af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae937a22063a2cf8bf5bfce01f7050acb"><td class="memItemLeft" align="right" valign="top"><a id="ae937a22063a2cf8bf5bfce01f7050acb"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ae937a22063a2cf8bf5bfce01f7050acb">teleportPosition</a></td></tr>
+<tr class="memdesc:ae937a22063a2cf8bf5bfce01f7050acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position a <a class="el" href="class_character.html" title="Character. ">Character</a> will be teleported to when entering the passage. <br /></td></tr>
+<tr class="separator:ae937a22063a2cf8bf5bfce01f7050acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -184,12 +227,13 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr class="memdesc:a69edb5b02a877681197fe7e694108442 inherit pro_attribs_class_screen_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sprite this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> has to draw and manage. <br /></td></tr>
 <tr class="separator:a69edb5b02a877681197fe7e694108442 inherit pro_attribs_class_screen_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86dc6be11db1e2ba8352c9683f4f9ec5 inherit pro_attribs_class_screen_object"><td class="memItemLeft" align="right" valign="top"><a id="a86dc6be11db1e2ba8352c9683f4f9ec5"></a>
-int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b></td></tr>
+int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a></td></tr>
+<tr class="memdesc:a86dc6be11db1e2ba8352c9683f4f9ec5 inherit pro_attribs_class_screen_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">The windowLayer this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> is part of. <br /></td></tr>
 <tr class="separator:a86dc6be11db1e2ba8352c9683f4f9ec5 inherit pro_attribs_class_screen_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Selectable Object. </p>
-<p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved, clicked and checked for collisions. It has an assetName, sprite and boolean to determine wether or not this object can collide with <a class="el" href="class_character.html" title="Character. ">Character</a> types. </p>
+<p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved, clicked and checked for collisions. It has an assetName, sprite and windowLayer to determine to which layer it is part of. Furthermore, it also has several booleans that are described below. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9ea72fbe4159c00b7883b00498e41568"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ea72fbe4159c00b7883b00498e41568">&#9670;&nbsp;</a></span>Tile()</h2>
@@ -255,6 +299,8 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
     <tr><td class="paramname">position</td><td>The initial position to set and draw the sprite. </td></tr>
     <tr><td class="paramname">scale</td><td>The initial scale of the sprite. </td></tr>
     <tr><td class="paramname">collidable</td><td>The initial collidability with <a class="el" href="class_character.html" title="Character. ">Character</a> types. </td></tr>
+    <tr><td class="paramname">rotation</td><td>The initial rotation of the sprite. </td></tr>
+    <tr><td class="paramname">windowLayer</td><td>The initial window layer the sprite is part of. </td></tr>
   </table>
   </dd>
 </dl>
@@ -262,6 +308,58 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4aa69319dc9d545a60d77a7693101cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa69319dc9d545a60d77a7693101cac">&#9670;&nbsp;</a></span>changeSelected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tile::changeSelected </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>newSelected</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set selected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newSelected</td><td>Wether or not this tile should be selected. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a577e48c4cc06d3ca32fd1405d8aa875b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577e48c4cc06d3ca32fd1405d8aa875b">&#9670;&nbsp;</a></span>changeTeleportPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tile::changeTeleportPosition </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>newTeleportPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set teleport position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newTeleportPosition</td><td>The new position to teleport to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="abeff8e22b0829e24ec42953b826d4db6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abeff8e22b0829e24ec42953b826d4db6">&#9670;&nbsp;</a></span>getConfiguration()</h2>
 
@@ -286,9 +384,29 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 </div><div class="memdoc">
 
 <p>Get configuration. </p>
-<p>This function gathers all data from this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> and returns it in a readable and storeable format. </p><dl class="section return"><dt>Returns</dt><dd>A string with all configuration variables in format: "(x,y) assetName collidability scale". </dd></dl>
+<p>This function gathers all data from this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> and returns it in a readable and storeable format. </p><dl class="section return"><dt>Returns</dt><dd>A string with all configuration variables in format: "(x,y) assetName collidability scale rotation windowLayer". </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_screen_object.html#a00ecbb35a11b007ef363e823e4f32cb3">ScreenObject</a>.</p>
+
+</div>
+</div>
+<a id="a4ed033d169a0530dfeb713ad365058e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed033d169a0530dfeb713ad365058e2">&#9670;&nbsp;</a></span>getTeleportPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f Tile::getTeleportPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get teleport position. </p>
+<dl class="section return"><dt>Returns</dt><dd>The position to teleport to. </dd></dl>
 
 </div>
 </div>
@@ -329,6 +447,112 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 
 <p>Is following mouse? </p>
 <dl class="section return"><dt>Returns</dt><dd>Wether or not the sprite is following the position of the mouse. </dd></dl>
+
+</div>
+</div>
+<a id="a6e0eeda9ee504840011a57ce751ad8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0eeda9ee504840011a57ce751ad8b9">&#9670;&nbsp;</a></span>isInteractable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::isInteractable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is interactable? </p>
+<dl class="section return"><dt>Returns</dt><dd>Wether or not this tile is interactable. </dd></dl>
+
+</div>
+</div>
+<a id="ae4b84ac39d875348257fd6986a9141dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4b84ac39d875348257fd6986a9141dc">&#9670;&nbsp;</a></span>isPartOfWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::isPartOfWorld </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is this tile part of the world? </p>
+<dl class="section return"><dt>Returns</dt><dd>Wether or not this tile has been made part of the world. </dd></dl>
+
+</div>
+</div>
+<a id="a31d0db6619f0dc9997f120dbbfc5ac24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31d0db6619f0dc9997f120dbbfc5ac24">&#9670;&nbsp;</a></span>isPassageWay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::isPassageWay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is this tile a passageway. </p>
+<dl class="section return"><dt>Returns</dt><dd>Wether or not this tile is a passage way. </dd></dl>
+
+</div>
+</div>
+<a id="ae8a979793d54468a9fdb5d3d446068fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8a979793d54468a9fdb5d3d446068fb">&#9670;&nbsp;</a></span>isSelected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::isSelected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is this tile selected? </p>
+<dl class="section return"><dt>Returns</dt><dd>Wether or not this tile is currently selected. </dd></dl>
+
+</div>
+</div>
+<a id="aee39cb323a2d084506a6beeff8d591dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee39cb323a2d084506a6beeff8d591dd">&#9670;&nbsp;</a></span>makePartOfWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tile::makePartOfWorld </td>
+          <td>(</td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>added</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Make tile part of world. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">added</td><td>Wether or not this tile should be part of the world. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -491,6 +715,58 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 
 </div>
 </div>
+<a id="ab6acd5e9402f4787454e4f72f64ef741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6acd5e9402f4787454e4f72f64ef741">&#9670;&nbsp;</a></span>setInteractability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tile::setInteractability </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>newInteractability</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set interactability. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newInteractability</td><td>Wether or not this tile should be interactable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a424e4692b49d8361a565d9d495e1899f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a424e4692b49d8361a565d9d495e1899f">&#9670;&nbsp;</a></span>setPassageWay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tile::setPassageWay </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>newPassageWay</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Make a passageway. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPassageWay</td><td>Wether or not this tile should be a passageway. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_screen_object_8hpp_source.html">ScreenObject.hpp</a></li>
 <li><a class="el" href="_screen_object_8cpp.html">ScreenObject.cpp</a></li>
@@ -498,7 +774,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:03:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

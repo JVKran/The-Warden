@@ -75,6 +75,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af11905d974a37bb06f244598cb637d98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#af11905d974a37bb06f244598cb637d98">AssetManager</a> (const std::string &amp;assetLocationsFile=&quot;Assets/objects.txt&quot;)</td></tr>
+<tr class="memdesc:af11905d974a37bb06f244598cb637d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#af11905d974a37bb06f244598cb637d98">More...</a><br /></td></tr>
+<tr class="separator:af11905d974a37bb06f244598cb637d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff8dd68a1dc871fe68b131066cd051aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asset_manager.html#aff8dd68a1dc871fe68b131066cd051aa">loadObjects</a> (const std::string &amp;assetFileName)</td></tr>
 <tr class="memdesc:aff8dd68a1dc871fe68b131066cd051aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all objects.  <a href="#aff8dd68a1dc871fe68b131066cd051aa">More...</a><br /></td></tr>
 <tr class="separator:aff8dd68a1dc871fe68b131066cd051aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,8 +100,30 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Asset manager. </p>
-<p>This class features the storage of all textures of the game. This way, all textures only have to be loaded in memory once after which multiple refrences can be taken of the same texture. After constructing, all objects are loaded. Furthermore, another file can be read by calling the function again. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p>This class features the storage of all textures of the game. This way, all textures only have to be loaded in memory once after which multiple refrences can be taken of the same texture. After constructing, all objects are loaded. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af11905d974a37bb06f244598cb637d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af11905d974a37bb06f244598cb637d98">&#9670;&nbsp;</a></span>AssetManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AssetManager::AssetManager </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>assetLocationsFile</em> = <code>&quot;Assets/objects.txt&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an instance. </p>
+<p>This constructs an <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> and loads the map with the contents of the passed parameter. calls loadObjects in the background. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a70b1e9eaa2031a1df873d2251bfef9ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70b1e9eaa2031a1df873d2251bfef9ac">&#9670;&nbsp;</a></span>getTexture()</h2>
 
@@ -122,6 +147,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>A refrence to the desired texture identiefed by the passed assetName. </dd></dl>
 
 </div>
 </div>
@@ -142,7 +168,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </div><div class="memdoc">
 
 <p>Load all objects. </p>
-<p>This loads all objects specified in the file with the name of the passed parameter. This file should follow some syntax rules: </p><div class="fragment"><div class="line">background Assets/Textures/freetileset/png/BG/BG.png</div><div class="line">crate Assets/Textures/freetileset/png/Object/Crate.png</div><div class="line">grass Assets/Textures/freetileset/png/Tiles/2.png</div></div><!-- fragment --><p> The first word specifies the name that identifies the texture in the textureMap. The second word is equal to the filepath that leads to the desired texture. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This loads all objects specified in the file with the name of the passed parameter. This file should follow some syntax rules: </p><div class="fragment"><div class="line">background Assets/Textures/freetileset/png/BG/BG.png</div><div class="line">crate Assets/Textures/freetileset/png/Object/Crate.png</div><div class="line">grass Assets/Textures/freetileset/png/Tiles/2.png</div></div><!-- fragment --><p> The first word specifies the name that identifies the texture in the textureMap. The second word is equal to the filepath that leads to the desired texture. Furthermore, another file can be read by calling the function again; all new assets are appended to the map. Duplicates are ignored. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">assetFileName</td><td>The filename of the file containing all assets, their locations and their names. </td></tr>
   </table>
@@ -184,7 +210,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">noSuchPicture()</td><td>The filepath provided does not lead to a valid or existing texture. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classno_such_picture.html">noSuchPicture()</a></td><td>The filepath provided does not lead to a valid or existing texture. </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,7 +224,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:03:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
