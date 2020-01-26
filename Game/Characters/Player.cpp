@@ -8,7 +8,7 @@ using namespace cv;
 /// \brief
 /// Draw the Character.
 /// \details
-/// This function draws the Characte in the RenderWindow and sets the View to the position
+/// This function draws the Character in the RenderWindow and sets the View to the position
 /// of the Character to keep the player centered.
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
@@ -20,10 +20,20 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 	window.draw(sprite);
 }
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This class crates an animatedPlayerGraphics instance.
+/// @param assetName The name of the asset to use for retrieving the texture from the AssetManager.
+/// @param assets The AssetManager to retrieve the texture from.
 AnimatedPlayerGraphics::AnimatedPlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 	AnimatedGraphicsComponent(assetName, assets, characterData)
 {}
 
+/// \brief
+/// Process view changes.
+/// \details
+/// Sets the View to the position of the Character to keep the player centered.
 void AnimatedPlayerGraphics::processViewChanges(sf::View & view, const sf::Vector2f & position){
 	if(position.y < 300){
 		view.setCenter(sf::Vector2f(position.x, position.y));
@@ -32,10 +42,23 @@ void AnimatedPlayerGraphics::processViewChanges(sf::View & view, const sf::Vecto
 	}
 }
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This class crates a PlayerGraphics instance.
+/// @param assetName The name of the asset to use for retrieving the texture from the AssetManager.
+/// @param assets The AssetManager to retrieve the texture from.
 PlayerGraphics::PlayerGraphics(const std::string & assetName, AssetManager & assets):
 	GraphicsComponent(assetName, assets)
 {}
 
+/// \brief
+/// process input.
+/// \details
+/// This function implements the input for players. This consists of reading basic assignable input.
+/// @param position The position of the player.
+/// @param direction The direction to changed based on read input.
+/// @param keys The key bindings to check for key presses.
 void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	direction.x = 0;	//Stand still
 	direction.y = 0;
@@ -58,7 +81,11 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 /// \details
 /// This is called by the game, it adds a new tile in the vector tiles in the world,
 /// on the location of the mouse in the window's view (so not the normal pixel locations)
-/// the new tile is a 'crate' object
+/// the new tile is a 'crate' object.
+/// @param event The event to use for checking clicks.
+/// @param world The world to add the tile to.
+/// @param window The window to use for determining the relative position of the mouse click.
+/// @param view The view to use with the window to determine the abolsute position of the mouse.
 void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);		//gets to position based on the mouse coordinates in a view
 	world.addTile("crate", position);
@@ -70,6 +97,10 @@ void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWind
 /// This is called by the game, and it deletes the object where the mouse is located on.
 /// The mouse position is called by mapPixelToCoords which uses view to get the right location
 /// and not the mouse window location.
+/// @param event The event to use for checking clicks.
+/// @param world The world to add the tile to.
+/// @param window The window to use for determining the relative position of the mouse click.
+/// @param view The view to use with the window to determine the abolsute position of the mouse.
 void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	std::vector<Tile> & tiles = world.getTiles();
 	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
@@ -79,6 +110,7 @@ void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderW
 	}
 }
 
+/// This class implements the input for players. This consists of reading basic assignable input, item selection and item usage.
 void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters) && !ownCharacter->getSelectedItem()->isWeapon()){			//If item is broken

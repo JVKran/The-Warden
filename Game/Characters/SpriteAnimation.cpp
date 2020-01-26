@@ -6,40 +6,6 @@
 #include "FactoryFunction.hpp"
 #include "Character.hpp"
 
-
-/// \brief
-/// Create instance.
-/// \details
-/// This function creates a SpriteAnimation.
-/// @param sprite This is the sprite.
-/// @param texture This has the spritesheet as texture for the sprite.
-/// @param dimensions This has the width(dimension.x) and height(dimension.y) of the spritesheet.
-/// @param spriteRowColumn This has the amount of horizontal sprites(row) and the amount of vertical sprites(column).
-/// @param scale This has the scale the sprite has to be.
-/// @param missingRow This is how many sprites are missing at the end.
-/// @param animationSpeed This is the animationSpeed.
-SpriteAnimation::SpriteAnimation( sf::Sprite& sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, 
-								  sf::Vector2i scale, sf::Vector2i missingRowCollom, sf::Vector2i startpos,  float animationSpeed ):
-	sprite(sprite),	
-	texture(texture),
-	dimensions(dimensions),
-	spriteRowColumn(spriteRowColumn),
-	scale(scale),
-	missingRow(missingRowCollom.x),
-	animationSpeed(animationSpeed)
-
-	
-
-{	
-	pixelRow = dimensions.x / spriteRowColumn.x;					// Length divided by row, these are the horizontal steps a frame
-	pixelColumn = dimensions.y / spriteRowColumn.y;					// Height divided by column, these are the vertical steps a frame
-	rectSourceSprite = sf::IntRect( 0, 0, pixelRow, pixelColumn ); 	// First 2 numbers will iterate trough frames, second 2 are the width and height of a single frame
-	sprite = sf::Sprite(texture, rectSourceSprite);					// Give the sprite
-	sprite.setScale(static_cast<sf::Vector2f>(scale));				// Set the scale
-	sprite.setOrigin(pixelRow/2, pixelColumn/2);						// Set the origin to the middle
-	changeStartEndFrame(startpos,missingRowCollom,0);
-	std::cout<<"----------------VERKEERDE CONSTRUCTOR-------------"<<'\n';
-}
 void SpriteAnimation::sethitboxscale(float newscale){
 	hitboxscale.x=newscale;
 	hitboxscale.y=newscale;
@@ -53,136 +19,64 @@ texture(assets.getTexture(filename))
 	if(!charactersFile){
 		throw fileNotFound("Characters/characters.txt");
 	}
-	//std::string carname="player";
-	// std::vector<sf::Vector2i> spritePlayerData;
-	// std::vector<sf::Vector2i> spritePlayerAction;
-	// std::vector<std::string> spritePlayerNames;
-	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
 	std::string prevstring="";
 	sf::Vector2i position;
 	sf::Vector2f datafloat;
 	
 	while (!isEmpty(charactersFile)){
-		//bool data, action, names, textureName;
-
 		std::string currstring = "";
-
-
 		charactersFile>>currstring;
-
-		// std::cout<<readName<<'\n';
 		if((currstring.find("size")!= std::string::npos)){
-			// std::cout<<"offset  "<<position.x<<"  "<<position.y<<'\n';
 			charactersFile>>position;
 			dimensions=position;
-			
-			// std::cout<<"pos    "<<position.x<<"     "<<position.y<<'\n';
 		}
-
 		if((currstring.find("grid")!= std::string::npos)){
-
 			charactersFile>>position;
 			spriteRowColumn= position;
-			// std::cout<<"rc    "<<position.x<<"     "<<position.y<<'\n';
-			// std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("action")!= std::string::npos)){
-
 			charactersFile>>position;
-			//spritePlayerAction.push_back(position);
-			// std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("scale")!= std::string::npos)){
-
 			charactersFile>>datafloat;
 			scale=datafloat;
-			// std::cout<<"scale    "<<position.x<<"     "<<position.y<<'\n';
-			
-			
-			// std::cout<<position.x<<'\n';
 		}
-		
-		// if((currstring.find("state")!= std::string::npos)){
-
-		// 	charactersFile>>currstring;
-		// 	spritePlayerNames.push_back(currstring);
-			// std::cout<<position.x<<'\n';
-		// }
 		if((currstring.find("filename")!= std::string::npos)){
-
 			charactersFile>>currstring;
 			filename=currstring;
-			// std::cout<<"filename    |"<<filename<<'\n';
-			// std::cout<<position.x<<'\n';
 		}
-
 		if((currstring.find("missing")!= std::string::npos)){
-
 			charactersFile>>position;
 			missingRowCollom=position;
-			// std::cout<<"missingpos    "<<position.x<<"     "<<position.y<<'\n';
-			// std::cout<<"missing    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';
-			// std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("start")!= std::string::npos)){
-
 			charactersFile>>position;
 			startFrame=position;
-			// std::cout<<"missingpos    "<<position.x<<"     "<<position.y<<'\n';
-			// std::cout<<"missing    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';
-			// std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("offset")!= std::string::npos)){
-
 			charactersFile>>position;
-
 			offset=position;
-			// std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("speed")!= std::string::npos)){
-
 			charactersFile>>datafloat;
-
 			animationSpeed=datafloat.x;
-			// std::cout<<position.x<<'\n';
 		}
-		// std::cout<<currstring<<'\n';
 		if((currstring.find("hitfac")!= std::string::npos)){
-
-			// std::cout<<"HITFACTOR"<<'\n';
 			charactersFile>>datafloat;
-
 			hitboxscale=datafloat;
-			// std::cout<<"hiscale    "<<hitboxscale.x<<'\n';
 		}
 		if((currstring.find("ismirrored")!= std::string::npos)){
-
 			ismirrored=true;
-			// std::cout<<"hiscale    "<<hitboxscale.x<<'\n';
 		}
-		
-		
 		prevstring=currstring;
-		
 		if(currstring == movename){
-				// std::cout<<"filenamefound    |"<<currstring<<'\n';
-		 		texture=assets.getTexture(filename);
-				 // std::cout<<"ehmconstructor"<<'\n';
-				 break;
-			 } 
+	 		texture=assets.getTexture(filename);
+			break;
+		} 
 		if((currstring.find("eind")!= std::string::npos)){
 			currstring="";
-			// spritePlayerData.clear();
-			// spritePlayerNames.clear();
-			// spritePlayerAction.clear();
 			ismirrored = false;
-			// std::cout<<"CLEAAAAAREDconst"<<'\n';
-			//std::cout<<position.x<<'\n';
 		}
-
-
-
-
 	}
 	pixelRow = dimensions.x / spriteRowColumn.x;					// Length divided by row, these are the horizontal steps a frame
 	pixelColumn = dimensions.y / spriteRowColumn.y;					// Height divided by column, these are the vertical steps a frame
@@ -190,11 +84,7 @@ texture(assets.getTexture(filename))
 	sprite = sf::Sprite(texture, rectSourceSprite);					// Give the sprite
 	sprite.setScale(static_cast<sf::Vector2f>(scale));				// Set the scale
 	sprite.setOrigin(pixelRow/2, pixelColumn/2);
-	// std::cout<<"missingtest    "<<missingRowCollom.x<<"     "<<missingRowCollom.y<<'\n';						// Set the origin to the middle
 	changeStartEndFrame(startFrame,missingRowCollom,1);
-	//animationSpeed=0.1;
-	//sethitboxscale(0.2);
-	// std::cout<<"rowcol    "<<spriteRowColumn.x<<"     "<<spriteRowColumn.y<<'\n';
 
 }
 
@@ -276,7 +166,6 @@ void SpriteAnimation::specifiedFrameLoop(){
 /// This function will draw the sprite.
 /// @param window The RenderWindow to draw the sprite in.
 void SpriteAnimation::draw( sf::RenderWindow & window ){
-	// std::cout<<dimensions.x<<'\n';
 	if(spriteClock.getElapsedTime().asSeconds() > animationSpeed){
 		if(!startFrameLoop){
 			normalFrameLoop();
@@ -286,12 +175,24 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 		sprite.setTextureRect(rectSourceSprite); 				// Set the texture of the sprite to the next frame.
 		spriteClock.restart();
 	}
-				//sf::RectangleShape hit(sf::Vector2f(rectSourceSprite.height,rectSourceSprite.width));
-				// hit.setPosition(sf::Vector2f(rectSourceSprite.left,rectSourceSprite.top));
-	 			// hit.setFillColor(sf::Color(0,255,0,128));
-	 			// window.draw(hit);
 	window.draw(sprite);
 	
 }
 
+sf::Vector2f SpriteAnimation::getDimensions() const {
+	return sf::Vector2f(pixelColumn*hitboxscale.x, pixelRow*hitboxscale.y);
+}
+
+sf::FloatRect SpriteAnimation::getBounds() const {
+	sf::FloatRect temp=sprite.getGlobalBounds();
+	return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale.x,temp.top+pixelColumn*hitboxscale.y),sf::Vector2f(temp.width,temp.height));
+}
+
+void SpriteAnimation::move(sf::Vector2f where){
+	sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale.x+offset.x,where.y-pixelColumn*0.5*hitboxscale.y+offset.y));
+}
+
+void SpriteAnimation::left(bool where){
+	changeStartEndFrame(startFrame,missingRowCollom,where!=ismirrored);
+}
 

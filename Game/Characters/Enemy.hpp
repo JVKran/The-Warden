@@ -7,11 +7,20 @@
 #include "Character.hpp"
 #include "SpriteAnimation.hpp"
 
+/// \brief
+/// EnemyPhysics.
+/// \details
+/// This class implements the physics for enemies. They aren't that different, they just accelerate slower and
+/// have a slower top speed.
 class EnemyPhysics : public PhysicsComponent {
 	public:
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
 };
 
+/// \brief
+/// EnemyInput.
+/// \details
+/// This class implements the input for enemies. This consists of some very basic AI.
 class EnemyInput : public InputComponent {
 	public:
 		EnemyInput(World & world, std::vector<Character> & characters):
@@ -25,6 +34,10 @@ class EnemyInput : public InputComponent {
 		EnemyInput & operator=(EnemyInput lhs);
 };
 
+/// \brief
+/// EnemyGraphics.
+/// \details
+/// This class implements the graphics for enemies. Not very different, it just doesn't set the view to the position.
 class EnemyGraphics : public GraphicsComponent {
 	public:
 		EnemyGraphics(const std::string & assetName, AssetManager & assets);
