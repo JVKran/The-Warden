@@ -27,9 +27,12 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// \details
 /// This creates a Character based on its parameters.
 /// @param position The initial position of the Character.
-/// @param input A shard pointer to an InputComponent.
-/// @param physics A shaared pointer to a PhysicsComponent.
+/// @param input A shared pointer to an InputComponent.
+/// @param physics A shared pointer to a PhysicsComponent.
 /// @param graphics A shared pointer to a GraphicsComponent.
+/// @param startItems The items the character starts with.
+/// @param world The world to use for determining AI paths.
+/// @param isPlayerType Wether or not this character is a player.
 Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
 	spawnPosition(position),
 	position(position),
@@ -49,6 +52,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
+/// \brief
+/// Destruct instance.
+/// \details
+/// This destructor drops loot; the items and experience points.
 Character::~Character(){
 	lootDrop->drop(items, experiencePoints, position);
 }
@@ -60,14 +67,16 @@ Character::~Character(){
 /// functions of their underlying components (InputComponent and PhysicsComponent).
 /// @param window The RenderWindow to render the Character to.
 /// @param world The World to perform physics calculations on.
+/// @param characters The characters to possibly hit.
+/// @param keys The keys to use for input.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
-	physics->processCollisions(world, position, graphics->getDimensions(), collisionBounds, characters);
+	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
-	if(position.y > 700){
-		health = 0;
+	if(position.y > 600){
+		respawn();
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 	if(timeDifference >= 3.0 && timeDifference <= 5.5){
@@ -83,6 +92,10 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 /// Adds a tile
 /// \details
 /// This function calls the addTile function to add a new tile to the world.
+/// @param event The event to use for checking clicks.
+/// @param world The world to add the tile to.
+/// @param window The window to use for determining the relative position of the mouse click.
+/// @param view The view to use with the window to determine the abolsute position of the mouse.
 void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	input->addTile(event, world, window, view);
 }
@@ -92,6 +105,10 @@ void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow
 /// \details
 /// This function calls the deleteTile function to delete a 
 /// tile out of the vector in the world.
+/// @param event The event to use for checking clicks.
+/// @param world The world to add the tile to.
+/// @param window The window to use for determining the relative position of the mouse click.
+/// @param view The view to use with the window to determine the abolsute position of the mouse.
 void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	input->deleteTile(event, world, window, view);
 }
@@ -99,7 +116,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// \brief
 /// Handles an event
 /// \details
-/// Handles a event for a selected item
+/// Handles an event for the currently selected item.
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
 }
@@ -116,7 +133,7 @@ bool Character::isAlive(){
 /// \details
 /// This function draws the Characte in the RenderWindow.
 /// @param window The RenderWindow to render the Character to.
-/// @param world The World to perform physics calculations on.
+/// @param view The view to determine which parts have to be rendered and checked for collisions.
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
 	healthBar.setPosition(sf::Vector2f(position.x, position.y - 50));
@@ -153,7 +170,16 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	// window.draw(hit);
 }
 
-void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
+/// \brief
+/// Process collisions
+/// \details
+/// This function processes the collisions with items, tiles and characters in the world.
+/// @param characterItems The items to check collisions with (after which they have to be picked up).
+/// @param world The World of which the tiles have to be checked for collisions.
+/// @param dimensions The dimensions of the character.
+/// @param collisionBounds The bounds to check for collisions in between.
+/// @param characters The characters to check collisions with.
+void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
@@ -197,8 +223,22 @@ void PhysicsComponent::processCollisions(World & world, sf::Vector2f & position,
 			characterCollision = true;
 		}
 	}
+
+	std::vector<std::shared_ptr<Item>> & items = world.getItems();
+
+	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
+			characterItems.push_back(items.at(i));
+		}
+	}
 }
 
+/// \brief
+/// Process velocity changes.
+/// \details
+/// This function calculates the new velocity based on the desired direction.
+/// @param direction The direction the character is going to.
+/// @param velocity The current velocity of the character.
 void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
 	float maxVelocity = 1;
 	float maxAcceleration = 0.009;
@@ -242,6 +282,10 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 	}
 }
 
+/// \brief
+/// Process physics.
+/// \details
+/// This function checks for collisions, state changes and velocity changes.
 void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 	float maxAcceleration = 0.005;
 	float maxVelocity = 0.995;
@@ -293,12 +337,28 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 }
 
 /// \brief
+/// Assignment operator.
+/// \details
+/// This function assigns one physicscomponent to the other.
+/// \return Refrence to itself.
+PhysicsComponent & PhysicsComponent::operator=(PhysicsComponent lhs){
+	state = lhs.state;
+	bottomCollision = lhs.bottomCollision;
+	topCollision = lhs.topCollision;
+	leftCollision = lhs.leftCollision;
+	rightCollision = lhs.rightCollision;
+	hasResistance = lhs.hasResistance;
+	return *this;
+}
+
+/// \brief
 /// Draw the Character.
 /// \details
-/// This function draws the Characte in the RenderWindow and sets the View to the position
-/// of the Character to keep the player centered.
+/// This function draws the Character in the RenderWindow and processes animation changes based on state changes.
+/// @param window The RenderWindow to draw itself into.
+/// @param position The position of the character to draw.
+/// @param view The view to use for setting the position.
 void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
-
 	if(clock.getElapsedTime().asMilliseconds() - previousTime.asMilliseconds() > 50&&(isAttacking==false)){
 		if(position != previousPosition){
 			switch(state){
@@ -417,15 +477,24 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 
 }
 
+/// \brief
+/// Get dimensions of animation.
+/// \return The dimensions of the currently showing animation.
 sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 	return currentAnimation->getDimensions();
 }
+
+/// \brief
+/// Set fight animation
+/// \details
+/// This function sets the current animation to the fight animation.
 void AnimatedGraphicsComponent::setFightAnimation(){
 	isAttacking=true;
 	currentAnimation=&attackAnimation;
 	attackTime = clock.getElapsedTime();
 	currentAnimation->left(isWalkingLeft);
 }
+
 /// \brief
 /// Create an instance.
 /// \details
@@ -437,6 +506,9 @@ GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager
 	sprite.setTexture(assets.getTexture(assetName));
 }
 
+/// \brief
+/// Get dimensions of sprite.
+/// \return The dimensions of the currently showing sprite.
 sf::Vector2f GraphicsComponent::getDimensions(){
 	return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 }
@@ -462,10 +534,16 @@ sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
 }
 
+/// \brief
+/// Get number of selected item.
+/// \return The number of the currently selected item.
 int_fast16_t & Character::getSelectedItemNumber(){
 	return selectedItem;
 }
 
+/// \brief
+/// Get items.
+/// \return A vector with shared pointers to the items.
 std::vector<std::shared_ptr<Item>> & Character::getItems(){
 	return items;
 }
@@ -476,6 +554,9 @@ int_fast16_t Character::getExperience() const{
 	return experiencePoints;
 }
 
+/// \brief
+/// Not equal operator.
+/// \return Wether or not the characters are not equal.
 bool Character::operator!=(const Character & lhs){
 	if(lhs.position != position){
 		return true;
@@ -483,6 +564,9 @@ bool Character::operator!=(const Character & lhs){
 	return false;
 }
 
+/// \brief
+/// Equal operator.
+/// \return Wether or not the characters are equal.
 bool Character::operator==(const Character & lhs){
 	if(lhs.position == position){
 		return true;
@@ -490,6 +574,9 @@ bool Character::operator==(const Character & lhs){
 	return false;
 }
 
+/// \brief
+/// Assignment operator.
+/// \return Refrence to itself.
 Character & Character::operator=(Character lhs){
 	position = lhs.position;
 	velocity = lhs.velocity;
@@ -527,6 +614,9 @@ void Character::setHealth(const int_fast8_t newHealth){
 	health = newHealth;
 }
 
+/// \brief
+/// Set position
+/// @param newPosition The new position of the character.
 void Character::setPosition(const sf::Vector2f & newPosition){
 	position = newPosition;
 }

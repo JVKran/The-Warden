@@ -6,8 +6,11 @@
 #include <vector>
 #include "ScreenObject.hpp"
 #include "Exceptions.hpp"
+#include "Items.hpp"
 #include <string>
 #include <memory>
+
+class Item;
 
 /// \brief
 /// World
@@ -18,6 +21,7 @@ class World {
 	private:
 		AssetManager & assets;						//!< The AssetManager to use for gathering the needed textures.
 		std::vector<Tile> tiles;					//!< The tiles the world consists of.
+		std::vector<std::shared_ptr<Item>> items;
 
 		std::string worldFileName;					//!< The filename of the world configuration file.
 		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
@@ -33,11 +37,15 @@ class World {
 		void loadWorld(const std::string & fileName);
 
 		void addTile(Tile object);
+		void addItem(std::shared_ptr<Item> item);
 
 		void addTile(std::string object, sf::Vector2f position);
 		void setBackground(const std::string & backgroundName);
 
 		std::vector<Tile> & getTiles();
+		std::vector<std::shared_ptr<Item>> & getItems(){
+			return items;
+		}
 
 		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
 

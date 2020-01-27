@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['followmouse',['followMouse',['../class_tile.html#a437291bbb6e029359b1ce493c19a194e',1,'Tile']]]
+  ['direction',['direction',['../class_character.html#a859e08e1c0c038216e5b008b196d137e',1,'Character']]]
 ];

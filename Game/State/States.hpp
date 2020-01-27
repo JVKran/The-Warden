@@ -12,6 +12,8 @@ class State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) = 0;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) = 0;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) = 0;
+
+		virtual int getName() = 0;
 };
 
 class MenuState : public State {
@@ -19,6 +21,9 @@ class MenuState : public State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+		virtual int getName() override {
+			return 1;
+		}
 };
 
 class PlayingState : public State {
@@ -26,6 +31,9 @@ class PlayingState : public State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+		virtual int getName() override {
+			return 2;
+		}
 };
 
 class PauseState : public State {
@@ -33,6 +41,9 @@ class PauseState : public State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+		virtual int getName() override {
+			return 3;
+		}
 };
 
 class EditingState : public State {
@@ -40,6 +51,9 @@ class EditingState : public State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+		virtual int getName() override {
+			return 4;
+		}
 };
 
 class SettingsState : public State {
@@ -47,6 +61,9 @@ class SettingsState : public State {
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) override;
 		virtual void display(StateDependantObjects & objects, ViewObjects & viewObjects) override ;
+		virtual int getName() override {
+			return 5;
+		}
 };
 
 #endif //__STATE_HPP

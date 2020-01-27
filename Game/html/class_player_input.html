@@ -72,15 +72,160 @@ Inheritance diagram for PlayerInput:</div>
   <img src="class_player_input.png" usemap="#PlayerInput_map" alt=""/>
   <map id="PlayerInput_map" name="PlayerInput_map">
 <area href="class_input_component.html" title="Inputcomponent for Characters. " alt="InputComponent" shape="rect" coords="0,0,102,24"/>
+<area href="class_interactive_input.html" alt="InteractiveInput" shape="rect" coords="0,112,102,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5ca5ac98f73670f24e96d323cd3a5fc9"><td class="memItemLeft" align="right" valign="top"><a id="a5ca5ac98f73670f24e96d323cd3a5fc9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
-<tr class="separator:a5ca5ac98f73670f24e96d323cd3a5fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac133f058752dc4a539220143a2ec3dc0"><td class="memItemLeft" align="right" valign="top"><a id="ac133f058752dc4a539220143a2ec3dc0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerInput</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
+<tr class="separator:ac133f058752dc4a539220143a2ec3dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad60b353688a9086f3a3f91e71aebb69f"><td class="memItemLeft" align="right" valign="top"><a id="ad60b353688a9086f3a3f91e71aebb69f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys) override</td></tr>
+<tr class="separator:ad60b353688a9086f3a3f91e71aebb69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04627b63a789de812e38ee9be00493f5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#a04627b63a789de812e38ee9be00493f5">addTile</a> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view) override</td></tr>
+<tr class="memdesc:a04627b63a789de812e38ee9be00493f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a tile in the world.  <a href="#a04627b63a789de812e38ee9be00493f5">More...</a><br /></td></tr>
+<tr class="separator:a04627b63a789de812e38ee9be00493f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e915b2af58626d163f4ed7ae26f238"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#a76e915b2af58626d163f4ed7ae26f238">deleteTile</a> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view) override</td></tr>
+<tr class="memdesc:a76e915b2af58626d163f4ed7ae26f238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a tile in the world.  <a href="#a76e915b2af58626d163f4ed7ae26f238">More...</a><br /></td></tr>
+<tr class="separator:a76e915b2af58626d163f4ed7ae26f238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8a5c0414997b5e30a86910b5205214"><td class="memItemLeft" align="right" valign="top"><a id="acd8a5c0414997b5e30a86910b5205214"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="separator:acd8a5c0414997b5e30a86910b5205214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1618264fbff60525c27505bfffce7ee2"><td class="memItemLeft" align="right" valign="top"><a id="a1618264fbff60525c27505bfffce7ee2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem) override</td></tr>
+<tr class="separator:a1618264fbff60525c27505bfffce7ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a497ead2e8de94b985ebb2411aa294151"><td class="memItemLeft" align="right" valign="top"><a id="a497ead2e8de94b985ebb2411aa294151"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleInteraction</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>)</td></tr>
+<tr class="separator:a497ead2e8de94b985ebb2411aa294151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0948f9dd3a957642a67397ddc456722"><td class="memItemLeft" align="right" valign="top"><a id="ab0948f9dd3a957642a67397ddc456722"></a>
+<a class="el" href="class_player_input.html">PlayerInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_player_input.html">PlayerInput</a> lhs)</td></tr>
+<tr class="separator:ab0948f9dd3a957642a67397ddc456722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_input_component.html">InputComponent</a></td></tr>
+<tr class="memitem:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="a6873a6cab848bdc4f63c262803b84f1e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>InputComponent</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
+<tr class="separator:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_input_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_input_component.html">InputComponent</a></td></tr>
+<tr class="memitem:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ac312789003a44fd5884122e98df9e407"></a>
+<a class="el" href="class_world.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a></td></tr>
+<tr class="memdesc:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world to use for determining AI paths. <br /></td></tr>
+<tr class="separator:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ab7468cc43f40a414275be6f594158854"></a>
+std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a></td></tr>
+<tr class="memdesc:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The characters that could be followed. <br /></td></tr>
+<tr class="separator:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a04627b63a789de812e38ee9be00493f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04627b63a789de812e38ee9be00493f5">&#9670;&nbsp;</a></span>addTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInput::addTile </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::View &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a tile in the world. </p>
+<p>This is called by the game, it adds a new tile in the vector tiles in the world, on the location of the mouse in the window's view (so not the normal pixel locations) the new tile is a 'crate' object </p>
+
+<p>Implements <a class="el" href="class_input_component.html">InputComponent</a>.</p>
+
+</div>
+</div>
+<a id="a76e915b2af58626d163f4ed7ae26f238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e915b2af58626d163f4ed7ae26f238">&#9670;&nbsp;</a></span>deleteTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInput::deleteTile </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::View &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes a tile in the world. </p>
+<p>This is called by the game, and it deletes the object where the mouse is located on. The mouse position is called by mapPixelToCoords which uses view to get the right location and not the mouse window location. </p>
+
+<p>Implements <a class="el" href="class_input_component.html">InputComponent</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_player_8hpp_source.html">Player.hpp</a></li>
 <li><a class="el" href="_player_8cpp.html">Player.cpp</a></li>
@@ -88,7 +233,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput<
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

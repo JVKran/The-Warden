@@ -6,10 +6,11 @@ LootDrop::LootDrop(World & world):
 
 void LootDrop::drop(std::vector<std::shared_ptr<Item>> items, int_fast16_t experience, sf::Vector2f position){
 	std::cout << "drop" << std::endl;
-	// position.x = -1500;
+	position.x -= 100;
+	position.y += 100;
 	for(std::shared_ptr<Item> item : items){
 		item->setPosition(position);
-		world.addTile(*item);
-		//position.x += 30;
+		world.addItem(item);
+		position.x += 30;
 	}
 }

@@ -37,7 +37,7 @@ int main(){
 
 	double previous = clock.getElapsedTime().asMilliseconds();
 	double lag = 0.0;
-	double simulationSpeed = 4;
+	//double simulationSpeed = 4;
 
 	while (window.isOpen()){
 		double current = clock.getElapsedTime().asMilliseconds();
@@ -52,21 +52,16 @@ int main(){
 			machine.handleEvent(event, view);
 		}
 
-		while(lag >= simulationSpeed){
+	//	while(lag >= simulationSpeed){
 			machine.handleInput(event, view);
-			lag -= simulationSpeed;
-		}
+		//	lag -= simulationSpeed;
+		//}
 
 		window.clear();
 		window.setView(view);
 		machine.display(event, view);
 		window.display();
-		//lastFrame = clock.getElapsedTime().asMilliseconds();
 
-		//sf::sleep(sf::milliseconds(5));
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-			interface.goToPauseMenu(view);
-		}
 
 	}
 

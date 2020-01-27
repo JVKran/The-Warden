@@ -1,7 +1,7 @@
 #include "States.hpp"
 
 void MenuState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects){
-	objects.interface.handleInput();
+	//objects.interface.handleInput();
 }
 
 void MenuState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
@@ -15,6 +15,7 @@ void MenuState::handleEvent(StateDependantObjects & objects, ViewObjects & viewO
 //-----------------------------------------------------------------------------------------------------------------//
 
 void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects){
+	objects.interface.handleInput();
 	objects.game.handleInput(viewObjects.view, viewObjects.event);
 }
 
@@ -32,7 +33,7 @@ void PauseState::handleInput(StateDependantObjects & objects, ViewObjects & view
 }
 
 void PauseState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
-	objects.game.display(viewObjects.view);
+	//objects.game.display(viewObjects.view);
 	objects.interface.display(viewObjects.view);
 }
 
@@ -42,6 +43,7 @@ void PauseState::handleEvent(StateDependantObjects & objects, ViewObjects & view
 //-----------------------------------------------------------------------------------------------------------------//
 
 void EditingState::handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) {
+	objects.interface.handleInput();
 	objects.editor.handleInput(viewObjects.view);
 }
 

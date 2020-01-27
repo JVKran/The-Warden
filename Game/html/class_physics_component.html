@@ -84,15 +84,18 @@ Inheritance diagram for PhysicsComponent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad8304a061533ccfe2c67f7a27cb21f78"><td class="memItemLeft" align="right" valign="top"><a id="ad8304a061533ccfe2c67f7a27cb21f78"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processPhysics</b> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
-<tr class="separator:ad8304a061533ccfe2c67f7a27cb21f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9b1a668ff94b4592d329b304cc37cb4"><td class="memItemLeft" align="right" valign="top"><a id="ac9b1a668ff94b4592d329b304cc37cb4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processCollisions</b> (<a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions)</td></tr>
-<tr class="separator:ac9b1a668ff94b4592d329b304cc37cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a720de026edc23e9174614f2b5c677d85"><td class="memItemLeft" align="right" valign="top"><a id="a720de026edc23e9174614f2b5c677d85"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processVelocity</b> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
+<tr class="memitem:a925fc391374f4e16bf7a3cacc38134ca"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca">processPhysics</a> (sf::Vector2f &amp;velocity)</td></tr>
+<tr class="memdesc:a925fc391374f4e16bf7a3cacc38134ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process physics.  <a href="#a925fc391374f4e16bf7a3cacc38134ca">More...</a><br /></td></tr>
+<tr class="separator:a925fc391374f4e16bf7a3cacc38134ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af94ffb844192ffd28c401ecce95156cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#af94ffb844192ffd28c401ecce95156cd">processCollisions</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;characterItems, <a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions, <a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;collisionBounds, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters)</td></tr>
+<tr class="memdesc:af94ffb844192ffd28c401ecce95156cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process collisions.  <a href="#af94ffb844192ffd28c401ecce95156cd">More...</a><br /></td></tr>
+<tr class="separator:af94ffb844192ffd28c401ecce95156cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720de026edc23e9174614f2b5c677d85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a720de026edc23e9174614f2b5c677d85">processVelocity</a> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
+<tr class="memdesc:a720de026edc23e9174614f2b5c677d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process velocity changes.  <a href="#a720de026edc23e9174614f2b5c677d85">More...</a><br /></td></tr>
 <tr class="separator:a720de026edc23e9174614f2b5c677d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a421fc34c8b1a004c3742ce8db6cd5ce6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_physics_component.html">PhysicsComponent</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a421fc34c8b1a004c3742ce8db6cd5ce6">operator=</a> (<a class="el" href="class_physics_component.html">PhysicsComponent</a> lhs)</td></tr>
+<tr class="memdesc:a421fc34c8b1a004c3742ce8db6cd5ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#a421fc34c8b1a004c3742ce8db6cd5ce6">More...</a><br /></td></tr>
+<tr class="separator:a421fc34c8b1a004c3742ce8db6cd5ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -105,11 +108,9 @@ Protected Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a5ada09d7e645cde5865724f24395846c"><td class="memItemLeft" align="right" valign="top"><a id="a5ada09d7e645cde5865724f24395846c"></a>
-sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
-<tr class="separator:a5ada09d7e645cde5865724f24395846c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82d878406ec9becfcd451fa473b4ce2"><td class="memItemLeft" align="right" valign="top"><a id="aa82d878406ec9becfcd451fa473b4ce2"></a>
-states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b> = states::FALLING</td></tr>
+states&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#aa82d878406ec9becfcd451fa473b4ce2">state</a> = states::FALLING</td></tr>
+<tr class="memdesc:aa82d878406ec9becfcd451fa473b4ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The state the character currently is in. <br /></td></tr>
 <tr class="separator:aa82d878406ec9becfcd451fa473b4ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18553528969e2740ab5dee5e669293e2"><td class="memItemLeft" align="right" valign="top"><a id="a18553528969e2740ab5dee5e669293e2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>bottomCollision</b></td></tr>
@@ -121,23 +122,199 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>topCollision</b></td>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>leftCollision</b></td></tr>
 <tr class="separator:aab59a3895f42bc238edbf46be177da18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a080fe54d708989af4c9c0c6fd34b7fef"><td class="memItemLeft" align="right" valign="top"><a id="a080fe54d708989af4c9c0c6fd34b7fef"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>rightCollision</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a080fe54d708989af4c9c0c6fd34b7fef">rightCollision</a></td></tr>
+<tr class="memdesc:a080fe54d708989af4c9c0c6fd34b7fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Booleans for determining wether or not collisions are taking place. <br /></td></tr>
 <tr class="separator:a080fe54d708989af4c9c0c6fd34b7fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9e3d31927085fdefcdfdfe52d07c91"><td class="memItemLeft" align="right" valign="top"><a id="aaa9e3d31927085fdefcdfdfe52d07c91"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#aaa9e3d31927085fdefcdfdfe52d07c91">characterCollision</a></td></tr>
+<tr class="memdesc:aaa9e3d31927085fdefcdfdfe52d07c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not there's a collision between another character. <br /></td></tr>
+<tr class="separator:aaa9e3d31927085fdefcdfdfe52d07c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8ffb7cefcb1511fc750624184d558d7"><td class="memItemLeft" align="right" valign="top"><a id="ac8ffb7cefcb1511fc750624184d558d7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasResistance</b> = false</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#ac8ffb7cefcb1511fc750624184d558d7">hasResistance</a> = false</td></tr>
+<tr class="memdesc:ac8ffb7cefcb1511fc750624184d558d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not the character has resistance. i.e. is in water. <br /></td></tr>
 <tr class="separator:ac8ffb7cefcb1511fc750624184d558d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Physicscomponent for Characters. </p>
 <p>This class is responsible for updating and managing physics for a <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a421fc34c8b1a004c3742ce8db6cd5ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a421fc34c8b1a004c3742ce8db6cd5ce6">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_physics_component.html">PhysicsComponent</a> &amp; PhysicsComponent::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_physics_component.html">PhysicsComponent</a>&#160;</td>
+          <td class="paramname"><em>lhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assignment operator. </p>
+<p>This function assigns one physicscomponent to the other. </p><dl class="section return"><dt>Returns</dt><dd>Refrence to itself. </dd></dl>
+
+</div>
+</div>
+<a id="af94ffb844192ffd28c401ecce95156cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94ffb844192ffd28c401ecce95156cd">&#9670;&nbsp;</a></span>processCollisions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysicsComponent::processCollisions </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>characterItems</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>dimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;&#160;</td>
+          <td class="paramname"><em>collisionBounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>characters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process collisions. </p>
+<p>This function processes the collisions with items, tiles and characters in the world. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">characterItems</td><td>The items to check collisions with (after which they have to be picked up). </td></tr>
+    <tr><td class="paramname">world</td><td>The <a class="el" href="class_world.html" title="World. ">World</a> of which the tiles have to be checked for collisions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>The dimensions of the character. </td></tr>
+    <tr><td class="paramname">collisionBounds</td><td>The bounds to check for collisions in between. </td></tr>
+    <tr><td class="paramname">characters</td><td>The characters to check collisions with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a925fc391374f4e16bf7a3cacc38134ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a925fc391374f4e16bf7a3cacc38134ca">&#9670;&nbsp;</a></span>processPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysicsComponent::processPhysics </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>velocity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process physics. </p>
+<p>This function checks for collisions, state changes and velocity changes. </p>
+
+</div>
+</div>
+<a id="a720de026edc23e9174614f2b5c677d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a720de026edc23e9174614f2b5c677d85">&#9670;&nbsp;</a></span>processVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysicsComponent::processVelocity </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>velocity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process velocity changes. </p>
+<p>This function calculates the new velocity based on the desired direction. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction</td><td>The direction the character is going to. </td></tr>
+    <tr><td class="paramname">velocity</td><td>The current velocity of the character. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_enemy_physics.html#a8555f7f6778b6bdb3daa274fdc2b379b">EnemyPhysics</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_character_8hpp_source.html">Character.hpp</a></li>
 <li><a class="el" href="_character_8cpp.html">Character.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

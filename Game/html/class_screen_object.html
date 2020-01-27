@@ -77,13 +77,16 @@ Inheritance diagram for ScreenObject:</div>
  <div class="center">
   <img src="class_screen_object.png" usemap="#ScreenObject_map" alt=""/>
   <map id="ScreenObject_map" name="ScreenObject_map">
-<area href="class_tile.html" title="Selectable Object. " alt="Tile" shape="rect" coords="0,56,90,80"/>
+<area href="class_tile.html" title="Selectable Object. " alt="Tile" shape="rect" coords="50,56,140,80"/>
+<area href="class_item.html" title="Item. " alt="Item" shape="rect" coords="50,112,140,136"/>
+<area href="class_consumable.html" title="Consumable. " alt="Consumable" shape="rect" coords="0,168,90,192"/>
+<area href="class_weapon.html" title="Weapon. " alt="Weapon" shape="rect" coords="100,168,190,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a79714d35c13843ac8da464d5e7e935b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7">ScreenObject</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int windowLayer=0)</td></tr>
+<tr class="memitem:a79714d35c13843ac8da464d5e7e935b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7">ScreenObject</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
 <tr class="memdesc:a79714d35c13843ac8da464d5e7e935b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a79714d35c13843ac8da464d5e7e935b7">More...</a><br /></td></tr>
 <tr class="separator:a79714d35c13843ac8da464d5e7e935b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af59a8d1caadd59e74f7637bdd1fe51d7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#af59a8d1caadd59e74f7637bdd1fe51d7">getName</a> () const</td></tr>
@@ -134,12 +137,13 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr class="memdesc:a69edb5b02a877681197fe7e694108442"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sprite this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> has to draw and manage. <br /></td></tr>
 <tr class="separator:a69edb5b02a877681197fe7e694108442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86dc6be11db1e2ba8352c9683f4f9ec5"><td class="memItemLeft" align="right" valign="top"><a id="a86dc6be11db1e2ba8352c9683f4f9ec5"></a>
-int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b></td></tr>
+int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a></td></tr>
+<tr class="memdesc:a86dc6be11db1e2ba8352c9683f4f9ec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The windowLayer this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> is part of. <br /></td></tr>
 <tr class="separator:a86dc6be11db1e2ba8352c9683f4f9ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Screen Object. </p>
-<p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved and checked for collisions. It has an assetName, sprite and boolean to determine wether or not this object can collide with <a class="el" href="class_character.html" title="Character. ">Character</a> types. </p>
+<p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved and checked for collisions. It has an assetName, sprite and windowLayer to determine to which layer it is part of. i.e. when it should be drawn. This is used to prevent objects being overwritten by other objects. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a79714d35c13843ac8da464d5e7e935b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79714d35c13843ac8da464d5e7e935b7">&#9670;&nbsp;</a></span>ScreenObject()</h2>
@@ -198,7 +202,8 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
     <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
     <tr><td class="paramname">position</td><td>The initial position to set and draw the sprite. </td></tr>
     <tr><td class="paramname">scale</td><td>The initial scale of the sprite. </td></tr>
-    <tr><td class="paramname">collidable</td><td>The initial collidability with <a class="el" href="class_character.html" title="Character. ">Character</a> types. </td></tr>
+    <tr><td class="paramname">rotation</td><td>The initial rotation of the sprite. </td></tr>
+    <tr><td class="paramname">windowLayer</td><td>The initial window layer the sprite is part of. </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,7 +289,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 </div><div class="memdoc">
 
 <p>Get configuration. </p>
-<p>This function gathers all data from this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> and returns it in a readable and storeable format. </p><dl class="section return"><dt>Returns</dt><dd>A string with all configuration variables in format: "(x,y) assetName collidability scale". </dd></dl>
+<p>This function gathers all data from this <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> and returns it in a readable and storeable format. </p><dl class="section return"><dt>Returns</dt><dd>A string with all configuration variables in format: "(x,y) assetName scale rotation windowLayer". </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">Tile</a>.</p>
 
@@ -455,7 +460,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>windowLayer</b
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

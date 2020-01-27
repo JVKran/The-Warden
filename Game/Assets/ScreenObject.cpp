@@ -14,7 +14,8 @@ bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
-/// @param collidable The initial collidability with Character types.
+/// @param rotation The initial rotation of the sprite.
+/// @param windowLayer The initial window layer the sprite is part of.
 ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const float rotation, const int windowLayer):
 	assetName(assetName),
 	windowLayer(windowLayer)
@@ -29,7 +30,7 @@ ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets,
 /// Get configuration.
 /// \details
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
-/// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
+/// \return A string with all configuration variables in format: "(x,y) assetName scale rotation windowLayer".
 std::string ScreenObject::getConfiguration() const {
 	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
 }
@@ -93,7 +94,7 @@ void ScreenObject::setRotation(const float angle){
 
 /// \brief
 /// Get rotation.
-/// \returns The current angle of the sprite.
+/// \return The current angle of the sprite.
 float ScreenObject::getRotation() const {
 	return sprite.getRotation();
 }
@@ -114,6 +115,8 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param collidable The initial collidability with Character types.
+/// @param rotation The initial rotation of the sprite.
+/// @param windowLayer The initial window layer the sprite is part of.
 Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
 	collidable(collidable)
@@ -121,10 +124,16 @@ Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vecto
 	teleportPosition = {0,0};
 }
 
+/// \brief
+/// Is this tile part of the world?
+/// \return Wether or not this tile has been made part of the world.
 bool Tile::isPartOfWorld() const{
 	return hasBeenAdded;
 }
 
+/// \brief
+/// Make tile part of world.
+/// @param added Wether or not this tile should be part of the world.
 void Tile::makePartOfWorld(const bool & added){
 	hasBeenAdded = added;
 }
@@ -133,7 +142,7 @@ void Tile::makePartOfWorld(const bool & added){
 /// Get configuration.
 /// \details
 /// This function gathers all data from this ScreenObject and returns it in a readable and storeable format.
-/// \return A string with all configuration variables in format: "(x,y) assetName collidability scale".
+/// \return A string with all configuration variables in format: "(x,y) assetName collidability scale rotation windowLayer".
 std::string Tile::getConfiguration() const {
 	return (getPositionString(sprite.getPosition()) + ' ' + assetName + ' ' + std::to_string(collidable) + ' ' + std::to_string(sprite.getScale().x) + ' ' + std::to_string(sprite.getRotation()) + ' ' + std::to_string(windowLayer));
 }
@@ -156,30 +165,46 @@ void Tile::setCollidable(const bool newCollidable){
 	collidable = newCollidable;
 }
 
+/// \brief
+/// Is interactable?
+/// \return Wether or not this tile is interactable.
 bool Tile::isInteractable() const{
 	return interactable;
 }
 
+/// \brief
+/// Set interactability
+/// @param newInteractability Wether or not this tile should be interactable.
 void Tile::setInteractability(const bool newInteractability){
 	interactable = newInteractability;
 }
 
+/// \brief
+/// Is this tile a passageway.
+/// \return Wether or not this tile is a passage way.
 bool Tile::isPassageWay() const{
 	return passageWay;
 }
 
+/// \brief
+/// Make a passageway.
+/// @param newPassageWay Wether or not this tile should be a passageway.
 void Tile::setPassageWay(const bool newPassageWay){
 	passageWay = newPassageWay;
 }
 
+/// \brief
+/// Get teleport position.
+/// \return The position to teleport to.
 sf::Vector2f Tile::getTeleportPosition() const{
 	return teleportPosition;
 }
 
+/// \brief
+/// Set teleport position.
+/// @param newTeleportPosition The new position to teleport to.
 void Tile::changeTeleportPosition(const sf::Vector2f & newTeleportPosition){
-	if(!isPassageWay()){
-		setPassageWay(true);
-	}
+	setPassageWay(true);
 	teleportPosition = newTeleportPosition;
 }
 
@@ -214,10 +239,16 @@ void Tile::move(const sf::Vector2f & position){
 	}
 }
 
+/// \brief
+/// Is this tile selected?
+/// \return Wether or not this tile is currently selected.
 bool Tile::isSelected() const{
 	return selected;
 }
 
+/// \brief
+/// Set selected.
+/// @param newSelected Wether or not this tile should be selected.
 void Tile::changeSelected(const bool newSelected){
 	selected = newSelected;
 }

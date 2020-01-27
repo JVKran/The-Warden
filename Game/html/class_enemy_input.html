@@ -77,9 +77,43 @@ Inheritance diagram for EnemyInput:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afca80a00ffb1d0afb18d8f805955d6d3"><td class="memItemLeft" align="right" valign="top"><a id="afca80a00ffb1d0afb18d8f805955d6d3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
-<tr class="separator:afca80a00ffb1d0afb18d8f805955d6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1958ef87f7cf1fa494680106aac36a10"><td class="memItemLeft" align="right" valign="top"><a id="a1958ef87f7cf1fa494680106aac36a10"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>EnemyInput</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
+<tr class="separator:a1958ef87f7cf1fa494680106aac36a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25525a9db4d3fd8f63b392d6fb982b30"><td class="memItemLeft" align="right" valign="top"><a id="a25525a9db4d3fd8f63b392d6fb982b30"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys) override</td></tr>
+<tr class="separator:a25525a9db4d3fd8f63b392d6fb982b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac828b3f89669bb52fc70c033142436a9"><td class="memItemLeft" align="right" valign="top"><a id="ac828b3f89669bb52fc70c033142436a9"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
+<tr class="separator:ac828b3f89669bb52fc70c033142436a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memItemLeft" align="right" valign="top"><a id="a835d0b30e0c8295ac0bf52b76015b2d4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
+<tr class="separator:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af131f6681287969d6e0da320f182a9da"><td class="memItemLeft" align="right" valign="top"><a id="af131f6681287969d6e0da320f182a9da"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="separator:af131f6681287969d6e0da320f182a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac270d5317fd16b8503e9b27418764434"><td class="memItemLeft" align="right" valign="top"><a id="ac270d5317fd16b8503e9b27418764434"></a>
+<a class="el" href="class_enemy_input.html">EnemyInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_enemy_input.html">EnemyInput</a> lhs)</td></tr>
+<tr class="separator:ac270d5317fd16b8503e9b27418764434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_input_component.html">InputComponent</a></td></tr>
+<tr class="memitem:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="a6873a6cab848bdc4f63c262803b84f1e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>InputComponent</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
+<tr class="separator:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35bb6d292adc77937ba70f18cbd1033 inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ae35bb6d292adc77937ba70f18cbd1033"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem)</td></tr>
+<tr class="separator:ae35bb6d292adc77937ba70f18cbd1033 inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_input_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_input_component.html">InputComponent</a></td></tr>
+<tr class="memitem:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ac312789003a44fd5884122e98df9e407"></a>
+<a class="el" href="class_world.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a></td></tr>
+<tr class="memdesc:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world to use for determining AI paths. <br /></td></tr>
+<tr class="separator:ac312789003a44fd5884122e98df9e407 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ab7468cc43f40a414275be6f594158854"></a>
+std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a></td></tr>
+<tr class="memdesc:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The characters that could be followed. <br /></td></tr>
+<tr class="separator:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a></li>
@@ -88,7 +122,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput<
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
