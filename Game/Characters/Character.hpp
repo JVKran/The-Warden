@@ -189,6 +189,8 @@ class Character {
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
 
+		void restartClock();
+
 		int_fast16_t & getSelectedItemNumber();
 
 		std::shared_ptr<Item> getSelectedItem(){

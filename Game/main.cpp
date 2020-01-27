@@ -37,7 +37,7 @@ int main(){
 
 	double previous = clock.getElapsedTime().asMilliseconds();
 	double lag = 0.0;
-	//double simulationSpeed = 4;
+	double simulationSpeed = 4;
 
 	while (window.isOpen()){
 		double current = clock.getElapsedTime().asMilliseconds();
@@ -51,11 +51,15 @@ int main(){
 			}
 			machine.handleEvent(event, view);
 		}
-
-	//	while(lag >= simulationSpeed){
+if(machine.getCurrentState()->getName() != 4){			//Editing
+			while(lag >= simulationSpeed){
+				machine.handleInput(event, view);
+				lag -= simulationSpeed;
+			}	
+		} else {
 			machine.handleInput(event, view);
-		//	lag -= simulationSpeed;
-		//}
+		}
+
 
 		window.clear();
 		window.setView(view);

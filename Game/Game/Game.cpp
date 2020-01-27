@@ -24,6 +24,12 @@ void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
+void Game::restartCharacterClock(){
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters.at(i).restartClock();
+	}
+};
+
 
 /// \brief
 /// Hanlde input.

@@ -1,4 +1,4 @@
-
+///@brief
 #include "Interface.hpp"
 
 Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window):
@@ -13,12 +13,13 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	//world.loadWorld("World/world.txt");
  }
 
+/// 
 void Interface::initialize(StateMachine * newMachine){
 	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [newMachine]{ newMachine->changeState(std::make_shared<EditingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [newMachine] {newMachine->changeState(std::make_shared<SettingsState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(-1,-1), float(0)), Action( [newMachine] {newMachine->changeState(std::make_shared<PauseState>());})));
+	//interfaceElements.push_back(InterfaceElement( ScreenObject ("closeButton", assets, sf::Vector2f(1000,0), float(1)), Action( []{})));
 	//Pause elements
 	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [newMachine] {newMachine->changeState(std::make_shared<MenuState>());})));
 	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [newMachine] {newMachine->changeState(newMachine->getCurrentState());})));
@@ -45,12 +46,14 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
+				game.restartCharacterClock();
 			}
 			// Back to previous state
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+900,position.y+440))){		
 				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();
+				game.restartCharacterClock();
 
 			}
 		}
@@ -79,7 +82,10 @@ void Interface::handleEvent(const sf::Event & event, sf::View & view){
 			}
 			if(event.type == sf::Event::MouseButtonPressed && sprite.comparePosition(sf::Vector2f(0, 0))){
 				sprite.changeState();
-			}
+			}/*
+			if((event.type == sf::Event::MouseButtonPressed && sprite.comparePosition(sf::Vector2f(1000, 0)))){
+				window.close()
+			}*/
 		}
 	}
 }
