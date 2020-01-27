@@ -40,9 +40,12 @@ class Game {
 		sf::RenderWindow & window;
 		std::vector<KeyBinding> & bindings;
 
+		const sf::Event & event; 
+		sf::View & view;
+
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings, const sf::Event & event, sf::View & view);
 		~Game(){
 			window.close();
 		}

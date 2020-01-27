@@ -85,7 +85,7 @@ class InputComponent {
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector< KeyBinding> & keys) = 0;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
-		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
+		virtual void processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) {}
 };
 

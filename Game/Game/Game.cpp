@@ -8,10 +8,12 @@
 /// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
 /// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
 /// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
-Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings):
+Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings, const sf::Event & event, sf::View & view):
 	world(assets),
 	window(window),
-	bindings(bindings)
+	bindings(bindings),
+	event(event),
+	view(view)
 {			//"Assets/objects.txt"
 	loadCharacters();
 	if (!font.loadFromFile("Minecraft.ttf")){
@@ -52,14 +54,6 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).handleEvent(event);
 	}
-	
-	if( event.type == sf::Event::MouseButtonReleased ){
-		if( event.mouseButton.button == sf::Mouse::Right ){
-			characters.at(0).addTile(event, world, window, view);		//adds a new tile using the character player
-		}else if( event.mouseButton.button == sf::Mouse::Middle ){
-			characters.at(0).deleteTile(event, world, window, view);	//deletes a block using player if the mouse is on the tile
-		}
-	}
 }
 
 /// \brief
@@ -91,7 +85,8 @@ void Game::loadCharacters(){
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+	startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
+	//startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){

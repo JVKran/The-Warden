@@ -74,7 +74,6 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters, this);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
-	input->processItemUsage(items, this);
 	if(position.y > 600){
 		respawn();
 	}
@@ -119,6 +118,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event for the currently selected item.
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
+	input->processItemUsage(event, items, this);
 }
 
 /// \brief

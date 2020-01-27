@@ -111,24 +111,24 @@ void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderW
 }
 
 /// This class implements the input for players. This consists of reading basic assignable input, item selection and item usage.
-void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
+void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
 
-				if(ownCharacter->getSelectedItemNumber()<0 ||(ownCharacter->getSelectedItemNumber()>static_cast<int_fast16_t>(items.size()-1))){
-					ownCharacter->setSelectedItemNumber(0);
-					return;
+	if(ownCharacter->getSelectedItemNumber()<0 ||(ownCharacter->getSelectedItemNumber()>static_cast<int_fast16_t>(items.size()-1))){
+		ownCharacter->setSelectedItemNumber(0);
+		return;
 
-				}
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-						
-		if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters) && !ownCharacter->getSelectedItem()->isWeapon()){			//If item is broken
-			
-			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItemNumber())));
-			
-			ownCharacter->getSelectedItemNumber()--;
-			
-		}
-		if(ownCharacter->getSelectedItem()->isWeapon()){
+	}
+
+	if(event.type == sf::Event::MouseButtonReleased){
+		if(event.mouseButton.button == sf::Mouse::Left){
+			if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters) && !ownCharacter->getSelectedItem()->isWeapon()){			//If item is broken
+				items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItemNumber())));
+				ownCharacter->getSelectedItemNumber()--;
+			}
+
+			if(ownCharacter->getSelectedItem()->isWeapon()){
 			ownCharacter->getGraphics()->setFightAnimation(items.at(ownCharacter->getSelectedItemNumber())->getPeriod());
+		}
 		}
 	}
 }

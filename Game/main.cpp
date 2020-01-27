@@ -26,7 +26,7 @@ int main(){
 	sf::Event event;
 	AssetManager assets;
 
-	Game game(window, assets, bindings);
+	Game game(window, assets, bindings, event, view);
 	Editor editor(window, assets);
 
 	Settings settings(window, assets, bindings);
