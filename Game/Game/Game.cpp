@@ -17,16 +17,17 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	if (!font.loadFromFile("Minecraft.ttf")){
 	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
 	} else {
-		text.setFont(font);
+		scoreText.setFont(font);
+		experienceText.setFont(font);
+		saveText.setFont(font);
 	}
-	text.setFillColor(sf::Color::Black);
+	timeSprite.setTexture(assets.getTexture("time"));
+	experienceSprite.setTexture(assets.getTexture("experience"));
+	savePointSprite.setTexture(assets.getTexture("ironSword"));
 
-	if (!experienceFont.loadFromFile("Minecraft.ttf")){
-	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
-	} else {
-		experienceText.setFont(experienceFont);
-	}
+	scoreText.setFillColor(sf::Color::Black);
 	experienceText.setFillColor(sf::Color::Black);
+	saveText.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -54,9 +55,23 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
-	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
-		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
-		lastTime = clock.getElapsedTime().asSeconds();
+	if(clock.getElapsedTime().asMilliseconds() - lastTime >= 900){
+		remainingGameTime -= (clock.getElapsedTime().asMilliseconds() - lastTime) / 1000;
+		lastTime = clock.getElapsedTime().asMilliseconds();
+	}
+	for(Character & character : characters){
+		if(character.isPlayer()){
+			try{
+				if(character.getPosition().x > savePoints.at(currentSavePoint)){
+					character.setSpawn(character.getPosition());
+					std::cout << "(i)-- Reached savepoint " << ++currentSavePoint << "!" << std::endl;
+				}
+			} catch(std::exception & error){
+				std::cout << "(i)-- End of game reached at position " << character.getPosition().x << "!" << std::endl;
+				//lastTime = clock.getElapsedTime().asMilliseconds();
+				restart();
+			}
+		}
 	}
 }
 /// \brief
@@ -84,23 +99,40 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 void Game::display(sf::View & view){
 	world.draw(window, view, 0);				// First draw layer 0 of the world.
 	world.draw(window, view, 1);				// Then the first layer.
-	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
-		characters[i].draw(window, view);			// Then all characters.
-	}
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
-	text.setString(std::to_string(remainingGameTime));
-	text.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2));
-	window.draw(text);
 
 	for(const Character & character : characters){
 		if(character.isPlayer()){
 			experienceText.setString(std::to_string(character.getExperience()));
 		}
 	}
-	experienceText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 30));
+
+	scoreText.setString(std::to_string(remainingGameTime));
+	scoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2));
+	window.draw(scoreText);
+
+	experienceText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 30));
 	window.draw(experienceText);
+
+	saveText.setString(std::to_string(currentSavePoint));
+	saveText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 60));
+	window.draw(saveText);
+
+	experienceSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 33));
+	window.draw(experienceSprite);
+
+	timeSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 3));
+	window.draw(timeSprite);
+
+	savePointSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 63));
+	window.draw(savePointSprite);
+
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters[i].draw(window, view);			// Then all characters.
+	}
+
 }
 
 
@@ -207,7 +239,6 @@ void Game::loadCharacters(){
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
-				startItems.push_back(std::make_shared<Experience>("experience", assets, uint_fast8_t(30)));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

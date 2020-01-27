@@ -29,10 +29,17 @@ class Game {
 		World world;							//!< The World to use while playing (in state PLAYING).
 
 		sf::Font font;
-		sf::Text text;
-
-		sf::Font experienceFont;
+		sf::Text scoreText;
 		sf::Text experienceText;
+		sf::Text saveText;
+
+		sf::Sprite timeSprite;
+		sf::Sprite experienceSprite;
+		sf::Sprite savePointSprite;
+
+		std::vector<int> savePoints = {4000, 8000};
+		int currentSavePoint = 0;
+		int endPoint = 5000;
 
 		sf::Clock clock;
 		double lastTime;
@@ -50,6 +57,18 @@ class Game {
 			window.close();
 		}
 		void startWorld(const std::string & worldName);
+		void restart(){
+			loadCharacters();
+			clock.restart();
+			currentSavePoint = 0;
+			characters.clear();
+			loadCharacters();
+			world.getTiles().clear();
+			world.getItems().clear();
+			startWorld("World/world.txt");
+			remainingGameTime = 600;
+			lastTime = 0;
+		}
 
 		void restartClocks();
 		void handleInput(sf::View & view,  const sf::Event & event);

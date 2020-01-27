@@ -45,14 +45,14 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		if(machine.getCurrentState()->getName() != 4){			//Editing
+		if(machine.getCurrentState()->getName() != 4){			//EPlaying
 			while(lag >= simulationSpeed){
 				machine.handleInput(event, view);
 				lag -= simulationSpeed;
 			}	
 		} else {
-			machine.handleInput(event, view);
-		}
+			machine.handleInput(event, view);					//Editing
+		}		
 
 
 		window.clear();

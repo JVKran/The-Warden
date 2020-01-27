@@ -223,6 +223,15 @@ class Character {
 		void setHealth(const int_fast8_t newHealth);
 
 		void setPosition(const sf::Vector2f & newPosition);
+
+		void setSpawn(const sf::Vector2f & newSpawn){
+			spawnPosition = newSpawn;
+		}
+
+		sf::Vector2f getSpawn(){
+			return spawnPosition;
+		}
+
 		void respawn(){
 			position = spawnPosition;
 		}

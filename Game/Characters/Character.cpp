@@ -80,6 +80,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	input->processItemUsage(items, this);
 	if(position.y > 600 && isPlayer()){
 		respawn();
+		experiencePoints -= 50;
 	}
 	// if pause, reset clock
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
