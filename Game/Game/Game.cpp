@@ -30,6 +30,12 @@ void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
+void Game::restartCharacterClock(){
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters.at(i).restartClock();
+	}
+};
+
 
 /// \brief
 /// Hanlde input.
@@ -87,6 +93,12 @@ void Game::display(sf::View & view){
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
+	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
+	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
+	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
+	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+	startItems.push_back(std::make_shared<Experience>("experience", assets, uint_fast8_t(30)));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){

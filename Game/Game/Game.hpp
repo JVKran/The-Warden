@@ -47,6 +47,7 @@ class Game {
 		}
 		void startWorld(const std::string & worldName);
 
+		void restartCharacterClock();
 		void handleInput(sf::View & view,  const sf::Event & event);
 		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(sf::View & view);

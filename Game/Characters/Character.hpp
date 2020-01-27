@@ -189,6 +189,8 @@ class Character {
 		bool isAlive();
 
 		void die();
+		void restartClock();
+
 
 		int_fast16_t & getSelectedItemNumber();
 

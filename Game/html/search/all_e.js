@@ -7,7 +7,7 @@ var searchData=
   ['physicscomponent',['PhysicsComponent',['../class_physics_component.html',1,'']]],
   ['player_2ecpp',['Player.cpp',['../_player_8cpp.html',1,'']]],
   ['player_2ehpp',['Player.hpp',['../_player_8hpp.html',1,'']]],
-  ['playergraphics',['PlayerGraphics',['../class_player_graphics.html',1,'']]],
+  ['playergraphics',['PlayerGraphics',['../class_player_graphics.html',1,'PlayerGraphics'],['../class_player_graphics.html#a306c8503eb5a4f860f0e6b3fc9040f8b',1,'PlayerGraphics::PlayerGraphics()']]],
   ['playerinput',['PlayerInput',['../class_player_input.html',1,'']]],
   ['playingstate',['PlayingState',['../class_playing_state.html',1,'']]],
   ['playmusic',['playMusic',['../class_music.html#a4b7c191c6bae70db92125b3886dbadd6',1,'Music']]],
@@ -15,8 +15,11 @@ var searchData=
   ['position',['position',['../class_character.html#ae052b694df2c91c125174ef6ee64ddc9',1,'Character']]],
   ['previousposition',['previousPosition',['../class_animated_graphics_component.html#a7a5655442cf3670eabf0f3802fb3fd7f',1,'AnimatedGraphicsComponent']]],
   ['previoustime',['previousTime',['../class_animated_graphics_component.html#a729a15e04b24855b3b839d34b0b01e55',1,'AnimatedGraphicsComponent']]],
-  ['processcollisions',['processCollisions',['../class_physics_component.html#af94ffb844192ffd28c401ecce95156cd',1,'PhysicsComponent']]],
-  ['processgraphics',['processGraphics',['../class_animated_graphics_component.html#a0ee69fa04fc64e00dc921497bc87c9e5',1,'AnimatedGraphicsComponent::processGraphics()'],['../class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571',1,'PlayerGraphics::processGraphics()']]],
+  ['processcollisions',['processCollisions',['../class_physics_component.html#abd893e482600ba970cda200f9fcf2dc0',1,'PhysicsComponent']]],
+  ['processgraphics',['processGraphics',['../class_animated_graphics_component.html#a0ee69fa04fc64e00dc921497bc87c9e5',1,'AnimatedGraphicsComponent::processGraphics()'],['../class_enemy_graphics.html#a8b8adae2443eb5fa50ed2392892c2e1a',1,'EnemyGraphics::processGraphics()'],['../class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571',1,'PlayerGraphics::processGraphics()']]],
+  ['processinput',['processInput',['../class_enemy_input.html#a25525a9db4d3fd8f63b392d6fb982b30',1,'EnemyInput::processInput()'],['../class_player_input.html#ad60b353688a9086f3a3f91e71aebb69f',1,'PlayerInput::processInput()'],['../class_interactive_input.html#a470353fd941cd2698efb9923dcb29add',1,'InteractiveInput::processInput()']]],
+  ['processitemusage',['processItemUsage',['../class_enemy_input.html#af131f6681287969d6e0da320f182a9da',1,'EnemyInput::processItemUsage()'],['../class_player_input.html#acd8a5c0414997b5e30a86910b5205214',1,'PlayerInput::processItemUsage()']]],
   ['processphysics',['processPhysics',['../class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca',1,'PhysicsComponent']]],
-  ['processvelocity',['processVelocity',['../class_physics_component.html#a720de026edc23e9174614f2b5c677d85',1,'PhysicsComponent::processVelocity()'],['../class_enemy_physics.html#a8555f7f6778b6bdb3daa274fdc2b379b',1,'EnemyPhysics::processVelocity()']]]
+  ['processvelocity',['processVelocity',['../class_physics_component.html#a720de026edc23e9174614f2b5c677d85',1,'PhysicsComponent::processVelocity()'],['../class_enemy_physics.html#a8555f7f6778b6bdb3daa274fdc2b379b',1,'EnemyPhysics::processVelocity()']]],
+  ['processviewchanges',['processViewChanges',['../class_animated_player_graphics.html#ab4434eee2c7e993412561d8e383783c4',1,'AnimatedPlayerGraphics']]]
 ];

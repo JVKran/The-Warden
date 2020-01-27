@@ -68,10 +68,14 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a></td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_tile.html#a4aa69319dc9d545a60d77a7693101cac">changeSelected</a>(const bool newSelected)</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_tile.html#a577e48c4cc06d3ca32fd1405d8aa875b">changeTeleportPosition</a>(const sf::Vector2f &amp;newTeleportPosition)</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_screen_object.html#a251d344290359fed5ad1970b5c30a5c1">draw</a>(sf::RenderWindow &amp;window) const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>containsExperience</b>() (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_screen_object.html#a251d344290359fed5ad1970b5c30a5c1">draw</a>(sf::RenderWindow &amp;window) const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>experience</b> (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_screen_object.html#a2c09e64dc2eb4260ea69d411097bbbec">getBounds</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">getConfiguration</a>() const override</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_screen_object.html#af59a8d1caadd59e74f7637bdd1fe51d7">getName</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getExperience</b>() (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_screen_object.html#af59a8d1caadd59e74f7637bdd1fe51d7">getName</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getPeriod</b>() (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_screen_object.html#a6d60153bcd4ca327d6b85d096f9403b4">getPosition</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_screen_object.html#ae9b15a5e0734f2a427cd3b3fe88378f0">getRotation</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_screen_object.html#a4088ba01974e5e1e2d0ff51c907c3080">getScale</a>() const</td><td class="entry"><a class="el" href="class_screen_object.html">ScreenObject</a></td><td class="entry"></td></tr>
@@ -84,7 +88,7 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24">isPassageWay</a>() const</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_tile.html#ae8a979793d54468a9fdb5d3d446068fb">isSelected</a>() const</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>isWeapon</b>() (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Item</b>(const std::string assetName, AssetManager &amp;assets) (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Item</b>(const std::string assetName, AssetManager &amp;assets, uint_fast8_t experience=0) (defined in <a class="el" href="class_item.html">Item</a>)</td><td class="entry"><a class="el" href="class_item.html">Item</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_tile.html#aee39cb323a2d084506a6beeff8d591dd">makePartOfWorld</a>(const bool &amp;added)</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_tile.html#a7cc50e1d8db125a1b7f9381c0fc43a7c">move</a>(const sf::Vector2f &amp;position)</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_tile.html#ab7d6e7de791638e2b68965db73cb41b1">operator&lt;</a>(Tile lhs) const</td><td class="entry"><a class="el" href="class_tile.html">Tile</a></td><td class="entry"></td></tr>
@@ -106,7 +110,7 @@ $(function() {
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -72,9 +72,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a12489b9720ad1e0291b5b403bb99a12b"><td class="memItemLeft" align="right" valign="top"><a id="a12489b9720ad1e0291b5b403bb99a12b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SpriteAnimation</b> (<a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, sf::Sprite &amp;sprite, std::string movename, std::string filename)</td></tr>
 <tr class="separator:a12489b9720ad1e0291b5b403bb99a12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac41e2e7b3df2ef89c085f41ed804b57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#aac41e2e7b3df2ef89c085f41ed804b57">SpriteAnimation</a> (sf::Sprite &amp;sprite, sf::Texture &amp;texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, sf::Vector2i scale=sf::Vector2i{5, 5}, sf::Vector2i missingRowCollom=sf::Vector2i{0, 0}, sf::Vector2i startpos=sf::Vector2i{0, 0}, float animationSpeed=0.1f)</td></tr>
-<tr class="memdesc:aac41e2e7b3df2ef89c085f41ed804b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#aac41e2e7b3df2ef89c085f41ed804b57">More...</a><br /></td></tr>
-<tr class="separator:aac41e2e7b3df2ef89c085f41ed804b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac10cf72d474d256d7745d41e28bb63db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sprite_animation.html#ac10cf72d474d256d7745d41e28bb63db">leftSprite</a> (bool left)</td></tr>
 <tr class="memdesc:ac10cf72d474d256d7745d41e28bb63db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable left side of sprite.  <a href="#ac10cf72d474d256d7745d41e28bb63db">More...</a><br /></td></tr>
 <tr class="separator:ac10cf72d474d256d7745d41e28bb63db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,85 +160,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>startFrameLoop</b> =f
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>ismirrored</b></td></tr>
 <tr class="separator:af08a649d86ad64bc786ea0b1dbf16bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aac41e2e7b3df2ef89c085f41ed804b57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac41e2e7b3df2ef89c085f41ed804b57">&#9670;&nbsp;</a></span>SpriteAnimation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">SpriteAnimation::SpriteAnimation </td>
-          <td>(</td>
-          <td class="paramtype">sf::Sprite &amp;&#160;</td>
-          <td class="paramname"><em>sprite</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sf::Texture &amp;&#160;</td>
-          <td class="paramname"><em>texture</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const sf::Vector2i&#160;</td>
-          <td class="paramname"><em>dimensions</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sf::Vector2i&#160;</td>
-          <td class="paramname"><em>spriteRowColumn</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sf::Vector2i&#160;</td>
-          <td class="paramname"><em>scale</em> = <code>sf::Vector2i{5,5}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sf::Vector2i&#160;</td>
-          <td class="paramname"><em>missingRowCollom</em> = <code>sf::Vector2i{0,0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sf::Vector2i&#160;</td>
-          <td class="paramname"><em>startpos</em> = <code>sf::Vector2i{0,0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>animationSpeed</em> = <code>0.1f</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create instance. </p>
-<p>This function creates a <a class="el" href="class_sprite_animation.html">SpriteAnimation</a>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sprite</td><td>This is the sprite. </td></tr>
-    <tr><td class="paramname">texture</td><td>This has the spritesheet as texture for the sprite. </td></tr>
-    <tr><td class="paramname">dimensions</td><td>This has the width(dimension.x) and height(dimension.y) of the spritesheet. </td></tr>
-    <tr><td class="paramname">spriteRowColumn</td><td>This has the amount of horizontal sprites(row) and the amount of vertical sprites(column). </td></tr>
-    <tr><td class="paramname">scale</td><td>This has the scale the sprite has to be. </td></tr>
-    <tr><td class="paramname">missingRow</td><td>This is how many sprites are missing at the end. </td></tr>
-    <tr><td class="paramname">animationSpeed</td><td>This is the animationSpeed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a77c9bcc449680295400860f3f27c2596"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77c9bcc449680295400860f3f27c2596">&#9670;&nbsp;</a></span>changeStartEndFrame()</h2>
@@ -386,7 +304,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ismirrored</b></td></
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

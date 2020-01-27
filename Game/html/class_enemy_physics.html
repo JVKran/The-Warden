@@ -65,6 +65,11 @@ $(function() {
 <div class="title">EnemyPhysics Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_enemy_physics.html" title="EnemyPhysics. ">EnemyPhysics</a>.  
+ <a href="class_enemy_physics.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for EnemyPhysics:</div>
 <div class="dyncontent">
@@ -84,9 +89,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a925fc391374f4e16bf7a3cacc38134ca inherit pub_methods_class_physics_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca">processPhysics</a> (sf::Vector2f &amp;velocity)</td></tr>
 <tr class="memdesc:a925fc391374f4e16bf7a3cacc38134ca inherit pub_methods_class_physics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process physics.  <a href="class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca">More...</a><br /></td></tr>
 <tr class="separator:a925fc391374f4e16bf7a3cacc38134ca inherit pub_methods_class_physics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af94ffb844192ffd28c401ecce95156cd inherit pub_methods_class_physics_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#af94ffb844192ffd28c401ecce95156cd">processCollisions</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;characterItems, <a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions, <a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;collisionBounds, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters)</td></tr>
-<tr class="memdesc:af94ffb844192ffd28c401ecce95156cd inherit pub_methods_class_physics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process collisions.  <a href="class_physics_component.html#af94ffb844192ffd28c401ecce95156cd">More...</a><br /></td></tr>
-<tr class="separator:af94ffb844192ffd28c401ecce95156cd inherit pub_methods_class_physics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd893e482600ba970cda200f9fcf2dc0 inherit pub_methods_class_physics_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#abd893e482600ba970cda200f9fcf2dc0">processCollisions</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;characterItems, <a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions, <a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;collisionBounds, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters, <a class="el" href="class_character.html">Character</a> *ownCharacter)</td></tr>
+<tr class="memdesc:abd893e482600ba970cda200f9fcf2dc0 inherit pub_methods_class_physics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process collisions.  <a href="class_physics_component.html#abd893e482600ba970cda200f9fcf2dc0">More...</a><br /></td></tr>
+<tr class="separator:abd893e482600ba970cda200f9fcf2dc0 inherit pub_methods_class_physics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a421fc34c8b1a004c3742ce8db6cd5ce6 inherit pub_methods_class_physics_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_physics_component.html">PhysicsComponent</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a421fc34c8b1a004c3742ce8db6cd5ce6">operator=</a> (<a class="el" href="class_physics_component.html">PhysicsComponent</a> lhs)</td></tr>
 <tr class="memdesc:a421fc34c8b1a004c3742ce8db6cd5ce6 inherit pub_methods_class_physics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="class_physics_component.html#a421fc34c8b1a004c3742ce8db6cd5ce6">More...</a><br /></td></tr>
 <tr class="separator:a421fc34c8b1a004c3742ce8db6cd5ce6 inherit pub_methods_class_physics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +132,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:ac8ffb7cefcb1511fc750624184d558d7 inherit pro_attribs_class_physics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wether or not the character has resistance. i.e. is in water. <br /></td></tr>
 <tr class="separator:ac8ffb7cefcb1511fc750624184d558d7 inherit pro_attribs_class_physics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_enemy_physics.html" title="EnemyPhysics. ">EnemyPhysics</a>. </p>
+<p>This class implements the physics for enemies. They aren't that different, they just accelerate slower and have a slower top speed. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8555f7f6778b6bdb3daa274fdc2b379b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8555f7f6778b6bdb3daa274fdc2b379b">&#9670;&nbsp;</a></span>processVelocity()</h2>
 
@@ -182,7 +190,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

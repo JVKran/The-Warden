@@ -10,6 +10,8 @@ Text::Text( std::string input, sf::Vector2f position, float size, sf::Color colo
 	centered{ centered }
 {
 	if (!font.loadFromFile("OpenSans-Italic.ttf")){}
+	text.setOutlineThickness(1);
+	text.setOutlineColor(sf::Color::Green);
 }
 
 void Text::draw( sf::RenderWindow & window ) {

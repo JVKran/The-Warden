@@ -23,8 +23,8 @@ class Item : public Tile {
 			Tile(assetName, assets)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
-		virtual bool containsExperience() {return false;};
-		virtual uint_fast8_t getExperience() {return experience;};
+		virtual bool containsExperience();
+		virtual uint_fast8_t getExperience();
 		virtual bool isWeapon();
 		virtual int_fast16_t getPeriod(){
 			return 0;
@@ -63,11 +63,15 @@ class Consumable : public Item {
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
+/// \brief
+/// Experience
+/// \details
+/// This class is responsible for giving the Player experience points after being picked up.
 class Experience : public Item {
 	public:
-		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 30);
-		virtual bool containsExperience() override {return true;};
-		virtual uint_fast8_t getExperience() override {return getExperience();};
+		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience);
+		virtual bool containsExperience() override;
+		virtual uint_fast8_t getExperience() override;
 };
 
 #endif //Items.hpp
