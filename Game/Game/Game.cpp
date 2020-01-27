@@ -34,7 +34,6 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 		characters.at(i).update(window, world, characters, bindings);
 	}
 }
-
 /// \brief
 /// Hanlde Events.
 /// \details
@@ -43,7 +42,7 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).handleEvent(event);
 	}
-
+	
 	if( event.type == sf::Event::MouseButtonReleased ){
 		if( event.mouseButton.button == sf::Mouse::Right ){
 			characters.at(0).addTile(event, world, window, view);		//adds a new tile using the character player
