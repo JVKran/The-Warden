@@ -85,7 +85,9 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 	world(world),
 	window(window),
 	view(view)
-{}
+{
+	setNewScale(0.27);		//sets the scale for inventory smaller, because othwise a to big crate will be visible in the inventory
+}
 
 /// \brief
 /// Create a tile.
