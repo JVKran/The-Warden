@@ -54,6 +54,7 @@ int main(){
 			machine.handleInput(event, view);
 		}
 
+
 		window.clear();
 		window.setView(view);
 		machine.display(event, view);
@@ -65,6 +66,7 @@ int main(){
 			}
 			machine.handleEvent(event, view);
 		}
+
 
 	}
 

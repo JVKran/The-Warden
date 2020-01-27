@@ -59,7 +59,14 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 Character::~Character(){
 	lootDrop->drop(items, experiencePoints, position);
 }
-
+/// \brief
+/// Restart the clock
+/// \details
+/// This function will restart the clock 
+void Character::restartClock(){
+	clock.restart();
+	lastUpdate = 0.0;
+}
 /// \brief
 /// Update Character.
 /// \details
@@ -78,6 +85,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	if(position.y > 600 && isPlayer()){
 		respawn();
 	}
+	// if pause, reset clock
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 	if(timeDifference >= 3.0 && timeDifference <= 5.5){
 		position += velocity;
@@ -85,6 +93,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	} else if(timeDifference > 6.0) {
 		position += sf::Vector2f(velocity.x * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4), velocity.y * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4));
 		lastUpdate = clock.getElapsedTime().asMilliseconds();
+
 	}
 }
 
