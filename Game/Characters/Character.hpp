@@ -174,9 +174,6 @@ class Character {
 		int_fast8_t health = 100;								//!< The current amount of health.
 		sf::RectangleShape healthBar;							//!< The health bar that has to be drawn.
 
-		sf::Font font;
-		sf::Text text;
-
 		std::shared_ptr<InputComponent> input;					//!< A smart pointer to an on the heap allocated InputComponent.
 		std::shared_ptr<PhysicsComponent> physics;				//!< A smart pointer to an on the heap allocated PhysicsComponent.
 		std::shared_ptr<AnimatedGraphicsComponent> graphics;	//!< A smart pointer to an on the heap allocated AnimatedPlayerGraphics.

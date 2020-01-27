@@ -30,6 +30,10 @@ class Game {
 
 		sf::Font font;
 		sf::Text text;
+
+		sf::Font experienceFont;
+		sf::Text experienceText;
+
 		sf::Clock clock;
 		double lastTime;
 		int_fast16_t remainingGameTime = 600;

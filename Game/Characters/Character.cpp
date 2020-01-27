@@ -50,13 +50,6 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	healthBar.setOutlineColor(sf::Color::Black);
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
-	if (!font.loadFromFile("Minecraft.ttf")){
-	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
-	} else {
-		text.setFont(font);
-	}
-	text.setFillColor(sf::Color::Black);
-	text.setCharacterSize(30);
 }
 
 void Character::die(){
@@ -174,9 +167,6 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
 		}
 	}
-	text.setString(std::to_string(experiencePoints));
-	text.setPosition(view.getCenter());
-	window.draw(text);
 	window.draw(healthBar);
 
 	// sf::RectangleShape hit(graphics->getDimensions());
@@ -247,6 +237,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 			if(items.at(i)->containsExperience()){
 				if(ownCharacter->isPlayer()){
 					ownCharacter->addExperience(items.at(i)->getExperience());
+					std::cout << "Added " << std::to_string(items.at(i)->getExperience()) << std::endl;
 				}
 			} else {
 				characterItems.push_back(items.at(i));

@@ -20,6 +20,13 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 		text.setFont(font);
 	}
 	text.setFillColor(sf::Color::Black);
+
+	if (!experienceFont.loadFromFile("Minecraft.ttf")){
+	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
+	} else {
+		experienceText.setFont(experienceFont);
+	}
+	experienceText.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -84,6 +91,14 @@ void Game::display(sf::View & view){
 	text.setString(std::to_string(remainingGameTime));
 	text.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2));
 	window.draw(text);
+
+	for(const Character & character : characters){
+		if(character.isPlayer()){
+			experienceText.setString(std::to_string(character.getExperience()));
+		}
+	}
+	experienceText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 30));
+	window.draw(experienceText);
 }
 
 

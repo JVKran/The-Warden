@@ -5,11 +5,12 @@
 /// \details
 /// This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight.
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
+	int detectionRange = 80;
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(characters.at(i).isPlayer()){									//Enemy 					//Player
-			if(characters.at(i).getPosition().x < position.x - 100 && characters.at(i).getPosition().x > position.x - 500){
+			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 500){
 				direction.x = -1;
-			} else if (characters.at(i).getPosition().x > position.x + 200 && characters.at(i).getPosition().x - 500 < position.x){
+			} else if (characters.at(i).getPosition().x > position.x + detectionRange + 30 && characters.at(i).getPosition().x - 500 < position.x){
 				direction.x = 1;
 			} else {
 				direction.x = 0;
