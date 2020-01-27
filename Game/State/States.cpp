@@ -60,7 +60,7 @@ void SettingsState::handleInput(StateDependantObjects & objects, ViewObjects & v
 }
 
 void SettingsState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
-	objects.settings.draw();
+	objects.settings.draw(viewObjects.view);
 }
 
 void SettingsState::handleEvent(StateDependantObjects & objects, ViewObjects & viewObjects) {

@@ -46,14 +46,14 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
-				game.restartCharacterClock();
+				game.restartClocks();
 			}
 			// Back to previous state
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+900,position.y+440))){		
 				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();
-				game.restartCharacterClock();
+				game.restartClocks();
 
 			}
 		}
