@@ -16,7 +16,7 @@ class Character;
 /// \details
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
-	private:
+	protected:
 		uint_fast8_t experience;
 	public:
 		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
@@ -63,13 +63,9 @@ class Consumable : public Item {
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
-/// \brief
-/// Experience
-/// \details
-/// This class is responsible for giving the Player experience points after being picked up.
 class Experience : public Item {
 	public:
-		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience);
+		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 30);
 		virtual bool containsExperience() override;
 		virtual uint_fast8_t getExperience() override;
 };

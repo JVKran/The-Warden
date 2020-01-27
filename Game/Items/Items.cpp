@@ -54,8 +54,9 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 					} catch (...){
 						std::cout << "(!)-- Something went wrong..." << std::endl;
 					}
-					return true;
 				}
+				//character.addExperience();
+				return true;
 			}
 		}
 	}
@@ -91,5 +92,5 @@ bool Experience::containsExperience() {
 /// \details
 /// Return the amount of experience the experience Item has.
 uint_fast8_t Experience::getExperience() {
-	return getExperience();
+	return experience;
 }

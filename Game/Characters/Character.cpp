@@ -50,7 +50,13 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	healthBar.setOutlineColor(sf::Color::Black);
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
-	std::cout << "Construct" << std::endl;
+	if (!font.loadFromFile("Minecraft.ttf")){
+	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
+	} else {
+		text.setFont(font);
+	}
+	text.setFillColor(sf::Color::Black);
+	text.setCharacterSize(30);
 }
 
 void Character::die(){
@@ -168,6 +174,9 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
 		}
 	}
+	text.setString(std::to_string(experiencePoints));
+	text.setPosition(view.getCenter());
+	window.draw(text);
 	window.draw(healthBar);
 
 	// sf::RectangleShape hit(graphics->getDimensions());
@@ -612,7 +621,7 @@ Character & Character::operator=(Character lhs){
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::addExperience(const int_fast16_t & experiencePointsToAdd){
+void Character::addExperience(const int_fast16_t experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 
