@@ -32,10 +32,14 @@ class Game {
 		sf::Text scoreText;
 		sf::Text experienceText;
 		sf::Text saveText;
+		sf::Text highScoreText;
 
 		sf::Sprite timeSprite;
 		sf::Sprite experienceSprite;
 		sf::Sprite savePointSprite;
+		sf::Sprite highScoreSprite;
+
+		std::vector<int> scores = {0};
 
 		std::vector<int> savePoints = {4000, 8000};
 		int currentSavePoint = 0;

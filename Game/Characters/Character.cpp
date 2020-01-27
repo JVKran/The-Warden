@@ -82,7 +82,6 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 		respawn();
 		experiencePoints -= 50;
 	}
-	// if pause, reset clock
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 	if(timeDifference >= 3.0 && timeDifference <= 5.5){
 		position += velocity;

@@ -67,3 +67,4 @@ wizardAttack Assets/Textures/wizardAttack.png
 menuTitle Assets/Textures/tmpMenuTitle.png
 experience Assets/Textures/Items/Experience.png
 time Assets/Textures/Items/Time.png
+starLogo Assets/Textures/Items/starLogo.png

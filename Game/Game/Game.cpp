@@ -20,14 +20,18 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 		scoreText.setFont(font);
 		experienceText.setFont(font);
 		saveText.setFont(font);
+		highScoreText.setFont(font);
 	}
 	timeSprite.setTexture(assets.getTexture("time"));
 	experienceSprite.setTexture(assets.getTexture("experience"));
 	savePointSprite.setTexture(assets.getTexture("ironSword"));
+	highScoreSprite.setTexture(assets.getTexture("starLogo"));
+	highScoreSprite.setScale(0.12, 0.12);
 
 	scoreText.setFillColor(sf::Color::Black);
 	experienceText.setFillColor(sf::Color::Black);
 	saveText.setFillColor(sf::Color::Black);
+	highScoreText.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -69,6 +73,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 			} catch(std::exception & error){
 				std::cout << "(i)-- End of game reached at position " << character.getPosition().x << "!" << std::endl;
 				//lastTime = clock.getElapsedTime().asMilliseconds();
+				scores.push_back(character.getExperience() + remainingGameTime);
 				restart();
 			}
 		}
@@ -120,6 +125,10 @@ void Game::display(sf::View & view){
 	saveText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 60));
 	window.draw(saveText);
 
+	highScoreText.setString(std::to_string(*std::max_element(scores.begin(), scores.end())));
+	highScoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 90));
+	window.draw(highScoreText);
+
 	experienceSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 33));
 	window.draw(experienceSprite);
 
@@ -128,6 +137,9 @@ void Game::display(sf::View & view){
 
 	savePointSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 63));
 	window.draw(savePointSprite);
+
+	highScoreSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 93));
+	window.draw(highScoreSprite);
 
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters[i].draw(window, view);			// Then all characters.
