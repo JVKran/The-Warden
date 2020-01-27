@@ -23,6 +23,7 @@ class Interface {
 		Settings & settings;
 
 		World world;
+		StateMachine * stateMachine;
 
 		sf::RenderWindow & window;
 

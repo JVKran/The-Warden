@@ -13,20 +13,18 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
  }
 
 void Interface::initialize(StateMachine * machine){
-	
+	stateMachine = machine;
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [machine]{  machine->changeState(std::make_shared<PlayingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [machine]{ machine->changeState(std::make_shared<EditingState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [machine] {machine->changeState(std::make_shared<SettingsState>());})));
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(-1,-1), float(0)), Action( [machine] {machine->changeState(std::make_shared<PauseState>());})));
-	//Pause elements
-	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [machine] {machine->changeState(std::make_shared<MenuState>());})));
-	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [machine] {machine->changeState(std::make_shared<PlayingState>());})));
 
 }
 
 void Interface::goToPauseMenu(sf::View & view){ 
+	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [this] {stateMachine->changeState(std::make_shared<MenuState>());})));
+	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [this] {stateMachine->changeState(stateMachine->getCurrentState());})));
 	interfaceElements[3].changeState();
-
 	//view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
 
 }
@@ -41,20 +39,24 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	pauseElements[0].setPosition(sf::Vector2f(position.x+600,position.y+440));
 	pauseElements[1].setPosition(sf::Vector2f(position.x+900,position.y+440));
 	pauseGame = true;
-
+	//
 	for(InterfaceElement& element : pauseElements){
 		if(element.contains(window,view)){
+			//Menu
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+600,position.y+440))){				
 				
 				view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
 				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
+				pauseElements.pop_back();
 			}
+			// Back to previous state
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+900,position.y+440))){		
 				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();
+				pauseElements.pop_back();
 
 			}
 		}
