@@ -14,6 +14,12 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	bindings(bindings)
 {			//"Assets/objects.txt"
 	loadCharacters();
+	if (!font.loadFromFile("Minecraft.ttf")){
+	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
+	} else {
+		text.setFont(font);
+	}
+	text.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -32,6 +38,10 @@ void Game::startWorld(const std::string & worldName){
 void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
+	}
+	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
+		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
+		lastTime = clock.getElapsedTime().asSeconds();
 	}
 }
 
@@ -66,6 +76,9 @@ void Game::display(sf::View & view){
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
+	text.setString(std::to_string(remainingGameTime));
+	text.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2));
+	window.draw(text);
 }
 
 
