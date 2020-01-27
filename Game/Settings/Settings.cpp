@@ -22,11 +22,11 @@ void Settings::handleInput(){
 		case StateSettings::IDLE: {
 			//change the color to blue of the Binding object if the mouse is on it else make it red 
 			for( auto & key : bindings ){
-				key.contains( sf::Mouse::getPosition(window)) ? key.setColor( sf::Color::Blue ) : key.setColor( sf::Color::Red );
+				key.contains( sf::Mouse::getPosition(window)) ? key.setColor( sf::Color::White ) : key.setColor( sf::Color::Black );
 			}
 
 			//change the color of backButton to blue if the mouse is on it else make it red
-			backButton.contains( sf::Mouse::getPosition(window)) ? backButton.setColor( sf::Color::Blue ) : backButton.setColor( sf::Color::Red );
+			backButton.contains( sf::Mouse::getPosition(window)) ? backButton.setColor( sf::Color::White ) : backButton.setColor( sf::Color::Black );
 			break;
 		}
 		case StateSettings::CHANGEKEY: {

@@ -28,7 +28,7 @@ private:
 	std::vector<KeyBinding> & bindings;
 	StateSettings state = StateSettings::IDLE;											//!< The current state of the class
 	uint selectedKey = 0;																//!< holds the index of the array Bindings, needed to select a key if pressed on it
-	Text backButton = { "Back", sf::Vector2f{50.0, 440.0}, 1.0, sf::Color::Red};		//!< seperate backButton object for going back to menu screen.
+	Text backButton = { "Back", sf::Vector2f{50.0, 440.0}, 1.0, sf::Color::Black};		//!< seperate backButton object for going back to menu screen.
 	sf::Sprite background;																//!< sprite object to give a nice background on the screen
 	Action action;
 public:
