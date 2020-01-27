@@ -51,6 +51,7 @@ class ScreenObject {
 /// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
 class Tile : public ScreenObject {
 	private:
+		//std::string name;					//!< The name of the texture
 		bool followMouse = false;			//!< Whether or not to follow the mouse's position.
 		bool collidable = true;				//!< Whether or not Character types should collide with this Tile.
 		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
@@ -85,6 +86,8 @@ class Tile : public ScreenObject {
 		void changeSelected(const bool newSelected);
 
 		void move(const sf::Vector2f & position);
+
+		//std::string getName();
 
 		Tile& operator=(Tile lhs);
 		bool operator==(Tile lhs) const;

@@ -96,12 +96,4 @@ void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedIt
 			selectedItem += event.mouseWheel.delta;						//only get a selectedItem if it is >= 0 and <= vector.size()-1
 		}
 	}
-
-	/*if( event.type == sf::Event::MouseButtonReleased ){
-		if( event.mouseButton.button == sf::Mouse::Right ){
-			characters.at(0).addTile(event, world, window, view);		//adds a new tile using the character player
-		}else if( event.mouseButton.button == sf::Mouse::Middle ){
-			characters.at(0).deleteTile(event, world, window, view);	//deletes a block using player if the mouse is on the tile
-		}
-	}*/
 }

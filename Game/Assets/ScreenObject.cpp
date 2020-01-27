@@ -116,6 +116,7 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param collidable The initial collidability with Character types.
 Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const bool collidable, const float rotation, const int windowLayer):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
+	//name(assetName),
 	collidable(collidable)
 {
 	teleportPosition = {0,0};
@@ -221,6 +222,16 @@ bool Tile::isSelected() const{
 void Tile::changeSelected(const bool newSelected){
 	selected = newSelected;
 }
+
+/// \brief
+/// Get the Name of the texture
+/// \details
+/// This functions gets the name of the texture
+/// \return the name as a string
+//std::string Tile::getName(){
+	//std::cout << name << std::endl;
+	//return name;
+//}
 
 /// \brief
 /// Assignment operator.
