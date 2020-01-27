@@ -79,6 +79,7 @@ void Game::loadCharacters(){
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
 	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+	startItems.push_back(std::make_shared<Experience>("experience", assets, uint_fast8_t(30)));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){

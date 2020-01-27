@@ -5,7 +5,13 @@
 bool Item::isWeapon() {
 	return false;
 }
+bool Item::containsExperience() {
+	return false;
+}
 
+uint_fast8_t Item::getExperience() {
+	return experience;
+}
 /// \brief
 /// Create weapon instance.
 /// \details
@@ -69,4 +75,20 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 		character->setHealth(100);
 	}
 	return true;
+}
+
+Experience::Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience):
+	Item(assetName, assets, experience)
+{}
+
+bool Experience::containsExperience() {
+	return true;
+}
+
+/// \brief
+/// Return the experience.
+/// \details
+/// Return the amount of experience the experience Item has.
+uint_fast8_t Experience::getExperience() {
+	return getExperience();
 }
