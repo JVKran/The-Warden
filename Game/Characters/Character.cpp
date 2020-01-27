@@ -229,6 +229,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
 			characterItems.push_back(items.at(i));
+			items.erase(std::find(items.begin(), items.end(), items.at(i)));
 		}
 	}
 }
