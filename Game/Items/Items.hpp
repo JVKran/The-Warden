@@ -9,6 +9,7 @@
 #include "World.hpp"
 #include <memory>
 #include <functional>
+#include <cmath> 
 
 class Character; 
 class World;
