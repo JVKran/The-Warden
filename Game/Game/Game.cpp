@@ -87,11 +87,6 @@ void Game::display(sf::View & view){
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
-	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
-	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
-	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
-	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){
@@ -178,6 +173,13 @@ void Game::loadCharacters(){
 		
 		prevstring=currstring;
 		if((currstring.find("eind")!= std::string::npos)){
+			startItems.clear();
+			startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+			startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
+			startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
+			startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
+			startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));

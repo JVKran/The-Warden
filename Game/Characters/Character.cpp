@@ -38,7 +38,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	position(position),
 	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
-	healthBar(sf::Vector2f(health,  20)),
+	healthBar(sf::Vector2f(health, 20)),
 	input(input),
 	physics(physics),
 	graphics(graphics)
@@ -75,7 +75,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
-	if(position.y > 600){
+	if(position.y > 600 && isPlayer()){
 		respawn();
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
