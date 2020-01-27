@@ -141,7 +141,7 @@ class AnimatedGraphicsComponent {
 			attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 			currentAnimation(&idleAnimation)
 		{}
-		virtual void setFightAnimation();
+		virtual void setFightAnimation(int_fast16_t hitTime=500);
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
@@ -197,7 +197,9 @@ class Character {
 		std::shared_ptr<AnimatedGraphicsComponent> getGraphics(){
 			return graphics;
 		}
-
+		void setSelectedItemNumber(int_fast16_t number){
+				selectedItem = number;
+		}
 		std::vector<std::shared_ptr<Item>> & getItems();
 		bool isPlayer() const;
 

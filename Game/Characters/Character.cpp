@@ -195,6 +195,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
 
 	std::for_each(
+		
 		leftIterator,
 		rightIterator,
 		[&tileBounds, &hitbox, &bottomHitbox, this](Tile & tile){
@@ -495,11 +496,13 @@ sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 /// Set fight animation
 /// \details
 /// This function sets the current animation to the fight animation.
-void AnimatedGraphicsComponent::setFightAnimation(){
+void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
+	if(clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds()>hitTime){
 	isAttacking=true;
 	currentAnimation=&attackAnimation;
 	attackTime = clock.getElapsedTime();
 	currentAnimation->left(isWalkingLeft);
+	}
 }
 
 /// \brief

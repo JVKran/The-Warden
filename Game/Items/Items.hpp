@@ -26,6 +26,9 @@ class Item : public Tile {
 		virtual bool containsExperience() {return false;};
 		virtual uint_fast8_t getExperience() {return experience;};
 		virtual bool isWeapon();
+		virtual int_fast16_t getPeriod(){
+			return 0;
+		}
 };
 
 /// \brief
@@ -43,6 +46,9 @@ class Weapon : public Item {
 		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 		virtual bool isWeapon() override;
+		virtual int_fast16_t getPeriod() override{
+			return hitPeriod;
+		}
 };
 
 /// \brief
