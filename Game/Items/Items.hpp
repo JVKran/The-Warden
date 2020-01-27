@@ -16,12 +16,19 @@ class Character;
 /// \details
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
+	private:
+		uint_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets):
+		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
 			Tile(assetName, assets)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
+		virtual bool containsExperience() {return false;};
+		virtual uint_fast8_t getExperience() {return experience;};
 		virtual bool isWeapon();
+		virtual int_fast16_t getPeriod(){
+			return 0;
+		}
 };
 
 /// \brief
@@ -39,6 +46,9 @@ class Weapon : public Item {
 		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 		virtual bool isWeapon() override;
+		virtual int_fast16_t getPeriod() override{
+			return hitPeriod;
+		}
 };
 
 /// \brief
@@ -51,6 +61,13 @@ class Consumable : public Item {
 	public:
 		Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
+};
+
+class Experience : public Item {
+	public:
+		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 30);
+		virtual bool containsExperience() override {return true;};
+		virtual uint_fast8_t getExperience() override {return getExperience();};
 };
 
 #endif //Items.hpp

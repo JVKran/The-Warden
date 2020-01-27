@@ -63,7 +63,7 @@ class PhysicsComponent {
 		bool hasResistance = false;												//!< Wether or not the character has resistance. i.e. is in water.
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
-		virtual void processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters);
+		virtual void processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters, Character * ownCharacter);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 
 		PhysicsComponent & operator=(PhysicsComponent lhs);
@@ -141,7 +141,7 @@ class AnimatedGraphicsComponent {
 			attackAnimation(assets,spriteAttack,characterData.attackName,characterData.attackFile),
 			currentAnimation(&idleAnimation)
 		{}
-		virtual void setFightAnimation();
+		virtual void setFightAnimation(int_fast16_t hitTime=500);
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
@@ -197,7 +197,9 @@ class Character {
 		std::shared_ptr<AnimatedGraphicsComponent> getGraphics(){
 			return graphics;
 		}
-
+		void setSelectedItemNumber(int_fast16_t number){
+				selectedItem = number;
+		}
 		std::vector<std::shared_ptr<Item>> & getItems();
 		bool isPlayer() const;
 
@@ -212,7 +214,7 @@ class Character {
 		Character & operator=(Character lhs);
 
 		int_fast16_t getExperience() const;
-		void setExperience(const int_fast16_t & experiencePointsToAdd);
+		void addExperience(const int_fast16_t & experiencePointsToAdd);
 
 		int_fast8_t getHealth() const;
 		void setHealth(const int_fast8_t newHealth);

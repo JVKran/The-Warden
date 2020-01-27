@@ -45,7 +45,7 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		if(machine.getCurrentState()->getName() != 4){
+		if(machine.getCurrentState()->getName() != 4){			//Editing
 			while(lag >= simulationSpeed){
 				machine.handleInput(event, view);
 				lag -= simulationSpeed;
@@ -58,6 +58,7 @@ int main(){
 		window.setView(view);
 		machine.display(event, view);
 		window.display();
+		
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();

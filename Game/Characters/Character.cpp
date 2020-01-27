@@ -71,7 +71,7 @@ Character::~Character(){
 /// @param keys The keys to use for input.
 void Character::update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys){
 	input->processInput(position, direction, keys);
-	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters);
+	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters, this);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
@@ -179,7 +179,7 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// @param dimensions The dimensions of the character.
 /// @param collisionBounds The bounds to check for collisions in between.
 /// @param characters The characters to check collisions with.
-void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters){
+void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters, Character * ownCharacter){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
@@ -195,6 +195,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&collisionBounds](const Tile & tile)->bool{return tile.getPosition().x > collisionBounds.rightCollisionBound;});
 
 	std::for_each(
+		
 		leftIterator,
 		rightIterator,
 		[&tileBounds, &hitbox, &bottomHitbox, this](Tile & tile){
@@ -228,8 +229,15 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 
 	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
-			characterItems.push_back(items.at(i));
+			if(items.at(i)->containsExperience()){
+				if(ownCharacter->isPlayer()){
+					ownCharacter->addExperience(items.at(i)->getExperience());
+				}
+			} else {
+				characterItems.push_back(items.at(i));
+			}
 			items.erase(std::find(items.begin(), items.end(), items.at(i)));
+			break;
 		}
 	}
 }
@@ -489,11 +497,13 @@ sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 /// Set fight animation
 /// \details
 /// This function sets the current animation to the fight animation.
-void AnimatedGraphicsComponent::setFightAnimation(){
+void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
+	if(clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds()>hitTime){
 	isAttacking=true;
 	currentAnimation=&attackAnimation;
 	attackTime = clock.getElapsedTime();
 	currentAnimation->left(isWalkingLeft);
+	}
 }
 
 /// \brief
@@ -596,7 +606,7 @@ Character & Character::operator=(Character lhs){
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::setExperience(const int_fast16_t & experiencePointsToAdd){
+void Character::addExperience(const int_fast16_t & experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 

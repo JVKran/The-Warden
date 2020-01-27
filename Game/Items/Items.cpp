@@ -2,7 +2,6 @@
 
 #include "Items.hpp"
 
-
 bool Item::isWeapon() {
 	return false;
 }
