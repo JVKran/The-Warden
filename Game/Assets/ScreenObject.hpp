@@ -15,12 +15,12 @@
 /// be drawn. This is used to prevent objects being overwritten by other objects.
 class ScreenObject {
 	protected:
-		std::string assetName;				//!< The AssetName to get corresponding texture from the AssetManager.
+					//!< The AssetName to get corresponding texture from the AssetManager.
 		sf::Sprite sprite;					//!< The Sprite this ScreenObject has to draw and manage.
 		int_fast8_t windowLayer;			//!< The windowLayer this ScreenObject is part of.
 	public:
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const float rotation = 0, const int windowLayer = 0);
-
+		std::string assetName;	
 		std::string getName() const;
 		virtual std::string getConfiguration() const;
 		sf::FloatRect getBounds() const;

@@ -94,10 +94,11 @@ void Game::display(sf::View & view){
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
 	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+
 	startItems.push_back(std::make_shared<Experience>("experience", assets, uint_fast8_t(30)));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
@@ -186,17 +187,21 @@ void Game::loadCharacters(){
 		prevstring=currstring;
 		if((currstring.find("eind")!= std::string::npos)){
 			startItems.clear();
-			startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
-			startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
-			startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
-			startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-			startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+
 
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+				startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
+				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
+				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
+
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
-				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
+				startItems.push_back(std::make_shared<Experience>("experience", assets, uint_fast8_t(30)));
+
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

@@ -16,7 +16,7 @@ class Character;
 /// \details
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
-	private:
+	protected:
 		uint_fast8_t experience;
 	public:
 		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):

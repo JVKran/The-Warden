@@ -71,6 +71,7 @@ bool Weapon::isWeapon(){
 /// \details
 /// This function adds the foodValue to the Character's current health.
 bool Consumable::use(Character * character, std::vector<Character> & characters){
+	std::cout<<assetName<<'\n';
 	character->setHealth(foodValue + character->getHealth());
 	if(character->getHealth() > 100){
 		character->setHealth(100);
@@ -91,5 +92,5 @@ bool Experience::containsExperience() {
 /// \details
 /// Return the amount of experience the experience Item has.
 uint_fast8_t Experience::getExperience() {
-	return getExperience();
+	return experience;
 }

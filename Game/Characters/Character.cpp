@@ -42,6 +42,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	input(input),
 	physics(physics),
 	graphics(graphics)
+
 {
 	items = startItems;
 	healthBar.setOutlineThickness(2);
@@ -154,12 +155,14 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 				items[i]->setPosition(itemPosition);
 				items[i]->draw(window);
 				if(currentItems == selectedItem){
+									std::cout<<items.at(i)->assetName<<'\n';
+
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
 					window.draw(itemSelector);	
 				}
 				itemPosition.x += 25;
 				if(currentItems % maxColumns == 0){
-					itemPosition.y -= 25;
+					itemPosition.y -= 50;
 					itemPosition.x = position.x;
 				}
 				currentItems ++;
@@ -237,6 +240,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
 			if(items.at(i)->containsExperience()){
 				if(ownCharacter->isPlayer()){
+					std::cout<<"---------------  "<<items.at(i)->getExperience();
 					ownCharacter->addExperience(items.at(i)->getExperience());
 				}
 			} else {
