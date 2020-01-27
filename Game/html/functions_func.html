@@ -61,10 +61,16 @@ $(function() {
 &#160;
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>addExperience()
+: <a class="el" href="class_character.html#aaa3ded21a7c3422c4d3935f06b0d76fe">Character</a>
+</li>
 <li>addTile()
 : <a class="el" href="class_character.html#a1fdbfd90079c3dac01a407617d9f458b">Character</a>
 , <a class="el" href="class_player_input.html#a04627b63a789de812e38ee9be00493f5">PlayerInput</a>
-, <a class="el" href="class_world.html#a30e1da48187e2c0954dc36c4defaa29c">World</a>
+, <a class="el" href="class_world.html#af8ed6a47e0fb9e2ea642050059c4ebfa">World</a>
+</li>
+<li>AnimatedPlayerGraphics()
+: <a class="el" href="class_animated_player_graphics.html#a3d620de435cd528707c867f00cee1789">AnimatedPlayerGraphics</a>
 </li>
 <li>AssetManager()
 : <a class="el" href="class_asset_manager.html#af11905d974a37bb06f244598cb637d98">AssetManager</a>
@@ -127,6 +133,9 @@ $(function() {
 <li>Editor()
 : <a class="el" href="class_editor.html#a25d137b0cb4c65bc98e43e29c5a63ff0">Editor</a>
 </li>
+<li>EnemyGraphics()
+: <a class="el" href="class_enemy_graphics.html#aca7829db93eca70e9a7ffd6cb9cc191b">EnemyGraphics</a>
+</li>
 </ul>
 
 
@@ -148,6 +157,7 @@ $(function() {
 </li>
 <li>getExperience()
 : <a class="el" href="class_character.html#a8df144cc273f3b86b8a6413aca11850f">Character</a>
+, <a class="el" href="class_experience.html#aedef46453425c0697443c94124120911">Experience</a>
 </li>
 <li>getHealth()
 : <a class="el" href="class_character.html#a89c1ff283a813ee53d9234016dc171e3">Character</a>
@@ -289,6 +299,8 @@ $(function() {
 </li>
 <li>operator=()
 : <a class="el" href="class_character.html#ace57852669d3ff115128bb4828fe5ecf">Character</a>
+, <a class="el" href="class_enemy_graphics.html#aabe55f13dc898a9bb71754848a9bf355">EnemyGraphics</a>
+, <a class="el" href="class_enemy_input.html#ac270d5317fd16b8503e9b27418764434">EnemyInput</a>
 , <a class="el" href="class_physics_component.html#a421fc34c8b1a004c3742ce8db6cd5ce6">PhysicsComponent</a>
 , <a class="el" href="class_tile.html#aa262392457db03666e1b474e1d8486fd">Tile</a>
 </li>
@@ -303,6 +315,9 @@ $(function() {
 <li>pauseMusic()
 : <a class="el" href="class_music.html#a05b80f6a5c17c49188e7b5c3f669f27a">Music</a>
 </li>
+<li>PlayerGraphics()
+: <a class="el" href="class_player_graphics.html#a306c8503eb5a4f860f0e6b3fc9040f8b">PlayerGraphics</a>
+</li>
 <li>playMusic()
 : <a class="el" href="class_music.html#a4b7c191c6bae70db92125b3886dbadd6">Music</a>
 </li>
@@ -310,11 +325,21 @@ $(function() {
 : <a class="el" href="class_sound.html#a3ce5b74dc968ccf49b06fe1bbb22b68f">Sound</a>
 </li>
 <li>processCollisions()
-: <a class="el" href="class_physics_component.html#af94ffb844192ffd28c401ecce95156cd">PhysicsComponent</a>
+: <a class="el" href="class_physics_component.html#abd893e482600ba970cda200f9fcf2dc0">PhysicsComponent</a>
 </li>
 <li>processGraphics()
 : <a class="el" href="class_animated_graphics_component.html#a0ee69fa04fc64e00dc921497bc87c9e5">AnimatedGraphicsComponent</a>
+, <a class="el" href="class_enemy_graphics.html#a8b8adae2443eb5fa50ed2392892c2e1a">EnemyGraphics</a>
 , <a class="el" href="class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571">PlayerGraphics</a>
+</li>
+<li>processInput()
+: <a class="el" href="class_enemy_input.html#a25525a9db4d3fd8f63b392d6fb982b30">EnemyInput</a>
+, <a class="el" href="class_interactive_input.html#a470353fd941cd2698efb9923dcb29add">InteractiveInput</a>
+, <a class="el" href="class_player_input.html#ad60b353688a9086f3a3f91e71aebb69f">PlayerInput</a>
+</li>
+<li>processItemUsage()
+: <a class="el" href="class_enemy_input.html#af131f6681287969d6e0da320f182a9da">EnemyInput</a>
+, <a class="el" href="class_player_input.html#acd8a5c0414997b5e30a86910b5205214">PlayerInput</a>
 </li>
 <li>processPhysics()
 : <a class="el" href="class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca">PhysicsComponent</a>
@@ -322,6 +347,9 @@ $(function() {
 <li>processVelocity()
 : <a class="el" href="class_enemy_physics.html#a8555f7f6778b6bdb3daa274fdc2b379b">EnemyPhysics</a>
 , <a class="el" href="class_physics_component.html#a720de026edc23e9174614f2b5c677d85">PhysicsComponent</a>
+</li>
+<li>processViewChanges()
+: <a class="el" href="class_animated_player_graphics.html#ab4434eee2c7e993412561d8e383783c4">AnimatedPlayerGraphics</a>
 </li>
 </ul>
 
@@ -345,11 +373,8 @@ $(function() {
 <li>setColor()
 : <a class="el" href="class_text.html#a58a2e7ca543705897e8d9566a3a166d3">Text</a>
 </li>
-<li>setExperience()
-: <a class="el" href="class_character.html#a34dc5038bdeaa6e4064fa0ede9c06e9b">Character</a>
-</li>
 <li>setFightAnimation()
-: <a class="el" href="class_animated_graphics_component.html#a9798c6e23782b1a4078431396f5c88f6">AnimatedGraphicsComponent</a>
+: <a class="el" href="class_animated_graphics_component.html#ad25e915611df92fdeed8399221561dfa">AnimatedGraphicsComponent</a>
 </li>
 <li>setFollowMouse()
 : <a class="el" href="class_tile.html#a4a3678d40ae79e44d49eb2524dbbe40e">Tile</a>
@@ -390,9 +415,6 @@ $(function() {
 </li>
 <li>specifiedFrameLoop()
 : <a class="el" href="class_sprite_animation.html#a6bd5846a609ac82aa113aed2585383e2">SpriteAnimation</a>
-</li>
-<li>SpriteAnimation()
-: <a class="el" href="class_sprite_animation.html#aac41e2e7b3df2ef89c085f41ed804b57">SpriteAnimation</a>
 </li>
 <li>SpriteCharacter()
 : <a class="el" href="struct_sprite_character.html#ad86b441780a6fcc64379631477d90e09">SpriteCharacter</a>
@@ -444,7 +466,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -78,7 +78,7 @@ Inheritance diagram for PhysicsComponent:</div>
  <div class="center">
   <img src="class_physics_component.png" usemap="#PhysicsComponent_map" alt=""/>
   <map id="PhysicsComponent_map" name="PhysicsComponent_map">
-<area href="class_enemy_physics.html" alt="EnemyPhysics" shape="rect" coords="0,56,119,80"/>
+<area href="class_enemy_physics.html" title="EnemyPhysics. " alt="EnemyPhysics" shape="rect" coords="0,56,119,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -87,9 +87,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a925fc391374f4e16bf7a3cacc38134ca"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a925fc391374f4e16bf7a3cacc38134ca">processPhysics</a> (sf::Vector2f &amp;velocity)</td></tr>
 <tr class="memdesc:a925fc391374f4e16bf7a3cacc38134ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process physics.  <a href="#a925fc391374f4e16bf7a3cacc38134ca">More...</a><br /></td></tr>
 <tr class="separator:a925fc391374f4e16bf7a3cacc38134ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af94ffb844192ffd28c401ecce95156cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#af94ffb844192ffd28c401ecce95156cd">processCollisions</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;characterItems, <a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions, <a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;collisionBounds, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters)</td></tr>
-<tr class="memdesc:af94ffb844192ffd28c401ecce95156cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process collisions.  <a href="#af94ffb844192ffd28c401ecce95156cd">More...</a><br /></td></tr>
-<tr class="separator:af94ffb844192ffd28c401ecce95156cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd893e482600ba970cda200f9fcf2dc0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#abd893e482600ba970cda200f9fcf2dc0">processCollisions</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;characterItems, <a class="el" href="class_world.html">World</a> &amp;world, sf::Vector2f &amp;position, const sf::Vector2f &amp;dimensions, <a class="el" href="struct_collision_bounds.html">CollisionBounds</a> &amp;collisionBounds, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters, <a class="el" href="class_character.html">Character</a> *ownCharacter)</td></tr>
+<tr class="memdesc:abd893e482600ba970cda200f9fcf2dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process collisions.  <a href="#abd893e482600ba970cda200f9fcf2dc0">More...</a><br /></td></tr>
+<tr class="separator:abd893e482600ba970cda200f9fcf2dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a720de026edc23e9174614f2b5c677d85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_component.html#a720de026edc23e9174614f2b5c677d85">processVelocity</a> (sf::Vector2f &amp;direction, sf::Vector2f &amp;velocity)</td></tr>
 <tr class="memdesc:a720de026edc23e9174614f2b5c677d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process velocity changes.  <a href="#a720de026edc23e9174614f2b5c677d85">More...</a><br /></td></tr>
 <tr class="separator:a720de026edc23e9174614f2b5c677d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,8 +159,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="af94ffb844192ffd28c401ecce95156cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af94ffb844192ffd28c401ecce95156cd">&#9670;&nbsp;</a></span>processCollisions()</h2>
+<a id="abd893e482600ba970cda200f9fcf2dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd893e482600ba970cda200f9fcf2dc0">&#9670;&nbsp;</a></span>processCollisions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +202,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>characters</em>&#160;</td>
+          <td class="paramname"><em>characters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> *&#160;</td>
+          <td class="paramname"><em>ownCharacter</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -314,7 +320,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

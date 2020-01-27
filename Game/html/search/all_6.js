@@ -6,7 +6,7 @@ var searchData=
   ['getbounds',['getBounds',['../class_character.html#aac3964657c350f9a431a91a73eeb14c2',1,'Character::getBounds()'],['../class_screen_object.html#a2c09e64dc2eb4260ea69d411097bbbec',1,'ScreenObject::getBounds()']]],
   ['getconfiguration',['getConfiguration',['../class_screen_object.html#a00ecbb35a11b007ef363e823e4f32cb3',1,'ScreenObject::getConfiguration()'],['../class_tile.html#abeff8e22b0829e24ec42953b826d4db6',1,'Tile::getConfiguration()']]],
   ['getdimensions',['getDimensions',['../class_graphics_component.html#aa4e01bdb0dc590e8a48cf11104cd6108',1,'GraphicsComponent::getDimensions()'],['../class_animated_graphics_component.html#af6a79196befdc59a2cedea0cfad468d4',1,'AnimatedGraphicsComponent::getDimensions()']]],
-  ['getexperience',['getExperience',['../class_character.html#a8df144cc273f3b86b8a6413aca11850f',1,'Character']]],
+  ['getexperience',['getExperience',['../class_character.html#a8df144cc273f3b86b8a6413aca11850f',1,'Character::getExperience()'],['../class_experience.html#aedef46453425c0697443c94124120911',1,'Experience::getExperience()']]],
   ['gethealth',['getHealth',['../class_character.html#a89c1ff283a813ee53d9234016dc171e3',1,'Character']]],
   ['getitems',['getItems',['../class_character.html#a288c4f4ea8d151f6876e691569209e8b',1,'Character']]],
   ['getname',['getName',['../class_screen_object.html#af59a8d1caadd59e74f7637bdd1fe51d7',1,'ScreenObject']]],

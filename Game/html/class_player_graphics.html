@@ -65,6 +65,11 @@ $(function() {
 <div class="title">PlayerGraphics Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_player_graphics.html" title="PlayerGraphics. ">PlayerGraphics</a>.  
+ <a href="class_player_graphics.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_player_8hpp_source.html">Player.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PlayerGraphics:</div>
 <div class="dyncontent">
@@ -77,8 +82,8 @@ Inheritance diagram for PlayerGraphics:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="memItemLeft" align="right" valign="top"><a id="a306c8503eb5a4f860f0e6b3fc9040f8b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerGraphics</b> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
+<tr class="memitem:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_graphics.html#a306c8503eb5a4f860f0e6b3fc9040f8b">PlayerGraphics</a> (const std::string &amp;assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
+<tr class="memdesc:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a306c8503eb5a4f860f0e6b3fc9040f8b">More...</a><br /></td></tr>
 <tr class="separator:a306c8503eb5a4f860f0e6b3fc9040f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8cdbf23d1a6b643972be2a5065f5571"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_graphics.html#ae8cdbf23d1a6b643972be2a5065f5571">processGraphics</a> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;position, sf::View &amp;view) override</td></tr>
 <tr class="memdesc:ae8cdbf23d1a6b643972be2a5065f5571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>.  <a href="#ae8cdbf23d1a6b643972be2a5065f5571">More...</a><br /></td></tr>
@@ -102,6 +107,47 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr class="memdesc:a2e37c3d34d8b09db5b22fc439390e525 inherit pro_attribs_class_graphics_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sprite to draw on the screen. <br /></td></tr>
 <tr class="separator:a2e37c3d34d8b09db5b22fc439390e525 inherit pro_attribs_class_graphics_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_player_graphics.html" title="PlayerGraphics. ">PlayerGraphics</a>. </p>
+<p>This class implements the graphics for players. Not very different; just changes the view according to the position. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a306c8503eb5a4f860f0e6b3fc9040f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306c8503eb5a4f860f0e6b3fc9040f8b">&#9670;&nbsp;</a></span>PlayerGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlayerGraphics::PlayerGraphics </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>assetName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>assets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an instance. </p>
+<p>This class crates a <a class="el" href="class_player_graphics.html" title="PlayerGraphics. ">PlayerGraphics</a> instance. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetName</td><td>The name of the asset to use for retrieving the texture from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a>. </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to retrieve the texture from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae8cdbf23d1a6b643972be2a5065f5571"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8cdbf23d1a6b643972be2a5065f5571">&#9670;&nbsp;</a></span>processGraphics()</h2>
@@ -144,7 +190,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><div class="memdoc">
 
 <p>Draw the <a class="el" href="class_character.html" title="Character. ">Character</a>. </p>
-<p>This function draws the Characte in the RenderWindow and sets the View to the position of the <a class="el" href="class_character.html" title="Character. ">Character</a> to keep the player centered. </p>
+<p>This function draws the <a class="el" href="class_character.html" title="Character. ">Character</a> in the RenderWindow and sets the View to the position of the <a class="el" href="class_character.html" title="Character. ">Character</a> to keep the player centered. </p>
 
 <p>Implements <a class="el" href="class_graphics_component.html">GraphicsComponent</a>.</p>
 
@@ -157,7 +203,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
