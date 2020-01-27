@@ -63,7 +63,7 @@ class PhysicsComponent {
 		bool hasResistance = false;												//!< Wether or not the character has resistance. i.e. is in water.
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
-		virtual void processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters);
+		virtual void processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters, Character * ownCharacter);
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity);
 
 		PhysicsComponent & operator=(PhysicsComponent lhs);
