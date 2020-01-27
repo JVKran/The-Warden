@@ -181,13 +181,14 @@ class Character {
 		CollisionBounds collisionBounds;						//!< The bounds that have to be checked for collisions.
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
-		~Character();
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
+
+		void die();
 
 		int_fast16_t & getSelectedItemNumber();
 

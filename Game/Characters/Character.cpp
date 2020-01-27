@@ -50,13 +50,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	healthBar.setOutlineColor(sf::Color::Black);
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
+	std::cout << "Construct" << std::endl;
 }
 
-/// \brief
-/// Destruct instance.
-/// \details
-/// This destructor drops loot; the items and experience points.
-Character::~Character(){
+void Character::die(){
 	lootDrop->drop(items, experiencePoints, position);
 }
 

@@ -40,6 +40,7 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 							characters.at(i).respawn();
 							characters.at(i).setHealth(100);
 						} else {
+							characters.at(i).die();
 							characters.erase( std::find(characters.begin(), characters.end(), characters.at(i)) );
 						}
 					} catch (const std::exception & error){
