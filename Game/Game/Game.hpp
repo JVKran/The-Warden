@@ -33,7 +33,7 @@ class Game {
 		sf::Clock clock;
 		double lastTime;
 		int_fast16_t remainingGameTime = 600;
-		
+
 		std::vector<LootDrop> lootDrops;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 
@@ -48,7 +48,7 @@ class Game {
 		}
 		void startWorld(const std::string & worldName);
 
-		void restartCharacterClock();
+		void restartClocks();
 		void handleInput(sf::View & view,  const sf::Event & event);
 		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(sf::View & view);

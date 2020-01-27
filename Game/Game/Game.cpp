@@ -30,10 +30,12 @@ void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
-void Game::restartCharacterClock(){
+void Game::restartClocks(){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).restartClock();
 	}
+	clock.restart();
+	lastTime = 0.0;
 };
 
 
@@ -48,7 +50,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
 		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
 		lastTime = clock.getElapsedTime().asSeconds();
-	}
+	}	std::cout << remainingGameTime<<"\n";
 }
 /// \brief
 /// Hanlde Events.
