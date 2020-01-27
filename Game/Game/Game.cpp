@@ -14,6 +14,12 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	bindings(bindings)
 {			//"Assets/objects.txt"
 	loadCharacters();
+	if (!font.loadFromFile("Minecraft.ttf")){
+	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
+	} else {
+		text.setFont(font);
+	}
+	text.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -32,6 +38,10 @@ void Game::startWorld(const std::string & worldName){
 void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
+	}
+	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
+		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
+		lastTime = clock.getElapsedTime().asSeconds();
 	}
 }
 /// \brief
@@ -65,6 +75,9 @@ void Game::display(sf::View & view){
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
+	text.setString(std::to_string(remainingGameTime));
+	text.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2));
+	window.draw(text);
 }
 
 
@@ -166,6 +179,13 @@ void Game::loadCharacters(){
 		
 		prevstring=currstring;
 		if((currstring.find("eind")!= std::string::npos)){
+			startItems.clear();
+			startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+			startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
+			startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
+			startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
+			startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));

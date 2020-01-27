@@ -214,7 +214,7 @@ class Character {
 		Character & operator=(Character lhs);
 
 		int_fast16_t getExperience() const;
-		void setExperience(const int_fast16_t & experiencePointsToAdd);
+		void addExperience(const int_fast16_t & experiencePointsToAdd);
 
 		int_fast8_t getHealth() const;
 		void setHealth(const int_fast8_t newHealth);

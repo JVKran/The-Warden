@@ -38,7 +38,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	position(position),
 	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
-	healthBar(sf::Vector2f(health,  20)),
+	healthBar(sf::Vector2f(health, 20)),
 	input(input),
 	physics(physics),
 	graphics(graphics)
@@ -75,7 +75,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
 	input->processItemUsage(items, this);
-	if(position.y > 600){
+	if(position.y > 600 && isPlayer()){
 		respawn();
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
@@ -231,12 +231,13 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
 			if(items.at(i)->containsExperience()){
 				if(ownCharacter->isPlayer()){
-					ownCharacter->setExperience(items.at(i)->getExperience());
+					ownCharacter->addExperience(items.at(i)->getExperience());
 				}
-			}
-			else {
+			} else {
 				characterItems.push_back(items.at(i));
 			}
+			items.erase(std::find(items.begin(), items.end(), items.at(i)));
+			break;
 		}
 	}
 }
@@ -605,7 +606,7 @@ Character & Character::operator=(Character lhs){
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::setExperience(const int_fast16_t & experiencePointsToAdd){
+void Character::addExperience(const int_fast16_t & experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 

@@ -27,6 +27,12 @@ class Game {
 	private:
 		AssetManager assets;					//!< The AssetManager to retrieve Textures from.
 		World world;							//!< The World to use while playing (in state PLAYING).
+
+		sf::Font font;
+		sf::Text text;
+		sf::Clock clock;
+		double lastTime;
+		int_fast16_t remainingGameTime = 600;
 		
 		std::vector<LootDrop> lootDrops;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
