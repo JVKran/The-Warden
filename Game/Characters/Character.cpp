@@ -198,12 +198,17 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 		
 		leftIterator,
 		rightIterator,
-		[&tileBounds, &hitbox, &bottomHitbox, this](Tile & tile){
+		[&tileBounds, &hitbox, &bottomHitbox, &ownCharacter, this](Tile & tile){
 			tileBounds = tile.getBounds();
 			if(tile.getName()=="water1"){
 				if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds))){
 					hasResistance += true;
 	       		} 
+			}
+			if(tile.getName()=="OpenDoor"){
+				if(hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)){
+					ownCharacter->setPosition(tile.getTeleportPosition());
+				}
 			}
 	        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
 				bottomCollision += tileBounds.intersects(bottomHitbox); 

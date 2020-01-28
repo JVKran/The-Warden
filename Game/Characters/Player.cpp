@@ -71,9 +71,6 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
 		direction.y = -1;
 	}
-	if(sf::Keyboard::isKeyPressed(keys[3].getKey())){
-
-	}
 }
 
 /// \brief
@@ -144,9 +141,7 @@ void PlayerInput::handleInteraction(World & world){
 	std::vector<Tile> & tiles = world.getTiles();
 	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
 		if(tiles.at(i).isInteractable()){
-			if(tiles.at(i).isPassageWay()){
-				std::cout<<"Deur\n";
-			}
+			std::cout<<"Deur\n";
 		}
 	}
 }

@@ -164,19 +164,19 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 			tile.setWindowLayer(4);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
-			tile.setInteractability(!tile.isInteractable());
+			tile.setInteractability(true);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
-			tile.setPassageWay(!tile.isPassageWay());
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
-			if(tile.isPassageWay()){
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
+			if(tile.isInteractable()){
 				tile.changeSelected(!tile.isSelected());
+				std::cout<<"yos";
 			}
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
 			if(tile.isSelected()){
-				tile.changeTeleportPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
+				sf::Vector2f newPosition = sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
+				tile.changeTeleportPosition(newPosition);
+				std::cout<< newPosition.x << ", " << newPosition.y << '\n';
 				tile.changeSelected(false);
 			}
 		}
