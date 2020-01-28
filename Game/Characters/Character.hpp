@@ -60,6 +60,7 @@ class PhysicsComponent {
 		
 		bool bottomCollision, topCollision, leftCollision, rightCollision;		//!< Booleans for determining wether or not collisions are taking place.
 		bool characterCollision;												//!< Wether or not there's a collision between another character.
+		bool playerCollision;
 		bool hasResistance = false;												//!< Wether or not the character has resistance. i.e. is in water.
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
@@ -172,6 +173,7 @@ class Character {
 
 		int_fast16_t experiencePoints = 0;						//!< The current amount of experience points.
 		int_fast16_t health = 100;								//!< The current amount of health.
+		int_fast16_t maxHealth =100;							//!< The maxiumum amount of health a character wil ever have.
 		sf::RectangleShape healthBar;							//!< The health bar that has to be drawn.
 
 		std::shared_ptr<InputComponent> input;					//!< A smart pointer to an on the heap allocated InputComponent.
@@ -180,7 +182,7 @@ class Character {
 
 		CollisionBounds collisionBounds;						//!< The bounds that have to be checked for collisions.
 	public:
-		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
+		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false, int_fast16_t health=100);
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);

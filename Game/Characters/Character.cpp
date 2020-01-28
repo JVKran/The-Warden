@@ -33,15 +33,19 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// @param startItems The items the character starts with.
 /// @param world The world to use for determining AI paths.
 /// @param isPlayerType Wether or not this character is a player.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
+/// @param health The health of the character.
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType,int_fast16_t health):
 	spawnPosition(position),
 	position(position),
 	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
+	health(health),
+	maxHealth(health),
 	healthBar(sf::Vector2f(health, 20)),
 	input(input),
 	physics(physics),
 	graphics(graphics)
+
 {
 	items = startItems;
 	healthBar.setOutlineThickness(2);
@@ -53,7 +57,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 }
 
 void Character::die(){
-	lootDrop->drop(items, experiencePoints, position);
+	lootDrop->drop(items, experiencePoints, sf::Vector2f(position.x,position.y+graphics->getDimensions().y-10));
 }
 /// \brief
 /// Restart the clock
@@ -142,7 +146,9 @@ bool Character::isAlive(){
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
 	healthBar.setPosition(sf::Vector2f(position.x, position.y - 50));
-	healthBar.setFillColor(sf::Color(health - 100, health, 0, 200));
+	float redval=health*(254.0/maxHealth);
+	
+	healthBar.setFillColor(sf::Color(255-redval, redval, 0, 200));
 	healthBar.setSize(sf::Vector2f(health, 20));
 	sf::Vector2f itemPosition = sf::Vector2f(position.x, position.y - 90);
 	int maxColumns = 3;
@@ -168,10 +174,10 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	}
 	window.draw(healthBar);
 
-	// sf::RectangleShape hit(graphics->getDimensions());
-	// hit.setPosition(position);
-	// hit.setFillColor(sf::Color(0,255,0,128));
-	// window.draw(hit);
+	sf::RectangleShape hit(graphics->getDimensions());
+	hit.setPosition(position);
+	hit.setFillColor(sf::Color(0,255,0,128));
+	window.draw(hit);
 }
 
 /// \brief
@@ -188,9 +194,10 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 	characterCollision = false;
+	playerCollision = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 5 , position.y + 1.7), sf::Vector2f(dimensions.x - 10 , dimensions.y));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 10 , position.y + 1.7), sf::Vector2f(dimensions.x - 20 , dimensions.y));
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
@@ -226,7 +233,9 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
         	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
-			
+			if(characters.at(i).isPlayer()){
+				playerCollision=true;
+			}
 		}
 	}
 
@@ -316,7 +325,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 			break;
 		}
 		case (states::STANDING): {
-			if(velocity.y < 0){
+			if(velocity.y < 0&&bottomCollision){
 				state = states::JUMPING;
 				break;
 			}

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['character',['Character',['../class_character.html',1,'']]],
-  ['collisionbounds',['CollisionBounds',['../struct_collision_bounds.html',1,'']]],
-  ['consumable',['Consumable',['../class_consumable.html',1,'']]]
+  ['bossinput',['BossInput',['../class_boss_input.html',1,'']]],
+  ['bossphysics',['BossPhysics',['../class_boss_physics.html',1,'']]]
 ];

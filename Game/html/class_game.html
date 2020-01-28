@@ -81,6 +81,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59e92bb94f00a244477c28fdd4bf54ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a59e92bb94f00a244477c28fdd4bf54ac">startWorld</a> (const std::string &amp;worldName)</td></tr>
 <tr class="memdesc:a59e92bb94f00a244477c28fdd4bf54ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start playing.  <a href="#a59e92bb94f00a244477c28fdd4bf54ac">More...</a><br /></td></tr>
 <tr class="separator:a59e92bb94f00a244477c28fdd4bf54ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb468737e1495cfcfbf512cfdc751117"><td class="memItemLeft" align="right" valign="top"><a id="aeb468737e1495cfcfbf512cfdc751117"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>restart</b> ()</td></tr>
+<tr class="separator:aeb468737e1495cfcfbf512cfdc751117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f03c59f4e64cc54333fb43289e8c663"><td class="memItemLeft" align="right" valign="top"><a id="a8f03c59f4e64cc54333fb43289e8c663"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>restartClocks</b> ()</td></tr>
+<tr class="separator:a8f03c59f4e64cc54333fb43289e8c663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ceee24cce389f743aa7b50ff96d686"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a45ceee24cce389f743aa7b50ff96d686">handleInput</a> (sf::View &amp;view, const sf::Event &amp;event)</td></tr>
 <tr class="memdesc:a45ceee24cce389f743aa7b50ff96d686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hanlde input.  <a href="#a45ceee24cce389f743aa7b50ff96d686">More...</a><br /></td></tr>
 <tr class="separator:a45ceee24cce389f743aa7b50ff96d686"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,9 +116,42 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af729561d89036f0c841bc1a428dc43cf"><td class="memItemLeft" align="right" valign="top"><a id="af729561d89036f0c841bc1a428dc43cf"></a>
 sf::Font&#160;</td><td class="memItemRight" valign="bottom"><b>font</b></td></tr>
 <tr class="separator:af729561d89036f0c841bc1a428dc43cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bdfd716dd956fbd02a2877e30e217e6"><td class="memItemLeft" align="right" valign="top"><a id="a0bdfd716dd956fbd02a2877e30e217e6"></a>
-sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>text</b></td></tr>
-<tr class="separator:a0bdfd716dd956fbd02a2877e30e217e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b05b0d23bb7550b80725605634f7f5"><td class="memItemLeft" align="right" valign="top"><a id="a10b05b0d23bb7550b80725605634f7f5"></a>
+sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>scoreText</b></td></tr>
+<tr class="separator:a10b05b0d23bb7550b80725605634f7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea13ac84c286805aec5927f5006a9edb"><td class="memItemLeft" align="right" valign="top"><a id="aea13ac84c286805aec5927f5006a9edb"></a>
+sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>experienceText</b></td></tr>
+<tr class="separator:aea13ac84c286805aec5927f5006a9edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83d55dc8675b80f96b26b22ce7620a8e"><td class="memItemLeft" align="right" valign="top"><a id="a83d55dc8675b80f96b26b22ce7620a8e"></a>
+sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>saveText</b></td></tr>
+<tr class="separator:a83d55dc8675b80f96b26b22ce7620a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f66a6205030bbd9f49a6b761616702"><td class="memItemLeft" align="right" valign="top"><a id="ae0f66a6205030bbd9f49a6b761616702"></a>
+sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>highScoreText</b></td></tr>
+<tr class="separator:ae0f66a6205030bbd9f49a6b761616702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28bd6c9722b89609d37c4c6c4d7537ca"><td class="memItemLeft" align="right" valign="top"><a id="a28bd6c9722b89609d37c4c6c4d7537ca"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>timeSprite</b></td></tr>
+<tr class="separator:a28bd6c9722b89609d37c4c6c4d7537ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e43878e42f913de9753fa3ecf0eacf2"><td class="memItemLeft" align="right" valign="top"><a id="a6e43878e42f913de9753fa3ecf0eacf2"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>experienceSprite</b></td></tr>
+<tr class="separator:a6e43878e42f913de9753fa3ecf0eacf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f14223494048c0b2f904aa9a99737e"><td class="memItemLeft" align="right" valign="top"><a id="a84f14223494048c0b2f904aa9a99737e"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>savePointSprite</b></td></tr>
+<tr class="separator:a84f14223494048c0b2f904aa9a99737e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a808359abe1e0ce3b2ba0513ee05c754f"><td class="memItemLeft" align="right" valign="top"><a id="a808359abe1e0ce3b2ba0513ee05c754f"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>highScoreSprite</b></td></tr>
+<tr class="separator:a808359abe1e0ce3b2ba0513ee05c754f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe7b5e7016cd1b65cba84f9161a86073"><td class="memItemLeft" align="right" valign="top"><a id="abe7b5e7016cd1b65cba84f9161a86073"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>scores</b> = {0}</td></tr>
+<tr class="separator:abe7b5e7016cd1b65cba84f9161a86073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac711a207d855750f3e5608c292ac80da"><td class="memItemLeft" align="right" valign="top"><a id="ac711a207d855750f3e5608c292ac80da"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>savePoints</b> = {4000, 8000}</td></tr>
+<tr class="separator:ac711a207d855750f3e5608c292ac80da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af39d1d88ffebc23207f458b537452e06"><td class="memItemLeft" align="right" valign="top"><a id="af39d1d88ffebc23207f458b537452e06"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentSavePoint</b> = 0</td></tr>
+<tr class="separator:af39d1d88ffebc23207f458b537452e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3a5b3547b583016180cc3fabeca139"><td class="memItemLeft" align="right" valign="top"><a id="aba3a5b3547b583016180cc3fabeca139"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>endPoint</b> = 5000</td></tr>
+<tr class="separator:aba3a5b3547b583016180cc3fabeca139"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56adf7f99e06924603e143d3f3324321"><td class="memItemLeft" align="right" valign="top"><a id="a56adf7f99e06924603e143d3f3324321"></a>
 sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>clock</b></td></tr>
 <tr class="separator:a56adf7f99e06924603e143d3f3324321"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,9 +161,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>lastTime</b></td></
 <tr class="memitem:ab1e656b448c18fd235afec248c470bcc"><td class="memItemLeft" align="right" valign="top"><a id="ab1e656b448c18fd235afec248c470bcc"></a>
 int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><b>remainingGameTime</b> = 600</td></tr>
 <tr class="separator:ab1e656b448c18fd235afec248c470bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada53ec86e956df7c68944f2f54246c32"><td class="memItemLeft" align="right" valign="top"><a id="ada53ec86e956df7c68944f2f54246c32"></a>
-std::vector&lt; <a class="el" href="class_loot_drop.html">LootDrop</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lootDrops</b></td></tr>
-<tr class="separator:ada53ec86e956df7c68944f2f54246c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe69192c5354eb5f7a9384d7b75bd134"><td class="memItemLeft" align="right" valign="top"><a id="afe69192c5354eb5f7a9384d7b75bd134"></a>
 std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#afe69192c5354eb5f7a9384d7b75bd134">characters</a></td></tr>
 <tr class="memdesc:afe69192c5354eb5f7a9384d7b75bd134"><td class="mdescLeft">&#160;</td><td class="mdescRight">All Characters currently active in the <a class="el" href="class_game.html" title="Game. ">Game</a>. <br /></td></tr>
@@ -322,7 +358,7 @@ std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

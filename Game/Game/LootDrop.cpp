@@ -8,7 +8,6 @@ void LootDrop::drop(std::vector<std::shared_ptr<Item>> items, int_fast16_t exper
 	items.push_back(std::make_shared<Experience>("experience", world.getAssets(), experience));
 	std::cout << experience << std::endl;
 	position.x -= 100;
-	position.y += 100;
 	for(std::shared_ptr<Item> item : items){
 		item->setPosition(position);
 		world.addItem(item);

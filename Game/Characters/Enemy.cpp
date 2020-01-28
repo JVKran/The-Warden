@@ -104,7 +104,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 
 		if(!characterCollision&&bottomCollision){
 			velocity.y = -maxJumpAcceleration;
-		}else if(characterCollision){
+		}else if(characterCollision&&!playerCollision){
 			velocity.x=1;
 		}
 	}
@@ -114,7 +114,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 
 		if(!characterCollision&&bottomCollision){
 			velocity.y = -maxJumpAcceleration;
-		}else if(characterCollision){
+		}else if(characterCollision&&!playerCollision){
 			velocity.x=-1;
 		}
 	}
@@ -128,3 +128,99 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 		velocity.x=velocity.x/2;
 	}
 }
+
+
+
+/// \brief
+/// Process velocity changes.
+/// \details
+/// This function calculates the new velocity based on the desired direction.
+/// almost identical to EnemyPhysics::processVelocity but unable to jump and slower
+/// @param direction The direction the character is going to.
+/// @param velocity The current velocity of the character.
+void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
+	float maxVelocity = 0.4;
+	float maxAcceleration = 0.005;
+	float maxJumpAcceleration = 0.3;
+	std::cout<<"----------------------     	"<<bottomCollision<<'\n';
+	if(velocity.x <= maxVelocity && direction.x > 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(velocity.x >= -maxVelocity && direction.x < 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(direction.x == 0 && velocity.x != 0){
+    	if(velocity.x - 0.1 > 0){
+    		velocity.x -= maxAcceleration;
+    	} else if(velocity.x + 0.1 < 0){
+    		velocity.x += maxAcceleration;
+    	} else {
+    		velocity.x = 0;
+    	}
+    }
+    if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
+    	velocity.y = -maxJumpAcceleration;
+		std::cout<<"===========================RIP"<<'\n';
+    }
+
+    if(leftCollision && state != states::JUMPING && state != states::FALLING &&direction.x<0){
+		velocity.x =0;
+					std::cout<<"==========leftcol"<<'\n';
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+
+		}else if(characterCollision&&!playerCollision){
+			velocity.x=1;
+		}
+	}
+	
+	if(rightCollision && state != states::JUMPING && state != states::FALLING &&direction.x>0){
+		velocity.x = 0;
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+						std::cout<<"==========walkingup"<<'\n';
+		}else if(characterCollision&&!playerCollision){
+			velocity.x=-1;
+		}
+	}
+
+	if(topCollision && !bottomCollision){
+		state = states::FALLING;
+		//velocity.y = 10;
+	}
+
+
+
+	if(hasResistance){
+		velocity.x=velocity.x/2;
+	}
+}
+
+
+/// \brief
+/// Create Boss input.
+/// \details
+/// This class creates the input for boss, it's nearly identical to the enemyinput except it is able to detect a player from further away.
+void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
+	int detectionRange = 1;
+	for(int_fast16_t i = characters.size() - 1; i >= 0; i--){
+		if(characters.at(i).isPlayer()){									//Enemy 					//Player
+			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 2000){
+
+				direction.x = -1;
+			} else if (characters.at(i).getPosition().x > position.x + detectionRange + 30 && characters.at(i).getPosition().x - 2000 < position.x){
+				direction.x = 1;
+
+			} else {
+
+				direction.x = 0;
+			}
+			break;
+		}
+	}
+}
+
