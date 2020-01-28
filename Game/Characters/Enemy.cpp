@@ -35,7 +35,7 @@ EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 /// Process item usage.
 /// \details
 /// This class implements the item usage for enmies. It consists of continuously hitting...
-void EnemyInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
+void EnemyInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
 	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
 		ownCharacter->getGraphics()->setFightAnimation();
 	}

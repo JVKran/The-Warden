@@ -41,6 +41,7 @@ class SpriteAnimation {
 
 		sf::Vector2f getDimensions() const;
 		sf::FloatRect getBounds() const ;
+		sf::FloatRect getGlobal() const ;
 		void move(sf::Vector2f where);
 		void left(bool where);
 		

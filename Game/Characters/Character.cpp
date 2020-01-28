@@ -81,7 +81,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters, this);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
-	input->processItemUsage(items, this);
+
 	if(position.y > 600 && isPlayer()){
 		respawn();
 		experiencePoints -= 50;
@@ -110,6 +110,14 @@ void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow
 }
 
 /// \brief
+/// Adds a tile
+/// \details
+/// This function calls the addTile function to add a new tile to the world.
+void Character::addTile(Tile & tile){
+	input->addTile(tile);
+}
+
+/// \brief
 /// Deletes a tile
 /// \details
 /// This function calls the deleteTile function to delete a 
@@ -128,6 +136,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event for the currently selected item.
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
+	input->processItemUsage(event, items, this);
 }
 
 /// \brief
@@ -520,6 +529,10 @@ void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
 	}
 }
 
+sf::FloatRect AnimatedGraphicsComponent::getGlobal() const{
+	return currentAnimation->getGlobal();
+}
+
 /// \brief
 /// Create an instance.
 /// \details
@@ -557,6 +570,10 @@ sf::Vector2f Character::getPosition() const {
 /// \return Returns the bounds of the character.
 sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
+}
+
+sf::FloatRect Character::getGlobal() const {
+	return graphics->getGlobal();
 }
 
 /// \brief

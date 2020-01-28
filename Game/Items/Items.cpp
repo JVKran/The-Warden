@@ -99,3 +99,66 @@ bool Experience::containsExperience() {
 int_fast8_t Experience::getExperience() {
 	return experience;
 }
+
+/// \brief
+/// Create block instance.
+/// \details
+/// This function creates a block item and is
+/// also able to delete an object on which the mouse is located
+/// and is a crate object
+/// @param amountOfObjects The amount of objects we are able to create
+Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
+	Item(assetName, assets),
+	amountOfObjects(amountOfObjects),
+	assets(assets),
+	event(event),
+	world(world),
+	window(window),
+	view(view)
+{
+	setNewScale(0.27);		//sets the scale for inventory smaller, because othwise a to big crate will be visible in the inventory
+}
+
+/// \brief
+/// Create a tile.
+/// \details
+/// This function creates a new Tile object as long as amountOfObjects is bigger than 0,	
+/// it will also delete a object if the mouse is on an already existing object. 
+/// If the mouse is on a object it will also check if it is a crate, because
+/// we only allow it to delete crates, because we don't want te player to destroy the
+/// world.
+bool Block::use(Character * character, std::vector<Character> & characters){
+	std::vector<Tile> & objects = world.getTiles();				//takes a reference from the vector tiles in world
+
+	//gets the distance between the player and the mouse
+	float distance = std::sqrt(std::pow(window.mapPixelToCoords(sf::Mouse::getPosition(window), view).x - character->getPosition().x, 2) +  
+               		 std::pow(window.mapPixelToCoords(sf::Mouse::getPosition(window), view).y - character->getPosition().y, 2) * 1.0); 
+
+	//if the mouse is less than 300 blocks away from the player you are allowed to add blocks and destroy crates
+	if(distance < 400){
+		//goes through all objects to find a object that is a crate where the mouse is located on before deleting it.
+		for(Tile & object : objects){			
+			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){		//check if the mouse is on an existing object
+				if(object.getName() == "crate"){											//only erases the object if it is a crate
+					objects.erase( std::find(objects.begin(), objects.end(), object) );		//delete the object the mouse is on
+					amountOfObjects++;														//adds a object if the mouse is on an existing object
+					return false;															//return, so the next if statement doesn't need to be calculated/used
+				}
+				return false;																//also return false, when there is a collision with mouse, but not the right object
+			}
+		}
+
+		//if the mouse is not on an already existing object and the amountOfObjects is still bigger than 0 it will create a new tile
+		if(amountOfObjects > 0){						//can create new objects as long as there are more than 0 amountOfObjects
+			Tile tile("crate", assets, sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)));
+			if(!character->getGlobal().intersects(tile.getBounds())){	//checks if the tile is inside the player
+				characters.at(0).addTile(tile);							//creates new crate object
+				amountOfObjects--;										//decreases the amount of objects that can be created
+			}				
+			return false;												//return false as long as we can create objects
+		}else{
+			return false;												//return true when there are no objects to create anymore
+		}
+	}
+	return false;
+}

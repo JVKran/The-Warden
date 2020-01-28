@@ -188,6 +188,10 @@ sf::FloatRect SpriteAnimation::getBounds() const {
 	return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale.x,temp.top+pixelColumn*hitboxscale.y),sf::Vector2f(temp.width,temp.height));
 }
 
+sf::FloatRect SpriteAnimation::getGlobal() const {
+	return sprite.getGlobalBounds();
+}
+
 void SpriteAnimation::move(sf::Vector2f where){
 	sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale.x+offset.x,where.y-pixelColumn*0.5*hitboxscale.y+offset.y));
 }
