@@ -226,6 +226,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
         	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
+			
 		}
 	}
 
