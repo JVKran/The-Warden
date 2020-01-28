@@ -18,15 +18,16 @@ class Character;
 class Item : public Tile {
 	protected:
 		const std::string assetName;
-		uint_fast8_t experience;
+		int_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
+		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0):
 			Tile(assetName, assets),
-			assetName(assetName)
+			assetName(assetName),
+			experience(experience)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
 		virtual bool containsExperience();
-		virtual uint_fast8_t getExperience();
+		virtual int_fast8_t getExperience();
 		virtual bool isWeapon();
 		virtual int_fast16_t getPeriod(){
 			return 0;
@@ -70,9 +71,9 @@ class Consumable : public Item {
 
 class Experience : public Item {
 	public:
-		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 30);
+		Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
 		virtual bool containsExperience() override;
-		virtual uint_fast8_t getExperience() override;
+		virtual int_fast8_t getExperience() override;
 };
 
 #endif //Items.hpp

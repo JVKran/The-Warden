@@ -9,7 +9,7 @@ bool Item::containsExperience() {
 	return false;
 }
 
-uint_fast8_t Item::getExperience() {
+int_fast8_t Item::getExperience() {
 	return experience;
 }
 /// \brief
@@ -84,7 +84,7 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 	return true;
 }
 
-Experience::Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience):
+Experience::Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience):
 	Item(assetName, assets, experience)
 {}
 
@@ -96,6 +96,6 @@ bool Experience::containsExperience() {
 /// Return the experience.
 /// \details
 /// Return the amount of experience the experience Item has.
-uint_fast8_t Experience::getExperience() {
+int_fast8_t Experience::getExperience() {
 	return experience;
 }

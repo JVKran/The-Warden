@@ -235,14 +235,13 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
 			if(items.at(i)->containsExperience()){
 				if(ownCharacter->isPlayer()){
-					ownCharacter->addExperience(items.at(i)->getExperience());
 					std::cout << "Added " << std::to_string(items.at(i)->getExperience()) << std::endl;
+					ownCharacter->addExperience(items.at(i)->getExperience());
 				}
 			} else {
 				characterItems.push_back(items.at(i));
 			}
 			items.erase(std::find(items.begin(), items.end(), items.at(i)));
-			break;
 		}
 	}
 }
