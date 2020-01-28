@@ -146,22 +146,21 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	healthBar.setSize(sf::Vector2f(health, 20));
 	sf::Vector2f itemPosition = sf::Vector2f(position.x, position.y - 90);
 	int maxColumns = 3;
-	int currentItems = 0;
 	if(isPlayer()){
 		try{
 			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
 				items[i]->setPosition(itemPosition);
 				items[i]->draw(window);
-				if(currentItems == selectedItem){
+				if(i == selectedItem){
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
 					window.draw(itemSelector);	
 				}
 				itemPosition.x += 25;
-				if(currentItems % maxColumns == 0){
+				if(i % maxColumns == 0){
 					itemPosition.y -= 25;
 					itemPosition.x = position.x;
 				}
-				currentItems ++;
+				
 			}
 		} catch(std::exception & error){
 			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
@@ -619,7 +618,7 @@ void Character::addExperience(const int_fast16_t experiencePointsToAdd){
 /// \brief
 /// Get player health points.
 /// \return Returns the current health points of the Character.
-int_fast8_t Character::getHealth() const{
+int_fast16_t Character::getHealth() const{
 	return health;
 }
 
@@ -627,7 +626,7 @@ int_fast8_t Character::getHealth() const{
 /// Set player health points.
 /// \details
 /// This function adds the given health points to the current amount of Character health.
-void Character::setHealth(const int_fast8_t newHealth){
+void Character::setHealth(const int_fast16_t newHealth){
 	health = newHealth;
 }
 

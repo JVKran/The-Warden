@@ -17,10 +17,12 @@ class Character;
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
 	protected:
+		const std::string assetName;
 		uint_fast8_t experience;
 	public:
 		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
-			Tile(assetName, assets)
+			Tile(assetName, assets),
+			assetName(assetName)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
 		virtual bool containsExperience();
@@ -28,6 +30,9 @@ class Item : public Tile {
 		virtual bool isWeapon();
 		virtual int_fast16_t getPeriod(){
 			return 0;
+		}
+		std::string getName(){
+			return assetName;
 		}
 };
 

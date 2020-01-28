@@ -248,6 +248,7 @@ void Game::loadCharacters(){
 				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));

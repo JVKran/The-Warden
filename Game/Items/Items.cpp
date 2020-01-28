@@ -73,6 +73,7 @@ bool Weapon::isWeapon(){
 /// This function adds the foodValue to the Character's current health.
 bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
+	std::cout << "New health " << foodValue + character->getHealth() << std::endl;
 	if(character->getHealth() > 100){
 		character->setHealth(100);
 	}

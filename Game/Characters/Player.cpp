@@ -118,7 +118,7 @@ void PlayerInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, C
 	}
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){			
 		if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters) && !ownCharacter->getSelectedItem()->isWeapon()){			//If item is broken
-			items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItemNumber())));
+			items.erase(std::find(items.begin(), items.end(), ownCharacter->getSelectedItem()));
 			ownCharacter->getSelectedItemNumber()--;
 		}
 		if(ownCharacter->getSelectedItem()->isWeapon()){

@@ -171,7 +171,7 @@ class Character {
 		bool isPlayerType;										//!< Wheter or not this character is a player.
 
 		int_fast16_t experiencePoints = 0;						//!< The current amount of experience points.
-		int_fast8_t health = 100;								//!< The current amount of health.
+		int_fast16_t health = 100;								//!< The current amount of health.
 		sf::RectangleShape healthBar;							//!< The health bar that has to be drawn.
 
 		std::shared_ptr<InputComponent> input;					//!< A smart pointer to an on the heap allocated InputComponent.
@@ -219,8 +219,8 @@ class Character {
 		int_fast16_t getExperience() const;
 		void addExperience(const int_fast16_t experiencePointsToAdd);
 
-		int_fast8_t getHealth() const;
-		void setHealth(const int_fast8_t newHealth);
+		int_fast16_t getHealth() const;
+		void setHealth(const int_fast16_t newHealth);
 
 		void setPosition(const sf::Vector2f & newPosition);
 
