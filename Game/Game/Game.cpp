@@ -60,13 +60,6 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
-	/*
-<<<<<<< HEAD
-	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
-		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
-		lastTime = clock.getElapsedTime().asSeconds();
-	}	
-=======*/
 	if(clock.getElapsedTime().asMilliseconds() - lastTime >= 900){
 		remainingGameTime -= (clock.getElapsedTime().asMilliseconds() - lastTime) / 1000;
 		lastTime = clock.getElapsedTime().asMilliseconds();
