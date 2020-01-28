@@ -29,25 +29,53 @@ class Game {
 		World world;							//!< The World to use while playing (in state PLAYING).
 
 		sf::Font font;
-		sf::Text text;
+		sf::Text scoreText;
+		sf::Text experienceText;
+		sf::Text saveText;
+		sf::Text highScoreText;
+
+		sf::Sprite timeSprite;
+		sf::Sprite experienceSprite;
+		sf::Sprite savePointSprite;
+		sf::Sprite highScoreSprite;
+
+		std::vector<int> scores = {0};
+
+		std::vector<int> savePoints = {4000, 8000};
+		int currentSavePoint = 0;
+		int endPoint = 5000;
+
 		sf::Clock clock;
 		double lastTime;
 		int_fast16_t remainingGameTime = 600;
-
-
-		std::vector<LootDrop> lootDrops;
+		
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 
 		sf::RenderWindow & window;
 		std::vector<KeyBinding> & bindings;
 
+		const sf::Event & event; 
+		sf::View & view;
+
 		void loadCharacters();
 	public:
-		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings);
+		Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings, const sf::Event & event, sf::View & view);
 		~Game(){
 			window.close();
 		}
 		void startWorld(const std::string & worldName);
+		void restart(){
+			loadCharacters();
+			clock.restart();
+			currentSavePoint = 0;
+			characters.clear();
+			loadCharacters();
+			world.getTiles().clear();
+			world.getItems().clear();
+			startWorld("World/world.txt");
+			remainingGameTime = 600;
+			lastTime = 0;
+		}
 
 		void restartClocks();
 		void handleInput(sf::View & view,  const sf::Event & event);

@@ -38,16 +38,16 @@ void StateMachine::changeState(std::shared_ptr<State> newState){
 			break;
 		}
 		default: {
-			backgroundMusic.pauseMusic();
-			editingMusic.pauseMusic();
+			// backgroundMusic.pauseMusic();
+			// editingMusic.pauseMusic();
 			break;
 		}
 	}
-	std::cout << prevState << "\n";
+	//std::cout << prevState << "\n";
 
 	if( prevState==4){
 		editPosition = view.getCenter();
-		std::cout << editPosition.x << " : " << editPosition.y << "\n";
+		//std::cout << editPosition.x << " : " << editPosition.y << "\n";
 	}
 }
 

@@ -6,28 +6,37 @@
 #include <vector>
 #include <cstdint>
 #include "Character.hpp"
+#include "World.hpp"
 #include <memory>
 #include <functional>
+#include <cmath> 
 
 class Character; 
+class World;
 
 /// \brief
 /// Item
 /// \details
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
-	private:
-		uint_fast8_t experience;
+	protected:
+		const std::string assetName;
+		int_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
-			Tile(assetName, assets)
+		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0):
+			Tile(assetName, assets),
+			assetName(assetName),
+			experience(experience)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
 		virtual bool containsExperience();
-		virtual uint_fast8_t getExperience();
+		virtual int_fast8_t getExperience();
 		virtual bool isWeapon();
 		virtual int_fast16_t getPeriod(){
 			return 0;
+		}
+		std::string getName(){
+			return assetName;
 		}
 };
 
@@ -63,15 +72,29 @@ class Consumable : public Item {
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
-/// \brief
-/// Experience
-/// \details
-/// This class is responsible for giving the Player experience points after being picked up.
 class Experience : public Item {
 	public:
-		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience);
+		Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
 		virtual bool containsExperience() override;
-		virtual uint_fast8_t getExperience() override;
+		virtual int_fast8_t getExperience() override;
+};
+
+/// \brief
+/// Block
+/// \details
+/// This class is responsible for placing blocks.
+class Block : public Item {
+	private:
+		int_fast8_t amountOfObjects;		//!< The amount of blocks the player can hold
+		AssetManager & assets;
+		const sf::Event & event; 			//!< Needs an event for the use function
+		World & world;						//!< Needs a world to add the blocks into the world
+		sf::RenderWindow & window;			//!< Needs a window for the use function
+		sf::View & view;					//!< Needs a view to get the right mouse position in the use function
+
+	public:
+		Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
 #endif //Items.hpp

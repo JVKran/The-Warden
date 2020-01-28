@@ -33,6 +33,10 @@ class World {
 		void sortWorld();
 		World(AssetManager & assets);
 
+		AssetManager & getAssets(){
+			return assets;
+		}
+
 		void saveWorld();
 		void loadWorld(const std::string & fileName);
 
