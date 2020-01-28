@@ -75,7 +75,7 @@ sf::Texture & AssetManager::getTexture(const std::string & assetName){
 	try {
 		textureMap.at(assetName);
 	} catch (const std::exception & error){
-		std::cerr << "(!)-- " << "Texture " << assetName << " not loaded!" << std::endl;
+		std::cerr << "(!)-- " << "Texture '" << assetName << "' not loaded!" << std::endl;
 		sf::Texture texture;
 		texture.loadFromFile("Assets/Textures/notFound.png");
 		textureMap[assetName] = texture;

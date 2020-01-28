@@ -52,14 +52,17 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
-/// \brief
-/// Destruct instance.
-/// \details
-/// This destructor drops loot; the items and experience points.
-Character::~Character(){
+void Character::die(){
 	lootDrop->drop(items, experiencePoints, position);
 }
-
+/// \brief
+/// Restart the clock
+/// \details
+/// This function will restart the clock 
+void Character::restartClock(){
+	clock.restart();
+	lastUpdate = 0.0;
+}
 /// \brief
 /// Update Character.
 /// \details
@@ -74,9 +77,10 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters, this);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
-	input->processItemUsage(items, this);
+
 	if(position.y > 600 && isPlayer()){
 		respawn();
+		experiencePoints -= 50;
 	}
 	timeDifference = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 	if(timeDifference >= 3.0 && timeDifference <= 5.5){
@@ -85,6 +89,7 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	} else if(timeDifference > 6.0) {
 		position += sf::Vector2f(velocity.x * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4), velocity.y * ((clock.getElapsedTime().asMilliseconds() - lastUpdate) / 4));
 		lastUpdate = clock.getElapsedTime().asMilliseconds();
+
 	}
 }
 
@@ -98,6 +103,14 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 /// @param view The view to use with the window to determine the abolsute position of the mouse.
 void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	input->addTile(event, world, window, view);
+}
+
+/// \brief
+/// Adds a tile
+/// \details
+/// This function calls the addTile function to add a new tile to the world.
+void Character::addTile(Tile & tile){
+	input->addTile(tile);
 }
 
 /// \brief
@@ -119,6 +132,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event for the currently selected item.
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
+	input->processItemUsage(event, items, this);
 }
 
 /// \brief
@@ -141,22 +155,21 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	healthBar.setSize(sf::Vector2f(health, 20));
 	sf::Vector2f itemPosition = sf::Vector2f(position.x, position.y - 90);
 	int maxColumns = 3;
-	int currentItems = 0;
 	if(isPlayer()){
 		try{
 			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
 				items[i]->setPosition(itemPosition);
 				items[i]->draw(window);
-				if(currentItems == selectedItem){
+				if(i == selectedItem){
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
 					window.draw(itemSelector);	
 				}
 				itemPosition.x += 25;
-				if(currentItems % maxColumns == 0){
+				if(i % maxColumns == 0){
 					itemPosition.y -= 25;
 					itemPosition.x = position.x;
 				}
-				currentItems ++;
+				
 			}
 		} catch(std::exception & error){
 			std::cout << "(!)-- " << __FILE__ <<  error.what() << std::endl;
@@ -226,6 +239,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
         	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
+			
 		}
 	}
 
@@ -235,13 +249,13 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 		if(hitbox.intersects(items.at(i)->getBounds()) && items.at(i)->getPosition() != position){
 			if(items.at(i)->containsExperience()){
 				if(ownCharacter->isPlayer()){
+					std::cout << "Added " << std::to_string(items.at(i)->getExperience()) << std::endl;
 					ownCharacter->addExperience(items.at(i)->getExperience());
 				}
 			} else {
 				characterItems.push_back(items.at(i));
 			}
 			items.erase(std::find(items.begin(), items.end(), items.at(i)));
-			break;
 		}
 	}
 }
@@ -510,6 +524,10 @@ void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
 	}
 }
 
+sf::FloatRect AnimatedGraphicsComponent::getGlobal() const{
+	return currentAnimation->getGlobal();
+}
+
 /// \brief
 /// Create an instance.
 /// \details
@@ -547,6 +565,10 @@ sf::Vector2f Character::getPosition() const {
 /// \return Returns the bounds of the character.
 sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
+}
+
+sf::FloatRect Character::getGlobal() const {
+	return graphics->getGlobal();
 }
 
 /// \brief
@@ -610,14 +632,14 @@ Character & Character::operator=(Character lhs){
 /// Set player experience points.
 /// \details
 /// This function adds the given experience points to the current amount of Character experience.
-void Character::addExperience(const int_fast16_t & experiencePointsToAdd){
+void Character::addExperience(const int_fast16_t experiencePointsToAdd){
 	experiencePoints += experiencePointsToAdd;
 }
 
 /// \brief
 /// Get player health points.
 /// \return Returns the current health points of the Character.
-int_fast8_t Character::getHealth() const{
+int_fast16_t Character::getHealth() const{
 	return health;
 }
 
@@ -625,7 +647,7 @@ int_fast8_t Character::getHealth() const{
 /// Set player health points.
 /// \details
 /// This function adds the given health points to the current amount of Character health.
-void Character::setHealth(const int_fast8_t newHealth){
+void Character::setHealth(const int_fast16_t newHealth){
 	health = newHealth;
 }
 

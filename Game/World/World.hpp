@@ -32,6 +32,10 @@ class World {
 	public:
 		World(AssetManager & assets);
 
+		AssetManager & getAssets(){
+			return assets;
+		}
+
 		void saveWorld();
 		void loadWorld(const std::string & fileName);
 

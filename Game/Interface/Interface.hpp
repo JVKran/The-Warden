@@ -10,7 +10,8 @@
 #include "InterfaceElement.hpp"
 #include "ScreenObject.hpp"
 #include "World.hpp"
-
+#include "States.hpp"
+class State;
 class Game;
 class StateMachine;
 class Settings;
@@ -33,6 +34,7 @@ class Interface {
 		std::vector<InterfaceElement> interfaceElements;
 		std::vector<InterfaceElement> pauseElements;
 		sf::RectangleShape pauseBackground;
+		std::shared_ptr<State> prevState;
 	public:
 		Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window);
 

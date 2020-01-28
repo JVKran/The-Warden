@@ -84,8 +84,9 @@ class InputComponent {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector< KeyBinding> & keys) = 0;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
+		virtual void addTile(Tile & tile) = 0;
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) = 0;
-		virtual void processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
+		virtual void processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {}
 		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) {}
 };
 
@@ -145,6 +146,7 @@ class AnimatedGraphicsComponent {
 		virtual void processViewChanges(sf::View & view, const sf::Vector2f & position) {}
 		virtual void processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view);
 		virtual sf::Vector2f getDimensions();
+		virtual sf::FloatRect getGlobal() const;
 };
 
 /// \brief
@@ -171,7 +173,7 @@ class Character {
 		bool isPlayerType;										//!< Wheter or not this character is a player.
 
 		int_fast16_t experiencePoints = 0;						//!< The current amount of experience points.
-		int_fast8_t health = 100;								//!< The current amount of health.
+		int_fast16_t health = 100;								//!< The current amount of health.
 		sf::RectangleShape healthBar;							//!< The health bar that has to be drawn.
 
 		std::shared_ptr<InputComponent> input;					//!< A smart pointer to an on the heap allocated InputComponent.
@@ -181,13 +183,17 @@ class Character {
 		CollisionBounds collisionBounds;						//!< The bounds that have to be checked for collisions.
 	public:
 		Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType = false);
-		~Character();
 
 		void update(sf::RenderWindow & window, World & world, std::vector<Character> & characters, std::vector<KeyBinding> & keys);
 		void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
+		void addTile(Tile & tile);
 		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
 		bool isAlive();
+
+		void die();
+		void restartClock();
+
 
 		int_fast16_t & getSelectedItemNumber();
 
@@ -205,6 +211,7 @@ class Character {
 
 		sf::Vector2f getPosition() const;
 		sf::FloatRect getBounds() const;
+		sf::FloatRect getGlobal() const; 
 
 		void attack();
 		void draw(sf::RenderWindow & window, sf::View & view);
@@ -214,12 +221,21 @@ class Character {
 		Character & operator=(Character lhs);
 
 		int_fast16_t getExperience() const;
-		void addExperience(const int_fast16_t & experiencePointsToAdd);
+		void addExperience(const int_fast16_t experiencePointsToAdd);
 
-		int_fast8_t getHealth() const;
-		void setHealth(const int_fast8_t newHealth);
+		int_fast16_t getHealth() const;
+		void setHealth(const int_fast16_t newHealth);
 
 		void setPosition(const sf::Vector2f & newPosition);
+
+		void setSpawn(const sf::Vector2f & newSpawn){
+			spawnPosition = newSpawn;
+		}
+
+		sf::Vector2f getSpawn(){
+			return spawnPosition;
+		}
+
 		void respawn(){
 			position = spawnPosition;
 		}

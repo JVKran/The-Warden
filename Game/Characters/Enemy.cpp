@@ -5,11 +5,12 @@
 /// \details
 /// This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight.
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
+	int detectionRange = 80;
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(characters.at(i).isPlayer()){									//Enemy 					//Player
-			if(characters.at(i).getPosition().x < position.x - 100 && characters.at(i).getPosition().x > position.x - 500){
+			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 500){
 				direction.x = -1;
-			} else if (characters.at(i).getPosition().x > position.x + 200 && characters.at(i).getPosition().x - 500 < position.x){
+			} else if (characters.at(i).getPosition().x > position.x + detectionRange + 30 && characters.at(i).getPosition().x - 500 < position.x){
 				direction.x = 1;
 			} else {
 				direction.x = 0;
@@ -34,7 +35,7 @@ EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 /// Process item usage.
 /// \details
 /// This class implements the item usage for enmies. It consists of continuously hitting...
-void EnemyInput::processItemUsage(std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
+void EnemyInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
 	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
 		ownCharacter->getGraphics()->setFightAnimation();
 	}
@@ -98,14 +99,24 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
     	velocity.y = -maxJumpAcceleration;
     }
 
-    if(leftCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
-		velocity.x = 0;
-		velocity.y = -maxJumpAcceleration;
+    if(leftCollision && state != states::JUMPING && state != states::FALLING &&direction.x<0){
+		velocity.x =0;
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+		}else if(characterCollision){
+			velocity.x=1;
+		}
 	}
 	
-	if(rightCollision && state != states::JUMPING && state != states::FALLING && !characterCollision){
+	if(rightCollision && state != states::JUMPING && state != states::FALLING &&direction.x>0){
 		velocity.x = 0;
-		velocity.y = -maxJumpAcceleration;
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+		}else if(characterCollision){
+			velocity.x=-1;
+		}
 	}
 
 	if(topCollision && !bottomCollision){
