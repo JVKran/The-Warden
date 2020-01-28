@@ -66,3 +66,9 @@ wizardJump Assets/Textures/wizardJump.png
 wizardAttack Assets/Textures/wizardAttack.png
 menuTitle Assets/Textures/tmpMenuTitle.png
 experience Assets/Textures/Items/Experience.png
+
+orcDamage Assets/Textures/orcDamage.png
+orcIdle Assets/Textures/orcIdle.png
+orcWalk Assets/Textures/orcWalk.png
+orcJump Assets/Textures/orcJump.png
+orcAttack Assets/Textures/orcAttack.png
