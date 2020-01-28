@@ -123,11 +123,15 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 		window.draw(background);
 	}
 
-	int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
-	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
+	if(view.getCenter().x - (view.getSize().x / 2) - 300 != lastLeftSide){
+		int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
+		leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
 
-	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
-	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+		int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
+		rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+		lastLeftSide = leftSide;
+	}
+
 
 	std::for_each(
 		leftIterator,

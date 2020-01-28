@@ -41,7 +41,7 @@ class Game {
 
 		std::vector<int> scores = {0};
 
-		std::vector<int> savePoints = {4000, 8000};
+		std::vector<int> savePoints = {4000, 9000, 14000};
 		int currentSavePoint = 0;
 		int endPoint = 5000;
 

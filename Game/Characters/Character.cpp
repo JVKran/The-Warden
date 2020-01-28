@@ -164,7 +164,11 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	if(isPlayer()){
 		try{
 			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
-				items[i]->setPosition(itemPosition);
+				if(items[i]->getName() == "crate"){
+					items[i]->setPosition(sf::Vector2f(itemPosition.x + 2, itemPosition.y + 2));
+				} else {
+					items[i]->setPosition(itemPosition);
+				}
 				items[i]->draw(window);
 				if(i == selectedItem){
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
@@ -182,6 +186,10 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 		}
 	}
 	window.draw(healthBar);
+
+	if(isPlayer()){
+		std::cout << position.x << ", " << position.y << std::endl;
+	}
 
 	// sf::RectangleShape hit(graphics->getDimensions());
 	// hit.setPosition(position);
