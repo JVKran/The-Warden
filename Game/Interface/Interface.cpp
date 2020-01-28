@@ -1,6 +1,14 @@
-///@brief
+///@file
 #include "Interface.hpp"
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This creates an InterFaceElement. 
+/// @param game
+/// @param settings
+/// @param assets
+/// @param window
 Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window):
 	game(game),
 	editor(editor),
@@ -13,7 +21,10 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	//world.loadWorld("World/world.txt");
  }
 
-/// 
+/// \brief
+/// Create an instance.
+/// \details
+/// This function will initialize the interfaceElements and pauseElements.
 void Interface::initialize(StateMachine * newMachine){
 	
 	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());})));

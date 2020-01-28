@@ -53,7 +53,7 @@ void Game::restartClocks(){
 };
 
 /// \brief
-/// Hanlde input.
+/// Handle input.
 /// \details
 /// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(sf::View & view, const sf::Event & event){
@@ -81,7 +81,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	}
 }
 /// \brief
-/// Hanlde Events.
+/// Handle Events.
 /// \details
 /// This handles all the events it gets.
 void Game::handleEvent(const sf::Event & event, sf::View & view){

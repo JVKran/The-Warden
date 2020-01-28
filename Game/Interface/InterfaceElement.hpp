@@ -1,3 +1,4 @@
+/// @file
 #ifndef __INTERFACE_ELEMENT_HPP
 #define __INTERFACE_ELEMENT_HPP
 
