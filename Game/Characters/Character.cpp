@@ -174,10 +174,10 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	}
 	window.draw(healthBar);
 
-	sf::RectangleShape hit(graphics->getDimensions());
-	hit.setPosition(position);
-	hit.setFillColor(sf::Color(0,255,0,128));
-	window.draw(hit);
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
 }
 
 /// \brief
@@ -197,7 +197,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	playerCollision = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
-	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 10 , position.y + 1.7), sf::Vector2f(dimensions.x - 20 , dimensions.y));
+	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 5 , position.y + 1.7), sf::Vector2f(dimensions.x - 10 , dimensions.y));
 
 	collisionBounds.leftCollisionBound = position.x - 300;
 	collisionBounds.rightCollisionBound = position.x + 600;
@@ -218,7 +218,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 			}
 	        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
 				bottomCollision += tileBounds.intersects(bottomHitbox); 
-	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
+	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width-5,hitbox.height - 5));
 	        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 	    	}
@@ -229,8 +229,8 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(hitbox.intersects(characters.at(i).getBounds()) && characters.at(i).getPosition() != position){
 			bottomCollision += characters.at(i).getBounds().intersects(bottomHitbox); 
-        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
-        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
+        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width-5,hitbox.height - 7));
+        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 7));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
 			if(characters.at(i).isPlayer()){
@@ -284,7 +284,7 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
     	}
     }
     if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
-    	velocity.y = -maxJumpAcceleration;
+		velocity.y = -maxJumpAcceleration;
     }
 
     if(leftCollision  && direction.x < 0){

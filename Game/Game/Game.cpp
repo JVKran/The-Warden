@@ -251,7 +251,7 @@ void Game::loadCharacters(){
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name =="orc"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1000));
 				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,400));
 			}			else if (name !=""){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));

@@ -99,7 +99,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
     	velocity.y = -maxJumpAcceleration;
     }
 
-    if(leftCollision && state != states::JUMPING && state != states::FALLING &&direction.x<0){
+    if(leftCollision &&direction.x<0){
 		velocity.x =0;
 
 		if(!characterCollision&&bottomCollision){
@@ -109,7 +109,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 		}
 	}
 	
-	if(rightCollision && state != states::JUMPING && state != states::FALLING &&direction.x>0){
+	if(rightCollision &&direction.x>0){
 		velocity.x = 0;
 
 		if(!characterCollision&&bottomCollision){
@@ -131,6 +131,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 
 
 
+
 /// \brief
 /// Process velocity changes.
 /// \details
@@ -141,8 +142,7 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
 	float maxVelocity = 0.4;
 	float maxAcceleration = 0.005;
-	float maxJumpAcceleration = 0.3;
-	std::cout<<"----------------------     	"<<bottomCollision<<'\n';
+	float maxJumpAcceleration = 1;
 	if(velocity.x <= maxVelocity && direction.x > 0){
     	velocity.x += direction.x * maxAcceleration;
     }
@@ -152,37 +152,36 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
     }
 
     if(direction.x == 0 && velocity.x != 0){
-    	if(velocity.x - 0.1 > 0){
-    		velocity.x -= maxAcceleration;
-    	} else if(velocity.x + 0.1 < 0){
-    		velocity.x += maxAcceleration;
+    	if(velocity.x - 0.001 > 0){
+    		std::cout<<"nope1"<<'\n';
+			velocity.x = 0;
+    	} else if(velocity.x + 0.001 < 0){
+			std::cout<<"nope1"<<'\n';
+    		velocity.x = 0;
     	} else {
     		velocity.x = 0;
     	}
     }
     if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
     	velocity.y = -maxJumpAcceleration;
-		std::cout<<"===========================RIP"<<'\n';
     }
 
-    if(leftCollision && state != states::JUMPING && state != states::FALLING &&direction.x<0){
-		velocity.x =0;
-					std::cout<<"==========leftcol"<<'\n';
+    if(leftCollision && direction.x<0){
+		velocity.x =0.0;
+		//direction.x=0;
 
 		if(!characterCollision&&bottomCollision){
 			velocity.y = -maxJumpAcceleration;
-
 		}else if(characterCollision&&!playerCollision){
 			velocity.x=1;
 		}
 	}
 	
-	if(rightCollision && state != states::JUMPING && state != states::FALLING &&direction.x>0){
-		velocity.x = 0;
-
+	if(rightCollision &&direction.x>0){
+		velocity.x = 0.0;
+		//direction.x=0;
 		if(!characterCollision&&bottomCollision){
 			velocity.y = -maxJumpAcceleration;
-						std::cout<<"==========walkingup"<<'\n';
 		}else if(characterCollision&&!playerCollision){
 			velocity.x=-1;
 		}
@@ -210,7 +209,6 @@ void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direc
 	for(int_fast16_t i = characters.size() - 1; i >= 0; i--){
 		if(characters.at(i).isPlayer()){									//Enemy 					//Player
 			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 2000){
-
 				direction.x = -1;
 			} else if (characters.at(i).getPosition().x > position.x + detectionRange + 30 && characters.at(i).getPosition().x - 2000 < position.x){
 				direction.x = 1;
