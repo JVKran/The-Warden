@@ -35,10 +35,14 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 {}
 
 bool Weapon::use(Character * character, std::vector<Character> & characters){
-	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+	bool hasHit=false;
+	for(int_fast8_t i = characters.size() -1; i >= 0; i--){
+
 		if(*character != characters.at(i) && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
-			lastAttack = clock.getElapsedTime();
-			if(character->getBounds().intersects(characters.at(i).getBounds())){
+
+			
+			if(character->getBounds().intersects(characters.at(i).getBounds())&&!(!character->isPlayer()&&!characters.at(i).isPlayer())){
+				lastAttack = clock.getElapsedTime();
 				characters.at(i).setHealth( (characters.at(i).getHealth()) - damageFactor );
 				if(characters.at(i).getHealth() < 0){
 					try{
@@ -56,11 +60,11 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 					}
 				}
 				character->addExperience(10);
-				return true;
+				hasHit=true;
 			}
 		}
 	}
-	return false;
+	return hasHit;
 }
 
 bool Weapon::isWeapon(){
