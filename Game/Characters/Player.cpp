@@ -91,6 +91,11 @@ void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWind
 	world.addTile("crate", position);
 }
 
+/// \brief
+/// Adds a tile in the world
+/// \details
+/// This is called by the game, it adds a new tile in the world.
+/// @param tile The tile we want to add in the world vector
 void PlayerInput::addTile(Tile & tile){
 	world.addTile(tile);
 }

@@ -115,14 +115,14 @@ bool Block::use(Character * character, std::vector<Character> & characters){
 					amountOfObjects++;														//adds a object if the mouse is on an existing object
 					return false;															//return, so the next if statement doesn't need to be calculated/used
 				}
-				return false;
+				return false;																//also return false, when there is a collision with mouse, but not the right object
 			}
 		}
 
 		//if the mouse is not on an already existing object and the amountOfObjects is still bigger than 0 it will create a new tile
 		if(amountOfObjects > 0){						//can create new objects as long as there are more than 0 amountOfObjects
 			Tile tile("crate", assets, sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)));
-			if(!character->getGlobal().intersects(tile.getBounds())){
+			if(!character->getGlobal().intersects(tile.getBounds())){	//checks if the tile is inside the player
 				characters.at(0).addTile(tile);							//creates new crate object
 				amountOfObjects--;										//decreases the amount of objects that can be created
 			}				
