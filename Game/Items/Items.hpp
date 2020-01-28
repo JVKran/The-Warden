@@ -19,18 +19,24 @@ class World;
 /// \details
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
-	private:
-		uint_fast8_t experience;
+	protected:
+		const std::string assetName;
+		int_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
-			Tile(assetName, assets)
+		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0):
+			Tile(assetName, assets),
+			assetName(assetName),
+			experience(experience)
 		{}
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
-		virtual bool containsExperience() {return false;};
-		virtual uint_fast8_t getExperience() {return experience;};
+		virtual bool containsExperience();
+		virtual int_fast8_t getExperience();
 		virtual bool isWeapon();
 		virtual int_fast16_t getPeriod(){
 			return 0;
+		}
+		std::string getName(){
+			return assetName;
 		}
 };
 
@@ -68,9 +74,9 @@ class Consumable : public Item {
 
 class Experience : public Item {
 	public:
-		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 30);
-		virtual bool containsExperience() override {return true;};
-		virtual uint_fast8_t getExperience() override {return getExperience();};
+		Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
+		virtual bool containsExperience() override;
+		virtual int_fast8_t getExperience() override;
 };
 
 /// \brief

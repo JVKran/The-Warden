@@ -5,7 +5,13 @@
 bool Item::isWeapon() {
 	return false;
 }
+bool Item::containsExperience() {
+	return false;
+}
 
+int_fast8_t Item::getExperience() {
+	return experience;
+}
 /// \brief
 /// Create weapon instance.
 /// \details
@@ -29,10 +35,14 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 {}
 
 bool Weapon::use(Character * character, std::vector<Character> & characters){
-	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+	bool hasHit=false;
+	for(int_fast8_t i = characters.size() -1; i >= 0; i--){
+
 		if(*character != characters.at(i) && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
-			lastAttack = clock.getElapsedTime();
-			if(character->getBounds().intersects(characters.at(i).getBounds())){
+
+			
+			if(character->getBounds().intersects(characters.at(i).getBounds())&&!(!character->isPlayer()&&!characters.at(i).isPlayer())){
+				lastAttack = clock.getElapsedTime();
 				characters.at(i).setHealth( (characters.at(i).getHealth()) - damageFactor );
 				if(characters.at(i).getHealth() < 0){
 					try{
@@ -40,6 +50,7 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 							characters.at(i).respawn();
 							characters.at(i).setHealth(100);
 						} else {
+							characters.at(i).die();
 							characters.erase( std::find(characters.begin(), characters.end(), characters.at(i)) );
 						}
 					} catch (const std::exception & error){
@@ -47,12 +58,13 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 					} catch (...){
 						std::cout << "(!)-- Something went wrong..." << std::endl;
 					}
-					return true;
 				}
+				character->addExperience(10);
+				hasHit=true;
 			}
 		}
 	}
-	return false;
+	return hasHit;
 }
 
 bool Weapon::isWeapon(){
@@ -65,10 +77,27 @@ bool Weapon::isWeapon(){
 /// This function adds the foodValue to the Character's current health.
 bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
+	std::cout << "New health " << foodValue + character->getHealth() << std::endl;
 	if(character->getHealth() > 100){
 		character->setHealth(100);
 	}
 	return true;
+}
+
+Experience::Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience):
+	Item(assetName, assets, experience)
+{}
+
+bool Experience::containsExperience() {
+	return true;
+}
+
+/// \brief
+/// Return the experience.
+/// \details
+/// Return the amount of experience the experience Item has.
+int_fast8_t Experience::getExperience() {
+	return experience;
 }
 
 /// \brief

@@ -65,6 +65,11 @@ $(function() {
 <div class="title">EnemyInput Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_enemy_input.html" title="EnemyInput. ">EnemyInput</a>.  
+ <a href="class_enemy_input.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for EnemyInput:</div>
 <div class="dyncontent">
@@ -80,8 +85,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1958ef87f7cf1fa494680106aac36a10"><td class="memItemLeft" align="right" valign="top"><a id="a1958ef87f7cf1fa494680106aac36a10"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>EnemyInput</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
 <tr class="separator:a1958ef87f7cf1fa494680106aac36a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25525a9db4d3fd8f63b392d6fb982b30"><td class="memItemLeft" align="right" valign="top"><a id="a25525a9db4d3fd8f63b392d6fb982b30"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys) override</td></tr>
+<tr class="memitem:a25525a9db4d3fd8f63b392d6fb982b30"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#a25525a9db4d3fd8f63b392d6fb982b30">processInput</a> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys) override</td></tr>
+<tr class="memdesc:a25525a9db4d3fd8f63b392d6fb982b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create enemy input.  <a href="#a25525a9db4d3fd8f63b392d6fb982b30">More...</a><br /></td></tr>
 <tr class="separator:a25525a9db4d3fd8f63b392d6fb982b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac828b3f89669bb52fc70c033142436a9"><td class="memItemLeft" align="right" valign="top"><a id="ac828b3f89669bb52fc70c033142436a9"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
@@ -89,11 +94,11 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (
 <tr class="memitem:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memItemLeft" align="right" valign="top"><a id="a835d0b30e0c8295ac0bf52b76015b2d4"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
 <tr class="separator:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af131f6681287969d6e0da320f182a9da"><td class="memItemLeft" align="right" valign="top"><a id="af131f6681287969d6e0da320f182a9da"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="memitem:af131f6681287969d6e0da320f182a9da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#af131f6681287969d6e0da320f182a9da">processItemUsage</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="memdesc:af131f6681287969d6e0da320f182a9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process item usage.  <a href="#af131f6681287969d6e0da320f182a9da">More...</a><br /></td></tr>
 <tr class="separator:af131f6681287969d6e0da320f182a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac270d5317fd16b8503e9b27418764434"><td class="memItemLeft" align="right" valign="top"><a id="ac270d5317fd16b8503e9b27418764434"></a>
-<a class="el" href="class_enemy_input.html">EnemyInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_enemy_input.html">EnemyInput</a> lhs)</td></tr>
+<tr class="memitem:ac270d5317fd16b8503e9b27418764434"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_enemy_input.html">EnemyInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#ac270d5317fd16b8503e9b27418764434">operator=</a> (<a class="el" href="class_enemy_input.html">EnemyInput</a> lhs)</td></tr>
+<tr class="memdesc:ac270d5317fd16b8503e9b27418764434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#ac270d5317fd16b8503e9b27418764434">More...</a><br /></td></tr>
 <tr class="separator:ac270d5317fd16b8503e9b27418764434"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_input_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_input_component.html">InputComponent</a></td></tr>
 <tr class="memitem:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="a6873a6cab848bdc4f63c262803b84f1e"></a>
@@ -115,6 +120,119 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 <tr class="memdesc:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The characters that could be followed. <br /></td></tr>
 <tr class="separator:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_enemy_input.html" title="EnemyInput. ">EnemyInput</a>. </p>
+<p>This class implements the input for enemies. This consists of some very basic AI. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac270d5317fd16b8503e9b27418764434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac270d5317fd16b8503e9b27418764434">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_enemy_input.html">EnemyInput</a> &amp; EnemyInput::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_enemy_input.html">EnemyInput</a>&#160;</td>
+          <td class="paramname"><em>lhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assignment operator. </p>
+<p>This class assigns the enemy input to another one. </p><dl class="section return"><dt>Returns</dt><dd>A refrence to itself. </dd></dl>
+
+</div>
+</div>
+<a id="a25525a9db4d3fd8f63b392d6fb982b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25525a9db4d3fd8f63b392d6fb982b30">&#9670;&nbsp;</a></span>processInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyInput::processInput </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>keys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create enemy input. </p>
+<p>This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight. </p>
+
+<p>Implements <a class="el" href="class_input_component.html">InputComponent</a>.</p>
+
+</div>
+</div>
+<a id="af131f6681287969d6e0da320f182a9da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af131f6681287969d6e0da320f182a9da">&#9670;&nbsp;</a></span>processItemUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyInput::processItemUsage </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> *&#160;</td>
+          <td class="paramname"><em>ownCharacter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process item usage. </p>
+<p>This class implements the item usage for enmies. It consists of continuously hitting... </p>
+
+<p>Reimplemented from <a class="el" href="class_input_component.html">InputComponent</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a></li>
 <li>Enemy.cpp</li>
@@ -122,7 +240,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

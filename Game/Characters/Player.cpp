@@ -136,8 +136,8 @@ void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::sha
 			}
 
 			if(ownCharacter->getSelectedItem()->isWeapon()){
-			ownCharacter->getGraphics()->setFightAnimation(items.at(ownCharacter->getSelectedItemNumber())->getPeriod());
-		}
+				ownCharacter->getGraphics()->setFightAnimation(items.at(ownCharacter->getSelectedItemNumber())->getPeriod());
+			}
 		}
 	}
 }

@@ -6,8 +6,7 @@ var searchData=
   ['setbackground',['setBackground',['../class_world.html#aef9444d45fd451b1df392ff11669868a',1,'World']]],
   ['setcollidable',['setCollidable',['../class_tile.html#a142d8646312b96d13eb5f2a73b036e4a',1,'Tile']]],
   ['setcolor',['setColor',['../class_text.html#a58a2e7ca543705897e8d9566a3a166d3',1,'Text']]],
-  ['setexperience',['setExperience',['../class_character.html#a34dc5038bdeaa6e4064fa0ede9c06e9b',1,'Character']]],
-  ['setfightanimation',['setFightAnimation',['../class_animated_graphics_component.html#a9798c6e23782b1a4078431396f5c88f6',1,'AnimatedGraphicsComponent']]],
+  ['setfightanimation',['setFightAnimation',['../class_animated_graphics_component.html#ad25e915611df92fdeed8399221561dfa',1,'AnimatedGraphicsComponent']]],
   ['setfollowmouse',['setFollowMouse',['../class_tile.html#a4a3678d40ae79e44d49eb2524dbbe40e',1,'Tile']]],
   ['sethealth',['setHealth',['../class_character.html#aa4e64ba6313e0d44735125c3d0fd184a',1,'Character']]],
   ['setinteractability',['setInteractability',['../class_tile.html#ab6acd5e9402f4787454e4f72f64ef741',1,'Tile']]],
@@ -21,7 +20,6 @@ var searchData=
   ['sortworld',['sortWorld',['../class_world.html#abb3930c9378d1af1f57d3d8a8636b136',1,'World']]],
   ['sound',['Sound',['../class_sound.html#a6dae6f8919e5d081934c49706b396d0b',1,'Sound']]],
   ['specifiedframeloop',['specifiedFrameLoop',['../class_sprite_animation.html#a6bd5846a609ac82aa113aed2585383e2',1,'SpriteAnimation']]],
-  ['spriteanimation',['SpriteAnimation',['../class_sprite_animation.html#aac41e2e7b3df2ef89c085f41ed804b57',1,'SpriteAnimation']]],
   ['spritecharacter',['SpriteCharacter',['../struct_sprite_character.html#ad86b441780a6fcc64379631477d90e09',1,'SpriteCharacter']]],
   ['startworld',['startWorld',['../class_game.html#a59e92bb94f00a244477c28fdd4bf54ac',1,'Game']]],
   ['stopmusic',['stopMusic',['../class_music.html#ac4ff67b05c566283036c49e81ea8590c',1,'Music']]]

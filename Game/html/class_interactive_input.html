@@ -67,13 +67,18 @@ $(function() {
 <div class="title">InteractiveInput Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interactive <a class="el" href="class_player_input.html" title="PlayerInput. ">PlayerInput</a>.  
+ <a href="class_interactive_input.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_player_8hpp_source.html">Player.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for InteractiveInput:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_interactive_input.png" usemap="#InteractiveInput_map" alt=""/>
   <map id="InteractiveInput_map" name="InteractiveInput_map">
-<area href="class_player_input.html" alt="PlayerInput" shape="rect" coords="0,56,102,80"/>
+<area href="class_player_input.html" title="PlayerInput. " alt="PlayerInput" shape="rect" coords="0,56,102,80"/>
 <area href="class_input_component.html" title="Inputcomponent for Characters. " alt="InputComponent" shape="rect" coords="0,0,102,24"/>
 </map>
  </div></div>
@@ -83,8 +88,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2daac2f1247f8deadc2065962e010725"><td class="memItemLeft" align="right" valign="top"><a id="a2daac2f1247f8deadc2065962e010725"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>InteractiveInput</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
 <tr class="separator:a2daac2f1247f8deadc2065962e010725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a470353fd941cd2698efb9923dcb29add"><td class="memItemLeft" align="right" valign="top"><a id="a470353fd941cd2698efb9923dcb29add"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput</b> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys)</td></tr>
+<tr class="memitem:a470353fd941cd2698efb9923dcb29add"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interactive_input.html#a470353fd941cd2698efb9923dcb29add">processInput</a> (const sf::Vector2f &amp;position, sf::Vector2f &amp;direction, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;keys)</td></tr>
+<tr class="memdesc:a470353fd941cd2698efb9923dcb29add"><td class="mdescLeft">&#160;</td><td class="mdescRight">process input.  <a href="#a470353fd941cd2698efb9923dcb29add">More...</a><br /></td></tr>
 <tr class="separator:a470353fd941cd2698efb9923dcb29add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_player_input"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_player_input')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_player_input.html">PlayerInput</a></td></tr>
 <tr class="memitem:ac133f058752dc4a539220143a2ec3dc0 inherit pub_methods_class_player_input"><td class="memItemLeft" align="right" valign="top"><a id="ac133f058752dc4a539220143a2ec3dc0"></a>
@@ -97,7 +102,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput<
 <tr class="memdesc:a76e915b2af58626d163f4ed7ae26f238 inherit pub_methods_class_player_input"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a tile in the world.  <a href="class_player_input.html#a76e915b2af58626d163f4ed7ae26f238">More...</a><br /></td></tr>
 <tr class="separator:a76e915b2af58626d163f4ed7ae26f238 inherit pub_methods_class_player_input"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd8a5c0414997b5e30a86910b5205214 inherit pub_methods_class_player_input"><td class="memItemLeft" align="right" valign="top"><a id="acd8a5c0414997b5e30a86910b5205214"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#acd8a5c0414997b5e30a86910b5205214">processItemUsage</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="memdesc:acd8a5c0414997b5e30a86910b5205214 inherit pub_methods_class_player_input"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implements the input for players. This consists of reading basic assignable input, item selection and item usage. <br /></td></tr>
 <tr class="separator:acd8a5c0414997b5e30a86910b5205214 inherit pub_methods_class_player_input"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1618264fbff60525c27505bfffce7ee2 inherit pub_methods_class_player_input"><td class="memItemLeft" align="right" valign="top"><a id="a1618264fbff60525c27505bfffce7ee2"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem) override</td></tr>
@@ -137,6 +143,64 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 <tr class="memdesc:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">The characters that could be followed. <br /></td></tr>
 <tr class="separator:ab7468cc43f40a414275be6f594158854 inherit pro_attribs_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interactive <a class="el" href="class_player_input.html" title="PlayerInput. ">PlayerInput</a>. </p>
+<p>This class implements the interactive input for players. This consists of reading basic left, right and jump input. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a470353fd941cd2698efb9923dcb29add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470353fd941cd2698efb9923dcb29add">&#9670;&nbsp;</a></span>processInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void InteractiveInput::processInput </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>keys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>process input. </p>
+<p>This function implements the input for players. This consists of reading basic assignable input. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position of the player. </td></tr>
+    <tr><td class="paramname">direction</td><td>The direction to changed based on read input. </td></tr>
+    <tr><td class="paramname">keys</td><td>The key bindings to check for key presses. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_player_input.html#ad60b353688a9086f3a3f91e71aebb69f">PlayerInput</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_player_8hpp_source.html">Player.hpp</a></li>
 <li><a class="el" href="_player_8cpp.html">Player.cpp</a></li>
@@ -144,7 +208,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -13,3 +13,11 @@ size (2400,2880) grid (5,6) scale (0.5,0.5) start (0,0) offset (5,97) missing (2
 size (2400,1440) grid (5,3) scale (0.5,0.5) start (0,0) offset (5,97) missing (1,2) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored| state idle | filename wizardIdle wizardIdle eind
 size (2400,2400) grid (5,5) scale (0.5,0.5) start (0,0) offset (5,97) missing (0,4) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename wizardJump wizardJump eind
 size (2400,1920) grid (5,4) scale (0.5,0.5) start (0,0) offset (5,97) missing (4,3) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename wizardAttack wizardAttack eind
+
+
+
+size (2400,1440) grid (5,3) scale (0.5,0.5) start (0,0) offset (5,97) missing (2,3) hitfac (0.15,0.23) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename orcDamage orcDamage eind
+size (2400,2880) grid (5,6) scale (0.5,0.5) start (0,0) offset (5,97) missing (2,5) hitfac (0.15,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename orcWalk orcWalk eind
+size (2400,1440) grid (5,3) scale (0.5,0.5) start (0,0) offset (5,97) missing (1,2) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored| state idle | filename orcIdle orcIdle eind
+size (2400,2400) grid (5,5) scale (0.5,0.5) start (0,0) offset (5,97) missing (0,4) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename orcJump orcJump eind
+size (2400,1920) grid (5,4) scale (0.5,0.5) start (0,0) offset (5,97) missing (4,3) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) | state idle | filename orcAttack orcAttack eind

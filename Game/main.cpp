@@ -17,10 +17,10 @@ int main(){
 	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
 	std::vector<KeyBinding> bindings { 
-		KeyBinding ( "Left", 		sf::Keyboard::A,  		Text( "Left : A", 	sf::Vector2f{500.0, 50.0}, 	1.0, sf::Color::Red, 1 )		),
-		KeyBinding ( "Right",		sf::Keyboard::D, 		Text( "Right : D", 	sf::Vector2f{500.0, 80.0}, 	1.0, sf::Color::Red, 1 )		),
-		KeyBinding ( "Jump", 		sf::Keyboard::Space, 	Text( "Jump : Space", 	sf::Vector2f{500.0, 110.0}, 1.0, sf::Color::Red, 1 ) 	),
-		KeyBinding ( "E",			sf::Keyboard::E,		Text( "E : E",		sf::Vector2f{500.0, 150.0}, 1.0, sf::Color::Red, 1)			)
+		KeyBinding ( "Left", 		sf::Keyboard::A,  		Text( "Left : A", 		sf::Vector2f{960.0, 50.0}, 	1, sf::Color::Black, 1 )		),
+		KeyBinding ( "Right",		sf::Keyboard::D, 		Text( "Right : D", 		sf::Vector2f{960.0, 125.0}, 1, sf::Color::Black, 1 )		),
+		KeyBinding ( "Jump", 		sf::Keyboard::Space, 	Text( "Jump : Space", 	sf::Vector2f{960.0, 200.0}, 1, sf::Color::Black, 1 ) 		),
+		KeyBinding ( "E",			sf::Keyboard::E,		Text( "Use : E",		sf::Vector2f{960.0, 275.0}, 1, sf::Color::Black, 1)			)
 	};
 
 	sf::Event event;
@@ -45,14 +45,15 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		if(machine.getCurrentState()->getName() != 4){			//Editing
+		if(machine.getCurrentState()->getName() != 4){			//EPlaying
 			while(lag >= simulationSpeed){
 				machine.handleInput(event, view);
 				lag -= simulationSpeed;
 			}	
 		} else {
-			machine.handleInput(event, view);
-		}
+			machine.handleInput(event, view);					//Editing
+		}		
+
 
 		window.clear();
 		window.setView(view);
@@ -65,6 +66,7 @@ int main(){
 			}
 			machine.handleEvent(event, view);
 		}
+
 
 	}
 

@@ -19,9 +19,21 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	if (!font.loadFromFile("Minecraft.ttf")){
 	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
 	} else {
-		text.setFont(font);
+		scoreText.setFont(font);
+		experienceText.setFont(font);
+		saveText.setFont(font);
+		highScoreText.setFont(font);
 	}
-	text.setFillColor(sf::Color::Black);
+	timeSprite.setTexture(assets.getTexture("time"));
+	experienceSprite.setTexture(assets.getTexture("experience"));
+	savePointSprite.setTexture(assets.getTexture("ironSword"));
+	highScoreSprite.setTexture(assets.getTexture("starLogo"));
+	highScoreSprite.setScale(0.12, 0.12);
+
+	scoreText.setFillColor(sf::Color::Black);
+	experienceText.setFillColor(sf::Color::Black);
+	saveText.setFillColor(sf::Color::Black);
+	highScoreText.setFillColor(sf::Color::Black);
 }
 
 /// \brief
@@ -32,6 +44,14 @@ void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
+void Game::restartClocks(){
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters.at(i).restartClock();
+	}
+	clock.restart();
+	lastTime = 0.0;
+};
+
 
 /// \brief
 /// Hanlde input.
@@ -41,9 +61,24 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
-	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
-		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
-		lastTime = clock.getElapsedTime().asSeconds();
+	if(clock.getElapsedTime().asMilliseconds() - lastTime >= 900){
+		remainingGameTime -= (clock.getElapsedTime().asMilliseconds() - lastTime) / 1000;
+		lastTime = clock.getElapsedTime().asMilliseconds();
+	}
+	for(Character & character : characters){
+		if(character.isPlayer()){
+			try{
+				if(character.getPosition().x > savePoints.at(currentSavePoint)){
+					character.setSpawn(character.getPosition());
+					std::cout << "(i)-- Reached savepoint " << ++currentSavePoint << "!" << std::endl;
+				}
+			} catch(std::exception & error){
+				std::cout << "(i)-- End of game reached at position " << character.getPosition().x << "!" << std::endl;
+				//lastTime = clock.getElapsedTime().asMilliseconds();
+				scores.push_back(character.getExperience() + remainingGameTime);
+				restart();
+			}
+		}
 	}
 }
 /// \brief
@@ -63,15 +98,47 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 void Game::display(sf::View & view){
 	world.draw(window, view, 0);				// First draw layer 0 of the world.
 	world.draw(window, view, 1);				// Then the first layer.
-	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
-		characters[i].draw(window, view);			// Then all characters.
-	}
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
 		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
 	}
-	text.setString(std::to_string(remainingGameTime));
-	text.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2));
-	window.draw(text);
+
+	for(const Character & character : characters){
+		if(character.isPlayer()){
+			experienceText.setString(std::to_string(character.getExperience()));
+		}
+	}
+
+	scoreText.setString(std::to_string(remainingGameTime));
+	scoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2));
+	window.draw(scoreText);
+
+	experienceText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 30));
+	window.draw(experienceText);
+
+	saveText.setString(std::to_string(currentSavePoint));
+	saveText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 60));
+	window.draw(saveText);
+
+	highScoreText.setString(std::to_string(*std::max_element(scores.begin(), scores.end())));
+	highScoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 90));
+	window.draw(highScoreText);
+
+	experienceSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 33));
+	window.draw(experienceSprite);
+
+	timeSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 3));
+	window.draw(timeSprite);
+
+	savePointSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 63));
+	window.draw(savePointSprite);
+
+	highScoreSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 93));
+	window.draw(highScoreSprite);
+
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters[i].draw(window, view);			// Then all characters.
+	}
+
 }
 
 
@@ -81,12 +148,6 @@ void Game::display(sf::View & view){
 /// This loads all characters in characters.txt. Unfortunately still undergoing changes.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
-	startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
-	startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
-	startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
-	startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
-	startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
-	//startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 	
 	std::ifstream charactersFile("Characters/instances.txt");
 	if(!charactersFile){
@@ -173,11 +234,19 @@ void Game::loadCharacters(){
 		
 		prevstring=currstring;
 		if((currstring.find("eind")!= std::string::npos)){
+			startItems.clear();
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+				startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
+				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
+				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
+				startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name !=""){
-				startItems.at(0) = std::make_shared<Weapon>("club", assets, 10, 500);
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

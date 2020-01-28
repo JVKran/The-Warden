@@ -94,10 +94,19 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>use</b> (<a c
 <tr class="memitem:a6a4e1f20d0935fb6eb5dad5b1d2b749c"><td class="memItemLeft" align="right" valign="top"><a id="a6a4e1f20d0935fb6eb5dad5b1d2b749c"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isWeapon</b> () override</td></tr>
 <tr class="separator:a6a4e1f20d0935fb6eb5dad5b1d2b749c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dcb7e5581e81e32dc45872fa6b4c8a8"><td class="memItemLeft" align="right" valign="top"><a id="a5dcb7e5581e81e32dc45872fa6b4c8a8"></a>
+virtual int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getPeriod</b> () override</td></tr>
+<tr class="separator:a5dcb7e5581e81e32dc45872fa6b4c8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_item"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_item')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_item.html">Item</a></td></tr>
-<tr class="memitem:a58c8acbd61a5ff8094231005351f7e45 inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="a58c8acbd61a5ff8094231005351f7e45"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (const std::string <a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets)</td></tr>
-<tr class="separator:a58c8acbd61a5ff8094231005351f7e45 inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad002c1f39247ae19287b25c51cf38d10 inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="ad002c1f39247ae19287b25c51cf38d10"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (const std::string <a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, uint_fast8_t experience=0)</td></tr>
+<tr class="separator:ad002c1f39247ae19287b25c51cf38d10 inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe0635ad83800b2e6d3e59c853f429b inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="a7fe0635ad83800b2e6d3e59c853f429b"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>containsExperience</b> ()</td></tr>
+<tr class="separator:a7fe0635ad83800b2e6d3e59c853f429b inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae800d56d875d3f54bfb91450066b7e95 inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="ae800d56d875d3f54bfb91450066b7e95"></a>
+virtual uint_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getExperience</b> ()</td></tr>
+<tr class="separator:ae800d56d875d3f54bfb91450066b7e95 inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tile"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_tile')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_tile.html">Tile</a></td></tr>
 <tr class="memitem:a9ea72fbe4159c00b7883b00498e41568 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
 <tr class="memdesc:a9ea72fbe4159c00b7883b00498e41568 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">More...</a><br /></td></tr>
@@ -288,7 +297,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 26 2020 15:51:28 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -6,9 +6,12 @@
 Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings ):
 	window( window ),
 	bindings(bindings),
-	action(Action([]{}))
+	action(Action([]{})),
+	world(assets)
 	{
-		background.setTexture(assets.getTexture("background"));
+			world.loadWorld("Interface/backgroundWorld.txt");
+
+		//background.setTexture(assets.getTexture("background"));
 	}
 
 void Settings::initialize(StateMachine * machine){
@@ -22,11 +25,11 @@ void Settings::handleInput(){
 		case StateSettings::IDLE: {
 			//change the color to blue of the Binding object if the mouse is on it else make it red 
 			for( auto & key : bindings ){
-				key.contains( sf::Mouse::getPosition(window)) ? key.setColor( sf::Color::Blue ) : key.setColor( sf::Color::Red );
+				key.contains( sf::Mouse::getPosition(window)) ? key.setColor( sf::Color::White ) : key.setColor( sf::Color::Black );
 			}
 
 			//change the color of backButton to blue if the mouse is on it else make it red
-			backButton.contains( sf::Mouse::getPosition(window)) ? backButton.setColor( sf::Color::Blue ) : backButton.setColor( sf::Color::Red );
+			backButton.contains( sf::Mouse::getPosition(window)) ? backButton.setColor( sf::Color::White ) : backButton.setColor( sf::Color::Black );
 			break;
 		}
 		case StateSettings::CHANGEKEY: {
@@ -83,8 +86,17 @@ void Settings::handleEvent( const sf::Event & event ){
 	}
 }
 
-void Settings::draw(){
-	window.draw(background);
+void Settings::draw(sf::View & view){
+	sf::Vector2f position = view.getCenter() - (view.getSize()/2.0f);
+	settingBackground.setPosition(position.x+800,position.y+50);
+	settingBackground.setFillColor(sf::Color(230,157,32));
+	settingBackground.setSize(sf::Vector2f(300,400));
+
+
+	for(uint_fast8_t windowLayer = 0; windowLayer <= 4; windowLayer ++){
+			world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
+		}
+	window.draw(settingBackground);
 	for( auto & p : bindings ){
 		p.draw( window );				//all the key objects
 	}
