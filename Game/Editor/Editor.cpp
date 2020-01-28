@@ -12,10 +12,11 @@
 /// @param assets The AssetManager to use to retrieve assets.
 /// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
 /// @param view The view to use for scrolling through the world.
-Editor::Editor( sf::RenderWindow & window, AssetManager & assets ):
+Editor::Editor( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings  ):
 	assets( assets ),
 	world( assets ),
-	window( window )
+	window( window ),
+	bindings( bindings )
 {
 	loadObjects();
 }
@@ -139,42 +140,42 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		// 	tile.setFollowMouse(false);
 		// }
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
+		if(sf::Keyboard::isKeyPressed(bindings[4].getKey()) && tile.isFollowingMouse()){
 			tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket)){
+		if(sf::Keyboard::isKeyPressed(bindings[5].getKey())){
 			tile.setCollidable(true);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
+		if(sf::Keyboard::isKeyPressed(bindings[6].getKey())){
 			tile.setCollidable(false);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
+		if(sf::Keyboard::isKeyPressed(bindings[7].getKey())){
 			tile.setWindowLayer(0);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
+		if(sf::Keyboard::isKeyPressed(bindings[8].getKey())){
 			tile.setWindowLayer(1);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
+		if(sf::Keyboard::isKeyPressed(bindings[9].getKey())){
 			tile.setWindowLayer(2);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
+		if(sf::Keyboard::isKeyPressed(bindings[10].getKey())){
 			tile.setWindowLayer(3);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
+		if(sf::Keyboard::isKeyPressed(bindings[11].getKey())){
 			tile.setWindowLayer(4);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+		if(sf::Keyboard::isKeyPressed(bindings[12].getKey())){
 			tile.setInteractability(!tile.isInteractable());
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
 			tile.setPassageWay(!tile.isPassageWay());
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+		if(sf::Keyboard::isKeyPressed(bindings[13].getKey())){
 			if(tile.isPassageWay()){
 				tile.changeSelected(!tile.isSelected());
 			}
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+		if(sf::Keyboard::isKeyPressed(bindings[14].getKey())){
 			if(tile.isSelected()){
 				tile.changeTeleportPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
 				tile.changeSelected(false);
