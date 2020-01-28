@@ -17,7 +17,9 @@ bool sortByLayer(Tile &lhs, Tile &rhs) { return lhs.getWindowLayer() < rhs.getWi
 /// @param view The view to use for scrolling through the world.
 World::World(AssetManager & assets):
 	assets(assets)
-{}
+{
+	background.setScale(2, 2);
+}
 
 /// \brief
 /// Load world from configuration.
@@ -46,7 +48,7 @@ void World::loadWorld(const std::string & fileName){
 	}
 	while (!isEmpty(worldFile)){
 		try {
-			loadObject(worldFile);
+			loadTile(worldFile);
 		} catch(std::ifstream::failure & e){
 			std::cerr << "(!)-- Exception opening, reading or closing file\n";
 		} catch (const std::exception & problem){
@@ -56,6 +58,7 @@ void World::loadWorld(const std::string & fileName){
 			std::cerr << "(!)-- Something went wrong in " << __FILE__ << " at line " << std::to_string(__LINE__) << std::endl;
 		}
 	}
+	sortWorld();
 	std::cout << "(i)-- Loaded world into memory." << std::endl;
 }
 
@@ -76,25 +79,21 @@ void World::loadWorld(const std::string & fileName){
 /// \exception endOfFile() End of file occured. This only happens when there's a mistake in the configuration file. Before reading another object, the program
 /// first checks if there's no end of file. However, when there's a mistake in the configuration file, the end of file could occur earlier.
 /// \exception invalidPosition() The position given is invalid. This most likely is a syntax error.
-void World::loadObject(std::ifstream & input){
+void World::loadTile(std::ifstream & input){
 	std::string assetName;
-	sf::Vector2f position;
+	sf::Vector2f position, teleportPosition;
 	float scale, rotation;
-	int windowLayer, interactable;
-	bool collidable;
+	int windowLayer;
+	bool collidable, interactable;
 	try {
-		input >> position >> assetName >> collidable >> scale >> rotation >> windowLayer >> interactable;
-		if(interactable){
-			interactables.push_back(InteractableObject(assetName, assets, position, scale, collidable, rotation, windowLayer));
-		}
-		else{
-			tiles.push_back(Tile(assetName, assets, position, scale, collidable, rotation, windowLayer));
-		}
+		input >> position >> teleportPosition >> assetName >> collidable >> scale >> rotation >> windowLayer >> interactable;
+		tiles.push_back(Tile(assetName, assets, position, teleportPosition, scale, collidable, rotation, windowLayer, interactable));
 	} catch (...){
-		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << std::endl;
+		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") (" << teleportPosition.x << ',' << teleportPosition.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << ' ' << interactable << std::endl;
 		std::cerr << "      Note that world configuration files shouldn't end with a newline character." << std::endl;
 	}
 }
+
 
 /// \brief
 /// Loading done.
@@ -103,11 +102,10 @@ void World::loadObject(std::ifstream & input){
 /// \exception sortingFailed() The tiles could not be sorted. This is most likely because of a std::bad_alloc.
 void World::sortWorld(){
 	try {
-		if(std::is_sorted(tiles.begin(), tiles.end()) && std::is_sorted(interactables.begin(), interactables.end())){
+		if(std::is_sorted(tiles.begin(), tiles.end())){
 			std::cout << "(i)-- World already sorted!" << std::endl;
 		} else {
 			std::sort(tiles.begin(), tiles.end(), sortByPosition);
-			std::sort(interactables.begin(), interactables.end(), sortByPosition);
 			std::cout << "(i)-- Sorted world!" << std::endl;
 		}
 	} catch (...){
@@ -132,8 +130,6 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
 	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
 
-	auto leftIteratorInteract = std::find_if(interactables.begin(), interactables.end(), [&leftSide](const InteractableObject & interactable)->bool{return interactable.getPosition().x > leftSide;});
-	auto rightIteratorInteract = std::find_if(interactables.begin(), interactables.end(), [&rightSide](const InteractableObject & interactable)->bool{return interactable.getPosition().x > rightSide;});
 	std::for_each(
 		leftIterator,
 		rightIterator,
@@ -143,15 +139,10 @@ void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t w
 			}
 		}
 	);
-	std::for_each(
-		leftIteratorInteract,
-		rightIteratorInteract,
-		[&window, &windowLayer](InteractableObject & interactable){
-			if(windowLayer == interactable.getWindowLayer()){
-				interactable.draw(window);
-			}
-		}
-	);
+
+	for(int_fast8_t i = items.size() - 1; i >= 0; i--){
+		items.at(i)->draw(window);
+	}
 }
 
 /// \brief
@@ -163,10 +154,21 @@ void World::addTile(Tile object){
 	tiles.push_back(object);
 	sortWorld();
 }
+/// \brief
+/// Adds tile to world.
+/// \details
+/// This adds an object to the world by pushing back to the vector containing all tiles.
+/// @param object The string used to search the right object to create in tiles
+/// @param position The position where we are going to add a new Object in the world
+void World::addTile(std::string object, sf::Vector2f position, sf::Vector2f teleportPosition){
+	Tile objectToAdd = {object, assets, position, teleportPosition, 1, 1.0, 0.0, 1};							//creates an instance of a crate object
+	objectToAdd.setWindowLayer(1);
+	addTile(objectToAdd);
+	objectToAdd.makePartOfWorld(true);
+}
 
-void World::addInteractable(InteractableObject & object){
-	interactables.push_back(object);
-	sortWorld();
+void World::addItem(std::shared_ptr<Item> item){
+	items.push_back(item);
 }
 
 /// \brief
@@ -177,9 +179,6 @@ std::vector<Tile> & World::getTiles(){
 	return tiles;
 }
 
-std::vector<InteractableObject> & World::getInteractables(){
-	return interactables;
-}
 /// \brief
 /// Save world to configuration file.
 /// \details

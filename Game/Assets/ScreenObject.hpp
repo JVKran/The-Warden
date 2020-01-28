@@ -11,12 +11,13 @@
 /// Screen Object
 /// \details
 /// This class implements a ScreenObject that can be drawn, scaled, moved and checked for collisions. 
-/// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
+/// It has an assetName, sprite and windowLayer to determine to which layer it is part of. i.e. when it should
+/// be drawn. This is used to prevent objects being overwritten by other objects.
 class ScreenObject {
 	protected:
 		std::string assetName;				//!< The AssetName to get corresponding texture from the AssetManager.
 		sf::Sprite sprite;					//!< The Sprite this ScreenObject has to draw and manage.
-		int_fast8_t windowLayer;
+		int_fast8_t windowLayer;			//!< The windowLayer this ScreenObject is part of.
 	public:
 		ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const float rotation = 0, const int windowLayer = 0);
 
@@ -48,15 +49,19 @@ class ScreenObject {
 /// Selectable Object
 /// \details
 /// This class implements a ScreenObject that can be drawn, scaled, moved, clicked and checked for collisions. 
-/// It has an assetName, sprite and boolean to determine wether or not this object can collide with Character types.
+/// It has an assetName, sprite and windowLayer to determine to which layer it is part of. Furthermore, it also has
+/// several booleans that are described below.
 class Tile : public ScreenObject {
 	private:
 		bool followMouse = false;			//!< Whether or not to follow the mouse's position.
 		bool collidable = true;				//!< Whether or not Character types should collide with this Tile.
-		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of 
-		bool interactable = false;
+		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
+		bool interactable = false;			//!< Whether or not this object can be interacted with by a Character.
+		bool selected = false;				//!< Whether or not this object is currently selected (should follow the mouse cursor).
+		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
+		sf::Vector2f teleportPosition;		//!< The position a Character will be teleported to when entering the passage.
 	public:
-		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, bool interactable = false, const float rotation = 0, const int windowLayer = 0);
+		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), sf::Vector2f teleportPosition = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0, bool interactable = false);
 
 		virtual std::string getConfiguration() const override;
 
@@ -69,8 +74,17 @@ class Tile : public ScreenObject {
 		bool isInteractable() const;
 		void setInteractability(const bool newInteractability);
 
+		bool isPassageWay() const;
+		void setPassageWay(const bool newPassageWay);
+
+		sf::Vector2f getTeleportPosition() const;
+		void changeTeleportPosition(const sf::Vector2f & newTeleportPosition);
+
 		bool setFollowMouse(const bool follow);
 		bool isFollowingMouse() const;
+
+		bool isSelected() const;
+		void changeSelected(const bool newSelected);
 
 		void move(const sf::Vector2f & position);
 
@@ -78,17 +92,5 @@ class Tile : public ScreenObject {
 		bool operator==(Tile lhs) const;
 		bool operator<(Tile lhs) const;
 
-};
-
-class InteractableObject : public Tile{
-	private:
-		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
-	public:
-		InteractableObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, bool interactable = true, const float rotation = 0, const int windowLayer = 0);
-		
-		virtual std::string getConfiguration() const override;
-		
-		bool isPassageWay() const;
-		void setPassageWay(const bool newPassageWay);
 };
 #endif //__SCREEN_OBJECT

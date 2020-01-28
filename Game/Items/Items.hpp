@@ -6,6 +6,8 @@
 #include <vector>
 #include <cstdint>
 #include "Character.hpp"
+#include <memory>
+#include <functional>
 
 class Character; 
 
@@ -13,16 +15,27 @@ class Character;
 /// Item
 /// \details
 /// This class is an abstract virtual class for all items.
-class Item{
+class Item : public Tile {
+	private:
+		uint_fast8_t experience;
 	public:
-		virtual void use(Character * character, std::vector<Character> & characters) = 0;
+		Item(const std::string assetName, AssetManager & assets, uint_fast8_t experience = 0):
+			Tile(assetName, assets)
+		{}
+		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
+		virtual bool containsExperience();
+		virtual uint_fast8_t getExperience();
+		virtual bool isWeapon();
+		virtual int_fast16_t getPeriod(){
+			return 0;
+		}
 };
 
 /// \brief
 /// Weapon
 /// \details
 /// This class is responsible for hitting other existing Characters.
-class Weapon : public Item{
+class Weapon : public Item {
 	private:	
 		sf::Clock clock;
 		sf::Time lastAttack;
@@ -30,20 +43,35 @@ class Weapon : public Item{
 
 		const int damageFactor;
 	public:
-		Weapon(const int damageFactor, const int_fast16_t hitPeriod);
-		virtual void use(Character * character, std::vector<Character> & characters) override;
+		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
+		virtual bool isWeapon() override;
+		virtual int_fast16_t getPeriod() override{
+			return hitPeriod;
+		}
 };
 
 /// \brief
 /// Consumable
 /// \details
 /// This class is responsible for replenishing health after the Character consumes a consumable.
-class Consumable : public Item{
+class Consumable : public Item {
 	private:
 		const int_fast8_t foodValue;
 	public:
-		Consumable(const int_fast8_t foodValue);
-		virtual void use(Character * character, std::vector<Character> & characters) override;
+		Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue);
+		virtual bool use(Character * character, std::vector<Character> & characters) override;
+};
+
+/// \brief
+/// Experience
+/// \details
+/// This class is responsible for giving the Player experience points after being picked up.
+class Experience : public Item {
+	public:
+		Experience(const std::string assetName, AssetManager & assets, uint_fast8_t experience);
+		virtual bool containsExperience() override;
+		virtual uint_fast8_t getExperience() override;
 };
 
 #endif //Items.hpp

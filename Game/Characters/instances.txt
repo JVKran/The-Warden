@@ -1,0 +1,3 @@
+named player  position (200,400) idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player attackName playerattack attackFile player eind
+attackName playerattack attackFile player eind
+named wizard  idleName wizardIdle   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage eind

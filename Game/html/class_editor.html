@@ -108,6 +108,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366">scrollTileBar</a> (const int_fast16_t &amp;mouseWheelDelta)</td></tr>
 <tr class="memdesc:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll tile bar.  <a href="#aed2537c0bf6daf4b24ebcbcd631f5366">More...</a><br /></td></tr>
 <tr class="separator:aed2537c0bf6daf4b24ebcbcd631f5366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c16d6e16c96ecdc6f87c43dc604e35"><td class="memItemLeft" align="right" valign="top"><a id="ae0c16d6e16c96ecdc6f87c43dc604e35"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleObjectInput</b> (<a class="el" href="class_tile.html">Tile</a> &amp;tile, sf::RenderWindow &amp;window, sf::View &amp;view, const sf::Event &amp;event)</td></tr>
+<tr class="separator:ae0c16d6e16c96ecdc6f87c43dc604e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c13a5c8a42a498e4539091a2ef9dc4f"><td class="memItemLeft" align="right" valign="top"><a id="a0c13a5c8a42a498e4539091a2ef9dc4f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleTileInput</b> (<a class="el" href="class_tile.html">Tile</a> &amp;tile, sf::RenderWindow &amp;window, sf::View &amp;view, std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt; &amp;tiles)</td></tr>
+<tr class="separator:a0c13a5c8a42a498e4539091a2ef9dc4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -126,6 +132,12 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>win
 std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a955c712f6f646e57011bc728457e606a">objects</a></td></tr>
 <tr class="memdesc:a955c712f6f646e57011bc728457e606a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector with all placeable objects. <br /></td></tr>
 <tr class="separator:a955c712f6f646e57011bc728457e606a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72296c964500bb341dda1806b789e642"><td class="memItemLeft" align="right" valign="top"><a id="a72296c964500bb341dda1806b789e642"></a>
+int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>leftBound</b></td></tr>
+<tr class="separator:a72296c964500bb341dda1806b789e642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f8d66c46bbba3a39d496c5de7eebdb"><td class="memItemLeft" align="right" valign="top"><a id="ad4f8d66c46bbba3a39d496c5de7eebdb"></a>
+int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b></td></tr>
+<tr class="separator:ad4f8d66c46bbba3a39d496c5de7eebdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_world.html" title="World. ">World</a> <a class="el" href="class_editor.html" title="World Editor. ">Editor</a>. </p>
@@ -377,7 +389,7 @@ std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2020 18:24:54 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 13:54:57 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -3,16 +3,21 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "AssetManager.hpp"
 
 class SpriteAnimation {
 	private:
 		sf::Sprite& sprite;
 		sf::Texture& texture;
-		const sf::Vector2i dimensions;		// Width,height
+		sf::Vector2i dimensions;		// Width,height
 		sf::Vector2i spriteRowColumn;	// Row, column
 		sf::Vector2f scale;
 		int missingRow;					// If the spritesheet is missing some frames 
 		float animationSpeed;
+		sf::Vector2f hitboxscale={0.2,0.2};
+		sf::Vector2i missingRowCollom;
+		sf::Vector2i startFrame;
+		sf::Vector2i offset;
 		
 		sf::Clock spriteClock;
 		
@@ -22,28 +27,22 @@ class SpriteAnimation {
 		int pixelRow;
 		int pixelColumn;
 		bool startFrameLoop=false;
+		bool ismirrored;
 	
 	public:
-		SpriteAnimation( sf::Sprite & sprite, sf::Texture& texture, const sf::Vector2i dimensions, sf::Vector2i spriteRowColumn, sf::Vector2i scale = sf::Vector2i{1,1}, int missingRow=0, float animationSpeed = 0.1f );
+		SpriteAnimation(AssetManager &assets,sf::Sprite& sprite, std::string movename, std::string filename);
+
 		void leftSprite(bool left);
 		void changeStartEndFrame(  sf::Vector2i RC, sf::Vector2i missingRC, bool left);	
 		void normalFrameLoop();
 		void specifiedFrameLoop();
 		void draw(sf::RenderWindow & window);
+		void sethitboxscale(float newscale);
 
-		sf::Vector2f getDimensions() const {
-			return sf::Vector2f(pixelColumn *3, pixelRow *3);
-			//return sf::Vector2f(sprite.getGlobalBounds().height, sprite.getGlobalBounds().width);
-		}
-		sf::FloatRect getBounds() const {
-			//return sf::Vector2f(pixelRow * 3, pixelColumn * 3);
-			sf::FloatRect temp=sprite.getGlobalBounds();
-			return sf::FloatRect(sf::Vector2f(temp.left+pixelColumn*3,temp.top),sf::Vector2f(temp.width,temp.height));
-			//return sprite.getGlobalBounds();
-		}
-		void move(sf::Vector2f where){
-			sprite.setPosition(sf::Vector2f(where.x+pixelRow*1,where.y+pixelColumn*1.5));
-		}
+		sf::Vector2f getDimensions() const;
+		sf::FloatRect getBounds() const ;
+		void move(sf::Vector2f where);
+		void left(bool where);
 		
 };
 

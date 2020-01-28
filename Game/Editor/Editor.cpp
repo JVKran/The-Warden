@@ -62,7 +62,6 @@ void Editor::drawTileBar( sf::View & view ){
 /// @param window The window to use for determining the absolute position of the mouseclicks.
 void Editor::handleInput(sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-	bool rightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
     bool downPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
@@ -99,7 +98,7 @@ void Editor::handleInput(sf::View & view){
 	}
 
 	for(Tile & object : objects){
-		if(leftMousePressed || rightMousePressed){
+		if(leftMousePressed){
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 				if(!object.isPartOfWorld()){
 					std::cout << "Added object at position " << object.getPosition().x << std::endl;
@@ -164,8 +163,22 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
 			tile.setWindowLayer(4);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
-			tile.setInteractability(true);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+			tile.setInteractability(!tile.isInteractable());
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
+			tile.setPassageWay(!tile.isPassageWay());
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)){
+			if(tile.isPassageWay()){
+				tile.changeSelected(!tile.isSelected());
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+			if(tile.isSelected()){
+				tile.changeTeleportPosition(sf::Vector2f(sf::Mouse::getPosition(window)));
+				tile.changeSelected(false);
+			}
 		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
@@ -239,9 +252,10 @@ void Editor::loadObjects(const std::string & editorConfigName ){
 	std::string name;
 	float scale;
 	sf::Vector2f position { 10, 10 };
+	sf::Vector2f teleportPosition { 0, 0 };
 	while( !isEmpty( objectInput ) ){
 		objectInput >> name >> scale;
-		objects.push_back(Tile(name, assets, position, scale));
+		objects.push_back(Tile(name, assets, position, teleportPosition, scale));
 		position.y += 70;
 	}
 }	

@@ -8,8 +8,11 @@
 #include "Settings.hpp"
 #include "States.hpp"
 
+class Game;
 class Interface;
 class StateMachine;
+
+
 class Settings;
 class State;
 
@@ -40,15 +43,16 @@ struct ViewObjects {
 class StateMachine {
 	private:
 		StateDependantObjects stateDependantObjects;
+		Music backgroundMusic = Music("background.wav");
+		Music editingMusic = Music("editingBackground.wav");
 
 		std::shared_ptr<State> currentState;
 	public:
 		StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings);
 
 		void changeState(std::shared_ptr<State> newState);
-
+		
 		std::shared_ptr<State> getCurrentState();
-
 		void handleInput(const sf::Event & event, sf::View & view);
 		void handleEvent(const sf::Event & event, sf::View & view);
 		void display(const sf::Event & event, sf::View & view);
