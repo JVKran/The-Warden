@@ -34,6 +34,7 @@ class Game {
 		double lastTime;
 		int_fast16_t remainingGameTime = 600;
 
+
 		std::vector<LootDrop> lootDrops;
 		std::vector<Character> characters;		//!< All Characters currently active in the Game.
 

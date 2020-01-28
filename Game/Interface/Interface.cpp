@@ -26,6 +26,10 @@ void Interface::initialize(StateMachine * newMachine){
 	machine = newMachine;
 }
 
+/// \brief
+/// Handle pause settings
+/// \details
+/// this will handle the pause settings.
 void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	sf::Vector2f position = view.getCenter() - (view.getSize()/2.0f);
 	pauseBackground.setPosition(position.x,position.y);
@@ -61,15 +65,24 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 }
 
 
+/// \brief
+/// Handle input.
+/// \details
+/// This handles the escape button, to show the pause state and remember the previous state..
 void Interface::handleInput(){
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		prevState = machine->getCurrentState();
 		pauseElements[1] = InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [this] {machine->changeState(prevState);}));
 		machine->changeState(std::make_shared<PauseState>());
 	}
 }
-
+/// \brief
+/// Hanlde Events.
+/// \details
+/// This handles all the events it gets.
 void Interface::handleEvent(const sf::Event & event, sf::View & view){
+	game.restartClocks();
 	for( InterfaceElement & sprite : interfaceElements){
 		if(sprite.contains(window, view)){
 			if(event.type == sf::Event::MouseButtonPressed && sprite.comparePosition(sf::Vector2f(550, 300)) ){
@@ -91,6 +104,10 @@ void Interface::handleEvent(const sf::Event & event, sf::View & view){
 }
 
 
+/// \brief
+/// Display the game.
+/// \details
+/// This displays the current state of the menu or the pause state on screen .
 void Interface::display(sf::View & view){
 	if (pauseGame){
 		view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));

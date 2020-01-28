@@ -43,19 +43,22 @@ struct ViewObjects {
 class StateMachine {
 	private:
 		StateDependantObjects stateDependantObjects;
+		sf::View &view;
 		Music backgroundMusic = Music("background.wav");
 		Music editingMusic = Music("editingBackground.wav");
+		sf::Vector2f editPosition = sf::Vector2f{960, 540};
+		int prevState=0;
 
 		std::shared_ptr<State> currentState;
 	public:
-		StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings);
+		StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings, sf::View &view);
 
 		void changeState(std::shared_ptr<State> newState);
 		
 		std::shared_ptr<State> getCurrentState();
-		void handleInput(const sf::Event & event, sf::View & view);
-		void handleEvent(const sf::Event & event, sf::View & view);
-		void display(const sf::Event & event, sf::View & view);
+		void handleInput(const sf::Event & event);
+		void handleEvent(const sf::Event & event);
+		void display(const sf::Event & event);
 };
 
 #endif //__STATEMACHING_HPP

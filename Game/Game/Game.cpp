@@ -38,7 +38,6 @@ void Game::restartClocks(){
 	lastTime = 0.0;
 };
 
-
 /// \brief
 /// Hanlde input.
 /// \details
@@ -50,7 +49,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	if(clock.getElapsedTime().asSeconds() - lastTime > 1){
 		remainingGameTime -= clock.getElapsedTime().asSeconds() - lastTime;
 		lastTime = clock.getElapsedTime().asSeconds();
-	}	std::cout << remainingGameTime<<"\n";
+	}	
 }
 /// \brief
 /// Hanlde Events.
