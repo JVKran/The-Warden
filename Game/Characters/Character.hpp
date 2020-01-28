@@ -230,6 +230,10 @@ class Character {
 
 		void setPosition(const sf::Vector2f & newPosition);
 
+		void setInput(std::shared_ptr<InputComponent> newInput){
+			input = newInput;
+		}
+
 		void setSpawn(const sf::Vector2f & newSpawn){
 			spawnPosition = newSpawn;
 		}

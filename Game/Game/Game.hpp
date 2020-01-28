@@ -54,6 +54,9 @@ class Game {
 		sf::RenderWindow & window;
 		std::vector<KeyBinding> & bindings;
 
+		std::shared_ptr<InteractiveInput> visionInput;
+		std::shared_ptr<PlayerInput> keyInput;
+
 		const sf::Event & event; 
 		sf::View & view;
 

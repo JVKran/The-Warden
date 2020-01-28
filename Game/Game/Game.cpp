@@ -16,6 +16,8 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	view(view)
 {			//"Assets/objects.txt"
 	loadCharacters();
+	keyInput = std::make_shared<PlayerInput>(world, characters);
+	visionInput = std::make_shared<InteractiveInput>(world, characters);
 	if (!font.loadFromFile("Minecraft.ttf")){
 	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
 	} else {
@@ -77,6 +79,12 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 				//lastTime = clock.getElapsedTime().asMilliseconds();
 				scores.push_back(character.getExperience() + remainingGameTime);
 				restart();
+			}
+			if(sf::Keyboard::isKeyPressed(bindings[15].getKey())){
+				character.setInput(visionInput);
+			}
+			if(sf::Keyboard::isKeyPressed(bindings[16].getKey())){
+				character.setInput(keyInput);
 			}
 		}
 	}
