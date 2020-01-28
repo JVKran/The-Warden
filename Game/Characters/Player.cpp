@@ -91,6 +91,10 @@ void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWind
 	world.addTile("crate", position);
 }
 
+void PlayerInput::addTile(Tile & tile){
+	world.addTile(tile);
+}
+
 /// \brief
 /// Deletes a tile in the world
 /// \details

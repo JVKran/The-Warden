@@ -80,6 +80,7 @@ class Experience : public Item {
 class Block : public Item {
 	private:
 		int_fast8_t amountOfObjects;		//!< The amount of blocks the player can hold
+		AssetManager & assets;
 		const sf::Event & event; 			//!< Needs an event for the use function
 		World & world;						//!< Needs a world to add the blocks into the world
 		sf::RenderWindow & window;			//!< Needs a window for the use function

@@ -81,6 +81,7 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
 	Item(assetName, assets),
 	amountOfObjects(amountOfObjects),
+	assets(assets),
 	event(event),
 	world(world),
 	window(window),
@@ -105,7 +106,7 @@ bool Block::use(Character * character, std::vector<Character> & characters){
                		 std::pow(window.mapPixelToCoords(sf::Mouse::getPosition(window), view).y - character->getPosition().y, 2) * 1.0); 
 
 	//if the mouse is less than 300 blocks away from the player you are allowed to add blocks and destroy crates
-	if(distance < 300){
+	if(distance < 400){
 		//goes through all objects to find a object that is a crate where the mouse is located on before deleting it.
 		for(Tile & object : objects){			
 			if(object.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){		//check if the mouse is on an existing object
@@ -120,12 +121,11 @@ bool Block::use(Character * character, std::vector<Character> & characters){
 
 		//if the mouse is not on an already existing object and the amountOfObjects is still bigger than 0 it will create a new tile
 		if(amountOfObjects > 0){						//can create new objects as long as there are more than 0 amountOfObjects
-			characters.at(0).addTile(event, world, window, view);		//creates new crate object
-			/*if(objects.back().getBounds().intersects(character->getBounds())){
-				std::cout << "hello there" << std::endl;
-			}*/
-			amountOfObjects--;											//decreases the amount of objects that can be created
-			std::cout << distance << std::endl;					
+			Tile tile("crate", assets, sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)));
+			if(!character->getGlobal().intersects(tile.getBounds())){
+				characters.at(0).addTile(tile);							//creates new crate object
+				amountOfObjects--;										//decreases the amount of objects that can be created
+			}				
 			return false;												//return false as long as we can create objects
 		}else{
 			return false;												//return true when there are no objects to create anymore
