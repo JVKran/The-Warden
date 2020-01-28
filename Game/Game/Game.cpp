@@ -237,7 +237,7 @@ void Game::loadCharacters(){
 			startItems.clear();
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 300));
 				startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
@@ -246,10 +246,10 @@ void Game::loadCharacters(){
 				startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name =="orc"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1000));
-				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,400));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
+				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
 			}			else if (name !=""){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 7, 500));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";
