@@ -33,16 +33,21 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// @param startItems The items the character starts with.
 /// @param world The world to use for determining AI paths.
 /// @param isPlayerType Wether or not this character is a player.
-Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType):
+/// @param health The health of the character.
+Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType,int_fast16_t health):
 	spawnPosition(position),
 	position(position),
 	lootDrop(std::make_shared<LootDrop>(world)),
 	isPlayerType(isPlayerType),
+	health(health),
+	maxHealth(health),
 	healthBar(sf::Vector2f(health, 20)),
 	input(input),
 	physics(physics),
 	graphics(graphics)
+
 {
+
 	items = startItems;
 	healthBar.setOutlineThickness(2);
 	itemSelector.setOutlineThickness(2);
@@ -53,7 +58,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 }
 
 void Character::die(){
-	lootDrop->drop(items, experiencePoints, position);
+	lootDrop->drop(items, experiencePoints, sf::Vector2f(position.x,position.y+graphics->getDimensions().y-10));
 }
 /// \brief
 /// Restart the clock
@@ -151,15 +156,23 @@ bool Character::isAlive(){
 void Character::draw(sf::RenderWindow & window, sf::View & view){
 	graphics->processGraphics(window, position, view);
 	healthBar.setPosition(sf::Vector2f(position.x, position.y - 50));
-	healthBar.setFillColor(sf::Color(health - 100, health, 0, 200));
+	float redval=health*(254.0/maxHealth);
+	
+	healthBar.setFillColor(sf::Color(255-redval, redval, 0, 200));
 	healthBar.setSize(sf::Vector2f(health, 20));
 	sf::Vector2f itemPosition = sf::Vector2f(position.x, position.y - 90);
 	int maxColumns = 3;
 	if(isPlayer()){
 		try{
 			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
-				items[i]->setPosition(itemPosition);
-				items[i]->draw(window);
+				if(items[i]->getName() == "crate"){
+					items[i]->setPosition(sf::Vector2f(itemPosition.x + 2, itemPosition.y + 2));
+					items[i]->draw(window);
+					items[i]->drawAmount(window);			//Amount has to be drawn after the block itself...
+				} else {
+					items[i]->setPosition(itemPosition);
+					items[i]->draw(window);
+				}
 				if(i == selectedItem){
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
 					window.draw(itemSelector);	
@@ -176,6 +189,10 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 		}
 	}
 	window.draw(healthBar);
+
+	if(isPlayer()){
+		std::cout << position.x << ", " << position.y << std::endl;
+	}
 
 	// sf::RectangleShape hit(graphics->getDimensions());
 	// hit.setPosition(position);
@@ -197,6 +214,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	sf::FloatRect tileBounds;
 	leftCollision=false, rightCollision=false, bottomCollision=false, topCollision=false, hasResistance = false;
 	characterCollision = false;
+	playerCollision = false;
 
 	sf::FloatRect hitbox = sf::FloatRect(sf::Vector2f(position.x, position.y), sf::Vector2f(dimensions.x, dimensions.y));
 	sf::FloatRect bottomHitbox = sf::FloatRect(sf::Vector2f(position.x + 5 , position.y + 1.7), sf::Vector2f(dimensions.x - 10 , dimensions.y));
@@ -220,7 +238,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 			}
 	        if((hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)) && tile.isCollidable()){
 				bottomCollision += tileBounds.intersects(bottomHitbox); 
-	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
+	        	rightCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width-5,hitbox.height - 5));
 	        	leftCollision += tileBounds.intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
 				topCollision += tileBounds.intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 	    	}
@@ -231,11 +249,13 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(hitbox.intersects(characters.at(i).getBounds()) && characters.at(i).getPosition() != position){
 			bottomCollision += characters.at(i).getBounds().intersects(bottomHitbox); 
-        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width,hitbox.height - 5));
-        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 5));
+        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width-5,hitbox.height - 7));
+        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 7));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
-			
+			if(characters.at(i).isPlayer()){
+				playerCollision=true;
+			}
 		}
 	}
 
@@ -284,7 +304,7 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
     	}
     }
     if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
-    	velocity.y = -maxJumpAcceleration;
+		velocity.y = -maxJumpAcceleration;
     }
 
     if(leftCollision  && direction.x < 0){
@@ -325,7 +345,7 @@ void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 			break;
 		}
 		case (states::STANDING): {
-			if(velocity.y < 0){
+			if(velocity.y < 0&&bottomCollision){
 				state = states::JUMPING;
 				break;
 			}

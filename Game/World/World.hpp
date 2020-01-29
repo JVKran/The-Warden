@@ -23,6 +23,10 @@ class World {
 		std::vector<Tile> tiles;					//!< The tiles the world consists of.
 		std::vector<std::shared_ptr<Item>> items;
 
+		int_fast64_t lastLeftSide = 0;
+		std::vector<Tile>::iterator leftIterator;
+		std::vector<Tile>::iterator rightIterator;
+
 		std::string worldFileName;					//!< The filename of the world configuration file.
 		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
 		sf::Sprite background;						//!< The background sprite.

@@ -38,6 +38,8 @@ class Item : public Tile {
 		std::string getName(){
 			return assetName;
 		}
+		virtual int_fast8_t getAmount(){ return 0; }
+		virtual void drawAmount(sf::RenderWindow & window){}
 };
 
 /// \brief
@@ -92,9 +94,18 @@ class Block : public Item {
 		sf::RenderWindow & window;			//!< Needs a window for the use function
 		sf::View & view;					//!< Needs a view to get the right mouse position in the use function
 
+		sf::Font blockFont;
+		sf::Text blockText;
+
 	public:
 		Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
+		virtual int_fast8_t getAmount(){ return amountOfObjects; }
+		virtual void drawAmount(sf::RenderWindow & window){
+			blockText.setString(std::to_string(getAmount()));
+			blockText.setPosition(sf::Vector2f(sprite.getPosition().x + 2, sprite.getPosition().y + 2));
+			window.draw(blockText);
+		}
 };
 
 #endif //Items.hpp

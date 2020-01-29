@@ -18,6 +18,15 @@ class EnemyPhysics : public PhysicsComponent {
 };
 
 /// \brief
+/// BossPhysics.
+/// \details
+/// Almost identical to EnemyPhysics, but even slower and with slower acceleration
+class BossPhysics : public PhysicsComponent {
+	public:
+		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
+};
+
+/// \brief
 /// EnemyInput.
 /// \details
 /// This class implements the input for enemies. This consists of some very basic AI.
@@ -34,6 +43,18 @@ class EnemyInput : public InputComponent {
 
 		EnemyInput & operator=(EnemyInput lhs);
 };
+/// \brief
+/// BossInput.
+/// \details
+/// Almost identical to EnemyInput but able to detect a player from further away.
+class BossInput : public EnemyInput {
+	public:
+		BossInput(World & world, std::vector<Character> & characters):
+			EnemyInput(world, characters)
+		{}
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys) override;
+};
+
 
 /// \brief
 /// EnemyGraphics.
