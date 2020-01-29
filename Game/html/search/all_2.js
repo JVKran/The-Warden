@@ -4,7 +4,7 @@ var searchData=
   ['changeselected',['changeSelected',['../class_tile.html#a4aa69319dc9d545a60d77a7693101cac',1,'Tile']]],
   ['changestartendframe',['changeStartEndFrame',['../class_sprite_animation.html#a77c9bcc449680295400860f3f27c2596',1,'SpriteAnimation']]],
   ['changeteleportposition',['changeTeleportPosition',['../class_tile.html#a577e48c4cc06d3ca32fd1405d8aa875b',1,'Tile']]],
-  ['character',['Character',['../class_character.html',1,'Character'],['../class_character.html#a5f2827f74228949d95260c9e833dfd60',1,'Character::Character()']]],
+  ['character',['Character',['../class_character.html',1,'Character'],['../class_character.html#a47a7cc922e3fa231ca2f20bccf2c36c5',1,'Character::Character()']]],
   ['character_2ecpp',['Character.cpp',['../_character_8cpp.html',1,'']]],
   ['character_2ehpp',['Character.hpp',['../_character_8hpp.html',1,'']]],
   ['charactercollision',['characterCollision',['../class_physics_component.html#aaa9e3d31927085fdefcdfdfe52d07c91',1,'PhysicsComponent']]],

@@ -13,7 +13,7 @@ var searchData=
   ['setcolor',['setColor',['../class_text.html#a58a2e7ca543705897e8d9566a3a166d3',1,'Text']]],
   ['setfightanimation',['setFightAnimation',['../class_animated_graphics_component.html#ad25e915611df92fdeed8399221561dfa',1,'AnimatedGraphicsComponent']]],
   ['setfollowmouse',['setFollowMouse',['../class_tile.html#a4a3678d40ae79e44d49eb2524dbbe40e',1,'Tile']]],
-  ['sethealth',['setHealth',['../class_character.html#aa4e64ba6313e0d44735125c3d0fd184a',1,'Character']]],
+  ['sethealth',['setHealth',['../class_character.html#a0e070236031f0da718523da7f0b973de',1,'Character']]],
   ['setinteractability',['setInteractability',['../class_tile.html#ab6acd5e9402f4787454e4f72f64ef741',1,'Tile']]],
   ['setmusicvolume',['setMusicVolume',['../class_music.html#abe60e1cf374cf8ce2341939e4b9597f6',1,'Music']]],
   ['setnewscale',['setNewScale',['../class_screen_object.html#a53cbc45ebfb8c0a86fce830ce48380ca',1,'ScreenObject']]],
