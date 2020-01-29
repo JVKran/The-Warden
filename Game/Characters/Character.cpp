@@ -47,6 +47,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	graphics(graphics)
 
 {
+
 	items = startItems;
 	healthBar.setOutlineThickness(2);
 	itemSelector.setOutlineThickness(2);
@@ -166,10 +167,12 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 			for(int_fast8_t i = items.size() - 1; i >= 0; i--){
 				if(items[i]->getName() == "crate"){
 					items[i]->setPosition(sf::Vector2f(itemPosition.x + 2, itemPosition.y + 2));
+					items[i]->draw(window);
+					items[i]->drawAmount(window);			//Amount has to be drawn after the block itself...
 				} else {
 					items[i]->setPosition(itemPosition);
+					items[i]->draw(window);
 				}
-				items[i]->draw(window);
 				if(i == selectedItem){
 					itemSelector.setPosition(itemPosition.x, itemPosition.y);
 					window.draw(itemSelector);	

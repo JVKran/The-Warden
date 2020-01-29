@@ -33,7 +33,7 @@ int main(){
 		KeyBinding ( "Change selected item",	sf::Keyboard::LControl,	Text( "change selected item : LControl",	sf::Vector2f{960.0, 560.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set teleport position",	sf::Keyboard::I, 		Text( "set teleport position : I",			sf::Vector2f{960.0, 600.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Enable vision control",	sf::Keyboard::RControl,	Text( "Enable vision control: RControl",	sf::Vector2f{960.0, 640.0}, 1, sf::Color::Black, 1 )),
-		KeyBinding ( "Disable vision control",	sf::Keyboard::J,	Text( "Disable vision control: J",	sf::Vector2f{960.0, 680.0}, 1, sf::Color::Black, 1 ))
+		KeyBinding ( "Disable vision control",	sf::Keyboard::J,		Text( "Disable vision control: J",			sf::Vector2f{960.0, 680.0}, 1, sf::Color::Black, 1 ))
 	};
 
 	sf::Event event;

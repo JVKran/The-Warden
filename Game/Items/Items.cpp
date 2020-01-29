@@ -117,6 +117,13 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 	view(view)
 {
 	setNewScale(0.27);		//sets the scale for inventory smaller, because othwise a to big crate will be visible in the inventory
+	if (!blockFont.loadFromFile("Minecraft.ttf")){
+	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
+	} else {
+		blockText.setFont(blockFont);
+	}
+	blockText.setScale(0.5, 0.5);
+	blockText.setFillColor(sf::Color::White);
 }
 
 /// \brief
