@@ -5,10 +5,11 @@
 /// Create an instance.
 /// \details
 /// This creates an InterFaceElement. 
-/// @param game
-/// @param settings
-/// @param assets
-/// @param window
+/// @param game This has the entire Game class.
+/// @Param editor This has the entire Editor class.
+/// @param settings This has the entire Settings class. 
+/// @param assets This has the entire Assets class. It has all the textures.
+/// @param window This is where everything is drawn.
 Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window):
 	game(game),
 	editor(editor),
@@ -41,6 +42,7 @@ void Interface::initialize(StateMachine * newMachine){
 /// Handle pause settings
 /// \details
 /// this will handle the pause settings.
+/// It will set the position of a sprite and redirect you to the menu or resume.
 void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	sf::Vector2f position = view.getCenter() - (view.getSize()/2.0f);
 	pauseBackground.setPosition(position.x,position.y);
@@ -79,9 +81,8 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 /// \brief
 /// Handle input.
 /// \details
-/// This handles the escape button, to show the pause state and remember the previous state..
+/// This handles the escape button, that shows the pause state and remember the previous state..
 void Interface::handleInput(){
-
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		prevState = machine->getCurrentState();
 		pauseElements[1] = InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [this] {machine->changeState(prevState);}));
@@ -89,7 +90,7 @@ void Interface::handleInput(){
 	}
 }
 /// \brief
-/// Hanlde Events.
+/// Handle Events.
 /// \details
 /// This handles all the events it gets.
 void Interface::handleEvent(const sf::Event & event, sf::View & view){

@@ -16,7 +16,10 @@ class State;
 class Game;
 class StateMachine;
 class Settings;
-
+/// \brief
+/// Interface
+/// \details
+/// This class is the entire Interface. This will handle the menu and pause screens.
 class Interface {
 	private:
 		Game & game;

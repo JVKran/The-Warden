@@ -1,9 +1,9 @@
 ///@file
 #include "StateMachine.hpp"
 /// \brief
-/// Create an instance.
+/// Statemachine constructor
 /// \details
-///
+/// This is the StateMachine constructor.
 /// @param stateDependantObjects This will need the game, interface, editor and settings.
 /// @param view This is the view 
 /// @param currentState This is the current state with a default of the menu state.
@@ -49,20 +49,14 @@ void StateMachine::changeState(std::shared_ptr<State> newState){
 			break;
 		}
 		default: {
-			// backgroundMusic.pauseMusic();
-			// editingMusic.pauseMusic();
 			// Don't add prevState here;
 			break;
 		}
 	}
-	//std::cout << prevState << "\n";
-
 	if( prevState==4){
 		editPosition = view.getCenter();
-		//std::cout << editPosition.x << " : " << editPosition.y << "\n";
 	}
 }
-
 
 /// \brief
 /// Return currentState.

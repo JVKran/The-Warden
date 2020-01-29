@@ -25,7 +25,6 @@ bool InterfaceElement::comparePosition( sf::Vector2f position ){
 /// This function will check whether your mouse is inside the element.
 /// \return A bool that depends on whether your mouse is inside the element.
 bool InterfaceElement::contains( sf::RenderWindow & window , sf::View & view){;
-
 	return element.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(), view));
 }
 /// \brief

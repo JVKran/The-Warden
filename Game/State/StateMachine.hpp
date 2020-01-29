@@ -1,3 +1,4 @@
+/// @file
 #ifndef __STATEMACHINE_HPP
 #define __STATEMACHINE_HPP
 
@@ -15,7 +16,10 @@ class StateMachine;
 
 class Settings;
 class State;
-
+/// \brief
+/// StateDependantObjects
+/// \details
+/// This contains the game, interface, editor, settings
 struct StateDependantObjects {
 	Game & game;
 	Interface & interface;
@@ -29,7 +33,10 @@ struct StateDependantObjects {
 		settings(settings)
 	{}
 };
-
+/// \brief
+/// ViewObjects
+/// \details
+/// This contains the view and event.
 struct ViewObjects {
 	sf::View & view;
 	const sf::Event & event;
@@ -39,7 +46,11 @@ struct ViewObjects {
 		event(event)
 	{}
 };
-
+/// \brief
+/// StateMachine
+/// \details
+/// This class is the StateMachine. It will give the current state a way to start their: handleinput, handleEvent and display.
+/// It will also change the current state.
 class StateMachine {
 	private:
 		StateDependantObjects stateDependantObjects;
