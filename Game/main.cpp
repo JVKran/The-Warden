@@ -29,7 +29,7 @@ int main(){
 		KeyBinding ( "Set Layer 2",				sf::Keyboard::F3,		Text( "Set Layer 2 : F3",					sf::Vector2f{960.0, 400.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set Layer 3",				sf::Keyboard::F4,		Text( "Set Layer 3 : F4",					sf::Vector2f{960.0, 440.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set Layer 4",				sf::Keyboard::F5,		Text( "Set Layer 4 : F5",					sf::Vector2f{960.0, 480.0},  1, sf::Color::Black, 1 )),
-		KeyBinding ( "Set interactable",		sf::Keyboard::E,		Text( "Set interactable : E",				sf::Vector2f{960.0, 520.0},  1, sf::Color::Black, 1 )),
+		KeyBinding ( "Set interactable",		sf::Keyboard::N,		Text( "Set interactable : N",				sf::Vector2f{960.0, 520.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Change selected item",	sf::Keyboard::LControl,	Text( "change selected item : LControl",	sf::Vector2f{960.0, 560.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set teleport position",	sf::Keyboard::I, 		Text( "set teleport position : I",			sf::Vector2f{960.0, 600.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Enable vision control",	sf::Keyboard::RControl,	Text( "Enable vision control: RControl",	sf::Vector2f{960.0, 640.0}, 1, sf::Color::Black, 1 )),
@@ -44,7 +44,7 @@ int main(){
 
 	Settings settings(window, assets, bindings);
 	Interface interface(game, editor, settings, assets, window);
-	StateMachine machine(game, interface, editor, settings);
+	StateMachine machine(game, interface, editor, settings, view);
 	
 	sf::Clock clock;
 
@@ -60,24 +60,24 @@ int main(){
 
 		if(machine.getCurrentState()->getName() != 4){			//EPlaying
 			while(lag >= simulationSpeed){
-				machine.handleInput(event, view);
+				machine.handleInput(event);
 				lag -= simulationSpeed;
 			}	
 		} else {
-			machine.handleInput(event, view);					//Editing
+			machine.handleInput(event);					//Editing
 		}		
 
 
 		window.clear();
 		window.setView(view);
-		machine.display(event, view);
+		machine.display(event);
 		window.display();
 		
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
-			machine.handleEvent(event, view);
+			machine.handleEvent(event);
 		}
 
 

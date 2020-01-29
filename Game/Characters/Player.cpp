@@ -71,9 +71,6 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 	if(sf::Keyboard::isKeyPressed(keys[2].getKey())){
 		direction.y = -1;
 	}
-	if(sf::Keyboard::isKeyPressed(keys[3].getKey())){
-
-	}
 }
 
 /// \brief
@@ -88,7 +85,8 @@ void PlayerInput::processInput(const sf::Vector2f & position, sf::Vector2f & dir
 /// @param view The view to use with the window to determine the abolsute position of the mouse.
 void PlayerInput::addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view){
 	sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window), view);		//gets to position based on the mouse coordinates in a view
-	world.addTile("crate", position);
+	sf::Vector2f teleportPosition = sf::Vector2f(0,0);
+	world.addTile("crate", position, teleportPosition);
 }
 
 /// \brief
@@ -145,17 +143,6 @@ void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::sha
 void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem){
 	if(event.type == sf::Event::MouseWheelMoved){	
 		selectedItem += event.mouseWheel.delta;
-	}
-}
-
-void PlayerInput::handleInteraction(World & world){
-	std::vector<Tile> & tiles = world.getTiles();
-	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
-		if(tiles.at(i).isInteractable()){
-			if(tiles.at(i).isPassageWay()){
-				std::cout<<"Deur\n";
-			}
-		}
 	}
 }
 

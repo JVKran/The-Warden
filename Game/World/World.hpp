@@ -31,10 +31,9 @@ class World {
 		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
 		sf::Sprite background;						//!< The background sprite.
 
-		void loadWorld();
+		void sortWorld();
 		void loadTile(std::ifstream & input);
 	public:
-		void sortWorld();
 		World(AssetManager & assets);
 
 		AssetManager & getAssets(){
@@ -47,14 +46,13 @@ class World {
 		void addTile(Tile object);
 		void addItem(std::shared_ptr<Item> item);
 
-		void addTile(std::string object, sf::Vector2f position);
+		void addTile(std::string object, sf::Vector2f position, sf::Vector2f teleportPosition);
 		void setBackground(const std::string & backgroundName);
 
 		std::vector<Tile> & getTiles();
 		std::vector<std::shared_ptr<Item>> & getItems(){
 			return items;
 		}
-
 		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
 
 		World & operator=(World lhs){

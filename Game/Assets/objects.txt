@@ -1,5 +1,4 @@
 background Assets/Textures/freetileset/png/BG/BG.png
-
 grassLeft Assets/Textures/freetileset/png/Tiles/1.png
 grassMiddle Assets/Textures/freetileset/png/Tiles/2.png
 grassRight Assets/Textures/freetileset/png/Tiles/3.png
@@ -42,6 +41,7 @@ editButton Assets/Textures/editIcon.png
 settingButton Assets/Textures/cogWheel.png
 player Assets/Textures/adventurer.png
 waterBubble Assets/Textures/waterBubble.png
+OpenDoor Assets/Textures/Others/OpenDoor.png
 door Assets/Textures/Others/doors_all.png
 battleAxe Assets/Textures/Items/BattleAxe.png
 bigDagger Assets/Textures/Items/BigDagger.png   

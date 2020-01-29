@@ -19,6 +19,7 @@ void PlayingState::handleInput(StateDependantObjects & objects, ViewObjects & vi
 }
 
 void PlayingState::display(StateDependantObjects & objects, ViewObjects & viewObjects) {
+
 	objects.game.display(viewObjects.view);
 }
 

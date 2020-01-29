@@ -61,7 +61,7 @@ class Tile : public ScreenObject {
 		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
 		sf::Vector2f teleportPosition;		//!< The position a Character will be teleported to when entering the passage.
 	public:
-		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0);
+		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), sf::Vector2f teleportPosition = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0, bool interactable = false);
 
 		virtual std::string getConfiguration() const override;
 
@@ -73,9 +73,6 @@ class Tile : public ScreenObject {
 
 		bool isInteractable() const;
 		void setInteractability(const bool newInteractability);
-
-		bool isPassageWay() const;
-		void setPassageWay(const bool newPassageWay);
 
 		sf::Vector2f getTeleportPosition() const;
 		void changeTeleportPosition(const sf::Vector2f & newTeleportPosition);
@@ -93,5 +90,4 @@ class Tile : public ScreenObject {
 		bool operator<(Tile lhs) const;
 
 };
-
 #endif //__SCREEN_OBJECT

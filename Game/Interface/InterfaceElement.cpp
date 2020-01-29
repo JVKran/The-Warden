@@ -1,8 +1,8 @@
 #include "InterfaceElement.hpp"
 
-InterfaceElement::InterfaceElement( ScreenObject element, Action action ):
+InterfaceElement::InterfaceElement( ScreenObject element, std::function< void() > work):
 	element(element),
-	action(action)
+	work(work)
 {}
 
 bool InterfaceElement::comparePosition( sf::Vector2f position ){
@@ -15,7 +15,7 @@ bool InterfaceElement::contains( sf::RenderWindow & window , sf::View & view){;
 }
 
 void InterfaceElement::changeState(){ 
-	action.startFunction();
+	work();
 }
 
 void InterfaceElement::setPosition(const sf::Vector2f& position){
