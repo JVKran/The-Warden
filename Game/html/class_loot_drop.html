@@ -66,14 +66,19 @@ $(function() {
 <div class="title">LootDrop Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Lootdrop.  
+ <a href="class_loot_drop.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_loot_drop_8hpp_source.html">LootDrop.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8af37e1f4f491120f89e6e696bf8a82e"><td class="memItemLeft" align="right" valign="top"><a id="a8af37e1f4f491120f89e6e696bf8a82e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LootDrop</b> (<a class="el" href="class_world.html">World</a> &amp;world)</td></tr>
+<tr class="memitem:a8af37e1f4f491120f89e6e696bf8a82e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loot_drop.html#a8af37e1f4f491120f89e6e696bf8a82e">LootDrop</a> (<a class="el" href="class_world.html">World</a> &amp;world)</td></tr>
+<tr class="memdesc:a8af37e1f4f491120f89e6e696bf8a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a8af37e1f4f491120f89e6e696bf8a82e">More...</a><br /></td></tr>
 <tr class="separator:a8af37e1f4f491120f89e6e696bf8a82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad4d0af17ba9e2678dd7c3a851546c6c"><td class="memItemLeft" align="right" valign="top"><a id="aad4d0af17ba9e2678dd7c3a851546c6c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drop</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; items, int_fast16_t experience, sf::Vector2f position)</td></tr>
+<tr class="memitem:aad4d0af17ba9e2678dd7c3a851546c6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loot_drop.html#aad4d0af17ba9e2678dd7c3a851546c6c">drop</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; items, int_fast16_t experience, sf::Vector2f position)</td></tr>
+<tr class="memdesc:aad4d0af17ba9e2678dd7c3a851546c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drop items and experience.  <a href="#aad4d0af17ba9e2678dd7c3a851546c6c">More...</a><br /></td></tr>
 <tr class="separator:aad4d0af17ba9e2678dd7c3a851546c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -82,14 +87,82 @@ Private Attributes</h2></td></tr>
 <a class="el" href="class_world.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>world</b></td></tr>
 <tr class="separator:aea0d6990237903b545bd04964ede9d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Lootdrop. </p>
+<p>This class features the lootdrop. It consists of creating items based on the given parameters. These items are then added to the <a class="el" href="class_world.html" title="World. ">World</a> so they can be picked up later on. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8af37e1f4f491120f89e6e696bf8a82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8af37e1f4f491120f89e6e696bf8a82e">&#9670;&nbsp;</a></span>LootDrop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LootDrop::LootDrop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_world.html">World</a> &amp;&#160;</td>
+          <td class="paramname"><em>world</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an instance. </p>
+<p>This creates a <a class="el" href="class_loot_drop.html" title="Lootdrop. ">LootDrop</a> instance by setting a refrence to the world. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>The <a class="el" href="class_world.html" title="World. ">World</a> to add the items to when the loot is dropped. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aad4d0af17ba9e2678dd7c3a851546c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4d0af17ba9e2678dd7c3a851546c6c">&#9670;&nbsp;</a></span>drop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LootDrop::drop </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int_fast16_t&#160;</td>
+          <td class="paramname"><em>experience</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Drop items and experience. </p>
+<p>This creates several items and adds these created items to the world. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_loot_drop_8hpp_source.html">LootDrop.hpp</a></li>
-<li>LootDrop.cpp</li>
+<li><a class="el" href="_loot_drop_8cpp.html">LootDrop.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 29 2020 17:10:39 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 20:04:53 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -89,7 +89,6 @@ void Character::update(sf::RenderWindow & window, World & world, std::vector<Cha
 	physics->processCollisions(items, world, position, graphics->getDimensions(), collisionBounds, characters, this);
 	physics->processPhysics(velocity);
 	physics->processVelocity(direction, velocity);
-
 	if(position.y > 600 && isPlayer()){
 		respawn();
 		experiencePoints -= 50;
@@ -144,7 +143,6 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event for the currently selected item.
 /// @param The event for handling the selected item.
 void Character::handleEvent(const sf::Event & event){
-	input->handleEvent(event, selectedItem);
 	input->processItemUsage(event, items, this);
 }
 
@@ -500,7 +498,7 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 							isWalkingLeft = true;
 							currentAnimation->left(isWalkingLeft);
 						}
-					}else{
+					} else {
 						if(isWalkingLeft){
 							isWalkingLeft=false;
 							currentAnimation->left(isWalkingLeft);
@@ -519,20 +517,17 @@ void AnimatedGraphicsComponent::processGraphics(sf::RenderWindow & window, const
 		}
 		previousPosition = position;
 		previousTime = clock.getElapsedTime();
-	}else if (isAttacking==true)
-	{
-		
+	}else if (isAttacking==true){
 		if((clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds())>500){
 			state=states::IDLE;
 			isAttacking=false;
 			currentAnimation=&idleAnimation;
+			currentAnimation->left(isWalkingLeft);
 		}
 	}
-	
 	processViewChanges(view, position);
 	currentAnimation->move(sf::Vector2f(position.x,position.y));
 	currentAnimation->draw(window);
-
 }
 
 /// \brief

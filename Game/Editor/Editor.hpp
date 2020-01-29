@@ -20,12 +20,12 @@ class Editor {
 private:
 	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
 	World world;													//!< The World to edit.
-	sf::RenderWindow & window;
-	std::vector<KeyBinding> & bindings; 
+	sf::RenderWindow & window;										//!< The window to draw the world and placeable objects into.
+	std::vector<KeyBinding> & bindings; 							//!< The keybindings to use in the editor; hot-swappable.
 
-	std::vector< Tile > objects;						//!< Vector with all placeable objects.
-	int_fast32_t leftBound;
-	int_fast32_t rightBound;
+	std::vector< Tile > objects;									//!< Vector with all placeable objects.
+	int_fast32_t leftBound;											//!< The left bound (position) from where the world should be drawn.
+	int_fast32_t rightBound;										//!< The right bound (position) until where the world should be drawn.
 
 	bool isFirstOneSelected(std::vector<Tile> & tiles);
 	void drawTileBar( sf::View & view );

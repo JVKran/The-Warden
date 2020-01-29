@@ -1,9 +1,20 @@
+/// @file
+
 #include "LootDrop.hpp"
 
+/// \brief
+/// Create an instance.
+/// \details
+/// This creates a LootDrop instance by setting a refrence to the world.
+/// @param world The World to add the items to when the loot is dropped.
 LootDrop::LootDrop(World & world):
 	world(world)
 {}
 
+/// \brief
+/// Drop items and experience.
+/// \details
+/// This creates several items and adds these created items to the world.
 void LootDrop::drop(std::vector<std::shared_ptr<Item>> items, int_fast16_t experience, sf::Vector2f position){
 	items.push_back(std::make_shared<Experience>("experience", world.getAssets(), experience));
 	std::cout << experience << std::endl;

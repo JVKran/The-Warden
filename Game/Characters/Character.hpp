@@ -151,7 +151,7 @@ class AnimatedGraphicsComponent {
 /// Character
 /// \details
 /// This class features a Character. Every character is the same, except for the (possibly) different components.
-/// The functioning of a Character is defined completely in its components; The component pattern has been used here.
+/// The behaviour of a Character is defined completely in its components; The component pattern has been used here.
 class Character {
 	private:
 		sf::Vector2f spawnPosition;								//!< The position the character should go to after death.
@@ -201,7 +201,6 @@ class Character {
 
 		void setInput(std::shared_ptr<InputComponent> newInput);
 		std::shared_ptr<AnimatedGraphicsComponent> getGraphics();
-
 
 		sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f & newPosition);

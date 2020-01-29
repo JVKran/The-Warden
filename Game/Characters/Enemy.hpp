@@ -26,8 +26,6 @@ class BossPhysics : public PhysicsComponent {
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
 };
 
-
-
 /// \brief
 /// BossPhysics.
 /// \details
@@ -40,7 +38,7 @@ class DogPhysics : public PhysicsComponent {
 /// \brief
 /// EnemyInput.
 /// \details
-/// This class implements the input for enemies. This consists of some very basic AI.
+/// This class implements the input for enemies. This consists of some very basic artificial intelligence.
 class EnemyInput : public InputComponent {
 	public:
 		EnemyInput(World & world, std::vector<Character> & characters):
@@ -54,6 +52,7 @@ class EnemyInput : public InputComponent {
 
 		EnemyInput & operator=(EnemyInput lhs);
 };
+
 /// \brief
 /// BossInput.
 /// \details
@@ -65,9 +64,6 @@ class BossInput : public EnemyInput {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys) override;
 };
-
-
-
 
 /// \brief
 /// EnemyGraphics.
@@ -81,6 +77,5 @@ class EnemyGraphics : public GraphicsComponent {
 
 		EnemyGraphics & operator=(EnemyGraphics lhs);
 };
-
 
 #endif //__ENEMY_HPP

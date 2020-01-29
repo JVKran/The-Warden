@@ -18,9 +18,6 @@
 #include <stdio.h>
 #include <thread> 
 
-using namespace std;
-using namespace cv;
-
 /// \brief
 /// PlayerInput.
 /// \details
@@ -36,7 +33,6 @@ class PlayerInput : public InputComponent {
 		virtual void addTile(Tile & tile);
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) override;
 		virtual void processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) override;
-		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) override;
 
 		PlayerInput & operator=(PlayerInput lhs){
 			world = lhs.world;
@@ -48,7 +44,8 @@ class PlayerInput : public InputComponent {
 /// \brief
 /// Interactive PlayerInput.
 /// \details
-/// This class implements the interactive input for players. This consists of reading basic left, right and jump input.
+/// This class implements the interactive input for players. This consists of reading basic left, right and jump input based on visual input
+/// retrieved from a detached thread.
 class InteractiveInput : public PlayerInput {
 	private:
 	    bool isCreated = false;
@@ -58,14 +55,7 @@ class InteractiveInput : public PlayerInput {
 			PlayerInput(world, characters)
 		{}
 
-		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
-			if(!isCreated){
-				thread inputThread(detectPosition, std::ref(direction));
-				inputThread.detach();
-				isCreated = true;
-				std::cout << "Detached" << std::endl;
-			}
-		}
+		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys);
 };
 
 /// \brief

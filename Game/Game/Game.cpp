@@ -5,16 +5,20 @@
 /// \brief
 /// Create an instance.
 /// \details
-/// This creates a Game. After initialization, the AssetManager loads all textures and the Characters are
-/// read into memory. Furhtermore, it initializes the world and editor with said AssetManager.
-/// @param objectConfigurationFile The file that contains all Textures and their Filepaths.
+/// This creates a Game. After initialization, all characters are loaded into memory. In the background, 
+/// also the world is loaded and initialized. Furthermore, all fonts are set and sprites are loaded.
+/// @param window The sf::RenderWindow literally everything is drawn into.
+/// @param assets The AssetManager that's used to retrieve loaded textures.
+/// @param bindings The KeyBindings to use throughout the entire game.
+/// @param event The sf::Event to use for detecting and handling occured events.
+/// @param view The sf::View to determine the position of for making sure only the minimal is drawn.
 Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings, const sf::Event & event, sf::View & view):
 	world(assets),
 	window(window),
 	bindings(bindings),
 	event(event),
 	view(view)
-{			//"Assets/objects.txt"
+{
 	loadCharacters();
 	keyInput = std::make_shared<PlayerInput>(world, characters);
 	visionInput = std::make_shared<InteractiveInput>(world, characters);
@@ -39,13 +43,26 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 }
 
 /// \brief
+/// Destruct an instance.
+/// \details
+/// This closes the sf::RenderWindow when the game gets destructed.
+Game::~Game(){
+	window.close();
+}
+
+/// \brief
 /// Start playing.
 /// \details
-/// This starts a game by loading the world and changing the state to PLAYING.
+/// This starts a game by loading the world
 void Game::startWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }
 
+/// \brief
+/// Restart clocks
+/// \details
+/// This restarts the clocks of all characters to make sure every player has their maximum amount of seconds on the clock and
+/// sprite animations start from the beginning.
 void Game::restartClocks(){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).restartClock();
@@ -55,9 +72,26 @@ void Game::restartClocks(){
 };
 
 /// \brief
+/// Restart the entire game.
+/// \details
+/// This restarts the entire game; the characters, world, clocks, progress
+void Game::restart(){
+	loadCharacters();
+	clock.restart();
+	currentSavePoint = 0;
+	characters.clear();
+	loadCharacters();
+	world.getTiles().clear();
+	world.getItems().clear();
+	startWorld("World/world.txt");
+	remainingGameTime = 600;
+	lastTime = 0;
+}
+
+/// \brief
 /// Hanlde input.
 /// \details
-/// This handles either CharacterInput or EditorInput based on the state of the game.
+/// This handles the input for all characters, manages the time and takes care of savepoints.
 void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(!characters.at(i).isPlayer()){
@@ -80,7 +114,6 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 				}
 			} catch(std::exception & error){
 				std::cout << "(i)-- End of game reached at position " << character.getPosition().x << "!" << std::endl;
-				//lastTime = clock.getElapsedTime().asMilliseconds();
 				scores.push_back(character.getExperience() + remainingGameTime);
 				restart();
 			}
@@ -96,7 +129,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 /// \brief
 /// Hanlde Events.
 /// \details
-/// This handles all the events it gets.
+/// This handles all character handleable occured events.
 void Game::handleEvent(const sf::Event & event, sf::View & view){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).handleEvent(event);
@@ -106,12 +139,17 @@ void Game::handleEvent(const sf::Event & event, sf::View & view){
 /// \brief
 /// Display the game.
 /// \details
-/// This displays the current state of the game on screen.
+/// This displays the current state of the game on screen; the characters, world, healthbar, items, scores and savepoints.
 void Game::display(sf::View & view){
-	world.draw(window, view, 0);				// First draw layer 0 of the world.
-	world.draw(window, view, 1);				// Then the first layer.
+	world.draw(window, view, 0);									// First draw layer 0 of the world.
+	world.draw(window, view, 1);									// Then the first layer.
+
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		characters[i].draw(window, view);							// Then all characters.
+	}
+
 	for(uint_fast8_t windowLayer = 2; windowLayer <= 4; windowLayer ++){
-		world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
+		world.draw(window, view, windowLayer);						// Finaly, draw several more layers that are also able to draw over Characters.
 	}
 
 	for(const Character & character : characters){
@@ -123,41 +161,33 @@ void Game::display(sf::View & view){
 	scoreText.setString(std::to_string(remainingGameTime));
 	scoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2));
 	window.draw(scoreText);
+	timeSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 3));
+	window.draw(timeSprite);
 
 	experienceText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 30));
 	window.draw(experienceText);
+	experienceSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 33));
+	window.draw(experienceSprite);
 
 	saveText.setString(std::to_string(currentSavePoint));
 	saveText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 60));
 	window.draw(saveText);
+	savePointSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 63));
+	window.draw(savePointSprite);
 
 	highScoreText.setString(std::to_string(*std::max_element(scores.begin(), scores.end())));
 	highScoreText.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 40, view.getSize().y / 2 - 90));
 	window.draw(highScoreText);
-
-	experienceSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 33));
-	window.draw(experienceSprite);
-
-	timeSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 3));
-	window.draw(timeSprite);
-
-	savePointSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 63));
-	window.draw(savePointSprite);
-
 	highScoreSprite.setPosition(view.getCenter() - sf::Vector2f(view.getSize().x / 2 - 5, view.getSize().y / 2 - 93));
 	window.draw(highScoreSprite);
-
-	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
-		characters[i].draw(window, view);			// Then all characters.
-	}
-
 }
 
 
 /// \brief
 /// Load characters
 /// \details
-/// This loads all characters in characters.txt. Unfortunately still undergoing changes.
+/// This loads all characters in characters.txt, gives them some items, reads in the textures and writes them
+/// into the vector with Characters.
 void Game::loadCharacters(){
 	std::vector<std::shared_ptr<Item>> startItems;
 	
@@ -166,10 +196,13 @@ void Game::loadCharacters(){
 		throw fileNotFound("Characters/instances.txt");
 	}
 	std::string carname="waterBubble";
+
 	std::vector<sf::Vector2i> spritePlayerData;
 	std::vector<sf::Vector2i> spritePlayerAction;
 	std::vector<std::string> spritePlayerNames;
-	//SpriteCharacter characterData(spritePlayerData, spritePlayerAction, spritePlayerNames);
+
+	std::string currstring = "";
+
 	std::string idleName="";
 	std::string idleFile="";
 	std::string jumpName="";
@@ -188,10 +221,8 @@ void Game::loadCharacters(){
 	sf::Vector2f position;
 	std::string filename="";
 	while (!isEmpty(charactersFile)){
-		//bool data, action, names, textureName;
 		
-		std::string currstring = "";
-
+		currstring = "";
 
 		charactersFile>>currstring;
 		if((currstring.find("named")!= std::string::npos)){
@@ -209,7 +240,8 @@ void Game::loadCharacters(){
 		if((currstring.find("jumpName")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpName=currstring;
-		}if((currstring.find("jumpFile")!= std::string::npos)){
+		}
+		if((currstring.find("jumpFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpFile=currstring;
 		}
@@ -251,23 +283,23 @@ void Game::loadCharacters(){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
 				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
 			}else if (name =="dog"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 5, 100));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 500));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<DogPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false));
-			}			else if (name !=""){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 7, 100));
+			}else if (name !=""){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 200));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
-			 idleName="";
-			 idleFile="";
-			 jumpName="";
-			 jumpFile="";
-			 walkName="";
-			 walkFile="";
-			 attackName="";
-			 attackFile="";
-			 dieName="";
-			 dieFile="";
-			 name="";
+			idleName="";
+			idleFile="";
+			jumpName="";
+			jumpFile="";
+			walkName="";
+			walkFile="";
+			attackName="";
+			attackFile="";
+			dieName="";
+			dieFile="";
+			name="";
 
 			currstring="";
 			position = {0,0};

@@ -132,14 +132,18 @@ void Editor::handleInput(sf::View & view){
 	rightBound = view.getCenter().x + (view.getSize().x / 2);
 }
 
+/// \brief
+/// Handle tile input.
+/// \details
+/// This function is used to check if any actions have to be performed on a tile already placed in the world.
+/// Possible actions are:
+/// - Deletion
+/// - Setting collidability
+/// - Setting windowlayer
+/// - Setting interactability
+/// - Setting teleport position
 void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & view, std::vector<Tile> & tiles){
 	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
-		// if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isFirstOneSelected(tiles)){
-		// 	tile.setFollowMouse(true);
-		// }
-		// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-		// 	tile.setFollowMouse(false);
-		// }
 		if(sf::Keyboard::isKeyPressed(bindings[4].getKey()) && tile.isFollowingMouse()){
 			tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 		}
@@ -178,6 +182,17 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 }
 
+/// \brief
+/// Handle events for the world
+/// \details
+/// This function is used to check if any event based actions have to be performed on tiles already placed in the world.
+/// The event based actions are split from the non-event based actions since event based actions have to be checked way less.
+/// But if the have to be checked, it has to be done very fast and in short pulses.
+/// Possible actions are:
+/// - Selecting a tile.
+/// - Setting a block to follow the cursor.
+/// - Setting the rotation of a tile.
+/// - Setting the scale of a tile.
 void Editor::handleEvent(const sf::Event & event, sf::View & view){
 	if(event.type == sf::Event::MouseWheelMoved && objects[1].getPosition().x + objects[1].getBounds().width > sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)).x){	
 		scrollTileBar(event.mouseWheel.delta);
@@ -197,6 +212,17 @@ void Editor::handleEvent(const sf::Event & event, sf::View & view){
 	);
 }
 
+/// \brief
+/// Handle event for one single tile
+/// \details
+/// This function is used to check if any event based actions have to be performed on a tile already placed in the world.
+/// The event based actions are split from the non-event based actions since event based actions have to be checked way less.
+/// But if the have to be checked, it has to be done very fast and in short pulses.
+/// Possible actions are:
+/// - Selecting a tile.
+/// - Setting a block to follow the cursor.
+/// - Setting the rotation of a tile.
+/// - Setting the scale of a tile.
 void Editor::handleObjectInput(Tile & tile, sf::RenderWindow & window, sf::View & view, const sf::Event & event){
 	if(tile.getBounds().contains(sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view)))){
 		if(event.type == sf::Event::MouseWheelMoved){
@@ -259,6 +285,11 @@ void Editor::loadObjects(const std::string & editorConfigName ){
 	}
 }	
 
+/// \brief
+/// Start editing
+/// \details
+/// This function loads the world into memory to enable the player to edit the loaded world.
+/// @param worldName The filename of the world to edit.
 void Editor::selectWorld(const std::string & worldName){
 	world.loadWorld(worldName);
 }

@@ -130,14 +130,11 @@ void EnemyPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velo
 	}
 }
 
-
-
-
 /// \brief
 /// Process velocity changes.
 /// \details
 /// This function calculates the new velocity based on the desired direction.
-/// almost identical to EnemyPhysics::processVelocity but unable to jump and slower
+/// Almost identical to EnemyPhysics::processVelocity but jumps lower and walks slower.
 /// @param direction The direction the character is going to.
 /// @param velocity The current velocity of the character.
 void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
@@ -147,11 +144,9 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
 	if(velocity.x <= maxVelocity && direction.x > 0){
     	velocity.x += direction.x * maxAcceleration;
     }
-
     if(velocity.x >= -maxVelocity && direction.x < 0){
     	velocity.x += direction.x * maxAcceleration;
     }
-
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.001 > 0){
     		std::cout<<"nope1"<<'\n';
@@ -166,18 +161,14 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
     if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
     	velocity.y = -maxJumpAcceleration;
     }
-
     if(leftCollision && direction.x<0){
 		velocity.x =0.0;
-		//direction.x=0;
-
 		if(!characterCollision&&bottomCollision){
 			velocity.y = -maxJumpAcceleration;
 		}else if(characterCollision&&!playerCollision){
 			velocity.x=1;
 		}
 	}
-	
 	if(rightCollision &&direction.x>0){
 		velocity.x = 0.0;
 		//direction.x=0;
@@ -187,19 +178,13 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
 			velocity.x=-1;
 		}
 	}
-
 	if(topCollision && !bottomCollision){
 		state = states::FALLING;
-		//velocity.y = 10;
 	}
-
-
-
 	if(hasResistance){
 		velocity.x=velocity.x/2;
 	}
 }
-
 
 /// \brief
 /// Create Boss input.
@@ -213,9 +198,7 @@ void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direc
 				direction.x = -1;
 			} else if (characters.at(i).getPosition().x > position.x + detectionRange + 30 && characters.at(i).getPosition().x - 2000 < position.x){
 				direction.x = 1;
-
 			} else {
-
 				direction.x = 0;
 			}
 			break;
@@ -223,8 +206,13 @@ void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direc
 	}
 }
 
-
-
+/// \brief
+/// Process velocity changes.
+/// \details
+/// This function calculates the new velocity based on the desired direction.
+/// Almost identical to EnemyPhysics::processVelocity but walks faster.
+/// @param direction The direction the character is going to.
+/// @param velocity The current velocity of the character.
 void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
 	float maxVelocity = 1.1;
 	float maxAcceleration = 0.03;
@@ -232,11 +220,9 @@ void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloci
 	if(velocity.x <= maxVelocity && direction.x > 0){
     	velocity.x += direction.x * maxAcceleration;
     }
-
     if(velocity.x >= -maxVelocity && direction.x < 0){
     	velocity.x += direction.x * maxAcceleration;
     }
-
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.1 > 0){
     		velocity.x -= maxAcceleration;
@@ -249,7 +235,6 @@ void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloci
     if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
     	velocity.y = -maxJumpAcceleration;
     }
-
     if(leftCollision &&direction.x<0){
 		velocity.x =0;
 
@@ -259,7 +244,6 @@ void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloci
 			velocity.x=1;
 		}
 	}
-	
 	if(rightCollision &&direction.x>0){
 		velocity.x = 0;
 
@@ -269,14 +253,11 @@ void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloci
 			velocity.x=-1;
 		}
 	}
-
 	if(topCollision && !bottomCollision){
 		state = states::FALLING;
 		velocity.y = maxAcceleration;
 	}
-
 	if(hasResistance){
 		velocity.x=velocity.x/2;
 	}
 }
-

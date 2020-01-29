@@ -3,6 +3,7 @@ var searchData=
   ['saveworld',['saveWorld',['../class_world.html#a0a2e3046fcf82f9fc31bdbe1bce00399',1,'World']]],
   ['screenobject',['ScreenObject',['../class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7',1,'ScreenObject']]],
   ['scrolltilebar',['scrollTileBar',['../class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366',1,'Editor']]],
+  ['selectworld',['selectWorld',['../class_editor.html#aa6a0cedbe23c11e9b3d44726c9a35d6d',1,'Editor']]],
   ['setbackground',['setBackground',['../class_world.html#aef9444d45fd451b1df392ff11669868a',1,'World']]],
   ['setcollidable',['setCollidable',['../class_tile.html#a142d8646312b96d13eb5f2a73b036e4a',1,'Tile']]],
   ['setcolor',['setColor',['../class_text.html#a58a2e7ca543705897e8d9566a3a166d3',1,'Text']]],

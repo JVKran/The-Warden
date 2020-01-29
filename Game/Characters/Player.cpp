@@ -117,22 +117,26 @@ void PlayerInput::deleteTile(const sf::Event & event, World & world, sf::RenderW
 	}
 }
 
-/// This class implements the input for players. This consists of reading basic assignable input, item selection and item usage.
+/// \brief
+/// Process item usage
+/// \details
+/// This function is responsible for managing and thus processing the usage of items. This can consist of using an item and/or
+/// deleting an item when it's broken.
+/// @param event The event to use for checking clicks.
+/// @param items The items to pick one from to use.
+/// @param ownCharacter The character to change the selected item for.
 void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter){
-
+	if(event.type == sf::Event::MouseWheelMoved){	
+		ownCharacter->getSelectedItemNumber() += event.mouseWheel.delta;
+	}
 	if(ownCharacter->getSelectedItemNumber()<0 ||(ownCharacter->getSelectedItemNumber()>static_cast<int_fast16_t>(items.size()-1))){
 		ownCharacter->setSelectedItemNumber(0);
-		return;
-
-	}
-
-	if(event.type == sf::Event::MouseButtonReleased){
+	} else if(event.type == sf::Event::MouseButtonReleased){
 		if(event.mouseButton.button == sf::Mouse::Left){
 			if(items.at(ownCharacter->getSelectedItemNumber())->use(ownCharacter, characters) && !ownCharacter->getSelectedItem()->isWeapon()){			//If item is broken
 				items.erase(std::find(items.begin(), items.end(), items.at(ownCharacter->getSelectedItemNumber())));
 				ownCharacter->getSelectedItemNumber()--;
 			}
-
 			if(ownCharacter->getSelectedItem()->isWeapon()){
 				ownCharacter->getGraphics()->setFightAnimation(items.at(ownCharacter->getSelectedItemNumber())->getPeriod());
 			}
@@ -140,73 +144,72 @@ void PlayerInput::processItemUsage(const sf::Event & event, std::vector<std::sha
 	}
 }
 
-void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedItem){
-	if(event.type == sf::Event::MouseWheelMoved){	
-		selectedItem += event.mouseWheel.delta;
+/// \brief
+/// Process input based on vision
+/// \details
+/// This function is used to start and detach the vision processing thread. Furthermore, it does nothing...
+/// @param position The position to alter (unused).
+/// @param direction The direction to change based on the processed vision input.
+/// @param keys The keys to use for generating input (unused).
+void InteractiveInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
+	if(!isCreated){
+		std::thread inputThread(detectPosition, std::ref(direction));		//Use a cross-thread refrence to the direction.
+		inputThread.detach();
+		isCreated = true;
+		std::cout << "(i)-- Vision detecting thread has been detached." << std::endl;
 	}
 }
 
+/// \brief
+/// Process input based on vision
+/// \details
+/// This function is used to detect the position of the face in fron of the camera. The position is used to set the direction of
+/// the player. After that's done, it's up to the PhysicsComponent to determine if the wish can be fulfilled...
+/// @param direction A refrence to the direction to control.
 void InteractiveInput::detectPosition( sf::Vector2f & direction ){
     String face_cascade_name = "Characters/haarcascade_frontalface_alt.xml";
-	String eyes_cascade_name = "Characters/haarcascade_eye_tree_eyeglasses.xml";
-	CascadeClassifier face_cascade;
-	CascadeClassifier eyes_cascade;
+	cv::CascadeClassifier face_cascade;
 	String window_name = "Capture - Face detection";
 
-	VideoCapture capture;
-	Mat frame;
-    //-- Detect faces
-    int xPoint;
-    int yPoint;
+	cv::VideoCapture capture;
+	cv::Mat frame;
+	cv::Point center;
 
-    if( !face_cascade.load( face_cascade_name ) ){ printf("--(!)Error loading face cascade\n");};
-    if( !eyes_cascade.load( eyes_cascade_name ) ){ printf("--(!)Error loading eyes cascade\n");};
-    //-- 2. Read the video stream
-    capture.open( -1 );
-    if ( ! capture.isOpened() ) { printf("--(!)Error opening video capture\n");}
+    if(!face_cascade.load( face_cascade_name )){ 
+    	std::cout << "--(!)Error loading face cascade\n";
+    }
+
+	capture.open( -1 );
+
+    if (!capture.isOpened()){ 
+    	std::cout << "--(!) Error opening video capture\n";
+    }
 
 	while(capture.read(frame)){
 		if( frame.empty() ){
-			printf(" --(!) No captured frame -- Break!");
+			std::cout << " --(!) Empty frame captured!\n";
 		} else {
 			std::vector<Rect> faces;
-		    Mat frame_gray;
-		    cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
-		    equalizeHist( frame_gray, frame_gray );
+		    cv::Mat frame_gray;
+		    cv::cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
+		    cv::equalizeHist( frame_gray, frame_gray );
 		    face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 			for ( size_t i = 0; i < faces.size(); i++ ){
-		        Point center( faces[i].x + faces[i].width/2, faces[i].y + faces[i].height/2 );
-		        xPoint = center.x;
-		        yPoint = center.y;
-		        ellipse( frame, center, Size( faces[i].width/2, faces[i].height/2 ), 0, 0, 360, Scalar( 255, 0, 255 ), 4, 8, 0 );
-		        Mat faceROI = frame_gray( faces[i] );
-		        std::vector<Rect> eyes;
-		        //-- In each face, detect eyes
-		        // eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CASCADE_SCALE_IMAGE, Size(30, 30) );
-		        // for ( size_t j = 0; j < eyes.size(); j++ )
-		        // {
-		        //     Point eye_center( faces[i].x + eyes[j].x + eyes[j].width/2, faces[i].y + eyes[j].y + eyes[j].height/2 );
-		        //     int radius = cvRound( (eyes[j].width + eyes[j].height)*0.25 );
-		        //     circle( frame, eye_center, radius, Scalar( 255, 0, 0 ), 4, 8, 0 );
-		        // }
+		        center = cv::Point( faces[i].x + faces[i].width/2, faces[i].y + faces[i].height/2 );
+		        cv::ellipse( frame, center, Size( faces[i].width/2, faces[i].height/2 ), 0, 0, 360, Scalar( 255, 0, 255 ), 4, 8, 0 );
+		        cv::Mat faceROI = frame_gray( faces[i] );
 			}
-		    if(xPoint < 200){
-		    	std::cout << 'r' << std::endl;
+		    if(center.x < 200){					//Right
 		    	direction.x = 1;
-		    } else if (xPoint > 500){
-		    	std::cout << 'l' << std::endl;
+		    } else if (center.x > 500){			//Left
 		    	direction.x = -1;
-		    } else if(xPoint != 0) {
-		    	std::cout << 'm' << std::endl;
+		    } else if(center.x != 0) {			//Middle
 		    	direction.x = 0;
-		    } else {
-		    	std::cout << "Fail" << std::endl;
 		    }
-		    if(yPoint < 300){
+		    if(center.y < 300){					//Jump
 		    	direction.y = -1;
-		    	std::cout << "Jump" << std::endl;
 		    } else {
-		    	direction.y = 0;
+		    	direction.y = 0;				//Don't jump
 		    }
 		}
 	}

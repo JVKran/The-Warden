@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['objects',['objects',['../class_editor.html#a955c712f6f646e57011bc728457e606a',1,'Editor']]]
+  ['maxhealth',['maxHealth',['../class_character.html#a196662eda93795d886c2c0640598c30a',1,'Character']]],
+  ['music',['music',['../class_music.html#a5b300a70ca62ec94d0e41c71bc0f9e40',1,'Music']]]
 ];

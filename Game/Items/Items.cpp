@@ -37,14 +37,9 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 bool Weapon::use(Character * character, std::vector<Character> & characters){
 	bool hasHit=false;
 	for(int_fast8_t i = characters.size() -1; i >= 0; i--){
-
 		if(*character != characters.at(i) && clock.getElapsedTime().asMilliseconds() - lastAttack.asMilliseconds() > hitPeriod){
-
 			sf::FloatRect subject = characters.at(i).getBounds();
-							std::cout<<"======================ATTACK"<<'\n';
 			if(character->getBounds().intersects(sf::FloatRect(subject.left-2,subject.top-2,subject.width+4,subject.height+4))&&!(!character->isPlayer()&&!characters.at(i).isPlayer())){
-				
-
 				lastAttack = clock.getElapsedTime();
 				characters.at(i).setHealth( (characters.at(i).getHealth()) - damageFactor );
 				if(characters.at(i).getHealth() < 0){

@@ -98,13 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a76e915b2af58626d163f4ed7ae26f238"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#a76e915b2af58626d163f4ed7ae26f238">deleteTile</a> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view) override</td></tr>
 <tr class="memdesc:a76e915b2af58626d163f4ed7ae26f238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a tile in the world.  <a href="#a76e915b2af58626d163f4ed7ae26f238">More...</a><br /></td></tr>
 <tr class="separator:a76e915b2af58626d163f4ed7ae26f238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad61e4a62ddc3e38919d4b5175eeaf79b"><td class="memItemLeft" align="right" valign="top"><a id="ad61e4a62ddc3e38919d4b5175eeaf79b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#ad61e4a62ddc3e38919d4b5175eeaf79b">processItemUsage</a> (const sf::Event &amp;event, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
-<tr class="memdesc:ad61e4a62ddc3e38919d4b5175eeaf79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implements the input for players. This consists of reading basic assignable input, item selection and item usage. <br /></td></tr>
+<tr class="memitem:ad61e4a62ddc3e38919d4b5175eeaf79b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_input.html#ad61e4a62ddc3e38919d4b5175eeaf79b">processItemUsage</a> (const sf::Event &amp;event, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="memdesc:ad61e4a62ddc3e38919d4b5175eeaf79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process item usage.  <a href="#ad61e4a62ddc3e38919d4b5175eeaf79b">More...</a><br /></td></tr>
 <tr class="separator:ad61e4a62ddc3e38919d4b5175eeaf79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1618264fbff60525c27505bfffce7ee2"><td class="memItemLeft" align="right" valign="top"><a id="a1618264fbff60525c27505bfffce7ee2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem) override</td></tr>
-<tr class="separator:a1618264fbff60525c27505bfffce7ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0948f9dd3a957642a67397ddc456722"><td class="memItemLeft" align="right" valign="top"><a id="ab0948f9dd3a957642a67397ddc456722"></a>
 <a class="el" href="class_player_input.html">PlayerInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_player_input.html">PlayerInput</a> lhs)</td></tr>
 <tr class="separator:ab0948f9dd3a957642a67397ddc456722"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,6 +108,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</
 <tr class="memitem:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="a6873a6cab848bdc4f63c262803b84f1e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>InputComponent</b> (<a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;<a class="el" href="class_input_component.html#ab7468cc43f40a414275be6f594158854">characters</a>)</td></tr>
 <tr class="separator:a6873a6cab848bdc4f63c262803b84f1e inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35bb6d292adc77937ba70f18cbd1033 inherit pub_methods_class_input_component"><td class="memItemLeft" align="right" valign="top"><a id="ae35bb6d292adc77937ba70f18cbd1033"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem)</td></tr>
+<tr class="separator:ae35bb6d292adc77937ba70f18cbd1033 inherit pub_methods_class_input_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -339,7 +338,61 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 
 <p>Implements <a class="el" href="class_input_component.html">InputComponent</a>.</p>
 
-<p>Reimplemented in <a class="el" href="class_interactive_input.html#a470353fd941cd2698efb9923dcb29add">InteractiveInput</a>.</p>
+<p>Reimplemented in <a class="el" href="class_interactive_input.html#acefc0f7eb281aa737df48bfece0d8e39">InteractiveInput</a>.</p>
+
+</div>
+</div>
+<a id="ad61e4a62ddc3e38919d4b5175eeaf79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61e4a62ddc3e38919d4b5175eeaf79b">&#9670;&nbsp;</a></span>processItemUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInput::processItemUsage </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> *&#160;</td>
+          <td class="paramname"><em>ownCharacter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process item usage. </p>
+<p>This function is responsible for managing and thus processing the usage of items. This can consist of using an item and/or deleting an item when it's broken. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The event to use for checking clicks. </td></tr>
+    <tr><td class="paramname">items</td><td>The items to pick one from to use. </td></tr>
+    <tr><td class="paramname">ownCharacter</td><td>The character to change the selected item for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_input_component.html">InputComponent</a>.</p>
 
 </div>
 </div>
@@ -350,7 +403,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 29 2020 17:10:39 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 20:04:53 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

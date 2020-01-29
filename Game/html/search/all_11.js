@@ -1,6 +1,11 @@
 var searchData=
 [
+  ['savepoints',['savePoints',['../class_game.html#ac711a207d855750f3e5608c292ac80da',1,'Game']]],
+  ['savepointsprite',['savePointSprite',['../class_game.html#a84f14223494048c0b2f904aa9a99737e',1,'Game']]],
+  ['savetext',['saveText',['../class_game.html#a83d55dc8675b80f96b26b22ce7620a8e',1,'Game']]],
   ['saveworld',['saveWorld',['../class_world.html#a0a2e3046fcf82f9fc31bdbe1bce00399',1,'World']]],
+  ['scores',['scores',['../class_game.html#abe7b5e7016cd1b65cba84f9161a86073',1,'Game']]],
+  ['scoretext',['scoreText',['../class_game.html#a10b05b0d23bb7550b80725605634f7f5',1,'Game']]],
   ['screenobject',['ScreenObject',['../class_screen_object.html',1,'ScreenObject'],['../class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7',1,'ScreenObject::ScreenObject()']]],
   ['screenobject_2ecpp',['ScreenObject.cpp',['../_screen_object_8cpp.html',1,'']]],
   ['screenobject_2ehpp',['ScreenObject.hpp',['../_screen_object_8hpp.html',1,'']]],
@@ -8,6 +13,7 @@ var searchData=
   ['selected',['selected',['../class_tile.html#a74c3476e62de7d53f5f87e36b346f8e8',1,'Tile']]],
   ['selecteditem',['selectedItem',['../class_character.html#a8388ffa937f83d4ac9445c5a61aaf9d0',1,'Character']]],
   ['selectedkey',['selectedKey',['../class_settings.html#a3febb36f6a8b65401e9950468a69c6de',1,'Settings']]],
+  ['selectworld',['selectWorld',['../class_editor.html#aa6a0cedbe23c11e9b3d44726c9a35d6d',1,'Editor']]],
   ['setbackground',['setBackground',['../class_world.html#aef9444d45fd451b1df392ff11669868a',1,'World']]],
   ['setcollidable',['setCollidable',['../class_tile.html#a142d8646312b96d13eb5f2a73b036e4a',1,'Tile']]],
   ['setcolor',['setColor',['../class_text.html#a58a2e7ca543705897e8d9566a3a166d3',1,'Text']]],

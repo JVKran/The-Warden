@@ -12,11 +12,17 @@
 #include "ScreenObject.hpp"
 #include "World.hpp"
 #include "States.hpp"
+
 class State;
 class Game;
 class StateMachine;
 class Settings;
 
+/// \brief
+/// Interface
+/// \details
+/// This class is responsible for the user interface. This consists of drawing the main menu, pause menu, handling input
+/// in these menu's and handling some basic inputs when outside menu's.
 class Interface {
 	private:
 		Game & game;
