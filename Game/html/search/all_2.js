@@ -13,5 +13,6 @@ var searchData=
   ['collidable',['collidable',['../class_tile.html#ae399354876c1b90b2bf4157334e4238d',1,'Tile']]],
   ['collisionbounds',['CollisionBounds',['../struct_collision_bounds.html',1,'CollisionBounds'],['../class_character.html#ab1bbd245003be086bfe6aadaa87dcd1d',1,'Character::collisionBounds()']]],
   ['consumable',['Consumable',['../class_consumable.html',1,'Consumable'],['../class_consumable.html#ad585abef5cbf840912b1f5ac85dd7c9c',1,'Consumable::Consumable()']]],
-  ['contains',['contains',['../class_text.html#ace587a3c83c5d82ba23ab73bd08d1130',1,'Text::contains(const sf::Vector2f &amp;object) const'],['../class_text.html#a77c2c863897b707cdad084459ce241fd',1,'Text::contains(const sf::Vector2i &amp;object)']]]
+  ['contains',['contains',['../class_text.html#ace587a3c83c5d82ba23ab73bd08d1130',1,'Text::contains(const sf::Vector2f &amp;object) const'],['../class_text.html#a77c2c863897b707cdad084459ce241fd',1,'Text::contains(const sf::Vector2i &amp;object)']]],
+  ['currentanimation',['currentAnimation',['../class_animated_graphics_component.html#a55357fc563e64467c0e1869c6f6f886e',1,'AnimatedGraphicsComponent']]]
 ];

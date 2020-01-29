@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['velocity',['velocity',['../class_character.html#ab1be10a2441d9fd85c0ad4829569cef6',1,'Character']]],
-  ['view',['view',['../class_block.html#a9f5b2b14075bcd0965219def376a2702',1,'Block']]],
-  ['viewobjects',['ViewObjects',['../struct_view_objects.html',1,'']]]
+  ['unknowncolor',['unknownColor',['../classunknown_color.html',1,'']]],
+  ['unknownshape',['unknownShape',['../classunknown_shape.html',1,'']]],
+  ['update',['update',['../class_character.html#a4fc634f6e0ffec4bad09c11932423d75',1,'Character']]],
+  ['use',['use',['../class_consumable.html#a4b99311770c77c52a45d7b599f26660b',1,'Consumable::use()'],['../class_block.html#adedf926de6bfa57f5974403c92524b06',1,'Block::use()']]]
 ];

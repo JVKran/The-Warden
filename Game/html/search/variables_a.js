@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['maxhealth',['maxHealth',['../class_character.html#a196662eda93795d886c2c0640598c30a',1,'Character']]],
-  ['music',['music',['../class_music.html#a5b300a70ca62ec94d0e41c71bc0f9e40',1,'Music']]]
+  ['lastupdate',['lastUpdate',['../class_character.html#a48187eead5fa3c99d9dd321fe5aa5d85',1,'Character']]],
+  ['lootdrop',['lootDrop',['../class_character.html#ac7af7451eb9581076475d4b0f76b8fe2',1,'Character']]]
 ];
