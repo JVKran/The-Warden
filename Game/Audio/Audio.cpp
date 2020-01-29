@@ -42,7 +42,6 @@ Music::Music(const std::string & filename):
 /// This plays the currently loaded music.
 void Music::playMusic(){
 	music.setLoop(true);
-
 	music.play();
 }
 

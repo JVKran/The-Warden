@@ -1,4 +1,5 @@
 named player  position (-1000,300) idleName playeridle   idleFile player jumpName playerjump jumpFile player walkName playerwalk walkFile player attackName playerattack attackFile player eind
 named wizard  idleName wizardIdle position (5882, 256)   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage attackName wizardAttack attackFile wizardAttack eind
 named wizard  idleName wizardIdle position (8000,300)   idleFile wizardIdle jumpName wizardWalk jumpFile wizardWalk walkName wizardWalk walkFile wizardWalk dieName wizardDamage dieFile wizardDamage attackName wizardAttack attackFile wizardAttack eind
+named dog  position (200,350)  idleName dogIdle   idleFile dogIdle jumpName dogWalk jumpFile dogWalk walkName dogWalk walkFile dogWalk dieName dogDamage dieFile dogDamage attackFile dogAttack attackName dogAttack eind
 named orc position (12000,220)  idleName orcIdle   idleFile orcIdle jumpName orcWalk jumpFile orcWalk walkName orcWalk walkFile orcWalk dieName orcDamage dieFile orcDamage attackName orcAttack attackFile orcAttack eind

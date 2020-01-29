@@ -61,6 +61,11 @@ void Game::restartClocks(){
 /// This handles either CharacterInput or EditorInput based on the state of the game.
 void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
+		if(!characters.at(i).isPlayer()){
+			characters.at(i).handleEvent(event);
+		}
+	}
+	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).update(window, world, characters, bindings);
 	}
 	if(clock.getElapsedTime().asMilliseconds() - lastTime >= 900){
@@ -256,8 +261,11 @@ void Game::loadCharacters(){
 			}else if (name =="orc"){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
 				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
+			}else if (name =="dog"){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 5, 100));
+				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<DogPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false));
 			}			else if (name !=""){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 7, 500));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 7, 100));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

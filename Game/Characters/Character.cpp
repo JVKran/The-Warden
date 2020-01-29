@@ -191,13 +191,13 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	window.draw(healthBar);
 
 	if(isPlayer()){
-		std::cout << position.x << ", " << position.y << std::endl;
+		//std::cout << position.x << ", " << position.y << std::endl;
 	}
 
-	// sf::RectangleShape hit(graphics->getDimensions());
-	// hit.setPosition(position);
-	// hit.setFillColor(sf::Color(0,255,0,128));
-	// window.draw(hit);
+	sf::RectangleShape hit(graphics->getDimensions());
+	hit.setPosition(position);
+	hit.setFillColor(sf::Color(0,255,0,128));
+	window.draw(hit);
 }
 
 /// \brief
@@ -249,8 +249,8 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(hitbox.intersects(characters.at(i).getBounds()) && characters.at(i).getPosition() != position){
 			bottomCollision += characters.at(i).getBounds().intersects(bottomHitbox); 
-        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top + 5,hitbox.width-5,hitbox.height - 7));
-        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 5,hitbox.height - 7));
+        	rightCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 10,hitbox.top + 5,hitbox.width-10,hitbox.height - 7));
+        	leftCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left,hitbox.top + 5,hitbox.width - 10,hitbox.height - 7));
 			topCollision += characters.at(i).getBounds().intersects(sf::FloatRect(hitbox.left + 5,hitbox.top,hitbox.width - 10,hitbox.height - 5));
 			characterCollision = true;
 			if(characters.at(i).isPlayer()){
