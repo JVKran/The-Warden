@@ -7,7 +7,7 @@
 /// \brief
 /// InterfaceElement
 /// \details
-/// This class is the entire InterfaceElement.
+/// This class is the entire InterfaceElement; it's responsible for executing actions when it is clicked.
 class InterfaceElement : public ScreenObject{
 	private:
 		std::function< void() > work;

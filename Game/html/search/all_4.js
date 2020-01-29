@@ -11,7 +11,7 @@ var searchData=
   ['enemyinput',['EnemyInput',['../class_enemy_input.html',1,'']]],
   ['enemyphysics',['EnemyPhysics',['../class_enemy_physics.html',1,'']]],
   ['event',['event',['../class_block.html#ab5f701d5f94388efe7d0ddc3aca2ffc2',1,'Block::event()'],['../class_game.html#adfe4d4740cbd30bf47ac9a4c5dd38c3c',1,'Game::event()']]],
-  ['experience',['Experience',['../class_experience.html',1,'']]],
+  ['experience',['Experience',['../class_experience.html',1,'Experience'],['../class_experience.html#af67f9a8fc870f19a3f837d71077693b4',1,'Experience::Experience()']]],
   ['experiencepoints',['experiencePoints',['../class_character.html#a0b633cc3e8550359c4783053904209b4',1,'Character']]],
   ['experiencesprite',['experienceSprite',['../class_game.html#a6e43878e42f913de9753fa3ecf0eacf2',1,'Game']]],
   ['experiencetext',['experienceText',['../class_game.html#aea13ac84c286805aec5927f5006a9edb',1,'Game']]]

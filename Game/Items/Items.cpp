@@ -2,20 +2,58 @@
 
 #include "Items.hpp"
 
+/// \brief
+/// Create an item.
+/// \details
+/// This function creates an item based on its parameters.
+/// @param assetName The name of the asset this item should have.
+/// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
+/// @param experience The amount of experience to give this item.
+Item::Item(const std::string assetName, AssetManager & assets, int_fast8_t experience):
+	Tile(assetName, assets),
+	assetName(assetName),
+	experience(experience)
+{}
+
+/// \brief
+/// Is weapon?
+/// \return Wether or not this item is a weapon.
 bool Item::isWeapon() {
 	return false;
 }
+
+/// \brief
+/// Contains experience?
+/// \return Wether or not this item contains experience.
 bool Item::containsExperience() {
 	return false;
 }
 
+/// \brief
+/// Get experience.
+/// \return The amount of experience this item has.
 int_fast8_t Item::getExperience() {
 	return experience;
 }
+
+/// \brief
+/// Get hitperiod.
+/// \return The time in milliseconds that has to be between two attacks.
+int_fast16_t Item::getPeriod(){
+	return 0;
+}
+
+/// \brief
+/// Get name?
+/// \return The name of the asset of this item.
+std::string Item::getName(){
+	return assetName;
+}
+
 /// \brief
 /// Create weapon instance.
 /// \details
-/// This function creates a Weapon.
+/// This function creates a Weapon based on its parameters.
 /// @param damageFactor The damagefactor to calculate damage dealt.
 /// @param hitPeriod The period that should be in between attacks.
 Weapon::Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod):
@@ -25,15 +63,20 @@ Weapon::Weapon(const std::string assetName, AssetManager & assets, const int dam
 {}
 
 /// \brief
-/// Create consumable instance.
-/// \details
-/// This function creates a Consumable.
-/// @param foodValue The foodvalue to calculate new amount of health.
-Consumable::Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue):
-	Item(assetName, assets),
-	foodValue(foodValue)
-{}
+/// Get hitperiod.
+/// \return The time in milliseconds that has to be between two attacks.
+int_fast16_t Weapon::getPeriod() override{
+	return hitPeriod;
+}
 
+/// \brief
+/// Attack
+/// \details
+/// This function attacks all Characters that are within range. If the hit Character is a player and his health is below zero, the player is respawned.
+/// If the hit character is an Enemy and its health is below zero, the character dies. Furthermore, 10 experience points are added to the Character that hit
+/// another Character.
+/// @param character The character that is attacking.
+/// @param characters All Characters that could be hit.
 bool Weapon::use(Character * character, std::vector<Character> & characters){
 	bool hasHit=false;
 	for(int_fast8_t i = characters.size() -1; i >= 0; i--){
@@ -65,14 +108,29 @@ bool Weapon::use(Character * character, std::vector<Character> & characters){
 	return hasHit;
 }
 
+/// \brief
+/// Is weapon?
+/// \return Wether or not this item is a weapon.
 bool Weapon::isWeapon(){
 	return true;
 }
 
 /// \brief
+/// Create consumable instance.
+/// \details
+/// This function creates a Consumable.
+/// @param foodValue The foodvalue to calculate new amount of health.
+Consumable::Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue):
+	Item(assetName, assets),
+	foodValue(foodValue)
+{}
+
+/// \brief
 /// Replenish Character health.
 /// \details
 /// This function adds the foodValue to the Character's current health.
+/// @param character The character that is using the consumable.
+/// @param characters All Characters that could be hit (unused).
 bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
 	std::cout << "New health " << foodValue + character->getHealth() << std::endl;
@@ -82,18 +140,27 @@ bool Consumable::use(Character * character, std::vector<Character> & characters)
 	return true;
 }
 
+/// \brief
+/// Create Experience instance.
+/// \details
+/// This function creates an Experience item based on its parameters.
+/// @param assetName The name of the asset this item should have.
+/// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
+/// @param experience The amount of experience to give this item.
 Experience::Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience):
 	Item(assetName, assets, experience)
 {}
 
+/// \brief
+/// Contains experience?
+/// \return Wether or not this item contains experience.
 bool Experience::containsExperience() {
 	return true;
 }
 
 /// \brief
-/// Return the experience.
-/// \details
-/// Return the amount of experience the experience Item has.
+/// Get experience.
+/// \return The amount of experience this item has.
 int_fast8_t Experience::getExperience() {
 	return experience;
 }
@@ -103,7 +170,9 @@ int_fast8_t Experience::getExperience() {
 /// \details
 /// This function creates a block item and is
 /// also able to delete an object on which the mouse is located
-/// and is a crate object
+/// and is a crate object.
+/// @param assetName The name of the asset this item should have.
+/// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
 /// @param amountOfObjects The amount of objects we are able to create
 Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
 	Item(assetName, assets),
@@ -166,4 +235,14 @@ bool Block::use(Character * character, std::vector<Character> & characters){
 		}
 	}
 	return false;
+}
+
+/// \brief
+/// Draw amount of blocks
+/// \details
+/// This function draws the amount of blocks in the same space the block item icon is drawn in the Character's inventory.
+void Block::drawAmount(sf::RenderWindow & window){
+	blockText.setString(std::to_string(getAmount()));
+	blockText.setPosition(sf::Vector2f(sprite.getPosition().x + 2, sprite.getPosition().y + 2));
+	window.draw(blockText);
 }

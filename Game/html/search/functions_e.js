@@ -25,5 +25,6 @@ var searchData=
   ['specifiedframeloop',['specifiedFrameLoop',['../class_sprite_animation.html#a6bd5846a609ac82aa113aed2585383e2',1,'SpriteAnimation']]],
   ['spritecharacter',['SpriteCharacter',['../struct_sprite_character.html#ad86b441780a6fcc64379631477d90e09',1,'SpriteCharacter']]],
   ['startworld',['startWorld',['../class_game.html#a59e92bb94f00a244477c28fdd4bf54ac',1,'Game']]],
+  ['statemachine',['StateMachine',['../class_state_machine.html#adb0fd766edd1fb358e7e7f4e8ab0df85',1,'StateMachine']]],
   ['stopmusic',['stopMusic',['../class_music.html#ac4ff67b05c566283036c49e81ea8590c',1,'Music']]]
 ];

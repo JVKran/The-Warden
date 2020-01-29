@@ -23,21 +23,17 @@ class Item : public Tile {
 		const std::string assetName;
 		int_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0):
-			Tile(assetName, assets),
-			assetName(assetName),
-			experience(experience)
-		{}
-		virtual bool use(Character * character, std::vector<Character> & characters){return false;};
+		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0)l
+		virtual bool use(Character * character, std::vector<Character> & characters){return false;}
+
 		virtual bool containsExperience();
 		virtual int_fast8_t getExperience();
+
 		virtual bool isWeapon();
-		virtual int_fast16_t getPeriod(){
-			return 0;
-		}
-		std::string getName(){
-			return assetName;
-		}
+		virtual int_fast16_t getPeriod();
+
+		std::string getName();
+
 		virtual int_fast8_t getAmount(){ return 0; }
 		virtual void drawAmount(sf::RenderWindow & window){}
 };
@@ -45,7 +41,7 @@ class Item : public Tile {
 /// \brief
 /// Weapon
 /// \details
-/// This class is responsible for hitting other existing Characters.
+/// This class is responsible for hitting other existing Characters and thus dealing damage.
 class Weapon : public Item {
 	private:	
 		sf::Clock clock;
@@ -57,9 +53,7 @@ class Weapon : public Item {
 		Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 		virtual bool isWeapon() override;
-		virtual int_fast16_t getPeriod() override{
-			return hitPeriod;
-		}
+		virtual int_fast16_t getPeriod() override;
 };
 
 /// \brief
@@ -74,6 +68,10 @@ class Consumable : public Item {
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 };
 
+/// \brief
+/// Experience
+/// \details
+/// This class is responsible for adding the picked up experience to the experience of the player who picked it up.
 class Experience : public Item {
 	public:
 		Experience(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
@@ -84,7 +82,7 @@ class Experience : public Item {
 /// \brief
 /// Block
 /// \details
-/// This class is responsible for placing blocks.
+/// This class is responsible for placing and picking up blocks.
 class Block : public Item {
 	private:
 		int_fast8_t amountOfObjects;		//!< The amount of blocks the player can hold
@@ -101,11 +99,7 @@ class Block : public Item {
 		Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
 		virtual int_fast8_t getAmount(){ return amountOfObjects; }
-		virtual void drawAmount(sf::RenderWindow & window){
-			blockText.setString(std::to_string(getAmount()));
-			blockText.setPosition(sf::Vector2f(sprite.getPosition().x + 2, sprite.getPosition().y + 2));
-			window.draw(blockText);
-		}
+		virtual void drawAmount(sf::RenderWindow & window);
 };
 
 #endif //Items.hpp
