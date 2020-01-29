@@ -5,7 +5,7 @@
 /// \details
 /// This creates an InterFaceElement. 
 /// @param element A ScreenObject to make and check the sprites.
-/// @param action An Action to store lambda functions.
+/// @param work store lambda functions.
 
 InterfaceElement::InterfaceElement( ScreenObject element, std::function< void() > work):
 	element(element),

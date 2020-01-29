@@ -3,11 +3,10 @@
 #define __INTERFACE_ELEMENT_HPP
 #include <functional>
 #include "ScreenObject.hpp"
-#include "Action.hpp"
 /// \brief
 /// InterfaceElement
 /// \details
-/// This class is the entire InterfaceElement. It will handle the ScreenObject and an action.
+/// This class is the entire InterfaceElement. It will handle the ScreenObject and a lambda.
 /// This will check whether you've clicked on a ScreenObject in the right position and change the state if you do.
 class InterfaceElement {
 	private:
