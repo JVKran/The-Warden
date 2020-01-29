@@ -21,6 +21,7 @@ Sound::Sound(const std::string & filename):
 /// This plays the sound loaded in the buffer.
 void Sound::playSound(){
 	sound.play();
+
 }
 
 /// \brief
@@ -40,6 +41,8 @@ Music::Music(const std::string & filename):
 /// \details
 /// This plays the currently loaded music.
 void Music::playMusic(){
+	music.setLoop(true);
+
 	music.play();
 }
 

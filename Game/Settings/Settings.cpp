@@ -9,13 +9,12 @@ Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::vecto
 	action(Action([]{})),
 	world(assets)
 	{
-			world.loadWorld("Interface/backgroundWorld.txt");
+		world.loadWorld("Interface/backgroundWorld.txt");
 
 		//background.setTexture(assets.getTexture("background"));
 	}
 
 void Settings::initialize(StateMachine * machine){
-	
 	 action = Action( [machine]{  machine->changeState(std::make_shared<MenuState>());});
 }
 

@@ -9,13 +9,14 @@
 /// \details
 /// This creates an Editor. In the background, World loads and initializes itself. Furhtermore the view
 /// and assets are assigned and the objects available in the editor are loaded.
+/// @param window The RenderWindow which the editor will be drawn in.
 /// @param assets The AssetManager to use to retrieve assets.
-/// @param worldFileName The filename of the world to edit. Can be both a new and existing file.
-/// @param view The view to use for scrolling through the world.
-Editor::Editor( sf::RenderWindow & window, AssetManager & assets ):
+/// @param bindings The Keybindings which allows you to rebind the keys of the editor to your own key of choice.
+Editor::Editor( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings  ):
 	assets( assets ),
 	world( assets ),
-	window( window )
+	window( window ),
+	bindings( bindings )
 {
 	loadObjects();
 }
@@ -32,7 +33,7 @@ void Editor::editingDone(){
 /// Draw the editor and world.
 /// \details
 /// This function draws both, the editor and world to the passed RenderWindow.
-/// @param window The window to write the editor and world to.
+/// @param view The view to write the editor and world to.
 void Editor::draw(sf::View & view){
 	for(int_fast8_t windowLayer = 0; windowLayer <= 4; windowLayer++){
 		world.draw( window, view, windowLayer );
@@ -44,7 +45,7 @@ void Editor::draw(sf::View & view){
 /// Draw the tile bar.
 /// \details
 /// This function draws all available tiles to choose from to the passed RenderWindow.
-/// @param window The window to write the editor and world to.
+/// @param view The view to write the editor and world to.
 void Editor::drawTileBar( sf::View & view ){
 	for( const Tile & object : objects ){
 		if(object.getPosition().x + 100 > view.getCenter().x-view.getSize().x && object.getPosition().x - 100 < view.getCenter().x+view.getSize().x){
@@ -59,7 +60,7 @@ void Editor::drawTileBar( sf::View & view ){
 /// \details
 /// This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world.
 /// Furthermore, the scrolling of a mouse wheel is delegated to scrollTileBar().
-/// @param window The window to use for determining the absolute position of the mouseclicks.
+/// @param view The view to use for determining the absolute position of the mouseclicks.
 void Editor::handleInput(sf::View & view){
 	bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
@@ -139,47 +140,40 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		// 	tile.setFollowMouse(false);
 		// }
-		//std::cout<<"============KEYS"<<'\n';
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
+		if(sf::Keyboard::isKeyPressed(bindings[4].getKey()) && tile.isFollowingMouse()){
 			tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket)){
+		if(sf::Keyboard::isKeyPressed(bindings[5].getKey())){
 			tile.setCollidable(true);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)){
+		if(sf::Keyboard::isKeyPressed(bindings[6].getKey())){
 			tile.setCollidable(false);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1)){
+		if(sf::Keyboard::isKeyPressed(bindings[7].getKey())){
 			tile.setWindowLayer(0);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F2)){
+		if(sf::Keyboard::isKeyPressed(bindings[8].getKey())){
 			tile.setWindowLayer(1);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F3)){
+		if(sf::Keyboard::isKeyPressed(bindings[9].getKey())){
 			tile.setWindowLayer(2);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F4)){
+		if(sf::Keyboard::isKeyPressed(bindings[10].getKey())){
 			tile.setWindowLayer(3);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5)){
+		if(sf::Keyboard::isKeyPressed(bindings[11].getKey())){
 			tile.setWindowLayer(4);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+		if(sf::Keyboard::isKeyPressed(bindings[12].getKey())){
 			tile.setInteractability(true);
 		}
-		
-			
-		
 	}
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-
-			if(tile.isSelected()){
-				sf::Vector2f newPosition = sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
-				tile.changeTeleportPosition(newPosition);
-				std::cout<< newPosition.x << ", " << newPosition.y << '\n';
-				tile.changeSelected(false);
-			}
+	if(sf::Keyboard::isKeyPressed(bindings[14].getKey())){
+		if(tile.isSelected()){
+			sf::Vector2f newPosition = sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
+			tile.changeTeleportPosition(newPosition);
+			tile.changeSelected(false);
+		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 }
@@ -221,7 +215,6 @@ void Editor::handleObjectInput(Tile & tile, sf::RenderWindow & window, sf::View 
 		if(event.type == sf::Event::KeyPressed){
 			if(event.key.code == sf::Keyboard::Z){
 				tile.changeSelected(true);
-				std::cout<< "Selection"<< tile.isSelected() << std::endl;
 			}
 		}
 	}

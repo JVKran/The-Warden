@@ -87,7 +87,6 @@ void World::loadTile(std::ifstream & input){
 	bool collidable, interactable;
 	try {
 		input >> position >> teleportPosition >> assetName >> collidable >> scale >> rotation >> windowLayer >> interactable;
-		//std::cout<<teleportPosition.x<<'\n';
 		tiles.push_back(Tile(assetName, assets, position, teleportPosition, scale, collidable, rotation, windowLayer, interactable));
 	} catch (...){
 		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") (" << teleportPosition.x << ',' << teleportPosition.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << ' ' << interactable << std::endl;
@@ -119,17 +118,21 @@ void World::sortWorld(){
 /// \details
 /// This draws the world to the screen. More specifically, it draws the objects that are currently in view to the screen.
 /// @param window The window to draw the world to.
+/// @param view
+/// @parm windowLayer
 void World::draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer){
 	if(windowLayer == 0){
 		background.setPosition((window.getView().getCenter().x-(window.getView().getSize().x*0.5)),(window.getView().getCenter().y-(window.getView().getSize().y*0.5)));
 		window.draw(background);
 	}
+	if(view.getCenter().x - (view.getSize().x / 2) - 300 != lastLeftSide){
+		int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
+		leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
 
-	int_fast32_t leftSide = view.getCenter().x - (view.getSize().x / 2) - 300;
-	int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
-
-	auto leftIterator = std::find_if(tiles.begin(), tiles.end(), [&leftSide](const Tile & tile)->bool{return tile.getPosition().x > leftSide;});
-	auto rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+		int_fast32_t rightSide = view.getCenter().x + (view.getSize().x / 2);
+		rightIterator = std::find_if(leftIterator, tiles.end(), [&rightSide](const Tile & tile)->bool{return tile.getPosition().x > rightSide;});
+		lastLeftSide = leftSide;
+	}
 
 	std::for_each(
 		leftIterator,

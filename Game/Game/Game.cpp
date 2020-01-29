@@ -16,6 +16,8 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	view(view)
 {			//"Assets/objects.txt"
 	loadCharacters();
+	keyInput = std::make_shared<PlayerInput>(world, characters);
+	visionInput = std::make_shared<InteractiveInput>(world, characters);
 	if (!font.loadFromFile("Minecraft.ttf")){
 	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
 	} else {
@@ -77,6 +79,12 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 				//lastTime = clock.getElapsedTime().asMilliseconds();
 				scores.push_back(character.getExperience() + remainingGameTime);
 				restart();
+			}
+			if(sf::Keyboard::isKeyPressed(bindings[15].getKey())){
+				character.setInput(visionInput);
+			}
+			if(sf::Keyboard::isKeyPressed(bindings[16].getKey())){
+				character.setInput(keyInput);
 			}
 		}
 	}
@@ -185,50 +193,40 @@ void Game::loadCharacters(){
 		if((currstring.find("named")!= std::string::npos)){
 			charactersFile>>currstring;
 			name=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("idleName")!= std::string::npos)){
 			charactersFile>>currstring;
 			idleName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("idleFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			idleFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("jumpName")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpName=currstring;
-			//std::cout<<position.x<<'\n';
 		}if((currstring.find("jumpFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("walkName")!= std::string::npos)){
 			charactersFile>>currstring;
 			walkName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("position")!= std::string::npos)){
 			charactersFile>>position;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("walkFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			walkFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("attackName")!= std::string::npos)){
 			charactersFile>>currstring;
 			attackName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("attackFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			attackFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		
 		
@@ -237,16 +235,19 @@ void Game::loadCharacters(){
 			startItems.clear();
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 100));
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 300));
 				startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
-				startItems.push_back(std::make_shared<Block>("crate", assets, 10, event, world, window, view));
+				startItems.push_back(std::make_shared<Block>("crate", assets, 0, event, world, window, view));
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
-			}else if (name !=""){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 500));
+			}else if (name =="orc"){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
+				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
+			}			else if (name !=""){
+				startItems.push_back(std::make_shared<Weapon>("club", assets, 7, 500));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			 idleName="";

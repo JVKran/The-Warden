@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['unknowncolor',['unknownColor',['../classunknown_color.html',1,'']]],
-  ['unknownshape',['unknownShape',['../classunknown_shape.html',1,'']]]
+  ['text',['Text',['../class_text.html',1,'']]],
+  ['tile',['Tile',['../class_tile.html',1,'']]]
 ];

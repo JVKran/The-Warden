@@ -21,6 +21,7 @@ private:
 	AssetManager & assets;											//!< The AssetManager to use for gathering the needed textures.
 	World world;													//!< The World to edit.
 	sf::RenderWindow & window;
+	std::vector<KeyBinding> & bindings; 
 
 	std::vector< Tile > objects;						//!< Vector with all placeable objects.
 	int_fast32_t leftBound;
@@ -32,7 +33,7 @@ private:
 	void handleObjectInput(Tile & tile, sf::RenderWindow & window, sf::View & view, const sf::Event & event);
 	void handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & view, std::vector<Tile> & tiles);
 public:
-	Editor( sf::RenderWindow & window, AssetManager & assets );
+	Editor( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings  );
 
 	void selectWorld(const std::string & worldName);
 
