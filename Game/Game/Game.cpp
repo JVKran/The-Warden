@@ -127,7 +127,7 @@ void Game::handleInput(sf::View & view, const sf::Event & event){
 	}
 }
 /// \brief
-/// Hanlde Events.
+/// Handle Events.
 /// \details
 /// This handles all character handleable occured events.
 void Game::handleEvent(const sf::Event & event, sf::View & view){

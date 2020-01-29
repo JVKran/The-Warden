@@ -1,5 +1,12 @@
+///@file
 #include "StateMachine.hpp"
-
+/// \brief
+/// Statemachine constructor
+/// \details
+/// This is the StateMachine constructor.
+/// @param stateDependantObjects This will need the game, interface, editor and settings.
+/// @param view This is the view 
+/// @param currentState This is the current state with a default of the menu state.
 StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, Settings & settings, sf::View & view):
 	stateDependantObjects(game, interface, editor, settings),
 	view(view),
@@ -9,7 +16,11 @@ StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, 
 	settings.initialize(this);
 }
 
-
+/// \brief
+/// Change to a new state.
+/// \details
+/// This function will switch to the right state and play their respective code.
+/// @param prevState This will remember the previous name of the state it was in
 void StateMachine::changeState(std::shared_ptr<State> newState){
 	currentState = newState;
 	switch(currentState->getName()){
@@ -38,34 +49,46 @@ void StateMachine::changeState(std::shared_ptr<State> newState){
 			break;
 		}
 		default: {
-			// backgroundMusic.pauseMusic();
-			// editingMusic.pauseMusic();
+			// Don't add prevState here;
 			break;
 		}
 	}
-	//std::cout << prevState << "\n";
-
 	if( prevState==4){
 		editPosition = view.getCenter();
-		//std::cout << editPosition.x << " : " << editPosition.y << "\n";
 	}
 }
 
-
+/// \brief
+/// Return currentState.
+/// \details
+/// This will return what the current state is.
+/// \return A std::shared_ptr of the current state.
 std::shared_ptr<State> StateMachine::getCurrentState(){
 	return currentState;
 }
 
+/// \brief
+/// Handle input.
+/// \details
+/// This handles the handle inputs of the currentState.
 void StateMachine::handleInput(const sf::Event & event){
 	ViewObjects viewObjects(view, event);
 	currentState->handleInput(stateDependantObjects, viewObjects);
 }
 
+//// \brief
+/// Handle event.
+/// \details
+/// This handles the handle events of the currentState.
 void StateMachine::handleEvent(const sf::Event & event){
 	ViewObjects viewObjects(view, event);
 	currentState->handleEvent(stateDependantObjects, viewObjects);
 }
 
+/// \brief
+/// Display the state.
+/// \details
+/// This displays the current state of the game on screen.
 void StateMachine::display(const sf::Event & event){
 	ViewObjects viewObjects(view, event);
 	currentState->display(stateDependantObjects, viewObjects);

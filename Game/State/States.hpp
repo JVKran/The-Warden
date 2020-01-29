@@ -1,3 +1,4 @@
+/// @file
 #ifndef __STATE_HPP
 #define __STATE_HPP
 
@@ -15,7 +16,10 @@ class State {
 
 		virtual int getName() = 0;
 };
-
+/// \brief
+/// MenuState
+/// \details
+/// This will handle all menu events, inputs and displays it.
 class MenuState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
@@ -25,7 +29,10 @@ class MenuState : public State {
 			return 1;
 		}
 };
-
+/// \brief
+/// PlayingState
+/// \details
+/// This will handle all playing events, inputs and displays it.
 class PlayingState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
@@ -35,7 +42,10 @@ class PlayingState : public State {
 			return 2;
 		}
 };
-
+/// \brief
+/// PauseState
+/// \details
+/// This will handle all pause events, inputs and displays it.
 class PauseState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
@@ -45,7 +55,10 @@ class PauseState : public State {
 			return 3;
 		}
 };
-
+/// \brief
+/// EditingState
+/// \details
+/// This will handle all editing events, inputs and displays it.
 class EditingState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;
@@ -55,7 +68,10 @@ class EditingState : public State {
 			return 4;
 		}
 };
-
+/// \brief
+/// SettingState
+/// \details
+/// This will handle all setting events, inputs and displays it.
 class SettingsState : public State {
 	public:
 		virtual void handleInput(StateDependantObjects & objects, ViewObjects & viewObjects) override;

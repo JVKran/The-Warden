@@ -1,6 +1,15 @@
-///@brief
+///@file
 #include "Interface.hpp"
 
+/// \brief
+/// Interface constructor.
+/// \details
+/// This is the interface constructor. 
+/// @param game This has the entire Game class.
+/// @Param editor This has the entire Editor class.
+/// @param settings This has the entire Settings class. 
+/// @param assets This has the entire Assets class. It has all the textures.
+/// @param window This is where everything is drawn.
 Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetManager & assets, sf::RenderWindow & window):
 	game(game),
 	editor(editor),
@@ -13,16 +22,19 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	//world.loadWorld("World/world.txt");
  }
 
-/// 
+/// \brief
+/// Initialize.
+/// \details
+/// This function will initialize the interfaceElements and pauseElements.
 void Interface::initialize(StateMachine * newMachine){
 	
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());}));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)),[newMachine]{ newMachine->changeState(std::make_shared<EditingState>());}));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), [newMachine] {newMachine->changeState(std::make_shared<SettingsState>());}));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("closeButton", assets, sf::Vector2f(1150,350), float(0.3)),[]{}));
+	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());},"startButton", assets, sf::Vector2f(550,300), float(1) ));
+	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<EditingState>());},"editButton", assets, sf::Vector2f(150,300),float(0.35)));
+	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<SettingsState>());},"settingButton", assets, sf::Vector2f(0,0), float(0.3)));
+	interfaceElements.push_back(InterfaceElement( []{},"closeButton", assets, sf::Vector2f(1150,350), float(0.3)));
 	//Pause elements
-	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), [newMachine] {newMachine->changeState(std::make_shared<MenuState>());}));
-	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), [newMachine] {newMachine->changeState(newMachine->getCurrentState());}));
+	pauseElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<MenuState>());},"settingButton", assets, sf::Vector2f(100, 200), float(0.4)));
+	pauseElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());},"startButton", assets, sf::Vector2f(400, 200), float(1)));
 	machine = newMachine;
 }
 
@@ -30,6 +42,7 @@ void Interface::initialize(StateMachine * newMachine){
 /// Handle pause settings
 /// \details
 /// this will handle the pause settings.
+/// It will set the position of a sprite and redirect you to the menu or resume.
 void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	sf::Vector2f position = view.getCenter() - (view.getSize()/2.0f);
 	pauseBackground.setPosition(position.x,position.y);
@@ -68,17 +81,16 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 /// \brief
 /// Handle input.
 /// \details
-/// This handles the escape button, to show the pause state and remember the previous state..
+/// This handles the escape button, that shows the pause state and remember the previous state..
 void Interface::handleInput(){
-
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		prevState = machine->getCurrentState();
-		pauseElements[1] = InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), [this] {machine->changeState(prevState);});
+		pauseElements[1] = InterfaceElement( [this] {machine->changeState(prevState);}, "startButton", assets, sf::Vector2f(400, 200), float(1));
 		machine->changeState(std::make_shared<PauseState>());
 	}
 }
 /// \brief
-/// Hanlde Events.
+/// Handle Events.
 /// \details
 /// This handles all the events it gets.
 void Interface::handleEvent(const sf::Event & event, sf::View & view){

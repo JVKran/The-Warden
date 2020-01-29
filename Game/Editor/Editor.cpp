@@ -127,7 +127,7 @@ void Editor::handleInput(sf::View & view){
 	    	object.setPosition(sf::Vector2f(object.getPosition().x, object.getPosition().y - 3));
 	    }
 	}
-
+	
 	leftBound = view.getCenter().x - (view.getSize().x / 2) - 300;
 	rightBound = view.getCenter().x + (view.getSize().x / 2);
 }

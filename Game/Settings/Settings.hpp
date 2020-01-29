@@ -45,6 +45,10 @@ public:
 	/// It requires a window to draw on and assets to make the background.
 	Settings( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings );
 
+	/// \brief
+	/// Add key bindings.
+	/// \details
+	/// This function will add key bindings.
 	void addKeyBindings(StateDependantObjects & objects);
 
 	void initialize(StateMachine * machine);
