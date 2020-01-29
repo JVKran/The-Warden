@@ -15,7 +15,6 @@ var searchData=
   ['isidle',['isIdle',['../class_animated_graphics_component.html#ad4f28a881c6ed873ff50fd85cd14723b',1,'AnimatedGraphicsComponent']]],
   ['isinteractable',['isInteractable',['../class_tile.html#a6e0eeda9ee504840011a57ce751ad8b9',1,'Tile']]],
   ['ispartofworld',['isPartOfWorld',['../class_tile.html#ae4b84ac39d875348257fd6986a9141dc',1,'Tile']]],
-  ['ispassageway',['isPassageWay',['../class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24',1,'Tile']]],
   ['isplayer',['isPlayer',['../class_character.html#aad03740ab474e84411b44362dc62319f',1,'Character']]],
   ['isplayertype',['isPlayerType',['../class_character.html#a52a0782eddb159277a9b0bac5c5ff517',1,'Character']]],
   ['isselected',['isSelected',['../class_tile.html#ae8a979793d54468a9fdb5d3d446068fb',1,'Tile']]],

@@ -77,19 +77,20 @@ Inheritance diagram for Tile:</div>
  <div class="center">
   <img src="class_tile.png" usemap="#Tile_map" alt=""/>
   <map id="Tile_map" name="Tile_map">
-<area href="class_screen_object.html" title="Screen Object. " alt="ScreenObject" shape="rect" coords="100,0,190,24"/>
-<area href="class_item.html" title="Item. " alt="Item" shape="rect" coords="100,112,190,136"/>
-<area href="class_consumable.html" title="Consumable. " alt="Consumable" shape="rect" coords="0,168,90,192"/>
-<area href="class_experience.html" alt="Experience" shape="rect" coords="100,168,190,192"/>
-<area href="class_weapon.html" title="Weapon. " alt="Weapon" shape="rect" coords="200,168,290,192"/>
+<area href="class_screen_object.html" title="Screen Object. " alt="ScreenObject" shape="rect" coords="150,0,240,24"/>
+<area href="class_item.html" title="Item. " alt="Item" shape="rect" coords="150,112,240,136"/>
+<area href="class_block.html" title="Block. " alt="Block" shape="rect" coords="0,168,90,192"/>
+<area href="class_consumable.html" title="Consumable. " alt="Consumable" shape="rect" coords="100,168,190,192"/>
+<area href="class_experience.html" alt="Experience" shape="rect" coords="200,168,290,192"/>
+<area href="class_weapon.html" title="Weapon. " alt="Weapon" shape="rect" coords="300,168,390,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ea72fbe4159c00b7883b00498e41568"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
-<tr class="memdesc:a9ea72fbe4159c00b7883b00498e41568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a9ea72fbe4159c00b7883b00498e41568">More...</a><br /></td></tr>
-<tr class="separator:a9ea72fbe4159c00b7883b00498e41568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538d076e55cd999bf4b5dcbefdd7175c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a538d076e55cd999bf4b5dcbefdd7175c">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), sf::Vector2f <a class="el" href="class_tile.html#ae937a22063a2cf8bf5bfce01f7050acb">teleportPosition</a>=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0, bool <a class="el" href="class_tile.html#af0fa472b89b2dc6a8d8e15dac421ecf0">interactable</a>=false)</td></tr>
+<tr class="memdesc:a538d076e55cd999bf4b5dcbefdd7175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="#a538d076e55cd999bf4b5dcbefdd7175c">More...</a><br /></td></tr>
+<tr class="separator:a538d076e55cd999bf4b5dcbefdd7175c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeff8e22b0829e24ec42953b826d4db6"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">getConfiguration</a> () const override</td></tr>
 <tr class="memdesc:abeff8e22b0829e24ec42953b826d4db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration.  <a href="#abeff8e22b0829e24ec42953b826d4db6">More...</a><br /></td></tr>
 <tr class="separator:abeff8e22b0829e24ec42953b826d4db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,14 +110,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6e0eeda9ee504840011a57ce751ad8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is interactable?  <a href="#a6e0eeda9ee504840011a57ce751ad8b9">More...</a><br /></td></tr>
 <tr class="separator:a6e0eeda9ee504840011a57ce751ad8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6acd5e9402f4787454e4f72f64ef741"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ab6acd5e9402f4787454e4f72f64ef741">setInteractability</a> (const bool newInteractability)</td></tr>
-<tr class="memdesc:ab6acd5e9402f4787454e4f72f64ef741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set interactability.  <a href="#ab6acd5e9402f4787454e4f72f64ef741">More...</a><br /></td></tr>
 <tr class="separator:ab6acd5e9402f4787454e4f72f64ef741"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24">isPassageWay</a> () const</td></tr>
-<tr class="memdesc:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this tile a passageway.  <a href="#a31d0db6619f0dc9997f120dbbfc5ac24">More...</a><br /></td></tr>
-<tr class="separator:a31d0db6619f0dc9997f120dbbfc5ac24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424e4692b49d8361a565d9d495e1899f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a424e4692b49d8361a565d9d495e1899f">setPassageWay</a> (const bool newPassageWay)</td></tr>
-<tr class="memdesc:a424e4692b49d8361a565d9d495e1899f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a passageway.  <a href="#a424e4692b49d8361a565d9d495e1899f">More...</a><br /></td></tr>
-<tr class="separator:a424e4692b49d8361a565d9d495e1899f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ed033d169a0530dfeb713ad365058e2"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a4ed033d169a0530dfeb713ad365058e2">getTeleportPosition</a> () const</td></tr>
 <tr class="memdesc:a4ed033d169a0530dfeb713ad365058e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get teleport position.  <a href="#a4ed033d169a0530dfeb713ad365058e2">More...</a><br /></td></tr>
 <tr class="separator:a4ed033d169a0530dfeb713ad365058e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,8 +230,8 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <div class="textblock"><p>Selectable Object. </p>
 <p>This class implements a <a class="el" href="class_screen_object.html" title="Screen Object. ">ScreenObject</a> that can be drawn, scaled, moved, clicked and checked for collisions. It has an assetName, sprite and windowLayer to determine to which layer it is part of. Furthermore, it also has several booleans that are described below. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9ea72fbe4159c00b7883b00498e41568"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ea72fbe4159c00b7883b00498e41568">&#9670;&nbsp;</a></span>Tile()</h2>
+<a id="a538d076e55cd999bf4b5dcbefdd7175c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538d076e55cd999bf4b5dcbefdd7175c">&#9670;&nbsp;</a></span>Tile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,6 +257,12 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>teleportPosition</em> = <code>sf::Vector2f(0,0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const float&#160;</td>
           <td class="paramname"><em>scale</em> = <code>1</code>, </td>
         </tr>
@@ -282,7 +282,13 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>windowLayer</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>windowLayer</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>interactable</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -298,10 +304,12 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
     <tr><td class="paramname">assetName</td><td>The name of the texture to get from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> that should be used to construct te sprite. </td></tr>
     <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
     <tr><td class="paramname">position</td><td>The initial position to set and draw the sprite. </td></tr>
+    <tr><td class="paramname">teleportPosition</td><td>The position this block will teleport a <a class="el" href="class_character.html" title="Character. ">Character</a> through </td></tr>
     <tr><td class="paramname">scale</td><td>The initial scale of the sprite. </td></tr>
     <tr><td class="paramname">collidable</td><td>The initial collidability with <a class="el" href="class_character.html" title="Character. ">Character</a> types. </td></tr>
     <tr><td class="paramname">rotation</td><td>The initial rotation of the sprite. </td></tr>
     <tr><td class="paramname">windowLayer</td><td>The initial window layer the sprite is part of. </td></tr>
+    <tr><td class="paramname">interactable</td><td>The <a class="el" href="class_tile.html" title="Selectable Object. ">Tile</a>'s indicator whether it is interactable or not. </td></tr>
   </table>
   </dd>
 </dl>
@@ -488,26 +496,6 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 <p>Is this tile part of the world? </p>
 <dl class="section return"><dt>Returns</dt><dd>Wether or not this tile has been made part of the world. </dd></dl>
-
-</div>
-</div>
-<a id="a31d0db6619f0dc9997f120dbbfc5ac24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31d0db6619f0dc9997f120dbbfc5ac24">&#9670;&nbsp;</a></span>isPassageWay()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tile::isPassageWay </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Is this tile a passageway. </p>
-<dl class="section return"><dt>Returns</dt><dd>Wether or not this tile is a passage way. </dd></dl>
 
 </div>
 </div>
@@ -731,37 +719,9 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Set interactability. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Set interactability </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newInteractability</td><td>Wether or not this tile should be interactable. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a424e4692b49d8361a565d9d495e1899f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a424e4692b49d8361a565d9d495e1899f">&#9670;&nbsp;</a></span>setPassageWay()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tile::setPassageWay </td>
-          <td>(</td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>newPassageWay</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Make a passageway. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">newPassageWay</td><td>Wether or not this tile should be a passageway. </td></tr>
   </table>
   </dd>
 </dl>
@@ -775,7 +735,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 11:22:25 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

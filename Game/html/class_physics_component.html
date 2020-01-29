@@ -232,9 +232,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <table class="params">
     <tr><td class="paramname">characterItems</td><td>The items to check collisions with (after which they have to be picked up). </td></tr>
     <tr><td class="paramname">world</td><td>The <a class="el" href="class_world.html" title="World. ">World</a> of which the tiles have to be checked for collisions. </td></tr>
+    <tr><td class="paramname">position</td><td></td></tr>
     <tr><td class="paramname">dimensions</td><td>The dimensions of the character. </td></tr>
     <tr><td class="paramname">collisionBounds</td><td>The bounds to check for collisions in between. </td></tr>
     <tr><td class="paramname">characters</td><td>The characters to check collisions with. </td></tr>
+    <tr><td class="paramname">ownCharacter</td><td>Pointer to the character to set a new position for. </td></tr>
   </table>
   </dd>
 </dl>
@@ -266,7 +268,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Process physics. </p>
-<p>This function checks for collisions, state changes and velocity changes. </p>
+<p>This function checks for collisions, state changes and velocity changes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">velocity</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -324,7 +331,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 11:22:25 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

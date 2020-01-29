@@ -108,7 +108,5 @@ void Interface::display(sf::View & view){
 		for( InterfaceElement & sprite : interfaceElements){
 			sprite.draw(window);
 		}
-		ScreenObject tmp("menuTitle", assets, sf::Vector2f(300,70), float(0.2));
-		tmp.draw(window);
 	}
 }

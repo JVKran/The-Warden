@@ -36,3 +36,5 @@ dungDirtMidLeft 0.4
 dungDirtMidRight 0.4
 OpenDoor 0.8
 door 0.8
+checkpointIndicator 0.8
+potion 0.5

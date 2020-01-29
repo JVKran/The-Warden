@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['isalive',['isAlive',['../class_character.html#aa49f985b1b05751b2d4b3de74b4acc8c',1,'Character']]],
-  ['iscollidable',['isCollidable',['../class_tile.html#a18a53d461961de8017c0cb4a4de5977c',1,'Tile']]],
-  ['isfirstoneselected',['isFirstOneSelected',['../class_editor.html#ae6e19e4887ca1df5306947c3161e2e29',1,'Editor']]],
-  ['isfollowingmouse',['isFollowingMouse',['../class_tile.html#a1f924d5135208a2835f5d07ec9c6dd6f',1,'Tile']]],
-  ['isinteractable',['isInteractable',['../class_tile.html#a6e0eeda9ee504840011a57ce751ad8b9',1,'Tile']]],
-  ['ispartofworld',['isPartOfWorld',['../class_tile.html#ae4b84ac39d875348257fd6986a9141dc',1,'Tile']]],
-  ['ispassageway',['isPassageWay',['../class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24',1,'Tile']]],
-  ['isplayer',['isPlayer',['../class_character.html#aad03740ab474e84411b44362dc62319f',1,'Character']]],
-  ['isselected',['isSelected',['../class_tile.html#ae8a979793d54468a9fdb5d3d446068fb',1,'Tile']]]
+  ['handleevent',['handleEvent',['../class_character.html#ad6b65fe563756eb9bcff9a4585b43fc4',1,'Character::handleEvent()'],['../class_game.html#afa34533f42a87526cabc103aa4e34dbd',1,'Game::handleEvent()'],['../class_settings.html#a6b4709a93c0d441ea3fccbaae8267f01',1,'Settings::handleEvent()']]],
+  ['handleinput',['handleInput',['../class_editor.html#ace199cdad87b579972bd56108e7d08d9',1,'Editor::handleInput()'],['../class_game.html#a45ceee24cce389f743aa7b50ff96d686',1,'Game::handleInput()'],['../class_settings.html#aade6f53e0798f3b35acf1b9043a3787a',1,'Settings::handleInput()']]]
 ];

@@ -73,3 +73,6 @@ orcIdle Assets/Textures/orcIdle.png
 orcWalk Assets/Textures/orcWalk.png
 orcJump Assets/Textures/orcJump.png
 orcAttack Assets/Textures/orcAttack.png
+checkpoint Assets/Textures/Others/Checkpoint.png
+checkpointIndicator Assets/Textures/Others/indicator.png
+potion Assets/Textures/Others/potion.png

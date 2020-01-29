@@ -95,12 +95,15 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processInput<
 <tr class="memitem:afbc57a981fa7ebb65e3f0bf19dc5d320"><td class="memItemLeft" align="right" valign="top"><a id="afbc57a981fa7ebb65e3f0bf19dc5d320"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)=0</td></tr>
 <tr class="separator:afbc57a981fa7ebb65e3f0bf19dc5d320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a208beafb8fcd64ee42f222e964506f"><td class="memItemLeft" align="right" valign="top"><a id="a3a208beafb8fcd64ee42f222e964506f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (<a class="el" href="class_tile.html">Tile</a> &amp;tile)=0</td></tr>
+<tr class="separator:a3a208beafb8fcd64ee42f222e964506f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bdc92f4be68cfd8cda787390df50fce"><td class="memItemLeft" align="right" valign="top"><a id="a8bdc92f4be68cfd8cda787390df50fce"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)=0</td></tr>
 <tr class="separator:a8bdc92f4be68cfd8cda787390df50fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5126bdfe74fd378a07274055ecd2c604"><td class="memItemLeft" align="right" valign="top"><a id="a5126bdfe74fd378a07274055ecd2c604"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter)</td></tr>
-<tr class="separator:a5126bdfe74fd378a07274055ecd2c604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f1b0ade5ffb339ce88d1b2bdc2bca8a"><td class="memItemLeft" align="right" valign="top"><a id="a5f1b0ade5ffb339ce88d1b2bdc2bca8a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>processItemUsage</b> (const sf::Event &amp;event, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter)</td></tr>
+<tr class="separator:a5f1b0ade5ffb339ce88d1b2bdc2bca8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae35bb6d292adc77937ba70f18cbd1033"><td class="memItemLeft" align="right" valign="top"><a id="ae35bb6d292adc77937ba70f18cbd1033"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, int_fast16_t &amp;selectedItem)</td></tr>
 <tr class="separator:ae35bb6d292adc77937ba70f18cbd1033"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,7 +128,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 11:22:25 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

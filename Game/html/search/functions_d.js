@@ -1,26 +1,4 @@
 var searchData=
 [
-  ['saveworld',['saveWorld',['../class_world.html#a0a2e3046fcf82f9fc31bdbe1bce00399',1,'World']]],
-  ['screenobject',['ScreenObject',['../class_screen_object.html#a79714d35c13843ac8da464d5e7e935b7',1,'ScreenObject']]],
-  ['scrolltilebar',['scrollTileBar',['../class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366',1,'Editor']]],
-  ['setbackground',['setBackground',['../class_world.html#aef9444d45fd451b1df392ff11669868a',1,'World']]],
-  ['setcollidable',['setCollidable',['../class_tile.html#a142d8646312b96d13eb5f2a73b036e4a',1,'Tile']]],
-  ['setcolor',['setColor',['../class_text.html#a58a2e7ca543705897e8d9566a3a166d3',1,'Text']]],
-  ['setfightanimation',['setFightAnimation',['../class_animated_graphics_component.html#ad25e915611df92fdeed8399221561dfa',1,'AnimatedGraphicsComponent']]],
-  ['setfollowmouse',['setFollowMouse',['../class_tile.html#a4a3678d40ae79e44d49eb2524dbbe40e',1,'Tile']]],
-  ['sethealth',['setHealth',['../class_character.html#a0e070236031f0da718523da7f0b973de',1,'Character']]],
-  ['setinteractability',['setInteractability',['../class_tile.html#ab6acd5e9402f4787454e4f72f64ef741',1,'Tile']]],
-  ['setmusicvolume',['setMusicVolume',['../class_music.html#abe60e1cf374cf8ce2341939e4b9597f6',1,'Music']]],
-  ['setnewscale',['setNewScale',['../class_screen_object.html#a53cbc45ebfb8c0a86fce830ce48380ca',1,'ScreenObject']]],
-  ['setpassageway',['setPassageWay',['../class_tile.html#a424e4692b49d8361a565d9d495e1899f',1,'Tile']]],
-  ['setposition',['setPosition',['../class_character.html#ab868c19d14d30d7c406b0eead4044239',1,'Character::setPosition()'],['../class_screen_object.html#a9d9f66daabc22c40dd9684ba627d04e8',1,'ScreenObject::setPosition()']]],
-  ['setrotation',['setRotation',['../class_screen_object.html#afe65cc1980980247793d36d10578d535',1,'ScreenObject']]],
-  ['settext',['setText',['../class_text.html#acb79d36dd85dd61975c8983839562562',1,'Text']]],
-  ['settings',['Settings',['../class_settings.html#a30f22140d38e2b3bb6fc3f4d81de1eb4',1,'Settings']]],
-  ['sortworld',['sortWorld',['../class_world.html#abb3930c9378d1af1f57d3d8a8636b136',1,'World']]],
-  ['sound',['Sound',['../class_sound.html#a6dae6f8919e5d081934c49706b396d0b',1,'Sound']]],
-  ['specifiedframeloop',['specifiedFrameLoop',['../class_sprite_animation.html#a6bd5846a609ac82aa113aed2585383e2',1,'SpriteAnimation']]],
-  ['spritecharacter',['SpriteCharacter',['../struct_sprite_character.html#ad86b441780a6fcc64379631477d90e09',1,'SpriteCharacter']]],
-  ['startworld',['startWorld',['../class_game.html#a59e92bb94f00a244477c28fdd4bf54ac',1,'Game']]],
-  ['stopmusic',['stopMusic',['../class_music.html#ac4ff67b05c566283036c49e81ea8590c',1,'Music']]]
+  ['restartclock',['restartClock',['../class_character.html#a69eac76be6449a00ac5fa88ff16d75f6',1,'Character']]]
 ];

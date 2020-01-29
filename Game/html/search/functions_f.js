@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['update',['update',['../class_character.html#a4fc634f6e0ffec4bad09c11932423d75',1,'Character']]],
-  ['use',['use',['../class_consumable.html#a4b99311770c77c52a45d7b599f26660b',1,'Consumable']]]
+  ['text',['Text',['../class_text.html#a62e41ffb60cfcb1df626fc4b29056d75',1,'Text']]],
+  ['tile',['Tile',['../class_tile.html#a538d076e55cd999bf4b5dcbefdd7175c',1,'Tile']]]
 ];

@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['deletetile',['deleteTile',['../class_character.html#af10ba6be508dfcb8363a5f9e2395bf23',1,'Character::deleteTile()'],['../class_player_input.html#a76e915b2af58626d163f4ed7ae26f238',1,'PlayerInput::deleteTile()']]],
-  ['display',['display',['../class_game.html#a5f423d4455440b4912ddb67c497e28c4',1,'Game']]],
-  ['draw',['draw',['../class_world.html#aed3c8f25bd7867dfce4e55c2610c5c58',1,'World::draw()'],['../class_editor.html#ac2db5209c9c64a55266d21c130ca767b',1,'Editor::draw()'],['../class_character.html#a5c7a465e30c60e5ef88622fa8a122e4c',1,'Character::draw()'],['../class_sprite_animation.html#ae9027d76bab247badb198291251491d2',1,'SpriteAnimation::draw()'],['../class_screen_object.html#a251d344290359fed5ad1970b5c30a5c1',1,'ScreenObject::draw()'],['../class_settings.html#a26a0fb7a461c5dd7895f9b9f8d99f7a0',1,'Settings::draw()'],['../class_text.html#a820f51d1ef58aa6ffadc10cc0e6ce479',1,'Text::draw()']]],
-  ['drawtilebar',['drawTileBar',['../class_editor.html#a1f4fb9fefe9715d0214740ebcc3ea7f1',1,'Editor']]]
+  ['casttof',['castToF',['../class_text.html#a94d197f54dea6e6062d978b0409a95b4',1,'Text']]],
+  ['changeselected',['changeSelected',['../class_tile.html#a4aa69319dc9d545a60d77a7693101cac',1,'Tile']]],
+  ['changestartendframe',['changeStartEndFrame',['../class_sprite_animation.html#a77c9bcc449680295400860f3f27c2596',1,'SpriteAnimation']]],
+  ['changeteleportposition',['changeTeleportPosition',['../class_tile.html#a577e48c4cc06d3ca32fd1405d8aa875b',1,'Tile']]],
+  ['character',['Character',['../class_character.html#a47a7cc922e3fa231ca2f20bccf2c36c5',1,'Character']]],
+  ['consumable',['Consumable',['../class_consumable.html#ad585abef5cbf840912b1f5ac85dd7c9c',1,'Consumable']]],
+  ['contains',['contains',['../class_text.html#ace587a3c83c5d82ba23ab73bd08d1130',1,'Text::contains(const sf::Vector2f &amp;object) const'],['../class_text.html#a77c2c863897b707cdad084459ce241fd',1,'Text::contains(const sf::Vector2i &amp;object)']]]
 ];

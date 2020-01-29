@@ -75,9 +75,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06b16854db9078fe8470639a41cd3a03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a06b16854db9078fe8470639a41cd3a03">Game</a> (sf::RenderWindow &amp;window, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_game.html#af99d6850bbf3bad9d83d3c18bdfd3f82">assets</a>, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;bindings)</td></tr>
-<tr class="memdesc:a06b16854db9078fe8470639a41cd3a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a06b16854db9078fe8470639a41cd3a03">More...</a><br /></td></tr>
-<tr class="separator:a06b16854db9078fe8470639a41cd3a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c93ef8f79366b851ac88689037d3bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a30c93ef8f79366b851ac88689037d3bd">Game</a> (sf::RenderWindow &amp;window, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_game.html#af99d6850bbf3bad9d83d3c18bdfd3f82">assets</a>, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;bindings, const sf::Event &amp;event, sf::View &amp;view)</td></tr>
+<tr class="memdesc:a30c93ef8f79366b851ac88689037d3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a30c93ef8f79366b851ac88689037d3bd">More...</a><br /></td></tr>
+<tr class="separator:a30c93ef8f79366b851ac88689037d3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59e92bb94f00a244477c28fdd4bf54ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a59e92bb94f00a244477c28fdd4bf54ac">startWorld</a> (const std::string &amp;worldName)</td></tr>
 <tr class="memdesc:a59e92bb94f00a244477c28fdd4bf54ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start playing.  <a href="#a59e92bb94f00a244477c28fdd4bf54ac">More...</a><br /></td></tr>
 <tr class="separator:a59e92bb94f00a244477c28fdd4bf54ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,7 +144,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>highScoreSprite
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>scores</b> = {0}</td></tr>
 <tr class="separator:abe7b5e7016cd1b65cba84f9161a86073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac711a207d855750f3e5608c292ac80da"><td class="memItemLeft" align="right" valign="top"><a id="ac711a207d855750f3e5608c292ac80da"></a>
-std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>savePoints</b> = {4000, 8000}</td></tr>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>savePoints</b> = {4000, 9000, 14000}</td></tr>
 <tr class="separator:ac711a207d855750f3e5608c292ac80da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af39d1d88ffebc23207f458b537452e06"><td class="memItemLeft" align="right" valign="top"><a id="af39d1d88ffebc23207f458b537452e06"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>currentSavePoint</b> = 0</td></tr>
@@ -171,13 +171,25 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>win
 <tr class="memitem:aec988a569a4918c3493e8c6e9353a4a3"><td class="memItemLeft" align="right" valign="top"><a id="aec988a569a4918c3493e8c6e9353a4a3"></a>
 std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>bindings</b></td></tr>
 <tr class="separator:aec988a569a4918c3493e8c6e9353a4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b84e754a2a61451483b6b9331d0196"><td class="memItemLeft" align="right" valign="top"><a id="a64b84e754a2a61451483b6b9331d0196"></a>
+std::shared_ptr&lt; <a class="el" href="class_interactive_input.html">InteractiveInput</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>visionInput</b></td></tr>
+<tr class="separator:a64b84e754a2a61451483b6b9331d0196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac77dc3fa0ed3d56491d63a822a4a794a"><td class="memItemLeft" align="right" valign="top"><a id="ac77dc3fa0ed3d56491d63a822a4a794a"></a>
+std::shared_ptr&lt; <a class="el" href="class_player_input.html">PlayerInput</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>keyInput</b></td></tr>
+<tr class="separator:ac77dc3fa0ed3d56491d63a822a4a794a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe4d4740cbd30bf47ac9a4c5dd38c3c"><td class="memItemLeft" align="right" valign="top"><a id="adfe4d4740cbd30bf47ac9a4c5dd38c3c"></a>
+const sf::Event &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>event</b></td></tr>
+<tr class="separator:adfe4d4740cbd30bf47ac9a4c5dd38c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e6b461fd620edb6d80bb746d51b26b"><td class="memItemLeft" align="right" valign="top"><a id="a06e6b461fd620edb6d80bb746d51b26b"></a>
+sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>view</b></td></tr>
+<tr class="separator:a06e6b461fd620edb6d80bb746d51b26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_game.html" title="Game. ">Game</a>. </p>
 <p>This class is the entire <a class="el" href="class_game.html" title="Game. ">Game</a>. It contains everything that's needed to run the game. It features two functions that should be called from the <a class="el" href="class_game.html" title="Game. ">Game</a> Loop (that's located in the main()) that, based on the state, call several other functions to handle input, process physics and manage graphics. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a06b16854db9078fe8470639a41cd3a03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06b16854db9078fe8470639a41cd3a03">&#9670;&nbsp;</a></span>Game()</h2>
+<a id="a30c93ef8f79366b851ac88689037d3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30c93ef8f79366b851ac88689037d3bd">&#9670;&nbsp;</a></span>Game()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,7 +210,19 @@ std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>bindings</em>&#160;</td>
+          <td class="paramname"><em>bindings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::View &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -358,7 +382,7 @@ std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 11:22:25 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

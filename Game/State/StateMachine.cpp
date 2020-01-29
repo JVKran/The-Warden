@@ -13,14 +13,14 @@ void StateMachine::changeState(std::shared_ptr<State> newState){
 	switch(currentState->getName()){
 		case 2: {
 
-			 backgroundMusic.playMusic();
+			 // backgroundMusic.playMusic();
 			//backgroundMusic.setLoop(true);
 			// editingMusic.pauseMusic();
 			break;
 		}
 		case 4: {
 			// backgroundMusic.pauseMusic();
-			 editingMusic.playMusic();
+			 // editingMusic.playMusic();
 		}
 		default: {
 			// backgroundMusic.pauseMusic();

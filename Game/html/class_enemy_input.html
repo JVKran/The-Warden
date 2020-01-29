@@ -92,12 +92,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac828b3f89669bb52fc70c033142436a9"><td class="memItemLeft" align="right" valign="top"><a id="ac828b3f89669bb52fc70c033142436a9"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
 <tr class="separator:ac828b3f89669bb52fc70c033142436a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce7706f441363567d1b8456747b13f4"><td class="memItemLeft" align="right" valign="top"><a id="abce7706f441363567d1b8456747b13f4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addTile</b> (<a class="el" href="class_tile.html">Tile</a> &amp;tile)</td></tr>
+<tr class="separator:abce7706f441363567d1b8456747b13f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memItemLeft" align="right" valign="top"><a id="a835d0b30e0c8295ac0bf52b76015b2d4"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteTile</b> (const sf::Event &amp;event, <a class="el" href="class_world.html">World</a> &amp;<a class="el" href="class_input_component.html#ac312789003a44fd5884122e98df9e407">world</a>, sf::RenderWindow &amp;window, sf::View &amp;view)</td></tr>
 <tr class="separator:a835d0b30e0c8295ac0bf52b76015b2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af131f6681287969d6e0da320f182a9da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#af131f6681287969d6e0da320f182a9da">processItemUsage</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
-<tr class="memdesc:af131f6681287969d6e0da320f182a9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process item usage.  <a href="#af131f6681287969d6e0da320f182a9da">More...</a><br /></td></tr>
-<tr class="separator:af131f6681287969d6e0da320f182a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6577283d5d0472bb1d15033049b120e6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#a6577283d5d0472bb1d15033049b120e6">processItemUsage</a> (const sf::Event &amp;event, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;items, <a class="el" href="class_character.html">Character</a> *ownCharacter) override</td></tr>
+<tr class="memdesc:a6577283d5d0472bb1d15033049b120e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process item usage.  <a href="#a6577283d5d0472bb1d15033049b120e6">More...</a><br /></td></tr>
+<tr class="separator:a6577283d5d0472bb1d15033049b120e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac270d5317fd16b8503e9b27418764434"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_enemy_input.html">EnemyInput</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_input.html#ac270d5317fd16b8503e9b27418764434">operator=</a> (<a class="el" href="class_enemy_input.html">EnemyInput</a> lhs)</td></tr>
 <tr class="memdesc:ac270d5317fd16b8503e9b27418764434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#ac270d5317fd16b8503e9b27418764434">More...</a><br /></td></tr>
 <tr class="separator:ac270d5317fd16b8503e9b27418764434"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,8 +198,8 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 
 </div>
 </div>
-<a id="af131f6681287969d6e0da320f182a9da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af131f6681287969d6e0da320f182a9da">&#9670;&nbsp;</a></span>processItemUsage()</h2>
+<a id="a6577283d5d0472bb1d15033049b120e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6577283d5d0472bb1d15033049b120e6">&#9670;&nbsp;</a></span>processItemUsage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,6 +210,12 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
         <tr>
           <td class="memname">void EnemyInput::processItemUsage </td>
           <td>(</td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_item.html">Item</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>items</em>, </td>
         </tr>
@@ -243,7 +252,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 11:22:25 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
