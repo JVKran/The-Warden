@@ -74,9 +74,6 @@ class Tile : public ScreenObject {
 		bool isInteractable() const;
 		void setInteractability(const bool newInteractability);
 
-		bool isPassageWay() const;
-		void setPassageWay(const bool newPassageWay);
-
 		sf::Vector2f getTeleportPosition() const;
 		void changeTeleportPosition(const sf::Vector2f & newTeleportPosition);
 

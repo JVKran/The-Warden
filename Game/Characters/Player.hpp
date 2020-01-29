@@ -37,7 +37,6 @@ class PlayerInput : public InputComponent {
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) override;
 		virtual void processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) override;
 		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) override;
-		void handleInteraction(World & world);
 
 		PlayerInput & operator=(PlayerInput lhs){
 			world = lhs.world;

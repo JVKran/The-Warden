@@ -146,15 +146,6 @@ void PlayerInput::handleEvent(const sf::Event & event, int_fast16_t & selectedIt
 	}
 }
 
-void PlayerInput::handleInteraction(World & world){
-	std::vector<Tile> & tiles = world.getTiles();
-	for(int_fast8_t i = tiles.size() - 1; i >= 0; i--){
-		if(tiles.at(i).isInteractable()){
-			std::cout<<"Deur\n";
-		}
-	}
-}
-
 void InteractiveInput::detectPosition( sf::Vector2f & direction ){
     String face_cascade_name = "Characters/haarcascade_frontalface_alt.xml";
 	String eyes_cascade_name = "Characters/haarcascade_eye_tree_eyeglasses.xml";

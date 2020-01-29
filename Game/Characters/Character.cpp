@@ -6,9 +6,16 @@
 /// Create an instance.
 /// \details
 /// This creates a SpriteCharacter based on its parameters.
-/// @param spriteCharacterData The vector with Vector2i's used for positioning the spritesheet.
-/// @param spriteCharacterAction No idea.
-/// @param spriteCharacterNames All available actions to perform.
+/// @param idleName
+/// @param idleFile
+/// @param jumpName
+/// @param jumpFile
+/// @param walkName
+/// @param walkFile
+/// @param attackName
+/// @param attackFile
+/// @param dieName
+/// @param dieFile
 SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile=""):
 	idleName(idleName),
 	idleFile(idleFile),
@@ -130,6 +137,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event
 /// \details
 /// Handles an event for the currently selected item.
+/// @param The event for handling the selected item.
 void Character::handleEvent(const sf::Event & event){
 	input->handleEvent(event, selectedItem);
 	input->processItemUsage(event, items, this);
@@ -189,9 +197,11 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// This function processes the collisions with items, tiles and characters in the world.
 /// @param characterItems The items to check collisions with (after which they have to be picked up).
 /// @param world The World of which the tiles have to be checked for collisions.
+/// @param position 
 /// @param dimensions The dimensions of the character.
 /// @param collisionBounds The bounds to check for collisions in between.
 /// @param characters The characters to check collisions with.
+/// @param ownCharacter Pointer to the character to set a new position for.
 void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & characterItems, World & world, sf::Vector2f & position, const sf::Vector2f & dimensions, CollisionBounds & collisionBounds, std::vector<Character> & characters, Character * ownCharacter){
 	std::vector<Tile> & tiles= world.getTiles();
 	sf::FloatRect tileBounds;
@@ -220,7 +230,6 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 			}
 			if(tile.getName()=="OpenDoor"){
 				if(hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)){
-					std::cout<<"======================naar"<<tile.getTeleportPosition().x<<'\n';
 					ownCharacter->setPosition(tile.getTeleportPosition());
 				}
 			}
@@ -314,6 +323,7 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 /// Process physics.
 /// \details
 /// This function checks for collisions, state changes and velocity changes.
+/// @param velocity 
 void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 	float maxAcceleration = 0.005;
 	float maxVelocity = 0.995;
@@ -516,6 +526,7 @@ sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 /// Set fight animation
 /// \details
 /// This function sets the current animation to the fight animation.
+/// @param hitTime 
 void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
 	if(clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds()>hitTime){
 	isAttacking=true;
@@ -535,7 +546,6 @@ sf::FloatRect AnimatedGraphicsComponent::getGlobal() const{
 /// This creates a GraphicsComponent based on its parameters.
 /// @param assetName The name of the Texture to retrieve from the AssetManager
 /// @param assets The AssetManager to retrieve textures from.
-/// @param characterData The SpriteCharacter to use for getting the necessary data.
 GraphicsComponent::GraphicsComponent(const std::string & assetName, AssetManager & assets){
 	sprite.setTexture(assets.getTexture(assetName));
 }
