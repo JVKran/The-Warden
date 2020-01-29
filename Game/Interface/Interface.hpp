@@ -1,3 +1,4 @@
+/// @file
 #ifndef __INTERFACE_HPP
 #define __INTERFACE_HPP
 
@@ -23,7 +24,6 @@ class Interface {
 		AssetManager & assets;
 		Settings & settings;
 		StateMachine * machine;
-
 		World world;
 
 		sf::RenderWindow & window;
@@ -31,8 +31,10 @@ class Interface {
 		bool pauseGame=false;
 
 		sf::Sprite background;
+
 		std::vector<InterfaceElement> interfaceElements;
 		std::vector<InterfaceElement> pauseElements;
+
 		sf::RectangleShape pauseBackground;
 		std::shared_ptr<State> prevState;
 	public:

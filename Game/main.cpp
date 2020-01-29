@@ -44,7 +44,7 @@ int main(){
 
 	Settings settings(window, assets, bindings);
 	Interface interface(game, editor, settings, assets, window);
-	StateMachine machine(game, interface, editor, settings);
+	StateMachine machine(game, interface, editor, settings, view);
 	
 	sf::Clock clock;
 
@@ -60,24 +60,24 @@ int main(){
 
 		if(machine.getCurrentState()->getName() != 4){			//EPlaying
 			while(lag >= simulationSpeed){
-				machine.handleInput(event, view);
+				machine.handleInput(event);
 				lag -= simulationSpeed;
 			}	
 		} else {
-			machine.handleInput(event, view);					//Editing
+			machine.handleInput(event);					//Editing
 		}		
 
 
 		window.clear();
 		window.setView(view);
-		machine.display(event, view);
+		machine.display(event);
 		window.display();
 		
 		while(window.pollEvent(event)){
 			if( event.type == sf::Event::Closed ){
 				window.close();
 			}
-			machine.handleEvent(event, view);
+			machine.handleEvent(event);
 		}
 
 

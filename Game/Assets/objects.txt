@@ -76,3 +76,9 @@ orcAttack Assets/Textures/orcAttack.png
 checkpoint Assets/Textures/Others/Checkpoint.png
 checkpointIndicator Assets/Textures/Others/indicator.png
 potion Assets/Textures/Others/potion.png
+dogIdle Assets/Textures/dogIdle.png
+dogWalk Assets/Textures/dogWalk.png
+dogJump Assets/Textures/dogJump.png
+dogDamage Assets/Textures/dogDamage.png
+dogAttack Assets/Textures/dogAttack.png
+>>>>>>> 0bb5d5a732c287a410c49f6f5eef8e86f0ee748e
