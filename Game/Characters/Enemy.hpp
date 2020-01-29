@@ -26,6 +26,17 @@ class BossPhysics : public PhysicsComponent {
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
 };
 
+
+
+/// \brief
+/// BossPhysics.
+/// \details
+/// Almost identical to EnemyPhysics, but even slower and with slower acceleration
+class DogPhysics : public PhysicsComponent {
+	public:
+		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
+};
+
 /// \brief
 /// EnemyInput.
 /// \details
@@ -54,6 +65,8 @@ class BossInput : public EnemyInput {
 		{}
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys) override;
 };
+
+
 
 
 /// \brief

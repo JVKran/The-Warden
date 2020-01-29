@@ -6,6 +6,7 @@
 /// This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight.
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	int detectionRange = 80;
+
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(characters.at(i).isPlayer()){									//Enemy 					//Player
 			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 500){
@@ -219,6 +220,63 @@ void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direc
 			}
 			break;
 		}
+	}
+}
+
+
+
+void DogPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity){
+	float maxVelocity = 1.1;
+	float maxAcceleration = 0.03;
+	float maxJumpAcceleration = 1;
+	if(velocity.x <= maxVelocity && direction.x > 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(velocity.x >= -maxVelocity && direction.x < 0){
+    	velocity.x += direction.x * maxAcceleration;
+    }
+
+    if(direction.x == 0 && velocity.x != 0){
+    	if(velocity.x - 0.1 > 0){
+    		velocity.x -= maxAcceleration;
+    	} else if(velocity.x + 0.1 < 0){
+    		velocity.x += maxAcceleration;
+    	} else {
+    		velocity.x = 0;
+    	}
+    }
+    if(direction.y < 0 && state != states::JUMPING && state != states::FALLING){
+    	velocity.y = -maxJumpAcceleration;
+    }
+
+    if(leftCollision &&direction.x<0){
+		velocity.x =0;
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+		}else if(characterCollision&&!playerCollision){
+			velocity.x=1;
+		}
+	}
+	
+	if(rightCollision &&direction.x>0){
+		velocity.x = 0;
+
+		if(!characterCollision&&bottomCollision){
+			velocity.y = -maxJumpAcceleration;
+		}else if(characterCollision&&!playerCollision){
+			velocity.x=-1;
+		}
+	}
+
+	if(topCollision && !bottomCollision){
+		state = states::FALLING;
+		velocity.y = maxAcceleration;
+	}
+
+	if(hasResistance){
+		velocity.x=velocity.x/2;
 	}
 }
 
