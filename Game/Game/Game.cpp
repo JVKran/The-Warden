@@ -192,50 +192,40 @@ void Game::loadCharacters(){
 		if((currstring.find("named")!= std::string::npos)){
 			charactersFile>>currstring;
 			name=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("idleName")!= std::string::npos)){
 			charactersFile>>currstring;
 			idleName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("idleFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			idleFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("jumpName")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpName=currstring;
-			//std::cout<<position.x<<'\n';
 		}if((currstring.find("jumpFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			jumpFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("walkName")!= std::string::npos)){
 			charactersFile>>currstring;
 			walkName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("position")!= std::string::npos)){
 			charactersFile>>position;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("walkFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			walkFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("attackName")!= std::string::npos)){
 			charactersFile>>currstring;
 			attackName=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		if((currstring.find("attackFile")!= std::string::npos)){
 			charactersFile>>currstring;
 			attackFile=currstring;
-			//std::cout<<position.x<<'\n';
 		}
 		
 		

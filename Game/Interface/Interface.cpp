@@ -16,13 +16,13 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 /// 
 void Interface::initialize(StateMachine * newMachine){
 	
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), Action ( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)), Action ( [newMachine]{ newMachine->changeState(std::make_shared<EditingState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), Action( [newMachine] {newMachine->changeState(std::make_shared<SettingsState>());})));
-	interfaceElements.push_back(InterfaceElement( ScreenObject ("closeButton", assets, sf::Vector2f(1150,350), float(0.3)), Action( []{})));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(550,300), float(1)), [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());}));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("editButton", assets, sf::Vector2f(150,300),float(0.35)),[newMachine]{ newMachine->changeState(std::make_shared<EditingState>());}));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(0,0), float(0.3)), [newMachine] {newMachine->changeState(std::make_shared<SettingsState>());}));
+	interfaceElements.push_back(InterfaceElement( ScreenObject ("closeButton", assets, sf::Vector2f(1150,350), float(0.3)),[]{}));
 	//Pause elements
-	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), Action( [newMachine] {newMachine->changeState(std::make_shared<MenuState>());})));
-	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [newMachine] {newMachine->changeState(newMachine->getCurrentState());})));
+	pauseElements.push_back(InterfaceElement( ScreenObject ("settingButton", assets, sf::Vector2f(100, 200), float(0.4)), [newMachine] {newMachine->changeState(std::make_shared<MenuState>());}));
+	pauseElements.push_back(InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), [newMachine] {newMachine->changeState(newMachine->getCurrentState());}));
 	machine = newMachine;
 }
 
@@ -73,7 +73,7 @@ void Interface::handleInput(){
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		prevState = machine->getCurrentState();
-		pauseElements[1] = InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), Action( [this] {machine->changeState(prevState);}));
+		pauseElements[1] = InterfaceElement( ScreenObject ("startButton", assets, sf::Vector2f(400, 200), float(1)), [this] {machine->changeState(prevState);});
 		machine->changeState(std::make_shared<PauseState>());
 	}
 }
