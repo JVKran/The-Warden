@@ -23,7 +23,7 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
  }
 
 /// \brief
-/// Create an instance.
+/// Initialize.
 /// \details
 /// This function will initialize the interfaceElements and pauseElements.
 void Interface::initialize(StateMachine * newMachine){

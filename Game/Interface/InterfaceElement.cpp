@@ -4,7 +4,7 @@
 /// Create an instance.
 /// \details
 /// This creates an InterFaceElement. 
-/// @param element A ScreenObject to make the sprites.
+/// @param element A ScreenObject to make and check the sprites.
 /// @param action An Action to store lambda functions.
 InterfaceElement::InterfaceElement( ScreenObject element, Action action ):
 	element(element),
