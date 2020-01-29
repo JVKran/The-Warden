@@ -14,7 +14,8 @@ void StateMachine::changeState(std::shared_ptr<State> newState){
 	currentState = newState;
 	switch(currentState->getName()){
 		case 1:{ // Menu
-			
+			editingMusic.pauseMusic();
+			backgroundMusic.pauseMusic();
 			prevState = 1;
 			break;
 		}
