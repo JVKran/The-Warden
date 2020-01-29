@@ -69,36 +69,45 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adb791a178b544758999a84c64219d85b"><td class="memItemLeft" align="right" valign="top"><a id="adb791a178b544758999a84c64219d85b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>StateMachine</b> (<a class="el" href="class_game.html">Game</a> &amp;game, <a class="el" href="class_interface.html">Interface</a> &amp;interface, <a class="el" href="class_editor.html">Editor</a> &amp;editor, <a class="el" href="class_settings.html">Settings</a> &amp;settings)</td></tr>
-<tr class="separator:adb791a178b544758999a84c64219d85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0fd766edd1fb358e7e7f4e8ab0df85"><td class="memItemLeft" align="right" valign="top"><a id="adb0fd766edd1fb358e7e7f4e8ab0df85"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StateMachine</b> (<a class="el" href="class_game.html">Game</a> &amp;game, <a class="el" href="class_interface.html">Interface</a> &amp;interface, <a class="el" href="class_editor.html">Editor</a> &amp;editor, <a class="el" href="class_settings.html">Settings</a> &amp;settings, sf::View &amp;view)</td></tr>
+<tr class="separator:adb0fd766edd1fb358e7e7f4e8ab0df85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d8ec41ec4d1c2730d8c20971e3765e2"><td class="memItemLeft" align="right" valign="top"><a id="a3d8ec41ec4d1c2730d8c20971e3765e2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>changeState</b> (std::shared_ptr&lt; <a class="el" href="class_state.html">State</a> &gt; newState)</td></tr>
 <tr class="separator:a3d8ec41ec4d1c2730d8c20971e3765e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9030441e6d1de4bc501f92cb52d80d82"><td class="memItemLeft" align="right" valign="top"><a id="a9030441e6d1de4bc501f92cb52d80d82"></a>
 std::shared_ptr&lt; <a class="el" href="class_state.html">State</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentState</b> ()</td></tr>
 <tr class="separator:a9030441e6d1de4bc501f92cb52d80d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab08846cd9ce4b094e07ebfe6a3a7f218"><td class="memItemLeft" align="right" valign="top"><a id="ab08846cd9ce4b094e07ebfe6a3a7f218"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleInput</b> (const sf::Event &amp;event, sf::View &amp;view)</td></tr>
-<tr class="separator:ab08846cd9ce4b094e07ebfe6a3a7f218"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef165f84145d93e146d488f12497102b"><td class="memItemLeft" align="right" valign="top"><a id="aef165f84145d93e146d488f12497102b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event, sf::View &amp;view)</td></tr>
-<tr class="separator:aef165f84145d93e146d488f12497102b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0be97dbd7f31fdd61f9965942a83c884"><td class="memItemLeft" align="right" valign="top"><a id="a0be97dbd7f31fdd61f9965942a83c884"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> (const sf::Event &amp;event, sf::View &amp;view)</td></tr>
-<tr class="separator:a0be97dbd7f31fdd61f9965942a83c884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00db7534ddf7bc61464c702f27779e40"><td class="memItemLeft" align="right" valign="top"><a id="a00db7534ddf7bc61464c702f27779e40"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleInput</b> (const sf::Event &amp;event)</td></tr>
+<tr class="separator:a00db7534ddf7bc61464c702f27779e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d9c2f83737cce80ea701cd93d130d1"><td class="memItemLeft" align="right" valign="top"><a id="ad7d9c2f83737cce80ea701cd93d130d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event)</td></tr>
+<tr class="separator:ad7d9c2f83737cce80ea701cd93d130d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15659b6247be572cf6ea82aa638f7add"><td class="memItemLeft" align="right" valign="top"><a id="a15659b6247be572cf6ea82aa638f7add"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> (const sf::Event &amp;event)</td></tr>
+<tr class="separator:a15659b6247be572cf6ea82aa638f7add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a58579400e8206c8ddf85f4fcb122747c"><td class="memItemLeft" align="right" valign="top"><a id="a58579400e8206c8ddf85f4fcb122747c"></a>
 <a class="el" href="struct_state_dependant_objects.html">StateDependantObjects</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stateDependantObjects</b></td></tr>
 <tr class="separator:a58579400e8206c8ddf85f4fcb122747c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb66d019ee81cddfc777874faa728bcb"><td class="memItemLeft" align="right" valign="top"><a id="aeb66d019ee81cddfc777874faa728bcb"></a>
+sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>view</b></td></tr>
+<tr class="separator:aeb66d019ee81cddfc777874faa728bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a551625d73b70cf9779de47f212ad6154"><td class="memItemLeft" align="right" valign="top"><a id="a551625d73b70cf9779de47f212ad6154"></a>
 <a class="el" href="class_music.html">Music</a>&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundMusic</b> = <a class="el" href="class_music.html">Music</a>(&quot;background.wav&quot;)</td></tr>
 <tr class="separator:a551625d73b70cf9779de47f212ad6154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcee89d333595c2400daef1dd8aeb155"><td class="memItemLeft" align="right" valign="top"><a id="adcee89d333595c2400daef1dd8aeb155"></a>
 <a class="el" href="class_music.html">Music</a>&#160;</td><td class="memItemRight" valign="bottom"><b>editingMusic</b> = <a class="el" href="class_music.html">Music</a>(&quot;editingBackground.wav&quot;)</td></tr>
 <tr class="separator:adcee89d333595c2400daef1dd8aeb155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb9536b52c31f13f906a732df6dbfbbd"><td class="memItemLeft" align="right" valign="top"><a id="aeb9536b52c31f13f906a732df6dbfbbd"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>editPosition</b> = sf::Vector2f{960, 540}</td></tr>
+<tr class="separator:aeb9536b52c31f13f906a732df6dbfbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6f8afaab8dc44c9a1b807a7c6acbbb"><td class="memItemLeft" align="right" valign="top"><a id="a2f6f8afaab8dc44c9a1b807a7c6acbbb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>prevState</b> =0</td></tr>
+<tr class="separator:a2f6f8afaab8dc44c9a1b807a7c6acbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a842fac22d4f6b1012cc6950a0d2614fb"><td class="memItemLeft" align="right" valign="top"><a id="a842fac22d4f6b1012cc6950a0d2614fb"></a>
 std::shared_ptr&lt; <a class="el" href="class_state.html">State</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>currentState</b></td></tr>
 <tr class="separator:a842fac22d4f6b1012cc6950a0d2614fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,7 +119,7 @@ std::shared_ptr&lt; <a class="el" href="class_state.html">State</a> &gt;&#160;</
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 17:10:39 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -75,9 +75,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a25d137b0cb4c65bc98e43e29c5a63ff0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a25d137b0cb4c65bc98e43e29c5a63ff0">Editor</a> (sf::RenderWindow &amp;window, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_editor.html#ac0cc175719a5e4069a6d48808a994848">assets</a>)</td></tr>
-<tr class="memdesc:a25d137b0cb4c65bc98e43e29c5a63ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a25d137b0cb4c65bc98e43e29c5a63ff0">More...</a><br /></td></tr>
-<tr class="separator:a25d137b0cb4c65bc98e43e29c5a63ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfdce54ed17af2d8f2e3403d0976111a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#acfdce54ed17af2d8f2e3403d0976111a">Editor</a> (sf::RenderWindow &amp;window, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;<a class="el" href="class_editor.html#ac0cc175719a5e4069a6d48808a994848">assets</a>, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;bindings)</td></tr>
+<tr class="memdesc:acfdce54ed17af2d8f2e3403d0976111a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#acfdce54ed17af2d8f2e3403d0976111a">More...</a><br /></td></tr>
+<tr class="separator:acfdce54ed17af2d8f2e3403d0976111a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6a0cedbe23c11e9b3d44726c9a35d6d"><td class="memItemLeft" align="right" valign="top"><a id="aa6a0cedbe23c11e9b3d44726c9a35d6d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>selectWorld</b> (const std::string &amp;worldName)</td></tr>
 <tr class="separator:aa6a0cedbe23c11e9b3d44726c9a35d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,6 +128,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3308ea11720ce3f969b557b789aa4592"><td class="memItemLeft" align="right" valign="top"><a id="a3308ea11720ce3f969b557b789aa4592"></a>
 sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
 <tr class="separator:a3308ea11720ce3f969b557b789aa4592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78daac86dc51060f23c2176b7274c665"><td class="memItemLeft" align="right" valign="top"><a id="a78daac86dc51060f23c2176b7274c665"></a>
+std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>bindings</b></td></tr>
+<tr class="separator:a78daac86dc51060f23c2176b7274c665"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a955c712f6f646e57011bc728457e606a"><td class="memItemLeft" align="right" valign="top"><a id="a955c712f6f646e57011bc728457e606a"></a>
 std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor.html#a955c712f6f646e57011bc728457e606a">objects</a></td></tr>
 <tr class="memdesc:a955c712f6f646e57011bc728457e606a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector with all placeable objects. <br /></td></tr>
@@ -143,8 +146,8 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 <div class="textblock"><p><a class="el" href="class_world.html" title="World. ">World</a> <a class="el" href="class_editor.html" title="World Editor. ">Editor</a>. </p>
 <p>This class features the ability to edit worlds. This is done using a Drag &amp; Drop interface enabling both players and developers to easily create playable worlds. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a25d137b0cb4c65bc98e43e29c5a63ff0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25d137b0cb4c65bc98e43e29c5a63ff0">&#9670;&nbsp;</a></span>Editor()</h2>
+<a id="acfdce54ed17af2d8f2e3403d0976111a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdce54ed17af2d8f2e3403d0976111a">&#9670;&nbsp;</a></span>Editor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +162,13 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_asset_manager.html">AssetManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>assets</em>&#160;</td>
+          <td class="paramname"><em>assets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>bindings</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -172,9 +181,9 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 <p>Create an instance. </p>
 <p>This creates an <a class="el" href="class_editor.html" title="World Editor. ">Editor</a>. In the background, <a class="el" href="class_world.html" title="World. ">World</a> loads and initializes itself. Furhtermore the view and assets are assigned and the objects available in the editor are loaded. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow which the editor will be drawn in. </td></tr>
     <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
-    <tr><td class="paramname">worldFileName</td><td>The filename of the world to edit. Can be both a new and existing file. </td></tr>
-    <tr><td class="paramname">view</td><td>The view to use for scrolling through the world. </td></tr>
+    <tr><td class="paramname">bindings</td><td>The Keybindings which allows you to rebind the keys of the editor to your own key of choice. </td></tr>
   </table>
   </dd>
 </dl>
@@ -201,7 +210,7 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 <p>Draw the editor and world. </p>
 <p>This function draws both, the editor and world to the passed RenderWindow. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">window</td><td>The window to write the editor and world to. </td></tr>
+    <tr><td class="paramname">view</td><td>The view to write the editor and world to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -235,7 +244,7 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 <p>Draw the tile bar. </p>
 <p>This function draws all available tiles to choose from to the passed RenderWindow. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">window</td><td>The window to write the editor and world to. </td></tr>
+    <tr><td class="paramname">view</td><td>The view to write the editor and world to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -281,7 +290,7 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 <p>Handle user input. </p>
 <p>This function is used to select clicked objects, move clicked objects to the world and store placed objects in the world. Furthermore, the scrolling of a mouse wheel is delegated to <a class="el" href="class_editor.html#aed2537c0bf6daf4b24ebcbcd631f5366" title="Scroll tile bar. ">scrollTileBar()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">window</td><td>The window to use for determining the absolute position of the mouseclicks. </td></tr>
+    <tr><td class="paramname">view</td><td>The view to use for determining the absolute position of the mouseclicks. </td></tr>
   </table>
   </dd>
 </dl>
@@ -389,7 +398,7 @@ int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rightBound</b
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 17:10:39 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

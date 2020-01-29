@@ -151,7 +151,7 @@ void Character::handleEvent(const sf::Event & event){
 /// \brief
 /// Is alive?
 /// \return Whether or not the Character is alive.
-bool Character::isAlive(){
+bool Character::isAlive() const {
 	return health > 0;
 }
 
@@ -610,6 +610,20 @@ int_fast16_t & Character::getSelectedItemNumber(){
 }
 
 /// \brief
+/// Set number of selected item.
+/// @param number The desired new number of the currently selected item.
+void Character::setSelectedItemNumber(int_fast16_t number){
+		selectedItem = number;
+}
+
+/// \brief
+/// Get selected item.
+/// \return A shared pointer to the currently selected item.
+std::shared_ptr<Item> Character::getSelectedItem(){
+	return items[selectedItem];
+}
+
+/// \brief
 /// Get items.
 /// \return A vector with shared pointers to the items.
 std::vector<std::shared_ptr<Item>> & Character::getItems(){
@@ -687,4 +701,40 @@ void Character::setHealth(const int_fast16_t newHealth){
 /// @param newPosition The new position of the character.
 void Character::setPosition(const sf::Vector2f & newPosition){
 	position = newPosition;
+}
+
+/// \brief
+/// Set input component
+/// @param newInput The new InputComponent to use for changing direction.
+void Character::setInput(std::shared_ptr<InputComponent> newInput){
+	input = newInput;
+}
+
+/// \brief
+/// Get GraphicsComponent
+/// \return The currently active GraphicsComponent.
+std::shared_ptr<AnimatedGraphicsComponent> Character::getGraphics(){
+	return graphics;
+}
+
+/// \brief
+/// Set spawn position
+/// @param newSpawn The new desired spawn location.
+void Character::setSpawn(const sf::Vector2f & newSpawn){
+	spawnPosition = newSpawn;
+}
+
+/// \brief
+/// Get spawn position
+/// |return The current spawn position.
+sf::Vector2f Character::getSpawn(){
+	return spawnPosition;
+}
+
+/// \brief
+/// Respawn 
+/// |details
+/// Set the position of the character to the spawn position.
+void Character::respawn(){
+	position = spawnPosition;
 }

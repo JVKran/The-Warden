@@ -60,7 +60,7 @@ class PhysicsComponent {
 		
 		bool bottomCollision, topCollision, leftCollision, rightCollision;		//!< Booleans for determining wether or not collisions are taking place.
 		bool characterCollision;												//!< Wether or not there's a collision between another character.
-		bool playerCollision;
+		bool playerCollision;													//!< Wether or not a collision with a player has occured.
 		bool hasResistance = false;												//!< Wether or not the character has resistance. i.e. is in water.
 	public:
 		virtual void processPhysics(sf::Vector2f & velocity);
@@ -108,22 +108,19 @@ class GraphicsComponent {
 /// \brief
 /// Graphicscomponent for Characters.
 /// \details
-/// This class is responsible for managing all graphics related actions for a given sprite sheet.
+/// This class is responsible for managing all graphics related actions for a given Character.
 class AnimatedGraphicsComponent {
 	protected:
-		sf::Sprite spriteIdle;
-		sf::Sprite spriteJump;
-		sf::Sprite spriteWalk;
-		sf::Sprite spriteAttack;
-		//SpriteCharacter characterData;
+		sf::Sprite spriteIdle;						//!< Spritesheet used for the idle animation.
+		sf::Sprite spriteJump;						//!< Spritesheet used for the jump animation.
+		sf::Sprite spriteWalk;						//!< Spritesheet used for the walk animation.
+		sf::Sprite spriteAttack;					//!< Spritesheet used for the attack animation.
 
-		SpriteAnimation idleAnimation;
-		SpriteAnimation jumpAnimation;
-		SpriteAnimation walkAnimation;
-		SpriteAnimation attackAnimation;
-		SpriteAnimation *currentAnimation;	
-		std::map<std::string, std::vector<sf::Vector2i> > animation;
-		std::string lastAnimation;
+		SpriteAnimation idleAnimation;				//!< SpriteAnimation that is responsible for showing the idle animation.
+		SpriteAnimation jumpAnimation;				//!< SpriteAnimation that is responsible for showing the jump animation.
+		SpriteAnimation walkAnimation;				//!< SpriteAnimation that is responsible for showing the walk animation.
+		SpriteAnimation attackAnimation;			//!< SpriteAnimation that is responsible for showing the attack animation.
+		SpriteAnimation *currentAnimation;			//!< SpriteAnimation that is currently being shown.
 
 		sf::Clock clock;							//!< The clock used to determine when to change to the next sprite in the spritesheet.
 		sf::Time previousTime;						//!< The last time the sprite changed.
@@ -191,27 +188,24 @@ class Character {
 		void addTile(Tile & tile);
 		void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);
 		void handleEvent(const sf::Event & event);
-		bool isAlive();
 
+		bool isAlive() const;
 		void die();
 		void restartClock();
-
-
-		int_fast16_t & getSelectedItemNumber();
-
-		std::shared_ptr<Item> getSelectedItem(){
-			return items[selectedItem];
-		}
-		std::shared_ptr<AnimatedGraphicsComponent> getGraphics(){
-			return graphics;
-		}
-		void setSelectedItemNumber(int_fast16_t number){
-				selectedItem = number;
-		}
-		std::vector<std::shared_ptr<Item>> & getItems();
 		bool isPlayer() const;
 
+		int_fast16_t & getSelectedItemNumber();
+		void setSelectedItemNumber(int_fast16_t number);
+		std::shared_ptr<Item> getSelectedItem();
+		std::vector<std::shared_ptr<Item>> & getItems();
+
+		void setInput(std::shared_ptr<InputComponent> newInput);
+		std::shared_ptr<AnimatedGraphicsComponent> getGraphics();
+
+
 		sf::Vector2f getPosition() const;
+		void setPosition(const sf::Vector2f & newPosition);
+
 		sf::FloatRect getBounds() const;
 		sf::FloatRect getGlobal() const; 
 
@@ -228,23 +222,9 @@ class Character {
 		int_fast16_t getHealth() const;
 		void setHealth(const int_fast16_t newHealth);
 
-		void setPosition(const sf::Vector2f & newPosition);
-
-		void setInput(std::shared_ptr<InputComponent> newInput){
-			input = newInput;
-		}
-
-		void setSpawn(const sf::Vector2f & newSpawn){
-			spawnPosition = newSpawn;
-		}
-
-		sf::Vector2f getSpawn(){
-			return spawnPosition;
-		}
-
-		void respawn(){
-			position = spawnPosition;
-		}
+		void setSpawn(const sf::Vector2f & newSpawn);
+		sf::Vector2f getSpawn();
+		void respawn();
 };
 
 #endif //__CHARACTER_HPP

@@ -58,13 +58,13 @@ int main(){
 		previous = current;
 		lag += elapsed;
 
-		if(machine.getCurrentState()->getName() != 4){			//EPlaying
+		if(machine.getCurrentState()->getName() != 4){			//Playing
 			while(lag >= simulationSpeed){
 				machine.handleInput(event);
 				lag -= simulationSpeed;
 			}	
 		} else {
-			machine.handleInput(event);					//Editing
+			machine.handleInput(event);							//Editing
 		}		
 
 
@@ -82,7 +82,6 @@ int main(){
 
 
 	}
-
 	return 0;
 }
 

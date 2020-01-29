@@ -110,10 +110,16 @@ virtual int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getPe
 <tr class="memitem:a4ff297b946505e7956eae16006cada04 inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="a4ff297b946505e7956eae16006cada04"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
 <tr class="separator:a4ff297b946505e7956eae16006cada04 inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565669f749db5ca2a88a96649de03563 inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="a565669f749db5ca2a88a96649de03563"></a>
+virtual int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getAmount</b> ()</td></tr>
+<tr class="separator:a565669f749db5ca2a88a96649de03563 inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e39923637fd6a4fdb5fc1046e7866a inherit pub_methods_class_item"><td class="memItemLeft" align="right" valign="top"><a id="a10e39923637fd6a4fdb5fc1046e7866a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawAmount</b> (sf::RenderWindow &amp;window)</td></tr>
+<tr class="separator:a10e39923637fd6a4fdb5fc1046e7866a inherit pub_methods_class_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tile"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_tile')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_tile.html">Tile</a></td></tr>
-<tr class="memitem:a9ea72fbe4159c00b7883b00498e41568 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
-<tr class="memdesc:a9ea72fbe4159c00b7883b00498e41568 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="class_tile.html#a9ea72fbe4159c00b7883b00498e41568">More...</a><br /></td></tr>
-<tr class="separator:a9ea72fbe4159c00b7883b00498e41568 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538d076e55cd999bf4b5dcbefdd7175c inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a538d076e55cd999bf4b5dcbefdd7175c">Tile</a> (const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), sf::Vector2f <a class="el" href="class_tile.html#ae937a22063a2cf8bf5bfce01f7050acb">teleportPosition</a>=sf::Vector2f(0, 0), const float scale=1, const bool <a class="el" href="class_tile.html#ae399354876c1b90b2bf4157334e4238d">collidable</a>=true, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0, bool <a class="el" href="class_tile.html#af0fa472b89b2dc6a8d8e15dac421ecf0">interactable</a>=false)</td></tr>
+<tr class="memdesc:a538d076e55cd999bf4b5dcbefdd7175c inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create instance.  <a href="class_tile.html#a538d076e55cd999bf4b5dcbefdd7175c">More...</a><br /></td></tr>
+<tr class="separator:a538d076e55cd999bf4b5dcbefdd7175c inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeff8e22b0829e24ec42953b826d4db6 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">getConfiguration</a> () const override</td></tr>
 <tr class="memdesc:abeff8e22b0829e24ec42953b826d4db6 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration.  <a href="class_tile.html#abeff8e22b0829e24ec42953b826d4db6">More...</a><br /></td></tr>
 <tr class="separator:abeff8e22b0829e24ec42953b826d4db6 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,14 +139,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()
 <tr class="memdesc:a6e0eeda9ee504840011a57ce751ad8b9 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is interactable?  <a href="class_tile.html#a6e0eeda9ee504840011a57ce751ad8b9">More...</a><br /></td></tr>
 <tr class="separator:a6e0eeda9ee504840011a57ce751ad8b9 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6acd5e9402f4787454e4f72f64ef741 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ab6acd5e9402f4787454e4f72f64ef741">setInteractability</a> (const bool newInteractability)</td></tr>
-<tr class="memdesc:ab6acd5e9402f4787454e4f72f64ef741 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set interactability.  <a href="class_tile.html#ab6acd5e9402f4787454e4f72f64ef741">More...</a><br /></td></tr>
 <tr class="separator:ab6acd5e9402f4787454e4f72f64ef741 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31d0db6619f0dc9997f120dbbfc5ac24 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24">isPassageWay</a> () const</td></tr>
-<tr class="memdesc:a31d0db6619f0dc9997f120dbbfc5ac24 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this tile a passageway.  <a href="class_tile.html#a31d0db6619f0dc9997f120dbbfc5ac24">More...</a><br /></td></tr>
-<tr class="separator:a31d0db6619f0dc9997f120dbbfc5ac24 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424e4692b49d8361a565d9d495e1899f inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a424e4692b49d8361a565d9d495e1899f">setPassageWay</a> (const bool newPassageWay)</td></tr>
-<tr class="memdesc:a424e4692b49d8361a565d9d495e1899f inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a passageway.  <a href="class_tile.html#a424e4692b49d8361a565d9d495e1899f">More...</a><br /></td></tr>
-<tr class="separator:a424e4692b49d8361a565d9d495e1899f inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ed033d169a0530dfeb713ad365058e2 inherit pub_methods_class_tile"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a4ed033d169a0530dfeb713ad365058e2">getTeleportPosition</a> () const</td></tr>
 <tr class="memdesc:a4ed033d169a0530dfeb713ad365058e2 inherit pub_methods_class_tile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get teleport position.  <a href="class_tile.html#a4ed033d169a0530dfeb713ad365058e2">More...</a><br /></td></tr>
 <tr class="separator:a4ed033d169a0530dfeb713ad365058e2 inherit pub_methods_class_tile"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -333,7 +332,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 28 2020 13:27:15 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 29 2020 17:10:39 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

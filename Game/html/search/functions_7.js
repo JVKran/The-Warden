@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['leftsprite',['leftSprite',['../class_sprite_animation.html#ac10cf72d474d256d7745d41e28bb63db',1,'SpriteAnimation']]],
-  ['loadcharacters',['loadCharacters',['../class_game.html#af544f3ebb846a73690b1e936980edc56',1,'Game']]],
-  ['loadobjects',['loadObjects',['../class_editor.html#a96fa3ceb205d9dc9ad40a4be8f7ae8a4',1,'Editor::loadObjects()'],['../class_asset_manager.html#aff8dd68a1dc871fe68b131066cd051aa',1,'AssetManager::loadObjects()']]],
-  ['loadtexture',['loadTexture',['../class_asset_manager.html#a0d47d83e83932419d1a6a560783461b2',1,'AssetManager']]],
-  ['loadtile',['loadTile',['../class_world.html#a3832e9490f846f6d1a9b5806e9bca1bb',1,'World']]],
-  ['loadworld',['loadWorld',['../class_world.html#ae680e9d541828518cb8d1125e0b1dfa7',1,'World']]]
+  ['isalive',['isAlive',['../class_character.html#aced814c6549d4243897ab976d243bd5c',1,'Character']]],
+  ['iscollidable',['isCollidable',['../class_tile.html#a18a53d461961de8017c0cb4a4de5977c',1,'Tile']]],
+  ['isfirstoneselected',['isFirstOneSelected',['../class_editor.html#ae6e19e4887ca1df5306947c3161e2e29',1,'Editor']]],
+  ['isfollowingmouse',['isFollowingMouse',['../class_tile.html#a1f924d5135208a2835f5d07ec9c6dd6f',1,'Tile']]],
+  ['isinteractable',['isInteractable',['../class_tile.html#a6e0eeda9ee504840011a57ce751ad8b9',1,'Tile']]],
+  ['ispartofworld',['isPartOfWorld',['../class_tile.html#ae4b84ac39d875348257fd6986a9141dc',1,'Tile']]],
+  ['isplayer',['isPlayer',['../class_character.html#aad03740ab474e84411b44362dc62319f',1,'Character']]],
+  ['isselected',['isSelected',['../class_tile.html#ae8a979793d54468a9fdb5d3d446068fb',1,'Tile']]]
 ];

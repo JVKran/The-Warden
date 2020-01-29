@@ -28,7 +28,7 @@ Game::Game(sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBind
 	}
 	timeSprite.setTexture(assets.getTexture("time"));
 	experienceSprite.setTexture(assets.getTexture("experience"));
-	savePointSprite.setTexture(assets.getTexture("ironSword"));
+	savePointSprite.setTexture(assets.getTexture("checkpoint"));
 	highScoreSprite.setTexture(assets.getTexture("starLogo"));
 	highScoreSprite.setScale(0.12, 0.12);
 
