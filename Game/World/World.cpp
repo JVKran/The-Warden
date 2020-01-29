@@ -87,6 +87,7 @@ void World::loadTile(std::ifstream & input){
 	bool collidable, interactable;
 	try {
 		input >> position >> teleportPosition >> assetName >> collidable >> scale >> rotation >> windowLayer >> interactable;
+		//std::cout<<teleportPosition.x<<'\n';
 		tiles.push_back(Tile(assetName, assets, position, teleportPosition, scale, collidable, rotation, windowLayer, interactable));
 	} catch (...){
 		std::cerr << "(!)-- Syntax mistake in configuration file: \n(" << position.x << ',' << position.y << ") (" << teleportPosition.x << ',' << teleportPosition.y << ") " << assetName << ' ' << collidable << ' ' << scale << ' ' << rotation << ' ' << windowLayer << ' ' << interactable << std::endl;

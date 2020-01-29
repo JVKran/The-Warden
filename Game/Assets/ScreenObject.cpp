@@ -119,9 +119,10 @@ sf::FloatRect ScreenObject::getBounds() const {
 /// @param windowLayer The initial window layer the sprite is part of.
 Tile::Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, sf::Vector2f teleportPosition, const float scale, const bool collidable, const float rotation, const int windowLayer, bool interactable):
 	ScreenObject(assetName, assets, position, scale, rotation, windowLayer),
-	collidable(collidable)
+	collidable(collidable),
+	teleportPosition(teleportPosition)
 {
-	teleportPosition = {0,0};
+	
 }
 
 /// \brief

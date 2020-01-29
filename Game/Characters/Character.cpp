@@ -220,6 +220,7 @@ void PhysicsComponent::processCollisions(std::vector<std::shared_ptr<Item>> & ch
 			}
 			if(tile.getName()=="OpenDoor"){
 				if(hitbox.intersects(tileBounds) || bottomHitbox.intersects(tileBounds)){
+					std::cout<<"======================naar"<<tile.getTeleportPosition().x<<'\n';
 					ownCharacter->setPosition(tile.getTeleportPosition());
 				}
 			}

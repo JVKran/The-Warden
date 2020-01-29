@@ -139,6 +139,7 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		// if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
 		// 	tile.setFollowMouse(false);
 		// }
+		//std::cout<<"============KEYS"<<'\n';
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete) && tile.isFollowingMouse()){
 			tiles.erase( std::find(tiles.begin(), tiles.end(), tile) );
 		}
@@ -166,15 +167,19 @@ void Editor::handleTileInput(Tile & tile, sf::RenderWindow & window, sf::View & 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
 			tile.setInteractability(true);
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-			std::cout<<"cout\n";
+		
+			
+		
+	}
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+
 			if(tile.isSelected()){
 				sf::Vector2f newPosition = sf::Vector2f(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 				tile.changeTeleportPosition(newPosition);
 				std::cout<< newPosition.x << ", " << newPosition.y << '\n';
 				tile.changeSelected(false);
 			}
-		}
 	}
 	tile.move(window.mapPixelToCoords(sf::Mouse::getPosition(window), view));
 }
