@@ -6,14 +6,13 @@
 Settings::Settings( sf::RenderWindow & window, AssetManager & assets, std::vector<KeyBinding> & bindings ):
 	window( window ),
 	bindings(bindings),
-	action(Action([]{})),
 	world(assets)
 	{
 		world.loadWorld("Interface/backgroundWorld.txt");
 	}
 
 void Settings::initialize(StateMachine * machine){
-	 action = Action( [machine]{  machine->changeState(std::make_shared<MenuState>());});
+	 work =  [machine]{  machine->changeState(std::make_shared<MenuState>());};
 }
 
 void Settings::handleInput(){
@@ -42,7 +41,7 @@ void Settings::handleEvent( const sf::Event & event ){
 
 			if( sf::Mouse::isButtonPressed(sf::Mouse::Left) ){			
 				if( backButton.contains( sf::Mouse::getPosition(window)) ){		//if backButton is pressed go back to menu screen
-					action.startFunction();
+					work();
 				}else{
 					uint counter = 0;												//holds the index of Bindings object (see uint selectedKey)
 					for( KeyBinding & keyRef : bindings ){

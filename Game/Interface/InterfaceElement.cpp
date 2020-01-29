@@ -6,9 +6,10 @@
 /// This creates an InterFaceElement. 
 /// @param element A ScreenObject to make and check the sprites.
 /// @param action An Action to store lambda functions.
-InterfaceElement::InterfaceElement( ScreenObject element, Action action ):
+
+InterfaceElement::InterfaceElement( ScreenObject element, std::function< void() > work):
 	element(element),
-	action(action)
+	work(work)
 {}
 
 /// \brief
@@ -32,7 +33,7 @@ bool InterfaceElement::contains( sf::RenderWindow & window , sf::View & view){;
 /// \details
 /// This function will start the given lambda function.
 void InterfaceElement::changeState(){ 
-	action.startFunction();
+	work();
 }
 /// \brief
 /// Set position.

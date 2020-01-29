@@ -30,13 +30,13 @@ class PlayerInput : public InputComponent {
 		PlayerInput(World & world, std::vector<Character> & characters):
 			InputComponent(world, characters)
 		{}
+		
 		virtual void processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys) override;
 		virtual void addTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) override;
 		virtual void addTile(Tile & tile);
 		virtual void deleteTile(const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view) override;
 		virtual void processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) override;
 		virtual void handleEvent(const sf::Event & event, int_fast16_t & selectedItem) override;
-		void handleInteraction(World & world);
 
 		PlayerInput & operator=(PlayerInput lhs){
 			world = lhs.world;

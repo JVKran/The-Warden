@@ -29,7 +29,7 @@ int main(){
 		KeyBinding ( "Set Layer 2",				sf::Keyboard::F3,		Text( "Set Layer 2 : F3",					sf::Vector2f{960.0, 400.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set Layer 3",				sf::Keyboard::F4,		Text( "Set Layer 3 : F4",					sf::Vector2f{960.0, 440.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set Layer 4",				sf::Keyboard::F5,		Text( "Set Layer 4 : F5",					sf::Vector2f{960.0, 480.0},  1, sf::Color::Black, 1 )),
-		KeyBinding ( "Set interactable",		sf::Keyboard::E,		Text( "Set interactable : E",				sf::Vector2f{960.0, 520.0},  1, sf::Color::Black, 1 )),
+		KeyBinding ( "Set interactable",		sf::Keyboard::N,		Text( "Set interactable : N",				sf::Vector2f{960.0, 520.0},  1, sf::Color::Black, 1 )),
 		KeyBinding ( "Change selected item",	sf::Keyboard::LControl,	Text( "change selected item : LControl",	sf::Vector2f{960.0, 560.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Set teleport position",	sf::Keyboard::I, 		Text( "set teleport position : I",			sf::Vector2f{960.0, 600.0}, 1, sf::Color::Black, 1 )),
 		KeyBinding ( "Enable vision control",	sf::Keyboard::RControl,	Text( "Enable vision control: RControl",	sf::Vector2f{960.0, 640.0}, 1, sf::Color::Black, 1 )),

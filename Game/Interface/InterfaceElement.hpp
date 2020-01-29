@@ -1,7 +1,7 @@
 /// @file
 #ifndef __INTERFACE_ELEMENT_HPP
 #define __INTERFACE_ELEMENT_HPP
-
+#include <functional>
 #include "ScreenObject.hpp"
 #include "Action.hpp"
 /// \brief
@@ -12,9 +12,9 @@
 class InterfaceElement {
 	private:
 		ScreenObject element;
-		Action action;
+		std::function< void() > work;
 	public:
-		InterfaceElement( ScreenObject element, Action action );
+		InterfaceElement( ScreenObject element, std::function< void() > work);
 
 		bool comparePosition( sf::Vector2f position );
 		bool contains( sf::RenderWindow & window, sf::View & view );
