@@ -3,21 +3,16 @@
 #include <functional>
 #include "ScreenObject.hpp"
 
-class InterfaceElement {
+class InterfaceElement : public ScreenObject{
 	private:
-		ScreenObject element;
 		std::function< void() > work;
 	public:
-		InterfaceElement( ScreenObject element, std::function< void() > work);
+		InterfaceElement(  std::function< void() > work, const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), const float scale = 1,const float rotation = 0, const int windowLayer = 0);
 
 		bool comparePosition( sf::Vector2f position );
 
 		bool contains( sf::RenderWindow & window, sf::View & view );
 
 		void changeState();
-
-		void setPosition(const sf::Vector2f & position);
-
-		void draw( sf::RenderWindow & window );
 	};
 #endif
