@@ -2,9 +2,9 @@
 #include "Interface.hpp"
 
 /// \brief
-/// Create an instance.
+/// Interface constructor.
 /// \details
-/// This creates an InterFaceElement. 
+/// This is the interface constructor. 
 /// @param game This has the entire Game class.
 /// @Param editor This has the entire Editor class.
 /// @param settings This has the entire Settings class. 
