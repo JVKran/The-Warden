@@ -252,6 +252,6 @@ std::vector<std::shared_ptr<Item>> & World::getItems(){
 /// \details
 /// This function is used as a quick access to for the LootDrop needed assets.
 /// \return A refrence to the AssetManager.
-AssetManager & getAssets(){
+AssetManager & World::getAssets(){
 	return assets;
 }
