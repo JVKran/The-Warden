@@ -2,6 +2,14 @@
 
 #include "ScreenObject.hpp"
 
+/// \brief
+/// Smaller than operator
+/// \details
+/// This function returns wether or not the left hand side object is smaller than the right hand side object.
+/// This is done based on the x-coordinate.
+/// @param lhs The left hand side sf::Vector2f (returns true if this one is smaller).
+/// @param rhs The right hand side sf::Vector2f.
+/// \return Wether or not the lhs vector is smaller than the rhs vector.
 bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 	return lhs.x < rhs.x;
 }

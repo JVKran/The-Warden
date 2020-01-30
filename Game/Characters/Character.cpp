@@ -40,7 +40,7 @@ SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::
 /// @param startItems The items the character starts with.
 /// @param world The world to use for determining AI paths.
 /// @param isPlayerType Wether or not this character is a player.
-/// @param health The health of the character.
+/// @param health The initial health of the character.
 Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> input, std::shared_ptr<PhysicsComponent> physics, std::shared_ptr<AnimatedGraphicsComponent> graphics, std::vector<std::shared_ptr<Item>> startItems, World & world, const bool isPlayerType,int_fast16_t health):
 	spawnPosition(position),
 	position(position),
@@ -52,9 +52,7 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	input(input),
 	physics(physics),
 	graphics(graphics)
-
 {
-
 	items = startItems;
 	healthBar.setOutlineThickness(2);
 	itemSelector.setOutlineThickness(2);
@@ -64,13 +62,18 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
+/// \brief
+/// Let the character drop its items
+/// \details
+/// This drops all items of the Character.
 void Character::die(){
 	lootDrop->drop(items, experiencePoints, sf::Vector2f(position.x,position.y+graphics->getDimensions().y-10));
 }
+
 /// \brief
 /// Restart the clock
 /// \details
-/// This function will restart the clock 
+/// This function restarts the clock so the Characters PhysicsComponent is paused.
 void Character::restartClock(){
 	clock.restart();
 	lastUpdate = 0.0;
@@ -141,7 +144,7 @@ void Character::deleteTile(const sf::Event & event, World & world, sf::RenderWin
 /// Handles an event
 /// \details
 /// Handles an event for the currently selected item.
-/// @param The event for handling the selected item.
+/// @param The event for handling what item is selected.
 void Character::handleEvent(const sf::Event & event){
 	input->processItemUsage(event, items, this);
 }

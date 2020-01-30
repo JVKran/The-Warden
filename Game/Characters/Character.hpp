@@ -42,7 +42,6 @@ struct SpriteCharacter {
 	std::string dieName;
 	std::string dieFile;
 
-
 	SpriteCharacter(std::string idleName, std::string idleFile, std::string jumpName, 
 					std::string jumpFile, std::string walkName, std::string walkFile, 
 					std::string attackName, std::string attackFile, std::string dieName, 
@@ -52,7 +51,7 @@ struct SpriteCharacter {
 /// \brief
 /// Physicscomponent for Characters.
 /// \details
-/// This class is responsible for updating and managing physics for a Character.
+/// This class is responsible for updating and managing all physics for a Character.
 class PhysicsComponent {
 	protected:
 		enum class states {JUMPING, STANDING, FALLING, INSIDE};					//!< The states the character can be in.
@@ -73,7 +72,7 @@ class PhysicsComponent {
 /// \brief
 /// Inputcomponent for Characters.
 /// \details
-/// This class is responsible for managing input for a Character.
+/// This class is responsible for managing all input for a Character; keys, vision and artificial intelligence are covered in subclasses.
 class InputComponent {
 	protected:
 		World & world;															//!< The world to use for determining AI paths.
