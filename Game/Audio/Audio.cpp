@@ -6,6 +6,7 @@
 /// Create an instance
 /// \details
 /// This loads the sound in the file into the buffer.
+/// @param filename The filename of the music that should play.
 Sound::Sound(const std::string & filename):
 	filename(filename)
 {
@@ -28,6 +29,7 @@ void Sound::playSound(){
 /// Create an instance
 /// \details
 /// This loads the music from the file into the sf::Music object.
+/// @param filename The filename of the music that should play.
 Music::Music(const std::string & filename):
 	filename(filename)
 {
@@ -65,6 +67,7 @@ void Music::stopMusic(){
 /// Change volume.
 /// \details
 /// This selects the volume of the currently playing music.
+/// @param newVolume This is the new volume of the music.
 void Music::setMusicVolume(const float & newVolume){
 	music.setVolume(newVolume);
 }

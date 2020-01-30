@@ -7,27 +7,27 @@
 
 class SpriteAnimation {
 	private:
-		sf::Sprite& sprite;
-		sf::Texture& texture;
-		sf::Vector2i dimensions;		// Width,height
-		sf::Vector2i spriteRowColumn;	// Row, column
-		sf::Vector2f scale;
-		int missingRow;					// If the spritesheet is missing some frames 
-		float animationSpeed;
-		sf::Vector2f hitboxscale={0.2,0.2};
-		sf::Vector2i missingRowCollom;
-		sf::Vector2i startFrame;
-		sf::Vector2i offset;
+		sf::Sprite& sprite;					//!< The sprite that is drawn.
+		sf::Texture& texture;				//!< The used spritesheet.
+		sf::Vector2i dimensions;			//!< The width and height of the spritesheet.
+		sf::Vector2i spriteRowColumn;		//!< The Row and column of the spritesheet.
+		sf::Vector2f scale;					//!< The scale of the sprite.
+		int missingRow;						//!< If the spritesheet is missing some frames.
+		float animationSpeed;				//!< The speed which animations are played.
+		sf::Vector2f hitboxscale={0.2,0.2};	//!< The hitbox.
+		sf::Vector2i missingRowCollom;		//!< The missing row and collumns in a spritesheet.
+		sf::Vector2i startFrame;			//!< The frame to start in.
+		sf::Vector2i offset;				//!< The offset of the hitbox.
 		
-		sf::Clock spriteClock;
+		sf::Clock spriteClock;				//!< The clock that determines the animation speed of the sheet.
 		
-		sf::IntRect rectSourceSprite;
+		sf::IntRect rectSourceSprite;       //!< The rectangle that cuts of one frame.
 			
-		int specifiedColumnsHeight=0;
-		int pixelRow;
-		int pixelColumn;
-		bool startFrameLoop=false;
-		bool ismirrored;
+		int specifiedColumnsHeight=0;		//!< The height of the column.
+		int pixelRow;						//!< How many pixels one frame has in a row.
+		int pixelColumn;					//!< How many pixels one fram has in a column
+		bool startFrameLoop=false;			//!< To start the loop.
+		bool ismirrored;					//!< If the sprite has to be mirrored.
 	
 	public:
 		SpriteAnimation(AssetManager &assets,sf::Sprite& sprite, std::string movename, std::string filename);

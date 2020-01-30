@@ -4,6 +4,9 @@
 /// Create enemy input.
 /// \details
 /// This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight.
+/// @param position The position of the enemy.
+/// @param direction The direction of the enemy.
+/// @param keys Because the playerInput also needs one.
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	int detectionRange = 80;
 
@@ -25,7 +28,7 @@ void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & dire
 /// Assignment operator.
 /// \details
 /// This class assigns the enemy input to another one.
-/// \return A refrence to itself.
+/// \return A reference to itself.
 EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 	world = lhs.world;
 	characters = lhs.characters;
@@ -35,7 +38,10 @@ EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 /// \brief
 /// Process item usage.
 /// \details
-/// This class implements the item usage for enmies. It consists of continuously hitting...
+/// This class implements the item usage for enemies. It consists of continuously hitting...
+/// @param event The sf::Event to use for detecting and handling occured events.
+/// @param items The items the enemy will drop when dead.
+/// @param ownCharacter This is itself.
 void EnemyInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
 	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
 		ownCharacter->getGraphics()->setFightAnimation();
@@ -46,6 +52,8 @@ void EnemyInput::processItemUsage(const sf::Event & event, std::vector<std::shar
 /// Create an instance.
 /// \details
 /// This function creates an EnemyGraphics Component.
+/// @param assetName The name of the texture to get from the AssetManager that should be used to construct te sprite.
+/// @param assets The AssetManager to use to retrieve assets.
 EnemyGraphics::EnemyGraphics(const std::string & assetName, AssetManager & assets):
 	GraphicsComponent(assetName, assets)
 {}
@@ -54,6 +62,9 @@ EnemyGraphics::EnemyGraphics(const std::string & assetName, AssetManager & asset
 /// Process graphics.
 /// \details
 /// This function processes the graphics; drawing the sprite and flushing it to the renderwindow.
+/// @param window The RenderWindow to draw in.
+/// @param position The position of the enemy.
+/// @param view The sf::View to determine the position of for making sure only the minimal is drawn.
 void EnemyGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
 	window.draw(sprite);
@@ -190,6 +201,9 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
 /// Create Boss input.
 /// \details
 /// This class creates the input for boss, it's nearly identical to the enemyinput except it is able to detect a player from further away.
+/// @param position The position of the boss.
+/// @param direction The direction of the boss.
+/// @param keys Because the playerInput also needs one.
 void BossInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	int detectionRange = 1;
 	for(int_fast16_t i = characters.size() - 1; i >= 0; i--){

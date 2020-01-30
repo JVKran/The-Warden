@@ -6,11 +6,24 @@
 #include "FactoryFunction.hpp"
 #include "Character.hpp"
 
+/// \brief
+/// Set hitbox scale.
+/// \details
+/// This will set the hitbox scale to the new scale.
+/// @param newScale This is the new scale for the hitbox.
 void SpriteAnimation::sethitboxscale(float newscale){
 	hitboxscale.x=newscale;
 	hitboxscale.y=newscale;
 }
-
+/// \brief
+/// Create instance
+/// \details
+/// This will create a new SpriteAnimation. 
+/// This will read a text file and fills in all the variables to make an animation, that can be called upon with the movename.
+/// @param assets The AssetManager that's used to retrieve loaded textures.
+/// @param sprite The sprite that is drawn.
+/// @param movename This is the name that will associate with a move in the text file.
+/// @param filename This is the text file where it reads the character animations.
 SpriteAnimation::SpriteAnimation(AssetManager &assets,sf::Sprite &sprite, std::string movename, std::string filename):
 sprite(sprite),
 texture(assets.getTexture(filename))

@@ -20,16 +20,16 @@ class EnemyPhysics : public PhysicsComponent {
 /// \brief
 /// BossPhysics.
 /// \details
-/// Almost identical to EnemyPhysics, but even slower and with slower acceleration
+/// Almost identical to EnemyPhysics, but even slower and with slower acceleration.
 class BossPhysics : public PhysicsComponent {
 	public:
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
 };
 
 /// \brief
-/// BossPhysics.
+/// DogPhysics.
 /// \details
-/// Almost identical to EnemyPhysics, but even slower and with slower acceleration
+/// Almost identical to EnemyPhysics, but faster and with faster acceleration.
 class DogPhysics : public PhysicsComponent {
 	public:
 		virtual void processVelocity(sf::Vector2f & direction, sf::Vector2f & velocity) override;
