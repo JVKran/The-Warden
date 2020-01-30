@@ -85,6 +85,8 @@ void Interface::handleInput(){
 /// Handle Events.
 /// \details
 /// This handles all the events it gets; used for starting a game, the editor or closing the window.
+/// @param event This will catch the mouse presses.
+/// @param view The view to use for determining the absolute position of the mouseclicks.
 void Interface::handleEvent(const sf::Event & event, sf::View & view){
 	game.restartClocks();
 	for( InterfaceElement & sprite : interfaceElements){
@@ -112,6 +114,7 @@ void Interface::handleEvent(const sf::Event & event, sf::View & view){
 /// Display the game.
 /// \details
 /// This displays the current state of the menu or the pause state on screen.
+/// @param view This will be the section what the screen will show.
 void Interface::display(sf::View & view){
 	if (pauseGame){
 		view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));

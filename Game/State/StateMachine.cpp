@@ -20,7 +20,7 @@ StateMachine::StateMachine(Game & game, Interface & interface, Editor & editor, 
 /// Change to a new state.
 /// \details
 /// This function will switch to the right state and play their respective code.
-/// @param prevState This will remember the previous name of the state it was in
+/// @param newState This will have the new state that needs to be changed to.
 void StateMachine::changeState(std::shared_ptr<State> newState){
 	currentState = newState;
 	switch(currentState->getName()){
