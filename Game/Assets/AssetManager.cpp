@@ -7,6 +7,7 @@
 /// \details
 /// This constructs an AssetManager and loads the map with the contents of the passed parameter.
 /// calls loadObjects in the background.
+/// @param assetLocationsFile This file contains all assets, their locations and their names.
 AssetManager::AssetManager(const std::string & assetLocationsFile){
 	loadObjects(assetLocationsFile);
 }
@@ -24,7 +25,7 @@ AssetManager::AssetManager(const std::string & assetLocationsFile){
 /// The first word specifies the name that identifies the texture in the textureMap. The second word is equal
 /// to the filepath that leads to the desired texture. Furthermore, another file can be read by calling the function again; 
 /// all new assets are appended to the map. Duplicates are ignored.
-/// @param assetFileName The filename of the file containing all assets, their locations and their names.
+/// @param assetFileName This file contains all assets, their locations and their names.
 void AssetManager::loadObjects(const std::string & assetFileName){
 	std::ifstream assetFile(assetFileName);
 	if(!assetFile){

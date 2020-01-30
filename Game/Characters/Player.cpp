@@ -10,6 +10,9 @@ using namespace cv;
 /// \details
 /// This function draws the Character in the RenderWindow and sets the View to the position
 /// of the Character to keep the player centered.
+/// @param window The RenderWindow to draw in.
+/// @param position The position of the player.
+/// @param view The view to follow the player.
 void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector2f & position, sf::View & view){
 	sprite.setPosition(position);
 	if(position.y < 300){
@@ -26,6 +29,7 @@ void PlayerGraphics::processGraphics(sf::RenderWindow & window, const sf::Vector
 /// This class crates an animatedPlayerGraphics instance.
 /// @param assetName The name of the asset to use for retrieving the texture from the AssetManager.
 /// @param assets The AssetManager to retrieve the texture from.
+/// @param characterData The SpriteCharacter that has all the data needed to animate the sprite.
 AnimatedPlayerGraphics::AnimatedPlayerGraphics(const std::string & assetName, AssetManager & assets, SpriteCharacter & characterData):
 	AnimatedGraphicsComponent(assetName, assets, characterData)
 {}
@@ -34,6 +38,8 @@ AnimatedPlayerGraphics::AnimatedPlayerGraphics(const std::string & assetName, As
 /// Process view changes.
 /// \details
 /// Sets the View to the position of the Character to keep the player centered.
+/// @param view The sf::View that is used to follow the player.
+/// @param position The position of the player.
 void AnimatedPlayerGraphics::processViewChanges(sf::View & view, const sf::Vector2f & position){
 	if(position.y < 300){
 		view.setCenter(sf::Vector2f(position.x, position.y));

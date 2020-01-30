@@ -2,6 +2,14 @@
 
 #include "ScreenObject.hpp"
 
+/// \brief
+/// Smaller than operator
+/// \details
+/// This function returns wether or not the left hand side object is smaller than the right hand side object.
+/// This is done based on the x-coordinate.
+/// @param lhs The left hand side sf::Vector2f (returns true if this one is smaller).
+/// @param rhs The right hand side sf::Vector2f.
+/// \return Wether or not the lhs vector is smaller than the rhs vector.
 bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 	return lhs.x < rhs.x;
 }
@@ -15,7 +23,7 @@ bool operator<(sf::Vector2f lhs, sf::Vector2f rhs){
 /// @param position The initial position to set and draw the sprite.
 /// @param scale The initial scale of the sprite.
 /// @param rotation The initial rotation of the sprite.
-/// @param windowLayer The initial window layer the sprite is part of.
+/// @param windowLayer The initial window layer the sprite is part of in the world.
 ScreenObject::ScreenObject(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position, const float scale, const float rotation, const int windowLayer):
 	assetName(assetName),
 	windowLayer(windowLayer)

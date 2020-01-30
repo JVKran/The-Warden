@@ -48,7 +48,7 @@ class PlayerInput : public InputComponent {
 /// retrieved from a detached thread.
 class InteractiveInput : public PlayerInput {
 	private:
-	    bool isCreated = false;
+	    bool isCreated = false;										//!< Whether the vision is enabled.
 	    static void detectPosition( sf::Vector2f & direction );
 	public:
 		InteractiveInput(World & world, std::vector<Character> & characters):

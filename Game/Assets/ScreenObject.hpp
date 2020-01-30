@@ -58,7 +58,7 @@ class Tile : public ScreenObject {
 		bool hasBeenAdded = false;			//!< Whether or not this objec has been added to the tiles of the world; if it's part of the world.
 		bool interactable = false;			//!< Whether or not this object can be interacted with by a Character.
 		bool selected = false;				//!< Whether or not this object is currently selected (should follow the mouse cursor).
-		bool passageWay = false;			//!< Whether or not this object is a passageway or not.
+		bool passageWay = false;			//!< Whether or not this object is a passageway.
 		sf::Vector2f teleportPosition;		//!< The position a Character will be teleported to when entering the passage.
 	public:
 		Tile(const std::string & assetName, AssetManager & assets, const sf::Vector2f & position = sf::Vector2f(0,0), sf::Vector2f teleportPosition = sf::Vector2f(0,0), const float scale = 1, const bool collidable = true, const float rotation = 0, const int windowLayer = 0, bool interactable = false);
@@ -90,4 +90,5 @@ class Tile : public ScreenObject {
 		bool operator<(Tile lhs) const;
 
 };
+
 #endif //__SCREEN_OBJECT
