@@ -13,14 +13,14 @@
 /// This object will display a string of text on a window screen
 class Text {
 private:
-	std::string input;
-	sf::Vector2f position;
-	sf::Vector2f size;
-	sf::Color color;
-	bool centered;				//decides if objects position should be used as center(true) or as left upper corner (false)
-	sf::Text text;
-	sf::Font font;
-	bool calculated = true;		//dirty flag to stop recalculations at the draw function
+	std::string input;		//!< The string we want to display
+	sf::Vector2f position;		//!< The position of the object on the screen
+	sf::Vector2f size;		//!< The size of the object
+	sf::Color color;		//!< The color the letters are going to be
+	bool centered;			//!< decides if objects position should be used as center(true) or as left upper corner (false)
+	sf::Text text;			//!< The real Text object from sfml
+	sf::Font font;			//!< The kind of font that is going to be used for the text
+	bool calculated = true;		//!< dirty flag to stop recalculations at the draw function
 
 public:
 
