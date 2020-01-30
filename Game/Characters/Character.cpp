@@ -204,10 +204,10 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 		std::cout << position.x << ", " << position.y << std::endl;
 	}
 
-	sf::RectangleShape hit(graphics->getDimensions());
-	hit.setPosition(position);
-	hit.setFillColor(sf::Color(0,255,0,128));
-	window.draw(hit);
+	// sf::RectangleShape hit(graphics->getDimensions());
+	// hit.setPosition(position);
+	// hit.setFillColor(sf::Color(0,255,0,128));
+	// window.draw(hit);
 }
 
 /// \brief

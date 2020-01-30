@@ -43,9 +43,8 @@ class Game {
 
 		std::vector<int> scores = {0};			//!< The vector in which all set scores are stored.
 
-		std::vector<int> savePoints = {3940, 14000, 19800, 28950, 36450, 51200};	//!< The x-coordinates of the savepoints.
+		std::vector<int> savePoints = {3940, 14000, 19800, 28950, 36450, 48620};	//!< The x-coordinates of the savepoints.
 		int currentSavePoint = 0;									//!< The last checked savepoint.
-		int endPoint = 5000;										//!< The endpoint after which the game ends.
 
 		sf::Clock clock;											//!< The sf::Clock to use for determining passed time.
 		double lastTime;											//!< The last time the clock has been updated.
