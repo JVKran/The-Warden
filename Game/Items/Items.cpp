@@ -137,7 +137,7 @@ Consumable::Consumable(const std::string assetName, AssetManager & assets, const
 /// @param characters All Characters that could be hit (unused).
 bool Consumable::use(Character * character, std::vector<Character> & characters){
 	character->setHealth(foodValue + character->getHealth());
-	std::cout << "New health " << foodValue + character->getHealth() << std::endl;
+	std::cout << "(i)-- New player health " << foodValue + character->getHealth() << std::endl;
 	if(character->getHealth() > 100){
 		character->setHealth(100);
 	}

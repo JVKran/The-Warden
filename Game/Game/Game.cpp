@@ -284,12 +284,15 @@ void Game::loadCharacters(){
 				characters.push_back(Character(position, std::make_shared<PlayerInput>(world, characters), std::make_shared<PhysicsComponent>(), std::make_shared<AnimatedPlayerGraphics>(name, assets, characterData), startItems, world, true));
 			}else if (name =="orc"){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 30, 1500));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 70));
 				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
 			}else if (name =="dog"){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 500));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<DogPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false));
 			}else if (name !=""){
 				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 200));
+				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
 			idleName="";

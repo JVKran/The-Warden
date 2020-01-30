@@ -200,9 +200,9 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 	}
 	window.draw(healthBar);
 
-	// if(isPlayer()){
-	// 	std::cout << position.x << ", " << position.y << std::endl;
-	// }
+	if(isPlayer()){
+		std::cout << position.x << ", " << position.y << std::endl;
+	}
 
 	sf::RectangleShape hit(graphics->getDimensions());
 	hit.setPosition(position);
