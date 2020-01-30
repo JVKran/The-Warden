@@ -1,4 +1,5 @@
 /// @file
+
 #include "SpriteAnimation.hpp"
 #include <iostream>
 #include<exception>
@@ -192,24 +193,40 @@ void SpriteAnimation::draw( sf::RenderWindow & window ){
 	
 }
 
+/// \brief
+/// Get dimensions.
+/// \return The dimensions of the displaying sprite.
 sf::Vector2f SpriteAnimation::getDimensions() const {
 	return sf::Vector2f(pixelColumn*hitboxscale.x, pixelRow*hitboxscale.y);
 }
 
+/// \brief
+/// Get bounds.
+/// \return The global bounds of the currently drawn sprite. Taking scaling into account.
 sf::FloatRect SpriteAnimation::getBounds() const {
 	sf::FloatRect temp=sprite.getGlobalBounds();
-	return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale.x,temp.top+pixelColumn*hitboxscale.y),sf::Vector2f(temp.width,temp.height));
+	return sf::FloatRect(sf::Vector2f(temp.left+pixelRow*hitboxscale.x,temp.top+pixelColumn*hitboxscale.y), sf::Vector2f(temp.width,temp.height));
 }
 
+/// \brief
+/// Get dimensions.
+/// \return The dimensions of the displaying sprite.
 sf::FloatRect SpriteAnimation::getGlobal() const {
 	return sprite.getGlobalBounds();
 }
 
+/// \brief
+/// Move the animation.
+/// @param where The location to move the animation to.
 void SpriteAnimation::move(sf::Vector2f where){
 	sprite.setPosition(sf::Vector2f(where.x+pixelRow*0.5*hitboxscale.x+offset.x,where.y-pixelColumn*0.5*hitboxscale.y+offset.y));
 }
 
-void SpriteAnimation::left(bool where){
-	changeStartEndFrame(startFrame,missingRowCollom,where!=ismirrored);
+/// \brief
+/// Set sprite mirrored.
+/// @param where Wether or not the sprite should be displayed mirrored. Useful for walking in
+/// multiple directions.
+void SpriteAnimation::left(bool left){
+	changeStartEndFrame(startFrame,missingRowCollom,left!=ismirrored);
 }
 

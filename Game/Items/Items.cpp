@@ -54,6 +54,8 @@ std::string Item::getName(){
 /// Create weapon instance.
 /// \details
 /// This function creates a Weapon based on its parameters.
+/// @param assetName The name of the asset this item should have.
+/// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
 /// @param damageFactor The damagefactor to calculate damage dealt.
 /// @param hitPeriod The period that should be in between attacks.
 Weapon::Weapon(const std::string assetName, AssetManager & assets, const int damageFactor, const int_fast16_t hitPeriod):
@@ -119,6 +121,8 @@ bool Weapon::isWeapon(){
 /// Create consumable instance.
 /// \details
 /// This function creates a Consumable.
+/// @param assetName The name of the asset this item should have.
+/// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
 /// @param foodValue The foodvalue to calculate new amount of health.
 Consumable::Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue):
 	Item(assetName, assets),
@@ -173,7 +177,10 @@ int_fast8_t Experience::getExperience() {
 /// and is a crate object.
 /// @param assetName The name of the asset this item should have.
 /// @param assets The AssetManager to use for retrieving the asset identiefied by the passed assetName.
-/// @param amountOfObjects The amount of objects we are able to create
+/// @param amountOfObjects The amount of objects we are able to create.
+/// @param event The sf::Event to use for determining wether or not a block should be placed or broken.
+/// @param window The sf::RenderWindow the blockamount should be written into.
+/// @param view The sf::View to use for determining the absolute position the mouse was clicked at.
 Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view):
 	Item(assetName, assets),
 	amountOfObjects(amountOfObjects),
@@ -183,7 +190,7 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 	window(window),
 	view(view)
 {
-	setNewScale(0.27);		//sets the scale for inventory smaller, because othwise a to big crate will be visible in the inventory
+	setNewScale(0.27);												//sets the scale for inventory smaller, because othwise a to big crate will be visible in the inventory
 	if (!blockFont.loadFromFile("Minecraft.ttf")){
 	    std::cerr << "(!)-- Font Minecraft.ttf not found" << std::endl;
 	} else {
@@ -202,7 +209,7 @@ Block::Block(const std::string assetName, AssetManager & assets, int_fast8_t amo
 /// we only allow it to delete crates, because we don't want te player to destroy the
 /// world.
 bool Block::use(Character * character, std::vector<Character> & characters){
-	std::vector<Tile> & objects = world.getTiles();				//takes a reference from the vector tiles in world
+	std::vector<Tile> & objects = world.getTiles();				//takes a reference to the vector tiles in world
 
 	//gets the distance between the player and the mouse
 	float distance = std::sqrt(std::pow(window.mapPixelToCoords(sf::Mouse::getPosition(window), view).x - character->getPosition().x, 2) +  

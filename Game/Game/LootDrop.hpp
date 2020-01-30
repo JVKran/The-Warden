@@ -18,7 +18,7 @@ class World;
 /// These items are then added to the World so they can be picked up later on.
 class LootDrop {
 	private:
-		World & world;
+		World & world;					//!< The world to drop the items into.
 	public:
 		LootDrop(World & world);
 

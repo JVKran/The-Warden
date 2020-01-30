@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['rectsourcesprite',['rectSourceSprite',['../class_sprite_animation.html#ad15eb31be28f24c8d8e3c8c2f4ae3081',1,'SpriteAnimation']]],
   ['remaininggametime',['remainingGameTime',['../class_game.html#ab1e656b448c18fd235afec248c470bcc',1,'Game']]],
   ['respawn',['respawn',['../class_character.html#a6953345fc6ebe0ded6039fe84e449a1c',1,'Character']]],
   ['restart',['restart',['../class_game.html#aeb468737e1495cfcfbf512cfdc751117',1,'Game']]],

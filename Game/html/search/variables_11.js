@@ -1,6 +1,7 @@
 var searchData=
 [
   ['teleportposition',['teleportPosition',['../class_tile.html#ae937a22063a2cf8bf5bfce01f7050acb',1,'Tile']]],
+  ['texture',['texture',['../class_sprite_animation.html#af8968079588cae7960844b7cc21b81eb',1,'SpriteAnimation']]],
   ['texturemap',['textureMap',['../class_asset_manager.html#a1c82f39e9dd5f2418813f16e2dcfbee2',1,'AssetManager']]],
   ['tiles',['tiles',['../class_world.html#a6aeacfe70531e5eae0b5c42216e447d2',1,'World']]],
   ['timedifference',['timeDifference',['../class_character.html#a8d7a058411c9a83004b9bcb2053f502b',1,'Character']]],

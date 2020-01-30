@@ -145,7 +145,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><div class="memdoc">
 
 <p>Assignment operator. </p>
-<p>This class assigns the enemy input to another one. </p><dl class="section return"><dt>Returns</dt><dd>A refrence to itself. </dd></dl>
+<p>This class assigns the enemy input to another one. </p><dl class="section return"><dt>Returns</dt><dd>A reference to itself. </dd></dl>
 
 </div>
 </div>
@@ -190,7 +190,14 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><div class="memdoc">
 
 <p>Create enemy input. </p>
-<p>This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight. </p>
+<p>This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The current position of the enemy. </td></tr>
+    <tr><td class="paramname">direction</td><td>The direction the enemy should walk towards. </td></tr>
+    <tr><td class="paramname">keys</td><td>Because the <a class="el" href="class_input_component.html" title="Inputcomponent for Characters. ">InputComponent</a> describes this function should have one. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="class_input_component.html">InputComponent</a>.</p>
 
@@ -239,7 +246,14 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><div class="memdoc">
 
 <p>Process item usage. </p>
-<p>This class implements the item usage for enmies. It consists of continuously hitting... </p>
+<p>This class implements the item usage for enemies. It consists of continuously hitting... </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The sf::Event to use for detecting and handling occured events. </td></tr>
+    <tr><td class="paramname">items</td><td>The items the enemy will drop when dead. </td></tr>
+    <tr><td class="paramname">ownCharacter</td><td>This is the <a class="el" href="class_character.html" title="Character. ">Character</a> that called this function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_input_component.html">InputComponent</a>.</p>
 
@@ -252,7 +266,7 @@ std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &am
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 09:11:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 17:12:18 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -19,7 +19,6 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 	window(window)
 { 
 	world.loadWorld("Interface/backgroundWorld.txt");
-	//world.loadWorld("World/world.txt");
  }
 
 /// \brief
@@ -27,12 +26,10 @@ Interface::Interface(Game & game, Editor & editor, Settings & settings, AssetMan
 /// \details
 /// This function will initialize the interfaceElements and pauseElements.
 void Interface::initialize(StateMachine * newMachine){
-	
 	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());},"startButton", assets, sf::Vector2f(550,300), float(1) ));
 	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<EditingState>());},"editButton", assets, sf::Vector2f(150,300),float(0.35)));
 	interfaceElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<SettingsState>());},"settingButton", assets, sf::Vector2f(0,0), float(0.3)));
 	interfaceElements.push_back(InterfaceElement( []{},"closeButton", assets, sf::Vector2f(1150,350), float(0.3)));
-	//Pause elements
 	pauseElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<MenuState>());},"settingButton", assets, sf::Vector2f(100, 200), float(0.4)));
 	pauseElements.push_back(InterfaceElement( [newMachine]{  newMachine->changeState(std::make_shared<PlayingState>());},"startButton", assets, sf::Vector2f(400, 200), float(1)));
 	machine = newMachine;
@@ -49,29 +46,24 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 	pauseBackground.setFillColor(sf::Color(0,0,0,50));
 	pauseBackground.setSize(sf::Vector2f(1920,1080));
 
-
 	pauseElements[0].setPosition(sf::Vector2f(position.x+600,position.y+440));
 	pauseElements[1].setPosition(sf::Vector2f(position.x+900,position.y+440));
 	pauseGame = true;
 	//
 	for(InterfaceElement& element : pauseElements){
 		if(element.contains(window,view)){
-			//Menu
+			// Go to menu
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+600,position.y+440))){				
-
 				view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));
-				std::cout<<"go menu\n";
 				pauseGame = false;
 				element.changeState();
 				game.restartClocks();
 			}
-			// Back to previous state
+			// Go back to previous state
 			if(event.type == sf::Event::MouseButtonPressed && element.comparePosition(sf::Vector2f(position.x+900,position.y+440))){		
-				std::cout<<"go back\n";
 				pauseGame = false;
 				element.changeState();
 				game.restartClocks();
-
 			}
 		}
 	}
@@ -81,7 +73,7 @@ void Interface::pauseSettings( const sf::Event & event, sf::View & view){
 /// \brief
 /// Handle input.
 /// \details
-/// This handles the escape button, that shows the pause state and remember the previous state..
+/// This handles the escape button, that shows the pause state and remember the previous state.
 void Interface::handleInput(){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		prevState = machine->getCurrentState();
@@ -92,7 +84,7 @@ void Interface::handleInput(){
 /// \brief
 /// Handle Events.
 /// \details
-/// This handles all the events it gets.
+/// This handles all the events it gets; used for starting a game, the editor or closing the window.
 void Interface::handleEvent(const sf::Event & event, sf::View & view){
 	game.restartClocks();
 	for( InterfaceElement & sprite : interfaceElements){
@@ -119,7 +111,7 @@ void Interface::handleEvent(const sf::Event & event, sf::View & view){
 /// \brief
 /// Display the game.
 /// \details
-/// This displays the current state of the menu or the pause state on screen .
+/// This displays the current state of the menu or the pause state on screen.
 void Interface::display(sf::View & view){
 	if (pauseGame){
 		view.setCenter(sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2));

@@ -138,7 +138,13 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><div class="memdoc">
 
 <p>Create an instance. </p>
-<p>This function creates an <a class="el" href="class_enemy_graphics.html" title="EnemyGraphics. ">EnemyGraphics</a> Component. </p>
+<p>This function creates an <a class="el" href="class_enemy_graphics.html" title="EnemyGraphics. ">EnemyGraphics</a> Component. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetName</td><td>The name of the texture to get from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> that should be used to construct te sprite. </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -205,7 +211,14 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><div class="memdoc">
 
 <p>Process graphics. </p>
-<p>This function processes the graphics; drawing the sprite and flushing it to the renderwindow. </p>
+<p>This function processes the graphics; drawing the sprite and flushing it to the renderwindow. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The RenderWindow to draw in. </td></tr>
+    <tr><td class="paramname">position</td><td>The position of the enemy. </td></tr>
+    <tr><td class="paramname">view</td><td>The sf::View to determine the position of for making sure only the minimal is drawn. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="class_graphics_component.html">GraphicsComponent</a>.</p>
 
@@ -218,7 +231,7 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 09:11:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 17:12:18 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

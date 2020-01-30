@@ -1,3 +1,5 @@
+/// @file
+
 #ifndef __SPRITE_ANIMATION
 #define __SPRITE_ANIMATION
 
@@ -5,6 +7,11 @@
 #include <iostream>
 #include "AssetManager.hpp"
 
+/// \brief
+/// Sprite Animation.
+/// \details
+/// This class features an animated spritesheet. Used to easily create an animation
+/// based on a spritesheet.
 class SpriteAnimation {
 	private:
 		sf::Sprite& sprite;					//!< The sprite that is drawn.
@@ -13,7 +20,7 @@ class SpriteAnimation {
 		sf::Vector2i spriteRowColumn;		//!< The Row and column of the spritesheet.
 		sf::Vector2f scale;					//!< The scale of the sprite.
 		int missingRow;						//!< If the spritesheet is missing some frames.
-		float animationSpeed;				//!< The speed which animations are played.
+		float animationSpeed;				//!< The speed at which animations are played.
 		sf::Vector2f hitboxscale={0.2,0.2};	//!< The hitbox.
 		sf::Vector2i missingRowCollom;		//!< The missing row and collumns in a spritesheet.
 		sf::Vector2i startFrame;			//!< The frame to start in.
@@ -43,7 +50,7 @@ class SpriteAnimation {
 		sf::FloatRect getBounds() const ;
 		sf::FloatRect getGlobal() const ;
 		void move(sf::Vector2f where);
-		void left(bool where);
+		void left(bool left);
 		
 };
 

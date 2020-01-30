@@ -83,7 +83,7 @@ Inheritance diagram for InterfaceElement:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6693f2c10046fc26e593292812336c31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_element.html#a6693f2c10046fc26e593292812336c31">InterfaceElement</a> (std::function&lt; void() &gt; work, const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
+<tr class="memitem:a6693f2c10046fc26e593292812336c31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_element.html#a6693f2c10046fc26e593292812336c31">InterfaceElement</a> (std::function&lt; void() &gt; <a class="el" href="class_interface_element.html#abc6d54af37e0f5b545e2a8fdd933333c">work</a>, const std::string &amp;<a class="el" href="class_screen_object.html#a07d5ebdb769ffa871c87864523b477e5">assetName</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, const sf::Vector2f &amp;position=sf::Vector2f(0, 0), const float scale=1, const float rotation=0, const int <a class="el" href="class_screen_object.html#a86dc6be11db1e2ba8352c9683f4f9ec5">windowLayer</a>=0)</td></tr>
 <tr class="memdesc:a6693f2c10046fc26e593292812336c31"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_interface_element.html" title="InterfaceElement. ">InterfaceElement</a> constructor.  <a href="#a6693f2c10046fc26e593292812336c31">More...</a><br /></td></tr>
 <tr class="separator:a6693f2c10046fc26e593292812336c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf58c07edad65f758fe7bf47abc660dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_element.html#adf58c07edad65f758fe7bf47abc660dc">comparePosition</a> (sf::Vector2f position)</td></tr>
@@ -139,7 +139,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowLayer</b> () 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:abc6d54af37e0f5b545e2a8fdd933333c"><td class="memItemLeft" align="right" valign="top"><a id="abc6d54af37e0f5b545e2a8fdd933333c"></a>
-std::function&lt; void() &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>work</b></td></tr>
+std::function&lt; void() &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_element.html#abc6d54af37e0f5b545e2a8fdd933333c">work</a></td></tr>
+<tr class="memdesc:abc6d54af37e0f5b545e2a8fdd933333c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function that should execute when the element is clicked. <br /></td></tr>
 <tr class="separator:abc6d54af37e0f5b545e2a8fdd933333c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -221,7 +222,13 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <p><a class="el" href="class_interface_element.html" title="InterfaceElement. ">InterfaceElement</a> constructor. </p>
 <p>This creates an <a class="el" href="class_interface_element.html" title="InterfaceElement. ">InterfaceElement</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">work</td><td>Store lambda functions. </td></tr>
+    <tr><td class="paramname">work</td><td>The lambda to execute when the element is clicked. </td></tr>
+    <tr><td class="paramname">assetName</td><td>The name of the texture to get from the <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> that should be used to construct te sprite. </td></tr>
+    <tr><td class="paramname">assets</td><td>The <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> to use to retrieve assets. </td></tr>
+    <tr><td class="paramname">position</td><td>The initial position to set and draw the sprite. </td></tr>
+    <tr><td class="paramname">scale</td><td>The initial scale of the sprite. </td></tr>
+    <tr><td class="paramname">rotation</td><td>The initial rotation of the sprite. </td></tr>
+    <tr><td class="paramname">windowLayer</td><td>The initial window layer the sprite is part of in the world. </td></tr>
   </table>
   </dd>
 </dl>
@@ -266,7 +273,13 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><div class="memdoc">
 
 <p>Compare positions. </p>
-<p>This will compare the positions of the element and the given position and return true when the positions are the same. </p><dl class="section return"><dt>Returns</dt><dd>A bool that depends on whether the positions are the same. </dd></dl>
+<p>This will compare the positions of the element and the given position and return true when the positions are the same. </p><dl class="section return"><dt>Returns</dt><dd>A bool that returns true when the positions are the same. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -298,6 +311,13 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 <p>Mouse contained. </p>
 <p>This function will check whether your mouse is inside the element. </p><dl class="section return"><dt>Returns</dt><dd>A bool that depends on whether your mouse is inside the element. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The sf::RenderWindow to use for converting the relative position to the absolute clicked position. </td></tr>
+    <tr><td class="paramname">view</td><td>The sf::View to use for converting the relative position to the absolute clicked position. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -308,7 +328,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 09:11:14 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 17:12:18 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

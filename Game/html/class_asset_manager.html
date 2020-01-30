@@ -100,7 +100,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Asset manager. </p>
-<p>This class features the storage of all textures of the game. This way, all textures only have to be loaded in memory once after which multiple refrences can be taken of the same texture. After constructing, all objects are loaded. </p>
+<p>This class features the storage of all textures of the game. This way, all textures only have to be loaded in memory once after which multiple refrences can be taken to the same texture. After constructing, all objects from the assetLocationsFile are loaded. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af11905d974a37bb06f244598cb637d98"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af11905d974a37bb06f244598cb637d98">&#9670;&nbsp;</a></span>AssetManager()</h2>
@@ -119,7 +119,12 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </div><div class="memdoc">
 
 <p>Create an instance. </p>
-<p>This constructs an <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> and loads the map with the contents of the passed parameter. calls loadObjects in the background. </p>
+<p>This constructs an <a class="el" href="class_asset_manager.html" title="Asset manager. ">AssetManager</a> and loads the map with the contents of the passed parameter. calls loadObjects in the background. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assetLocationsFile</td><td>This file contains all assets, their locations and their names. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -170,7 +175,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 <p>Load all objects. </p>
 <p>This loads all objects specified in the file with the name of the passed parameter. This file should follow some syntax rules: </p><div class="fragment"><div class="line">background Assets/Textures/freetileset/png/BG/BG.png</div><div class="line">crate Assets/Textures/freetileset/png/Object/Crate.png</div><div class="line">grass Assets/Textures/freetileset/png/Tiles/2.png</div></div><!-- fragment --><p> The first word specifies the name that identifies the texture in the textureMap. The second word is equal to the filepath that leads to the desired texture. Furthermore, another file can be read by calling the function again; all new assets are appended to the map. Duplicates are ignored. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">assetFileName</td><td>The filename of the file containing all assets, their locations and their names. </td></tr>
+    <tr><td class="paramname">assetFileName</td><td>This file contains all assets, their locations and their names. </td></tr>
   </table>
   </dd>
 </dl>
@@ -224,7 +229,7 @@ std::map&lt; std::string, sf::Texture &gt;&#160;</td><td class="memItemRight" va
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 09:11:13 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 17:12:18 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

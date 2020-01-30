@@ -20,8 +20,8 @@ class World;
 /// This class is an abstract virtual class for all items.
 class Item : public Tile {
 	protected:
-		const std::string assetName;
-		int_fast8_t experience;
+		const std::string assetName;		//!< The AssetManager to use for gathering the needed textures.
+		int_fast8_t experience;				//!< The amount of experience to pick up.
 	public:
 		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;}
@@ -44,9 +44,9 @@ class Item : public Tile {
 /// This class is responsible for hitting other existing Characters and thus dealing damage.
 class Weapon : public Item {
 	private:	
-		sf::Clock clock;
-		sf::Time lastAttack;
-		const int_fast16_t hitPeriod;
+		sf::Clock clock;				//!< The sf::Clock to use for determining if it is possible to attack again.
+		sf::Time lastAttack;			//!< The time when the last attack was performed.
+		const int_fast16_t hitPeriod;	//!< The period in milliseconds that should be between two attacks.
 
 		const int damageFactor;
 	public:
@@ -62,7 +62,7 @@ class Weapon : public Item {
 /// This class is responsible for replenishing health after the Character consumes a consumable.
 class Consumable : public Item {
 	private:
-		const int_fast8_t foodValue;
+		const int_fast8_t foodValue;			//!< The amount of health the Character gets when eating this Consumable.
 	public:
 		Consumable(const std::string assetName, AssetManager & assets, const int_fast8_t foodValue);
 		virtual bool use(Character * character, std::vector<Character> & characters) override;
@@ -92,8 +92,8 @@ class Block : public Item {
 		sf::RenderWindow & window;			//!< Needs a window for the use function
 		sf::View & view;					//!< Needs a view to get the right mouse position in the use function
 
-		sf::Font blockFont;
-		sf::Text blockText;
+		sf::Font blockFont;					//!< The sf::Font to use for displaying the amount of blocks.
+		sf::Text blockText;					//!< The sf::Text to use for displaying the amount of blocks.
 
 	public:
 		Block(const std::string assetName, AssetManager & assets, int_fast8_t amountOfObjects, const sf::Event & event, World & world, sf::RenderWindow & window, sf::View & view);

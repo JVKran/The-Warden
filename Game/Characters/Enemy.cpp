@@ -4,12 +4,11 @@
 /// Create enemy input.
 /// \details
 /// This class creates the input for enemies. Based on some very simple AI; it walks towards the player if it is in sight.
-/// @param position The position of the enemy.
-/// @param direction The direction of the enemy.
-/// @param keys Because the playerInput also needs one.
+/// @param position The current position of the enemy.
+/// @param direction The direction the enemy should walk towards.
+/// @param keys Because the InputComponent describes this function should have one.
 void EnemyInput::processInput(const sf::Vector2f & position, sf::Vector2f & direction, std::vector<KeyBinding> & keys){
 	int detectionRange = 80;
-
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(characters.at(i).isPlayer()){									//Enemy 					//Player
 			if(characters.at(i).getPosition().x < position.x - detectionRange && characters.at(i).getPosition().x > position.x - 500){
@@ -41,7 +40,7 @@ EnemyInput & EnemyInput::operator=(EnemyInput lhs){
 /// This class implements the item usage for enemies. It consists of continuously hitting...
 /// @param event The sf::Event to use for detecting and handling occured events.
 /// @param items The items the enemy will drop when dead.
-/// @param ownCharacter This is itself.
+/// @param ownCharacter This is the Character that called this function.
 void EnemyInput::processItemUsage(const sf::Event & event, std::vector<std::shared_ptr<Item>> & items, Character * ownCharacter) {
 	if(items.at(0)->use(ownCharacter, characters) && ownCharacter->getSelectedItem()->isWeapon()){
 		ownCharacter->getGraphics()->setFightAnimation();
@@ -160,10 +159,8 @@ void BossPhysics::processVelocity(sf::Vector2f & direction, sf::Vector2f & veloc
     }
     if(direction.x == 0 && velocity.x != 0){
     	if(velocity.x - 0.001 > 0){
-    		std::cout<<"nope1"<<'\n';
 			velocity.x = 0;
     	} else if(velocity.x + 0.001 < 0){
-			std::cout<<"nope1"<<'\n';
     		velocity.x = 0;
     	} else {
     		velocity.x = 0;
