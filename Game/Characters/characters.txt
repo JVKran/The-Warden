@@ -30,3 +30,8 @@ size (2400,2880) grid (5,6) scale (0.5,0.5) start (0,0) offset (5,97) missing (2
 size (2400,2400) grid (5,5) scale (0.5,0.5) start (0,0) offset (5,97) missing (0,4) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename dogJump dogJump eind
 size (2400,1440) grid (5,3) scale (0.5,0.5) start (0,0) offset (5,97) missing (3,2) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename dogDamage dogDamage eind
 size (2400,1920) grid (5,4) scale (0.5,0.5) start (0,0) offset (5,97) missing (4,3) hitfac (0.18,0.23) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename dogAttack dogAttack eind
+
+
+size (2400,2880) grid (5,6) scale (1,1) start (0,0) offset (5,200) missing (2,5) hitfac (0.36,0.46) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename wizardBossWalk wizardBossWalk eind
+size (2400,1440) grid (5,3) scale (1,1) start (0,0) offset (5,200) missing (1,2) hitfac (0.36,0.46) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename wizardBossIdle wizardBossIdle eind
+size (2400,1920) grid (5,4) scale (1,1) start (0,0) offset (5,200) missing (4,3) hitfac (0.36,0.46) speed (0.03,0) | action (0,0) action (1,2) ismirrored | state idle | filename wizardBossAttack wizardBossAttack eind
