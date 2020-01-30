@@ -90,8 +90,8 @@ void Settings::draw(sf::View & view){
 
 
 	for(uint_fast8_t windowLayer = 0; windowLayer <= 4; windowLayer ++){
-			world.draw(window, view, windowLayer);				// Finaly, draw one more layer that's also able to draw over Characters.
-		}
+		world.draw(window, view, windowLayer);
+	}
 	window.draw(settingBackground);
 	for( auto & p : bindings ){
 		p.draw( window );				//all the key objects

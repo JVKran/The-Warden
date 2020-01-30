@@ -60,7 +60,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_item-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -89,9 +88,12 @@ Inheritance diagram for Item:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abc31ac13d7ab33acc0687e62a8981fb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#abc31ac13d7ab33acc0687e62a8981fb6">Item</a> (const std::string assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, int_fast8_t experience=0) l virtual bool use(<a class="el" href="class_character.html">Character</a> *character</td></tr>
-<tr class="memdesc:abc31ac13d7ab33acc0687e62a8981fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an item.  <a href="#abc31ac13d7ab33acc0687e62a8981fb6">More...</a><br /></td></tr>
-<tr class="separator:abc31ac13d7ab33acc0687e62a8981fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9139c09ab727c558a590979735d10b92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a9139c09ab727c558a590979735d10b92">Item</a> (const std::string assetName, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, int_fast8_t experience=0)</td></tr>
+<tr class="memdesc:a9139c09ab727c558a590979735d10b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an item.  <a href="#a9139c09ab727c558a590979735d10b92">More...</a><br /></td></tr>
+<tr class="separator:a9139c09ab727c558a590979735d10b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2cbaa60091c1e00365cd9a922578ab5"><td class="memItemLeft" align="right" valign="top"><a id="af2cbaa60091c1e00365cd9a922578ab5"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>use</b> (<a class="el" href="class_character.html">Character</a> *character, std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;characters)</td></tr>
+<tr class="separator:af2cbaa60091c1e00365cd9a922578ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fe0635ad83800b2e6d3e59c853f429b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a7fe0635ad83800b2e6d3e59c853f429b">containsExperience</a> ()</td></tr>
 <tr class="memdesc:a7fe0635ad83800b2e6d3e59c853f429b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains experience?  <a href="#a7fe0635ad83800b2e6d3e59c853f429b">More...</a><br /></td></tr>
 <tr class="separator:a7fe0635ad83800b2e6d3e59c853f429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,12 +207,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowLayer</b> () 
 <tr class="memdesc:a251d344290359fed5ad1970b5c30a5c1 inherit pub_methods_class_screen_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw object.  <a href="class_screen_object.html#a251d344290359fed5ad1970b5c30a5c1">More...</a><br /></td></tr>
 <tr class="separator:a251d344290359fed5ad1970b5c30a5c1 inherit pub_methods_class_screen_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a13898409015fec325afe351aa08b94ae"><td class="memItemLeft" align="right" valign="top"><a id="a13898409015fec325afe351aa08b94ae"></a>
-std::vector&lt; <a class="el" href="class_character.html">Character</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>characters</b> {return false</td></tr>
-<tr class="separator:a13898409015fec325afe351aa08b94ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ab526cd2073d60916999107e925fc2163"><td class="memItemLeft" align="right" valign="top"><a id="ab526cd2073d60916999107e925fc2163"></a>
@@ -237,8 +233,8 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <div class="textblock"><p><a class="el" href="class_item.html" title="Item. ">Item</a>. </p>
 <p>This class is an abstract virtual class for all items. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abc31ac13d7ab33acc0687e62a8981fb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc31ac13d7ab33acc0687e62a8981fb6">&#9670;&nbsp;</a></span>Item()</h2>
+<a id="a9139c09ab727c558a590979735d10b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9139c09ab727c558a590979735d10b92">&#9670;&nbsp;</a></span>Item()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -429,7 +425,7 @@ int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 29 2020 20:27:32 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 09:11:14 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

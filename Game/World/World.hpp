@@ -23,9 +23,9 @@ class World {
 		std::vector<Tile> tiles;					//!< The tiles the world consists of.
 		std::vector<std::shared_ptr<Item>> items;
 
-		int_fast64_t lastLeftSide = 0;
-		std::vector<Tile>::iterator leftIterator;
-		std::vector<Tile>::iterator rightIterator;
+		int_fast64_t lastLeftSide = 0;				//!< The last x-coordinate for which the left and right iteratore have been calculated.
+		std::vector<Tile>::iterator leftIterator;	//!< An iterator to the first tile in the world that has to be drawn on screen.
+		std::vector<Tile>::iterator rightIterator;	//!< An iterator to the last tile in the world that has to be drawn on screen.
 
 		std::string worldFileName;					//!< The filename of the world configuration file.
 		std::string backgroundName;					//!< The backgroundname used for retrieving the texture from the AssetManager.
@@ -36,9 +36,7 @@ class World {
 	public:
 		World(AssetManager & assets);
 
-		AssetManager & getAssets(){
-			return assets;
-		}
+		AssetManager & getAssets();
 
 		void saveWorld();
 		void loadWorld(const std::string & fileName);
@@ -50,18 +48,11 @@ class World {
 		void setBackground(const std::string & backgroundName);
 
 		std::vector<Tile> & getTiles();
-		std::vector<std::shared_ptr<Item>> & getItems(){
-			return items;
-		}
+		std::vector<std::shared_ptr<Item>> & getItems();
+
 		void draw(sf::RenderWindow & window, sf::View & view, const int_fast8_t windowLayer);
 
-		World & operator=(World lhs){
-			tiles = lhs.tiles;
-			worldFileName = lhs.worldFileName;
-			backgroundName = lhs.backgroundName;
-			background = lhs.background;
-			return *this;
-		}
+		World & operator=(World lhs);
 };
 
 #endif //__WORLD_HPP

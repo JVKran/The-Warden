@@ -1,4 +1,5 @@
 /// @file
+
 #ifndef __STATEMACHINE_HPP
 #define __STATEMACHINE_HPP
 
@@ -12,14 +13,14 @@
 class Game;
 class Interface;
 class StateMachine;
-
-
 class Settings;
 class State;
+
 /// \brief
 /// StateDependantObjects
 /// \details
-/// This contains the game, interface, editor, settings
+/// This contains the game, interface, editor and settings. Used only so that the developers can
+/// pass all these objects with one instead of four parameters.
 struct StateDependantObjects {
 	Game & game;
 	Interface & interface;
@@ -33,10 +34,12 @@ struct StateDependantObjects {
 		settings(settings)
 	{}
 };
+
 /// \brief
 /// ViewObjects
 /// \details
-/// This contains the view and event.
+/// This contains the view and event. Used only so that the developers can
+/// pass these objects with one instead of two parameters.
 struct ViewObjects {
 	sf::View & view;
 	const sf::Event & event;
@@ -46,6 +49,7 @@ struct ViewObjects {
 		event(event)
 	{}
 };
+
 /// \brief
 /// StateMachine
 /// \details

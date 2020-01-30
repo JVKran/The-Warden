@@ -23,7 +23,7 @@ class Item : public Tile {
 		const std::string assetName;
 		int_fast8_t experience;
 	public:
-		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0)l
+		Item(const std::string assetName, AssetManager & assets, int_fast8_t experience = 0);
 		virtual bool use(Character * character, std::vector<Character> & characters){return false;}
 
 		virtual bool containsExperience();

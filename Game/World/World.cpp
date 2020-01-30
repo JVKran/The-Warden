@@ -158,6 +158,7 @@ void World::addTile(Tile object){
 	tiles.push_back(object);
 	sortWorld();
 }
+
 /// \brief
 /// Adds tile to world.
 /// \details
@@ -171,14 +172,18 @@ void World::addTile(std::string object, sf::Vector2f position, sf::Vector2f tele
 	objectToAdd.makePartOfWorld(true);
 }
 
+/// \brief
+/// Add item to world.
+/// \details
+/// This function adds the passed item to the world so it can be picked up.
+/// @param item A shared pointer to the item to add to the world.
 void World::addItem(std::shared_ptr<Item> item){
 	items.push_back(item);
 }
 
 /// \brief
 /// Get tiles.
-/// \details
-/// This returns a refrence to all tiles in the world.
+/// \return A refrence to all tiles in the world.
 std::vector<Tile> & World::getTiles(){
 	return tiles;
 }
@@ -217,4 +222,36 @@ void World::saveWorld(){
 /// @param backgroundName The name to use for retrieving the texture from the AssetManager.
 void World::setBackground(const std::string & backgroundName){
 	background.setTexture(assets.getTexture(backgroundName));
+}
+
+/// \brief
+/// Assignment operator
+/// \details
+/// This function assigns the passed world to the world it is called upon.
+/// @param lhs The World to copy.
+/// \return A refrence to the changed world.
+World & World::operator=(World lhs){
+	tiles = lhs.tiles;
+	worldFileName = lhs.worldFileName;
+	backgroundName = lhs.backgroundName;
+	background = lhs.background;
+	return *this;
+}
+
+/// \brief
+/// Get world items
+/// \details
+/// This function returns all items currently in the world so they can be picked up.
+/// \return A refrence to all items.
+std::vector<std::shared_ptr<Item>> & World::getItems(){
+	return items;
+}
+
+/// \brief
+/// Get AssetManager
+/// \details
+/// This function is used as a quick access to for the LootDrop needed assets.
+/// \return A refrence to the AssetManager.
+AssetManager & getAssets(){
+	return assets;
 }

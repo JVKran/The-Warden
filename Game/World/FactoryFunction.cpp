@@ -56,11 +56,6 @@ std::ifstream & operator>>( std::ifstream & input, sf::Vector2i & rhs ){
 	return input;
 }
 
-/// \brief
-/// Check for empty world file.
-/// \details
-/// This function returns a bool representing wether the file is empty or not.
-/// @param file The input to check for an eof character.
 bool isEmpty(std::ifstream & file){
     return file.peek() == std::ifstream::traits_type::eof();
 }

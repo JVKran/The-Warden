@@ -14,8 +14,7 @@
 class StateMachine;
 struct StateDependantObjects;
 
-enum class StateSettings
-{
+enum class StateSettings{
     IDLE,
     CHANGEKEY
 };
@@ -39,7 +38,7 @@ private:
 public:
 
 	/// \brief
-	/// Default constructor
+	/// Create an instance
 	/// \details
 	/// This is the constructor of the class.
 	/// It requires a window to draw on and assets to make the background.

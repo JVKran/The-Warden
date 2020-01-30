@@ -65,7 +65,7 @@ Weapon::Weapon(const std::string assetName, AssetManager & assets, const int dam
 /// \brief
 /// Get hitperiod.
 /// \return The time in milliseconds that has to be between two attacks.
-int_fast16_t Weapon::getPeriod() override{
+int_fast16_t Weapon::getPeriod(){
 	return hitPeriod;
 }
 
