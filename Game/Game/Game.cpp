@@ -274,10 +274,9 @@ void Game::loadCharacters(){
 			startItems.clear();
 			SpriteCharacter characterData( idleName, idleFile, jumpName,  jumpFile,  walkName,  walkFile, attackName,  attackFile,  dieName,  dieFile);
 			if(name=="player"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 300));
+				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 20, 300));
 				startItems.push_back(std::make_shared<Weapon>("battleAxe", assets, 10, 500));
 				startItems.push_back(std::make_shared<Weapon>("bigDagger", assets, 10, 500));
-				startItems.push_back(std::make_shared<Weapon>("ironSword", assets, 10, 500));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				startItems.push_back(std::make_shared<Block>("crate", assets, 0, event, world, window, view));
@@ -287,11 +286,11 @@ void Game::loadCharacters(){
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 70));
 				characters.push_back(Character(position, std::make_shared<BossInput>(world, characters), std::make_shared<BossPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false,200));
 			}else if (name =="dog"){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 20, 500));
+				startItems.push_back(std::make_shared<Weapon>("whip", assets, 15, 500));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<DogPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world,false));
 			}else if (name !=""){
-				startItems.push_back(std::make_shared<Weapon>("club", assets, 10, 200));
+				startItems.push_back(std::make_shared<Weapon>("woodenSword", assets, 10, 500));
 				startItems.push_back(std::make_shared<Consumable>("hunger", assets, 50));
 				characters.push_back(Character(position, std::make_shared<EnemyInput>(world, characters), std::make_shared<EnemyPhysics>(), std::make_shared<AnimatedGraphicsComponent>(name, assets, characterData), startItems, world));
 			}
