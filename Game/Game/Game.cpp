@@ -63,6 +63,7 @@ void Game::startWorld(const std::string & worldName){
 /// \details
 /// This restarts the clocks of all characters to make sure every player has their maximum amount of seconds on the clock and
 /// sprite animations start from the beginning.
+/// This will also pause the game timer.
 void Game::restartClocks(){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		characters.at(i).restartClock();
@@ -89,9 +90,11 @@ void Game::restart(){
 }
 
 /// \brief
-/// Hanlde input.
+/// Handle input.
 /// \details
 /// This handles the input for all characters, manages the time and takes care of savepoints.
+/// @param view The sf::View.
+/// @param event The sf::Event to use for detecting and handling occured events.
 void Game::handleInput(sf::View & view, const sf::Event & event){
 	for(int_fast8_t i = characters.size() - 1; i >= 0; i--){
 		if(!characters.at(i).isPlayer()){

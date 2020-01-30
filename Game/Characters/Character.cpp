@@ -6,16 +6,16 @@
 /// Create an instance.
 /// \details
 /// This creates a SpriteCharacter based on its parameters.
-/// @param idleName
-/// @param idleFile
-/// @param jumpName
-/// @param jumpFile
-/// @param walkName
-/// @param walkFile
-/// @param attackName
-/// @param attackFile
-/// @param dieName
-/// @param dieFile
+/// @param idleName This is the name that enables the idle animation.
+/// @param idleFile	This is the file that has the idle spritesheet.
+/// @param jumpName This is the name that enables the jump animation.
+/// @param jumpFile This is the file that has the jump spritesheet.
+/// @param walkName This is the name that enables the walk animation.
+/// @param walkFile This is the file that has the walk spritesheet.
+/// @param attackName This is the name that enables the attack animation.
+/// @param attackFile This is the file that has the attack spritesheet.
+/// @param dieName This is the name that enables the die animation.
+/// @param dieFile This is the file that has the die spritesheet.
 SpriteCharacter::SpriteCharacter(std::string idleName,std::string idleFile,std::string jumpName, std::string jumpFile, std::string walkName, std::string walkFile,std::string attackName="", std::string attackFile="", std::string dieName="", std::string dieFile=""):
 	idleName(idleName),
 	idleFile(idleFile),
@@ -63,7 +63,10 @@ Character::Character(sf::Vector2f position, std::shared_ptr<InputComponent> inpu
 	itemSelector.setOutlineColor(sf::Color::Black);
 	itemSelector.setFillColor(sf::Color(0, 0, 0, 0));
 }
-
+/// \brief
+/// Loot drops when dead.
+/// \details
+/// This function will drop loot when a character has died.
 void Character::die(){
 	lootDrop->drop(items, experiencePoints, sf::Vector2f(position.x,position.y+graphics->getDimensions().y-10));
 }
@@ -120,6 +123,7 @@ void Character::addTile(const sf::Event & event, World & world, sf::RenderWindow
 /// Adds a tile
 /// \details
 /// This function calls the addTile function to add a new tile to the world.
+/// @param tile This has the tile that needs to be added to the world.
 void Character::addTile(Tile & tile){
 	input->addTile(tile);
 }
@@ -147,7 +151,7 @@ void Character::handleEvent(const sf::Event & event){
 }
 
 /// \brief
-/// Is alive?
+/// Character is alive?
 /// \return Whether or not the Character is alive.
 bool Character::isAlive() const {
 	return health > 0;
@@ -212,7 +216,7 @@ void Character::draw(sf::RenderWindow & window, sf::View & view){
 /// This function processes the collisions with items, tiles and characters in the world.
 /// @param characterItems The items to check collisions with (after which they have to be picked up).
 /// @param world The World of which the tiles have to be checked for collisions.
-/// @param position 
+/// @param position The position of the character.
 /// @param dimensions The dimensions of the character.
 /// @param collisionBounds The bounds to check for collisions in between.
 /// @param characters The characters to check collisions with.
@@ -341,7 +345,7 @@ void PhysicsComponent::processVelocity(sf::Vector2f & direction, sf::Vector2f & 
 /// Process physics.
 /// \details
 /// This function checks for collisions, state changes and velocity changes.
-/// @param velocity 
+/// @param velocity The character velocity.
 void PhysicsComponent::processPhysics(sf::Vector2f & velocity){
 	float maxAcceleration = 0.005;
 	float maxVelocity = 0.995;
@@ -541,16 +545,19 @@ sf::Vector2f AnimatedGraphicsComponent::getDimensions(){
 /// Set fight animation
 /// \details
 /// This function sets the current animation to the fight animation.
-/// @param hitTime 
+/// @param hitTime This is the time when you were hit.
 void AnimatedGraphicsComponent::setFightAnimation(int_fast16_t hitTime){
 	if(clock.getElapsedTime().asMilliseconds()-attackTime.asMilliseconds()>hitTime){
-	isAttacking=true;
-	currentAnimation=&attackAnimation;
-	attackTime = clock.getElapsedTime();
-	currentAnimation->left(isWalkingLeft);
+		isAttacking=true;
+		currentAnimation=&attackAnimation;
+		attackTime = clock.getElapsedTime();
+		currentAnimation->left(isWalkingLeft);
 	}
 }
 
+/// \brief
+/// Get global of character
+/// \return return the global bounds of the current sprite.
 sf::FloatRect AnimatedGraphicsComponent::getGlobal() const{
 	return currentAnimation->getGlobal();
 }
@@ -573,7 +580,7 @@ sf::Vector2f GraphicsComponent::getDimensions(){
 }
 
 /// \brief
-/// Is player?
+/// Characte is player?
 /// \return Returns wether or not the Character is a player.
 bool Character::isPlayer() const {
 	return isPlayerType;
@@ -592,7 +599,9 @@ sf::Vector2f Character::getPosition() const {
 sf::FloatRect Character::getBounds() const {
 	return sf::FloatRect(position, graphics->getDimensions());
 }
-
+/// \brief
+/// Get global of character
+/// \return return the global bounds of the current sprite.
 sf::FloatRect Character::getGlobal() const {
 	return graphics->getGlobal();
 }
@@ -625,6 +634,7 @@ std::vector<std::shared_ptr<Item>> & Character::getItems(){
 	return items;
 }
 
+/// \brief
 /// Get curent experience points.
 /// \return Returns the current experience points of the Character.
 int_fast16_t Character::getExperience() const{
@@ -653,7 +663,7 @@ bool Character::operator==(const Character & lhs){
 
 /// \brief
 /// Assignment operator.
-/// \return Refrence to itself.
+/// \return Reference to itself.
 Character & Character::operator=(Character lhs){
 	position = lhs.position;
 	velocity = lhs.velocity;
@@ -721,14 +731,14 @@ void Character::setSpawn(const sf::Vector2f & newSpawn){
 
 /// \brief
 /// Get spawn position
-/// |return The current spawn position.
+/// \return The current spawn position.
 sf::Vector2f Character::getSpawn(){
 	return spawnPosition;
 }
 
 /// \brief
 /// Respawn 
-/// |details
+/// \details
 /// Set the position of the character to the spawn position.
 void Character::respawn(){
 	position = spawnPosition;

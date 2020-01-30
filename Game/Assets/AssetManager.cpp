@@ -7,6 +7,7 @@
 /// \details
 /// This constructs an AssetManager and loads the map with the contents of the passed parameter.
 /// calls loadObjects in the background.
+/// @param assetLocationsFile The filename of the file containing all assets, their locations and their names.
 AssetManager::AssetManager(const std::string & assetLocationsFile){
 	loadObjects(assetLocationsFile);
 }
