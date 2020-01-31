@@ -68,7 +68,6 @@ int main(){
 			machine.handleInput(event);							//Editing
 		}		
 
-
 		window.clear();
 		window.setView(view);
 		machine.display(event);
