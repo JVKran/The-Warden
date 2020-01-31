@@ -13,8 +13,6 @@
 #include "keybinding.hpp"
 
 int main(){
-	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden", sf::Style::Fullscreen};
-	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
 	std::vector<KeyBinding> bindings { 
 		KeyBinding ( "Left", 					sf::Keyboard::A,  		Text( "Left : A", 							sf::Vector2f{960.0, 40.0}, 	 1, sf::Color::Black, 1 )),
@@ -38,6 +36,9 @@ int main(){
 
 	sf::Event event;
 	AssetManager assets;
+
+	sf::RenderWindow window{ sf::VideoMode{ 1920, 1080 }, "The Warden", sf::Style::Fullscreen};
+	sf::View view = sf::View(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
 	Game game(window, assets, bindings, event, view);
 	Editor editor(window, assets, bindings);

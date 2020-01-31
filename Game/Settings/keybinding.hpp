@@ -23,7 +23,7 @@ private:
 
 	std::string keyName;		//!< A discribtion of what the key does.
 	sf::Keyboard::Key key;		//!< The key we are using for this object.
-	Text text;			//!< The text object which is used to draw the information above.
+	Text text;					//!< The text object which is used to draw the information above.
 
 public:
 
