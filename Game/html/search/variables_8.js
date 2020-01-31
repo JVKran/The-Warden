@@ -1,7 +1,7 @@
 var searchData=
 [
   ['idleanimation',['idleAnimation',['../class_animated_graphics_component.html#ae7953909a241b950f9f978f04a13c4be',1,'AnimatedGraphicsComponent']]],
-  ['input',['input',['../class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d',1,'Character']]],
+  ['input',['input',['../class_character.html#afb1a27ac8aba4f7b7f88d4fd30aa263d',1,'Character::input()'],['../class_text.html#ae0f8e2684e22786e9ba73ea4331dd9a9',1,'Text::input()']]],
   ['interactable',['interactable',['../class_tile.html#af0fa472b89b2dc6a8d8e15dac421ecf0',1,'Tile']]],
   ['interfaceelements',['interfaceElements',['../class_interface.html#ae9922754c14b928fb47e2e65bc39dbfa',1,'Interface']]],
   ['isattacking',['isAttacking',['../class_animated_graphics_component.html#a316a2366d40a55afd4e932bdaa5a9583',1,'AnimatedGraphicsComponent']]],

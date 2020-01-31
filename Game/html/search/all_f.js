@@ -19,7 +19,7 @@ var searchData=
   ['playingstate',['PlayingState',['../class_playing_state.html',1,'']]],
   ['playmusic',['playMusic',['../class_music.html#a4b7c191c6bae70db92125b3886dbadd6',1,'Music']]],
   ['playsound',['playSound',['../class_sound.html#a3ce5b74dc968ccf49b06fe1bbb22b68f',1,'Sound']]],
-  ['position',['position',['../class_character.html#ae052b694df2c91c125174ef6ee64ddc9',1,'Character']]],
+  ['position',['position',['../class_character.html#ae052b694df2c91c125174ef6ee64ddc9',1,'Character::position()'],['../class_text.html#a40fea1355547aae28dff21e24948136b',1,'Text::position()']]],
   ['previousposition',['previousPosition',['../class_animated_graphics_component.html#a7a5655442cf3670eabf0f3802fb3fd7f',1,'AnimatedGraphicsComponent']]],
   ['previoustime',['previousTime',['../class_animated_graphics_component.html#a729a15e04b24855b3b839d34b0b01e55',1,'AnimatedGraphicsComponent']]],
   ['prevstate',['prevState',['../class_interface.html#a5330458956f06cc7234d9a8fefe7fd19',1,'Interface']]],

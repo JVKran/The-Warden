@@ -74,7 +74,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a30f22140d38e2b3bb6fc3f4d81de1eb4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a30f22140d38e2b3bb6fc3f4d81de1eb4">Settings</a> (sf::RenderWindow &amp;window, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;bindings)</td></tr>
+<tr class="memitem:a30f22140d38e2b3bb6fc3f4d81de1eb4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a30f22140d38e2b3bb6fc3f4d81de1eb4">Settings</a> (sf::RenderWindow &amp;<a class="el" href="class_settings.html#af7ff4413c8f5e43a07993020b2f9ed1f">window</a>, <a class="el" href="class_asset_manager.html">AssetManager</a> &amp;assets, std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;<a class="el" href="class_settings.html#aa4b225cc7404d9298fc337a707af6671">bindings</a>)</td></tr>
 <tr class="memdesc:a30f22140d38e2b3bb6fc3f4d81de1eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance.  <a href="#a30f22140d38e2b3bb6fc3f4d81de1eb4">More...</a><br /></td></tr>
 <tr class="separator:a30f22140d38e2b3bb6fc3f4d81de1eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8851d7698c7a2ecc465ace0ccb9930df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a8851d7698c7a2ecc465ace0ccb9930df">addKeyBindings</a> (<a class="el" href="struct_state_dependant_objects.html">StateDependantObjects</a> &amp;objects)</td></tr>
@@ -96,10 +96,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (<a cl
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af7ff4413c8f5e43a07993020b2f9ed1f"><td class="memItemLeft" align="right" valign="top"><a id="af7ff4413c8f5e43a07993020b2f9ed1f"></a>
-sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
+sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#af7ff4413c8f5e43a07993020b2f9ed1f">window</a></td></tr>
+<tr class="memdesc:af7ff4413c8f5e43a07993020b2f9ed1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The window is used to draw all the objects. <br /></td></tr>
 <tr class="separator:af7ff4413c8f5e43a07993020b2f9ed1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b225cc7404d9298fc337a707af6671"><td class="memItemLeft" align="right" valign="top"><a id="aa4b225cc7404d9298fc337a707af6671"></a>
-std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>bindings</b></td></tr>
+std::vector&lt; <a class="el" href="class_key_binding.html">KeyBinding</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aa4b225cc7404d9298fc337a707af6671">bindings</a></td></tr>
+<tr class="memdesc:aa4b225cc7404d9298fc337a707af6671"><td class="mdescLeft">&#160;</td><td class="mdescRight">The keys we are using for the game and the editor. <br /></td></tr>
 <tr class="separator:aa4b225cc7404d9298fc337a707af6671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac66da6e5278f7e51806445a1ec2cdf0c"><td class="memItemLeft" align="right" valign="top"><a id="ac66da6e5278f7e51806445a1ec2cdf0c"></a>
 StateSettings&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#ac66da6e5278f7e51806445a1ec2cdf0c">state</a> = StateSettings::IDLE</td></tr>
@@ -124,7 +126,8 @@ std::function&lt; void() &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <a class="el" href="class_world.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><b>world</b></td></tr>
 <tr class="separator:a9c6253ff4f5efb874155ce95c976cf42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbf69d340c2f6e1e9f5474b27083f019"><td class="memItemLeft" align="right" valign="top"><a id="abbf69d340c2f6e1e9f5474b27083f019"></a>
-sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>settingBackground</b></td></tr>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#abbf69d340c2f6e1e9f5474b27083f019">settingBackground</a></td></tr>
+<tr class="memdesc:abbf69d340c2f6e1e9f5474b27083f019"><td class="mdescLeft">&#160;</td><td class="mdescRight">The background. <br /></td></tr>
 <tr class="separator:abbf69d340c2f6e1e9f5474b27083f019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -259,7 +262,7 @@ sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>setting
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 17:12:18 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 31 2020 22:37:09 for The Warden by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
